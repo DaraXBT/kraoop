@@ -1,7 +1,162 @@
 <script setup>
 import {RouterView} from "vue-router";
+import ToastNotification from "./components/ToastNotification.vue";
+import PageLoader from "./components/PageLoader.vue";
+import {useToast} from "./composables/useToast";
+import {ref, onErrorCaptured} from "vue";
+
+const {toasts, removeToast, error} = useToast();
+
+// Error handling
+const hasError = ref(false);
+const errorMessage = ref("");
+
+onErrorCaptured((err, instance, info) => {
+  console.error("Component error caught:", err, info);
+  hasError.value = true;
+  errorMessage.value = err.message || "An error occurred";
+  error("Something went wrong. Please refresh the page.");
+  return false;
+});
 </script>
 
 <template>
-  <RouterView />
+  <!-- Page Transition Wrapper with overflow prevention -->
+  <div class="overflow-x-hidden min-h-screen w-full relative">
+    <!-- Animated background -->
+    <div
+      class="fixed inset-0 -z-10 bg-gradient-to-br from-pink-50/30 via-purple-50/20 to-blue-50/10"></div>
+
+    <!-- Error Boundary -->
+    <div
+      v-if="hasError"
+      class="min-h-screen flex items-center justify-center p-4">
+      <div
+        class="text-center max-w-md glass-card-strong p-10 rounded-3xl shadow-glass-xl border border-white/30 animate-fade-in">
+        <div class="mb-6">
+          <div
+            class="w-20 h-20 mx-auto bg-gradient-to-br from-red-400/20 to-red-600/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+            <svg
+              class="w-10 h-10 text-red-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+        </div>
+        <h1
+          class="text-3xl font-bold text-gray-800 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">
+          Oops!
+        </h1>
+        <p class="text-gray-600 mb-8 font-medium">{{ errorMessage }}</p>
+        <button
+          @click="() => window.location.reload()"
+          class="px-8 py-4 bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white rounded-2xl hover:shadow-glass-lg transition-smooth font-bold hover:scale-105 active:scale-95 border-2 border-white/30">
+          Reload Page
+        </button>
+      </div>
+    </div>
+
+    <!-- Main App Content with Suspense -->
+    <RouterView v-else v-slot="{Component, route}">
+      <Suspense>
+        <template #default>
+          <Transition name="page" mode="out-in">
+            <component :is="Component" :key="route.path" />
+          </Transition>
+        </template>
+        <template #fallback>
+          <PageLoader />
+        </template>
+      </Suspense>
+    </RouterView>
+
+    <!-- Toast Container -->
+    <div
+      class="fixed top-4 right-4 z-[100] flex flex-col gap-3 max-w-sm w-full pointer-events-none px-4">
+      <ToastNotification
+        v-for="toast in toasts"
+        :key="toast.id"
+        :message="toast.message"
+        :type="toast.type"
+        :duration="toast.duration"
+        :show="toast.show"
+        @close="removeToast(toast.id)"
+        class="pointer-events-auto" />
+    </div>
+  </div>
 </template>
+
+<style>
+/* Enhanced Page Transition Animations with Glass Effect */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  filter: blur(4px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.98);
+  filter: blur(4px);
+}
+
+/* Prevent horizontal scrolling globally */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Smooth scrolling for the entire app */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure all elements respect viewport width */
+* {
+  max-width: 100%;
+}
+
+/* Enhanced iOS-style scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f5a3b7, #e392a6);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e392a6, #d07b8f);
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(245, 163, 183, 0.3);
+  color: #383838;
+}
+
+::-moz-selection {
+  background-color: rgba(245, 163, 183, 0.3);
+  color: #383838;
+}
+</style>

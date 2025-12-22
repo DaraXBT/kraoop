@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap");
+/* Premium Font Imports for Kraoop Beauty */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lexend:wght@300;400;500;600&family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,11 +9,354 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins, sans-serif, Kantumruy Pro;
+  font-family: "Plus Jakarta Sans", "Lexend", "Kantumruy Pro", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+}
+
+/* Prevent horizontal scrolling globally */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
 }
 
 body {
-  background-color: #f2f2f2;
-  height: 100vh;
-  width: 100vw;
+  /* iOS-inspired sophisticated gradient background */
+  background: linear-gradient(
+    135deg,
+    #fafbfc 0%,
+    /* Very soft gray-blue */ #f8f9fb 15%,
+    /* Lighter gray-blue */ #fef5f8 40%,
+    /* Softest pink */ #fef8fb 60%,
+    /* Very light pink-purple */ #f9f7fc 85%,
+    /* Soft lavender-gray */ #fafbfd 100% /* Light blue-gray */
+  );
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Optional: Add subtle texture overlay for depth (iOS-style) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(245, 163, 183, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(185, 147, 214, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 20%,
+      rgba(147, 197, 253, 0.02) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure all containers respect viewport width */
+#app {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent text overflow */
+.text-container {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ========================================
+   iOS-Inspired Glassmorphism Design System
+   ======================================== */
+
+/* Glass Card Base Styles */
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl rounded-2xl border border-white/20 shadow-lg;
+  }
+
+  .glass-card-strong {
+    @apply bg-white/80 backdrop-blur-2xl rounded-2xl border border-white/30 shadow-xl;
+  }
+
+  .glass-card-subtle {
+    @apply bg-white/50 backdrop-blur-md rounded-2xl border border-white/10 shadow-md;
+  }
+
+  .glass-dark {
+    @apply bg-gray-900/70 backdrop-blur-xl rounded-2xl border border-white/10 shadow-xl;
+  }
+
+  .glass-pink {
+    @apply bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-xl rounded-2xl border border-pink-200/30 shadow-lg;
+  }
+
+  /* iOS-style elevation shadows */
+  .ios-shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .ios-shadow {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  .ios-shadow-lg {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .ios-shadow-xl {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Smooth iOS-style transitions */
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-bounce {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .transition-elastic {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* iOS-style blur utilities */
+  .blur-ios-sm {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .blur-ios {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .blur-ios-lg {
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+}
+
+/* Hover and interaction states */
+.glass-interactive {
+  @apply transition-smooth hover:scale-[1.02] hover:shadow-xl active:scale-[0.98];
+}
+
+/* Enhanced Glassy Button Styles */
+.glass-button {
+  @apply relative px-6 py-3 font-medium text-center overflow-hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.glass-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2)
+  );
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.glass-button:hover::before {
+  left: 100%;
+}
+
+.glass-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Glass Button Variants */
+.glass-button-primary {
+  @apply glass-button;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 163, 183, 0.5),
+    rgba(227, 146, 166, 0.3)
+  );
+  color: #8b2a4a;
+  font-weight: 600;
+}
+
+.glass-button-primary:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 163, 183, 0.7),
+    rgba(227, 146, 166, 0.5)
+  );
+  color: #6b1a3a;
+}
+
+.glass-button-secondary {
+  @apply glass-button;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.1)
+  );
+  color: #374151;
+}
+
+.glass-button-dark {
+  @apply glass-button;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.15));
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.glass-button-dark:hover {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.25));
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Glass Button Sizes */
+.glass-button-sm {
+  @apply px-4 py-2 text-sm rounded-lg;
+}
+
+.glass-button-lg {
+  @apply px-8 py-4 text-lg rounded-2xl;
+}
+
+/* Icon Button Variant */
+.glass-button-icon {
+  @apply glass-button p-3 rounded-full aspect-square flex items-center justify-center;
+}
+
+/* Floating animation for cards */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Glass shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.glass-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* iOS-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Backdrop blur support check */
+@supports not (backdrop-filter: blur(20px)) {
+  .glass-card,
+  .glass-card-strong,
+  .glass-card-subtle,
+  .glass-dark,
+  .glass-pink {
+    background: rgba(255, 255, 255, 0.95);
+  }
 }

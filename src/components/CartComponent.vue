@@ -1,67 +1,151 @@
-<script>
-export default {
-  name: "CartComponent",
-  props: ["id", "promotion", "image", "title", "product", "rating", "price"],
+<script setup>
+import {ref} from "vue";
+
+const props = defineProps({
+  id: {
+    type: [String, Number],
+    required: true,
+  },
+  promotion: {
+    type: String,
+    default: "",
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  product: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: String,
+    default: "(0)",
+  },
+  price: {
+    type: String,
+    required: true,
+  },
+});
+
+const emit = defineEmits(["add-to-cart"]);
+const isFavorite = ref(false);
+
+const toggleFavorite = () => {
+  isFavorite.value = !isFavorite.value;
+};
+
+const addToBag = () => {
+  const product = {
+    id: props.id,
+    title: props.title,
+    price: props.price,
+    image: props.image,
+    product: props.product,
+    promotion: props.promotion,
+    rating: props.rating,
+  };
+  emit("add-to-cart", product);
+};
+
+// Calculate original price based on promotion
+const calculateOriginalPrice = () => {
+  if (!props.promotion) return props.price;
+
+  const currentPrice = parseFloat(props.price.replace("$", ""));
+  const discountPercent = parseInt(
+    props.promotion.replace("-", "").replace("%", "")
+  );
+  const originalPrice = currentPrice / (1 - discountPercent / 100);
+
+  return "$" + originalPrice.toFixed(2);
 };
 </script>
+
 <template>
-  <div class="card">
+  <div class="card group relative w-full">
+    <!-- Card Container - Modern Glass Style -->
     <div
-      :class="{
-        'bg-[#A6CAF0]': promotion === '-10%',
-        'bg-[#B2D8B7]': promotion === '-25%',
-        'bg-[#B76E79]': promotion === '-50%',
-        'bg-[#F5A3B7]': promotion === '-75%',
-      }"
-      class="relative flex items-center justify-center w-24 h-10 font-medium text-white promotion rounded-e-3xl top-16 text-md">
-      {{ promotion }}
-    </div>
-    <div
-      class="Item w-72 pb-5 bg-white rounded-md flex-col justify-center items-center gap-2.5 inline-flex">
-      <img class="object-cover rounded-t-md Img w-72 h-72" :src="image" />
-      <div class="flex flex-col items-start justify-start gap-5 Info">
-        <router-link to="/detail">
-          <div class="flex flex-col items-start justify-start w-64 gap-2.5">
-            <div class="w-64 text-base font-medium capitalize text-neutral-700">
-              <!-- All-Around Safe Block Essence Sun SPF45+ -->
-              {{ title }}
-            </div>
-            <div class="Reviews justify-start items-center gap-1.5 inline-flex">
-              <div class="Component w-3.5 h-3.5 relative">
-                <img src="../assets/icons/star.svg" />
-              </div>
-              <div class="Component13 w-3.5 h-3.5 relative">
-                <img src="../assets/icons/star.svg" />
-              </div>
-              <div class="Component14 w-3.5 h-3.5 relative">
-                <img src="../assets/icons/star.svg" />
-              </div>
-              <div class="Component15 w-3.5 h-3.5 relative">
-                <img src="../assets/icons/star.svg" />
-              </div>
-              <div class="Component16 w-3.5 h-3.5 relative">
-                <img src="../assets/icons/star.svg" />
-              </div>
-              <div class="text-sm font-normal leading-tight text-gray-500 0">
-                <!-- (0) -->
-                {{ rating }}
-              </div>
-            </div>
-            <div class="w-64 text-sm font-normal leading-snug text-gray-500">
-              <!-- All Around Safe Block Sun Milk SPF50+/PA+++ -->
-              {{ product }}
-            </div>
-            <div class="text-base font-normal capitalize text-neutral-700">
-              <!-- $32.00 -->
-              {{ price }}
-            </div>
-          </div>
+      class="w-full glass-card hover:glass-card-strong rounded-3xl flex flex-col hover:shadow-glass-lg transition-smooth overflow-hidden border border-white/30 hover:border-white/50 min-w-0 hover:scale-[1.02] backdrop-blur-xl">
+      <!-- Image Section with Favorite Icon -->
+      <router-link
+        :to="`/detail?id=${id}`"
+        class="w-full overflow-hidden min-w-0 relative bg-gradient-to-br from-gray-50/80 to-gray-100/50">
+        <!-- Favorite Icon - Glass Style -->
+        <button
+          @click.prevent="toggleFavorite"
+          class="absolute top-3 left-3 z-10 cursor-pointer transition-smooth hover:scale-110 active:scale-95 p-2 glass-card-strong rounded-full hover:shadow-glass group/heart border border-white/30">
+          <svg
+            :class="{
+              'fill-[#F5A3B7] stroke-[#F5A3B7]': isFavorite,
+              'fill-none stroke-gray-600': !isFavorite,
+            }"
+            class="w-5 h-5 transition-smooth group-hover/heart:stroke-[#F5A3B7]"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+
+        <!-- Product Image -->
+        <img
+          class="object-cover w-full aspect-[4/5] group-hover:scale-110 transition-transform duration-500 max-w-full"
+          :src="image"
+          :alt="title" />
+      </router-link>
+
+      <!-- Content Section -->
+      <div
+        class="flex flex-col px-4 sm:px-5 py-4 sm:py-5 w-full gap-2.5 sm:gap-3 min-w-0">
+        <!-- Product Title -->
+        <router-link :to="`/detail?id=${id}`" class="w-full min-w-0">
+          <h3
+            class="w-full text-sm sm:text-base font-semibold text-gray-800 group-hover:text-[#F5A3B7] transition-smooth line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem] break-words">
+            {{ title }}
+          </h3>
         </router-link>
-        <div
-          class="addToBag w-64 p-2.5 bg-white rounded border border-neutral-800 justify-center items-center inline-flex cursor-pointer hover:bg-neutral-800 hover:text-white">
-          <div class="text-sm font-medium capitalize text">Add to bag</div>
+
+        <!-- Price Section -->
+        <div class="flex items-baseline gap-2 w-full min-w-0">
+          <span class="text-lg sm:text-xl font-bold text-gray-900">
+            {{ price }}
+          </span>
+          <span
+            v-if="promotion"
+            class="text-sm sm:text-base font-medium text-gray-400 line-through">
+            {{ calculateOriginalPrice() }}
+          </span>
         </div>
+
+        <!-- Add to Cart Button - Glass Style -->
+        <button
+          @click="addToBag"
+          class="w-full py-3 sm:py-3.5 px-4 glass-card-strong text-gray-900 border-2 border-gray-900/80 rounded-2xl justify-center items-center inline-flex cursor-pointer hover:bg-gray-900 hover:text-white hover:border-gray-900 active:scale-[0.95] transition-smooth touch-manipulation font-bold text-sm sm:text-base shadow-glass-sm hover:shadow-glass">
+          <span class="whitespace-nowrap"> Add to cart </span>
+        </button>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+</style>
