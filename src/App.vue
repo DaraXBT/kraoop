@@ -3,13 +3,23 @@ import {RouterView} from "vue-router";
 import ToastNotification from "./components/ToastNotification.vue";
 import PageLoader from "./components/PageLoader.vue";
 import {useToast} from "./composables/useToast";
-import {ref, onErrorCaptured} from "vue";
+import {ref, onErrorCaptured, watch} from "vue";
+import {isNavigating} from "./router";
 
 const {toasts, removeToast, error} = useToast();
 
 // Error handling
 const hasError = ref(false);
 const errorMessage = ref("");
+
+// Watch navigation state and add body class
+watch(isNavigating, (isNav) => {
+  if (isNav) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+});
 
 onErrorCaptured((err, instance, info) => {
   console.error("Component error caught:", err, info);
@@ -64,10 +74,31 @@ onErrorCaptured((err, instance, info) => {
 
     <!-- Main App Content with Suspense -->
     <RouterView v-else v-slot="{Component, route}">
+      <!-- Global Navigation Loading Overlay - Always shows during navigation -->
+      <div
+        v-show="isNavigating"
+        class="fixed inset-0 z-[99] bg-white flex items-center justify-center"
+        style="background-color: rgba(255, 255, 255, 0.98)">
+        <div class="text-center">
+          <div
+            class="animate-spin rounded-full h-20 w-20 border-b-4 border-t-4 border-[#F5A3B7] mx-auto mb-6"
+            style="border-width: 4px"></div>
+          <p
+            class="text-gray-800 text-xl font-bold animate-pulse"
+            style="font-weight: 700">
+            Loading...
+          </p>
+          <p class="text-gray-500 text-sm mt-2">Please wait</p>
+        </div>
+      </div>
+
+      <!-- Suspense with proper fallback - handles async component loading -->
       <Suspense>
         <template #default>
           <Transition name="page" mode="out-in">
-            <component :is="Component" :key="route.path" />
+            <KeepAlive :max="3">
+              <component :is="Component" :key="route.path" />
+            </KeepAlive>
           </Transition>
         </template>
         <template #fallback>
@@ -109,6 +140,28 @@ onErrorCaptured((err, instance, info) => {
   opacity: 0;
   transform: translateY(-20px) scale(0.98);
   filter: blur(4px);
+}
+
+/* Global Navigation Loading Overlay Transition */
+.fade-overlay-enter-active {
+  transition: opacity 0.15s ease-out;
+}
+
+.fade-overlay-leave-active {
+  transition: opacity 0.2s ease-in;
+}
+
+.fade-overlay-enter-from {
+  opacity: 0;
+}
+
+.fade-overlay-leave-to {
+  opacity: 0;
+}
+
+.fade-overlay-enter-to,
+.fade-overlay-leave-from {
+  opacity: 1;
 }
 
 /* Prevent horizontal scrolling globally */

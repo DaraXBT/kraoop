@@ -778,7 +778,7 @@
 </template>
 
 <script setup>
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, onMounted, ref, watch, nextTick} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import FooterComponentVue from "../components/FooterComponent.vue";
 import NavBarComponentVue from "../components/NavBarComponent.vue";
@@ -967,17 +967,17 @@ const handleAddToCart = (product) => {
 };
 
 // Initialize
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener("keydown", handleKeydown);
 
-  // Check if product exists
-  setTimeout(() => {
-    isLoading.value = false;
-    if (!currentProduct.value) {
-      notFound.value = true;
-      showError("Product not found");
-    }
-  }, 500);
+  // Check if product exists - use nextTick for proper reactivity
+  await nextTick();
+  isLoading.value = false;
+
+  if (!currentProduct.value) {
+    notFound.value = true;
+    showError("Product not found");
+  }
 });
 </script>
 

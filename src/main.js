@@ -32,10 +32,23 @@ app.use(pinia);
 app.use(router);
 app.use(head);
 
+// Preload critical stores
+import {useProductStore} from "./stores/ProductStore";
+
 // Wait for router to be ready before mounting
 router
   .isReady()
-  .then(() => {
+  .then(async () => {
+    // Initialize product store early
+    const productStore = useProductStore(pinia);
+    if (!productStore.isInitialized) {
+      try {
+        await productStore.fetchProducts();
+      } catch (error) {
+        console.warn("Failed to preload products:", error);
+      }
+    }
+
     app.mount("#app");
   })
   .catch((err) => {

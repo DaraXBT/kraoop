@@ -240,11 +240,10 @@ onMounted(async () => {
     if (!store.isInitialized) {
       await store.fetchProducts();
     }
-    // Add a small delay to ensure smooth rendering
-    await new Promise((resolve) => setTimeout(resolve, 100));
   } catch (error) {
     console.error("Failed to initialize product store:", error);
   } finally {
+    // Set loading to false immediately after data is ready
     isInitializing.value = false;
   }
 });
