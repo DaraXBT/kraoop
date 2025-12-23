@@ -22,14 +22,14 @@ const handleSubscribe = () => {
         class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDE0YzMuMzEgMCA2IDIuNjkgNiA2cy0yLjY5IDYtNiA2LTYtMi42OS02LTYgMi42OS02IDYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
 
       <div
-        class="footer w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 py-12 sm:py-14 lg:py-16 relative z-10">
+        class="footer w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 py-10 sm:py-12 lg:py-14 relative z-10">
         <!-- Footer Content Grid -->
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 text-white overflow-hidden">
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-8 text-white overflow-hidden">
           <!-- Kraoop Brand Section -->
           <div class="kraoop col-span-1 sm:col-span-2 lg:col-span-3 min-w-0">
             <div
-              class="text-2xl sm:text-3xl font-bold logo mb-4 sm:mb-8 lg:mb-10 break-words">
+              class="text-xl sm:text-2xl font-bold logo mb-3 sm:mb-6 lg:mb-8 break-words">
               <router-link
                 to="/"
                 class="hover:opacity-90 transition-smooth hover:scale-105 block">
@@ -50,35 +50,35 @@ const handleSubscribe = () => {
               </router-link>
             </div>
             <div
-              class="text-sm sm:text-base text-gray-300 mb-5 sm:mb-6 leading-relaxed break-words font-medium">
+              class="text-xs sm:text-sm text-gray-300 mb-4 sm:mb-5 leading-relaxed break-words font-medium">
               <p class="lg:not-italic italic">
                 <span class="lg:hidden">✨ </span>Discover nature's beauty with
                 our natural care products.
               </p>
             </div>
             <!-- Contact info - Glass cards -->
-            <div class="space-y-3 lg:space-y-4 text-sm sm:text-base">
+            <div class="space-y-2.5 lg:space-y-3 text-xs sm:text-sm">
               <div
-                class="flex flex-row items-center gap-3 phone glass-dark rounded-2xl p-3 hover:bg-white/10 transition-smooth min-w-0 border border-white/10">
+                class="flex flex-row items-center gap-2.5 phone glass-dark rounded-xl p-2.5 hover:bg-white/10 transition-smooth min-w-0 border border-white/10">
                 <div
-                  class="icon flex-shrink-0 bg-gradient-to-br from-[#F5A3B7]/30 to-[#E392A6]/20 p-2.5 rounded-xl">
+                  class="icon flex-shrink-0 bg-gradient-to-br from-[#F5A3B7]/30 to-[#E392A6]/20 p-2 rounded-lg">
                   <img
                     src="../assets/icons/Call.svg"
                     alt="phone"
-                    class="w-5 h-5 sm:w-6 sm:h-6 drop-shadow-sm" />
+                    class="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-sm" />
                 </div>
                 <div class="number text-gray-200 font-medium truncate">
                   +855 7707070
                 </div>
               </div>
               <div
-                class="flex flex-row items-center gap-3 email glass-dark rounded-2xl p-3 hover:bg-white/10 transition-smooth min-w-0 border border-white/10">
+                class="flex flex-row items-center gap-2.5 email glass-dark rounded-xl p-2.5 hover:bg-white/10 transition-smooth min-w-0 border border-white/10">
                 <div
-                  class="icon flex-shrink-0 bg-gradient-to-br from-[#F5A3B7]/30 to-[#E392A6]/20 p-2.5 rounded-xl">
+                  class="icon flex-shrink-0 bg-gradient-to-br from-[#F5A3B7]/30 to-[#E392A6]/20 p-2 rounded-lg">
                   <img
                     src="../assets/icons/Message.svg"
                     alt="email"
-                    class="w-5 h-5 sm:w-6 sm:h-6 drop-shadow-sm" />
+                    class="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-sm" />
                 </div>
                 <div class="email text-gray-200 font-medium truncate">
                   kraoop@beauty.com
@@ -88,50 +88,50 @@ const handleSubscribe = () => {
           </div>
 
           <!-- Help Section -->
-          <div class="hidden sm:flex flex-col gap-4 help min-w-0 lg:col-span-2">
-            <div class="help text-[#F5A3B7] font-bold text-lg mb-1">Help</div>
+          <div class="hidden sm:flex flex-col gap-3 help min-w-0 lg:col-span-2">
+            <div class="help text-[#F5A3B7] font-bold text-base mb-1">Help</div>
             <div
-              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-base leading-relaxed break-words font-medium hover:translate-x-1">
+              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
               Contact Us
             </div>
             <div
-              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-base leading-relaxed break-words font-medium hover:translate-x-1">
+              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
               FAQ
             </div>
             <div
-              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-base leading-relaxed break-words font-medium hover:translate-x-1">
+              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
               Shipping and Returns
             </div>
           </div>
 
           <!-- Account Section -->
           <div
-            class="hidden sm:flex flex-col gap-4 account min-w-0 lg:col-span-2">
-            <div class="myAcc text-[#F5A3B7] font-bold text-lg mb-1">
+            class="hidden sm:flex flex-col gap-3 account min-w-0 lg:col-span-2">
+            <div class="myAcc text-[#F5A3B7] font-bold text-base mb-1">
               Account
             </div>
             <div
-              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-base leading-relaxed break-words font-medium hover:translate-x-1">
+              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
               Order Status
             </div>
             <div
-              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-base leading-relaxed break-words font-medium hover:translate-x-1">
+              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
               Wishlist
             </div>
           </div>
 
           <!-- Customer Care Section -->
           <div
-            class="hidden sm:flex flex-col gap-4 customer min-w-0 lg:col-span-2">
-            <div class="care text-[#F5A3B7] font-bold text-lg mb-1">
+            class="hidden sm:flex flex-col gap-3 customer min-w-0 lg:col-span-2">
+            <div class="care text-[#F5A3B7] font-bold text-base mb-1">
               Customer Care
             </div>
             <div
-              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-base leading-relaxed break-words font-medium hover:translate-x-1">
+              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
               About Us
             </div>
             <div
-              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-base leading-relaxed break-words font-medium hover:translate-x-1">
+              class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
               Contact Us
             </div>
           </div>
@@ -140,14 +140,14 @@ const handleSubscribe = () => {
           <div class="signUp col-span-1 sm:col-span-2 lg:col-span-3 min-w-0">
             <!-- Clean design for all screen sizes -->
             <div
-              class="rounded-3xl lg:rounded-none p-6 lg:p-0 border border-white/20 lg:border-0 shadow-sm lg:shadow-none transition-smooth">
+              class="rounded-2xl lg:rounded-none p-5 lg:p-0 border border-white/20 lg:border-0 shadow-sm lg:shadow-none transition-smooth">
               <div
-                class="text-white font-bold text-xl sm:text-xl lg:text-lg mb-3 sm:mb-3 lg:mb-4 flex items-center gap-2 drop-shadow-sm">
-                <span class="text-2xl sm:text-2xl lg:text-xl">💌</span> Stay
+                class="text-white font-bold text-lg sm:text-lg lg:text-base mb-2.5 sm:mb-2.5 lg:mb-3 flex items-center gap-2 drop-shadow-sm">
+                <span class="text-xl sm:text-xl lg:text-lg">💌</span> Stay
                 Connected
               </div>
               <div
-                class="text-gray-100 text-base sm:text-base lg:text-sm mb-5 sm:mb-5 lg:mb-4 leading-relaxed font-medium">
+                class="text-gray-100 text-sm sm:text-sm lg:text-xs mb-4 sm:mb-4 lg:mb-3 leading-relaxed font-medium">
                 Get exclusive beauty tips & offers!
               </div>
               <form @submit.prevent="handleSubscribe" class="form">

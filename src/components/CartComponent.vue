@@ -70,7 +70,7 @@ const calculateOriginalPrice = () => {
   <div class="card group relative w-full">
     <!-- Card Container - Modern Glass Style -->
     <div
-      class="w-full glass-card hover:glass-card-strong rounded-3xl flex flex-col hover:shadow-glass-lg transition-smooth overflow-hidden border border-white/30 hover:border-white/50 min-w-0 hover:scale-[1.02] backdrop-blur-xl">
+      class="w-full glass-card hover:glass-card-strong rounded-2xl flex flex-col hover:shadow-glass-lg transition-smooth overflow-hidden border border-white/30 hover:border-white/50 min-w-0 hover:scale-[1.02] backdrop-blur-xl">
       <!-- Image Section with Favorite Icon -->
       <router-link
         :to="`/detail?id=${id}`"
@@ -78,13 +78,13 @@ const calculateOriginalPrice = () => {
         <!-- Favorite Icon - Glass Style -->
         <button
           @click.prevent="toggleFavorite"
-          class="absolute top-3 left-3 z-10 cursor-pointer transition-smooth hover:scale-110 active:scale-95 p-2 glass-card-strong rounded-full hover:shadow-glass group/heart border border-white/30">
+          class="absolute top-2 left-2 z-10 cursor-pointer transition-smooth hover:scale-110 active:scale-95 p-1.5 glass-card-strong rounded-full hover:shadow-glass group/heart border border-white/30">
           <svg
             :class="{
               'fill-[#F5A3B7] stroke-[#F5A3B7]': isFavorite,
               'fill-none stroke-gray-600': !isFavorite,
             }"
-            class="w-5 h-5 transition-smooth group-hover/heart:stroke-[#F5A3B7]"
+            class="w-4 h-4 transition-smooth group-hover/heart:stroke-[#F5A3B7]"
             viewBox="0 0 24 24"
             stroke-width="2"
             stroke-linecap="round"
@@ -102,24 +102,23 @@ const calculateOriginalPrice = () => {
       </router-link>
 
       <!-- Content Section -->
-      <div
-        class="flex flex-col px-4 sm:px-5 py-4 sm:py-5 w-full gap-2.5 sm:gap-3 min-w-0">
+      <div class="flex flex-col px-3 sm:px-4 py-3 sm:py-4 w-full gap-2 min-w-0">
         <!-- Product Title -->
         <router-link :to="`/detail?id=${id}`" class="w-full min-w-0">
           <h3
-            class="w-full text-sm sm:text-base font-semibold text-gray-800 group-hover:text-[#F5A3B7] transition-smooth line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem] break-words">
+            class="w-full text-xs sm:text-sm font-semibold text-gray-800 group-hover:text-[#F5A3B7] transition-smooth line-clamp-2 leading-snug min-h-[2.25rem] sm:min-h-[2.5rem] break-words">
             {{ title }}
           </h3>
         </router-link>
 
         <!-- Price Section -->
-        <div class="flex items-baseline gap-2 w-full min-w-0">
-          <span class="text-lg sm:text-xl font-bold text-gray-900">
+        <div class="flex items-baseline gap-1.5 w-full min-w-0">
+          <span class="text-base sm:text-lg font-bold text-gray-900">
             {{ price }}
           </span>
           <span
             v-if="promotion"
-            class="text-sm sm:text-base font-medium text-gray-400 line-through">
+            class="text-xs sm:text-sm font-medium text-gray-400 line-through">
             {{ calculateOriginalPrice() }}
           </span>
         </div>
@@ -127,7 +126,7 @@ const calculateOriginalPrice = () => {
         <!-- Add to Cart Button - Glass Style -->
         <button
           @click="addToBag"
-          class="w-full py-3 sm:py-3.5 px-4 glass-card-strong text-gray-900 border-2 border-gray-900/80 rounded-2xl justify-center items-center inline-flex cursor-pointer hover:bg-gray-900 hover:text-white hover:border-gray-900 active:scale-[0.95] transition-smooth touch-manipulation font-bold text-sm sm:text-base shadow-glass-sm hover:shadow-glass">
+          class="w-full py-2.5 sm:py-3 px-3 glass-card-strong text-gray-900 border-2 border-gray-900/80 rounded-xl justify-center items-center inline-flex cursor-pointer hover:bg-gray-900 hover:text-white hover:border-gray-900 active:scale-[0.95] transition-smooth touch-manipulation font-bold text-xs sm:text-sm shadow-glass-sm hover:shadow-glass">
           <span class="whitespace-nowrap"> Add to cart </span>
         </button>
       </div>

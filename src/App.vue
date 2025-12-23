@@ -42,12 +42,12 @@ onErrorCaptured((err, instance, info) => {
       v-if="hasError"
       class="min-h-screen flex items-center justify-center p-4">
       <div
-        class="text-center max-w-md glass-card-strong p-10 rounded-3xl shadow-glass-xl border border-white/30 animate-fade-in">
-        <div class="mb-6">
+        class="text-center max-w-md glass-card-strong p-8 rounded-2xl shadow-glass-xl border border-white/30 animate-fade-in">
+        <div class="mb-5">
           <div
-            class="w-20 h-20 mx-auto bg-gradient-to-br from-red-400/20 to-red-600/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+            class="w-16 h-16 mx-auto bg-gradient-to-br from-red-400/20 to-red-600/20 rounded-full flex items-center justify-center backdrop-blur-sm">
             <svg
-              class="w-10 h-10 text-red-500"
+              class="w-8 h-8 text-red-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
@@ -60,13 +60,13 @@ onErrorCaptured((err, instance, info) => {
           </div>
         </div>
         <h1
-          class="text-3xl font-bold text-gray-800 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">
+          class="text-2xl font-bold text-gray-800 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">
           Oops!
         </h1>
-        <p class="text-gray-600 mb-8 font-medium">{{ errorMessage }}</p>
+        <p class="text-gray-600 mb-6 font-medium text-sm">{{ errorMessage }}</p>
         <button
           @click="() => window.location.reload()"
-          class="px-8 py-4 bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white rounded-2xl hover:shadow-glass-lg transition-smooth font-bold hover:scale-105 active:scale-95 border-2 border-white/30">
+          class="px-6 py-3 bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white rounded-xl hover:shadow-glass-lg transition-smooth font-bold hover:scale-105 active:scale-95 border-2 border-white/30 text-sm">
           Reload Page
         </button>
       </div>
@@ -81,14 +81,14 @@ onErrorCaptured((err, instance, info) => {
         style="background-color: rgba(255, 255, 255, 0.98)">
         <div class="text-center">
           <div
-            class="animate-spin rounded-full h-20 w-20 border-b-4 border-t-4 border-[#F5A3B7] mx-auto mb-6"
-            style="border-width: 4px"></div>
+            class="animate-spin rounded-full h-16 w-16 border-b-4 border-t-4 border-[#F5A3B7] mx-auto mb-5"
+            style="border-width: 3px"></div>
           <p
-            class="text-gray-800 text-xl font-bold animate-pulse"
+            class="text-gray-800 text-lg font-bold animate-pulse"
             style="font-weight: 700">
             Loading...
           </p>
-          <p class="text-gray-500 text-sm mt-2">Please wait</p>
+          <p class="text-gray-500 text-xs mt-2">Please wait</p>
         </div>
       </div>
 

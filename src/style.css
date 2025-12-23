@@ -11,6 +11,7 @@
   box-sizing: border-box;
   font-family: "Plus Jakarta Sans", "Lexend", "Kantumruy Pro", -apple-system,
     BlinkMacSystemFont, sans-serif;
+  font-size: 100%; /* Ensure consistent base size */
 }
 
 /* Prevent horizontal scrolling globally */

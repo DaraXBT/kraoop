@@ -50,12 +50,12 @@
     <!-- Main Content Container -->
     <div
       v-else
-      class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+      class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 lg:py-10">
       <!-- Main Product Section -->
       <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 mb-12 sm:mb-16 lg:mb-20">
+        class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-12 mb-10 sm:mb-12 lg:mb-14">
         <!-- Image Gallery -->
-        <div class="flex flex-col gap-3 sm:gap-4">
+        <div class="flex flex-col gap-2.5 sm:gap-3">
           <!-- Main Image with Zoom -->
           <div
             @mouseenter="isHovering = true"
@@ -72,9 +72,9 @@
             <!-- Zoom Indicator -->
             <div
               v-if="!isHovering"
-              class="absolute top-4 right-4 bg-white bg-opacity-90 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+              class="absolute top-3 right-3 bg-white bg-opacity-90 rounded-full p-1.5 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
               <svg
-                class="w-5 h-5 text-gray-700"
+                class="w-4 h-4 text-gray-700"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24">
@@ -88,16 +88,16 @@
 
             <!-- Image Counter -->
             <div
-              class="absolute bottom-4 left-4 bg-black bg-opacity-60 text-white px-3 py-1 rounded-full text-sm font-medium">
+              class="absolute bottom-3 left-3 bg-black bg-opacity-60 text-white px-2.5 py-1 rounded-full text-xs font-medium">
               {{ currentImageIndex + 1 }} / {{ images.length }}
             </div>
 
             <!-- Navigation Arrows -->
             <button
               @click.stop="previousImage"
-              class="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-all">
+              class="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-1.5 shadow-lg opacity-0 group-hover:opacity-100 transition-all">
               <svg
-                class="w-6 h-6 text-gray-700"
+                class="w-5 h-5 text-gray-700"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24">
@@ -110,9 +110,9 @@
             </button>
             <button
               @click.stop="nextImage"
-              class="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-all">
+              class="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-1.5 shadow-lg opacity-0 group-hover:opacity-100 transition-all">
               <svg
-                class="w-6 h-6 text-gray-700"
+                class="w-5 h-5 text-gray-700"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24">
@@ -126,7 +126,7 @@
           </div>
 
           <!-- Thumbnail Gallery -->
-          <div class="grid grid-cols-5 gap-2">
+          <div class="grid grid-cols-5 gap-1.5 sm:gap-2">
             <div
               v-for="(image, index) in images"
               :key="index"
@@ -147,23 +147,23 @@
         </div>
 
         <!-- Product Info -->
-        <div class="flex flex-col gap-5 sm:gap-6">
+        <div class="flex flex-col gap-4 sm:gap-5">
           <!-- Title & Rating -->
-          <div class="space-y-3">
-            <p class="text-sm text-gray-500 uppercase tracking-wide">
+          <div class="space-y-2.5">
+            <p class="text-xs text-gray-500 uppercase tracking-wide">
               {{ currentProduct.brand }}
             </p>
             <h1
-              class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-neutral-900 leading-tight">
+              class="text-xl sm:text-2xl lg:text-3xl font-semibold text-neutral-900 leading-tight">
               {{ currentProduct.title }}
             </h1>
-            <p class="text-base text-gray-600">{{ currentProduct.product }}</p>
-            <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+            <p class="text-sm text-gray-600">{{ currentProduct.product }}</p>
+            <div class="flex items-center gap-2 flex-wrap">
               <div class="flex items-center gap-0.5">
                 <svg
                   v-for="star in 5"
                   :key="star"
-                  class="w-4 h-4"
+                  class="w-3.5 h-3.5"
                   :class="
                     star <= Math.floor(currentProduct.rating)
                       ? 'text-yellow-400'
@@ -175,29 +175,29 @@
                     d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                 </svg>
               </div>
-              <span class="text-sm text-gray-500"
+              <span class="text-xs text-gray-500"
                 >({{ currentProduct.ratingCount }} reviews)</span
               >
             </div>
-            <div class="flex items-baseline gap-3">
-              <p class="text-2xl sm:text-3xl font-semibold text-neutral-900">
+            <div class="flex items-baseline gap-2.5">
+              <p class="text-xl sm:text-2xl font-semibold text-neutral-900">
                 {{ currentProduct.price }}
               </p>
               <span
                 v-if="currentProduct.promotion"
-                class="text-lg text-gray-400 line-through">
+                class="text-base text-gray-400 line-through">
                 {{ currentProduct.originalPrice }}
               </span>
               <span
                 v-if="currentProduct.promotion"
-                class="px-3 py-1 bg-red-500 text-white text-sm font-bold rounded-full">
+                class="px-2.5 py-0.5 bg-red-500 text-white text-xs font-bold rounded-full">
                 {{ currentProduct.promotion }}
               </span>
             </div>
           </div>
 
           <!-- Description -->
-          <div class="space-y-3 border-t border-gray-100 pt-5">
+          <div class="space-y-2.5 border-t border-gray-100 pt-4">
             <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
               {{ currentProduct.category }} by {{ currentProduct.brand }}.
               Perfect for

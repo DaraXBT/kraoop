@@ -29,9 +29,9 @@ const isActive = (path) => {
   <nav
     class="w-full bg-white/80 backdrop-blur-xl shadow-glass sticky top-0 z-50 overflow-hidden border-b border-white/20 transition-smooth">
     <div
-      class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-20 sm:h-24 flex justify-between items-center">
+      class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-16 sm:h-18 flex justify-between items-center">
       <!-- Logo -->
-      <div class="text-xl sm:text-2xl font-bold logo flex-shrink-0 min-w-0">
+      <div class="text-lg sm:text-xl font-bold logo flex-shrink-0 min-w-0">
         <router-link
           to="/"
           class="hover:opacity-80 transition-smooth hover:scale-105 block"
@@ -45,11 +45,11 @@ const isActive = (path) => {
 
       <!-- Desktop Navigation -->
       <div
-        class="hidden lg:flex flex-row items-center justify-center gap-4 xl:gap-8 category text-sm font-semibold min-w-0 flex-shrink">
+        class="hidden lg:flex flex-row items-center justify-center gap-3 xl:gap-6 category text-xs font-semibold min-w-0 flex-shrink">
         <router-link
           to="/product"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2.5 px-4 rounded-xl relative overflow-hidden',
+            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/product')
               ? 'text-[#F5A3B7] bg-pink-50/80 shadow-sm'
               : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
@@ -59,7 +59,7 @@ const isActive = (path) => {
         <router-link
           to="/best-selling"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2.5 px-4 rounded-xl relative overflow-hidden',
+            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/best-selling')
               ? 'text-[#F5A3B7] bg-pink-50/80 shadow-sm'
               : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
@@ -69,7 +69,7 @@ const isActive = (path) => {
         <router-link
           to="/collection"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2.5 px-4 rounded-xl relative overflow-hidden',
+            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/collection')
               ? 'text-[#F5A3B7] bg-pink-50/80 shadow-sm'
               : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
@@ -79,7 +79,7 @@ const isActive = (path) => {
         <router-link
           to="/about-us"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2.5 px-4 rounded-xl relative overflow-hidden',
+            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/about-us')
               ? 'text-[#F5A3B7] bg-pink-50/80 shadow-sm'
               : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
@@ -90,34 +90,34 @@ const isActive = (path) => {
 
       <!-- Desktop Icons -->
       <div
-        class="hidden md:flex items-center gap-3 lg:gap-5 menu text-xs flex-shrink-0">
+        class="hidden md:flex items-center gap-2.5 lg:gap-4 menu text-xs flex-shrink-0">
         <router-link
           to="/account"
           :class="[
-            'hidden lg:flex flex-col items-center gap-1.5 cursor-pointer transition-smooth hover:scale-110 p-2 rounded-xl',
+            'hidden lg:flex flex-col items-center gap-1 cursor-pointer transition-smooth hover:scale-110 p-1.5 rounded-lg',
             isActive('/account')
               ? 'text-[#F5A3B7] bg-pink-50/80'
               : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
           ]">
-          <div class="icon w-6 h-6">
+          <div class="icon w-5 h-5">
             <img
               src="../assets/icons/account.svg"
               alt="account"
               class="w-full h-full drop-shadow-sm" />
           </div>
-          <div class="text whitespace-nowrap text-xs font-semibold">
+          <div class="text whitespace-nowrap text-[10px] font-semibold">
             ACCOUNT
           </div>
         </router-link>
         <router-link
           to="/payment"
           :class="[
-            'flex flex-col items-center gap-1.5 cursor-pointer transition-smooth hover:scale-110 relative p-2 rounded-xl',
+            'flex flex-col items-center gap-1 cursor-pointer transition-smooth hover:scale-110 relative p-1.5 rounded-lg',
             isActive('/payment')
               ? 'text-[#F5A3B7] bg-pink-50/80'
               : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
           ]">
-          <div class="icon w-6 h-6 relative">
+          <div class="icon w-5 h-5 relative">
             <img
               src="../assets/icons/cart.svg"
               alt="cart"
@@ -125,22 +125,24 @@ const isActive = (path) => {
             <!-- Cart Badge -->
             <span
               v-if="cartItemCount > 0"
-              class="absolute -top-2 -right-2 bg-gradient-to-br from-[#F5A3B7] to-[#E392A6] text-white text-[10px] font-bold rounded-full min-w-[20px] h-[20px] flex items-center justify-center px-1 shadow-glass animate-pulse border border-white/30">
+              class="absolute -top-1.5 -right-1.5 bg-gradient-to-br from-[#F5A3B7] to-[#E392A6] text-white text-[9px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-0.5 shadow-glass animate-pulse border border-white/30">
               {{ cartItemCount > 99 ? "99+" : cartItemCount }}
             </span>
           </div>
-          <div class="text whitespace-nowrap text-xs font-semibold">CART</div>
+          <div class="text whitespace-nowrap text-[10px] font-semibold">
+            CART
+          </div>
         </router-link>
       </div>
 
       <!-- Mobile Menu Button -->
       <button
         @click="toggleMobileMenu"
-        class="lg:hidden p-3 rounded-2xl hover:bg-white/80 backdrop-blur-sm transition-smooth min-h-[48px] min-w-[48px] flex items-center justify-center shadow-glass-sm hover:shadow-glass"
+        class="lg:hidden p-2.5 rounded-xl hover:bg-white/80 backdrop-blur-sm transition-smooth min-h-[44px] min-w-[44px] flex items-center justify-center shadow-glass-sm hover:shadow-glass"
         aria-label="Toggle menu">
         <svg
           v-if="!mobileMenuOpen"
-          class="w-7 h-7 text-gray-700"
+          class="w-6 h-6 text-gray-700"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24">
@@ -152,7 +154,7 @@ const isActive = (path) => {
         </svg>
         <svg
           v-else
-          class="w-7 h-7 text-gray-700"
+          class="w-6 h-6 text-gray-700"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24">
@@ -177,13 +179,13 @@ const isActive = (path) => {
         v-show="mobileMenuOpen"
         class="lg:hidden border-t border-white/20 bg-white/90 backdrop-blur-xl shadow-glass-lg overflow-hidden">
         <div
-          class="px-4 sm:px-6 py-6 sm:py-8 space-y-2 max-w-full overflow-hidden">
+          class="px-4 sm:px-6 py-4 sm:py-5 space-y-1.5 max-w-full overflow-hidden">
           <!-- Mobile Navigation Links -->
           <router-link
             to="/product"
             @click="closeMobileMenu"
             :class="[
-              'flex items-center py-4 px-5 text-base font-semibold rounded-2xl transition-smooth min-h-[48px]',
+              'flex items-center py-3 px-4 text-sm font-semibold rounded-xl transition-smooth min-h-[44px]',
               isActive('/product')
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7] shadow-glass-sm'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7] hover:shadow-glass-sm',
@@ -194,7 +196,7 @@ const isActive = (path) => {
             to="/best-selling"
             @click="closeMobileMenu"
             :class="[
-              'flex items-center py-4 px-5 text-base font-semibold rounded-2xl transition-smooth min-h-[48px]',
+              'flex items-center py-3 px-4 text-sm font-semibold rounded-xl transition-smooth min-h-[44px]',
               isActive('/best-selling')
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7] shadow-glass-sm'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7] hover:shadow-glass-sm',
@@ -205,7 +207,7 @@ const isActive = (path) => {
             to="/collection"
             @click="closeMobileMenu"
             :class="[
-              'flex items-center py-4 px-5 text-base font-semibold rounded-2xl transition-smooth min-h-[48px]',
+              'flex items-center py-3 px-4 text-sm font-semibold rounded-xl transition-smooth min-h-[44px]',
               isActive('/collection')
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7] shadow-glass-sm'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7] hover:shadow-glass-sm',
@@ -216,7 +218,7 @@ const isActive = (path) => {
             to="/about-us"
             @click="closeMobileMenu"
             :class="[
-              'flex items-center py-4 px-5 text-base font-semibold rounded-2xl transition-smooth min-h-[48px]',
+              'flex items-center py-3 px-4 text-sm font-semibold rounded-xl transition-smooth min-h-[44px]',
               isActive('/about-us')
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7] shadow-glass-sm'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7] hover:shadow-glass-sm',
@@ -225,12 +227,12 @@ const isActive = (path) => {
           </router-link>
 
           <!-- Mobile Menu Icons -->
-          <div class="pt-6 border-t border-white/20 space-y-2">
+          <div class="pt-4 border-t border-white/20 space-y-1.5">
             <router-link
               to="/account"
               @click="closeMobileMenu"
               :class="[
-                'flex items-center gap-4 py-4 px-5 rounded-2xl transition-smooth min-h-[48px]',
+                'flex items-center gap-3 py-3 px-4 rounded-xl transition-smooth min-h-[44px]',
                 isActive('/account')
                   ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7] shadow-glass-sm'
                   : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7] hover:shadow-glass-sm',
@@ -238,14 +240,14 @@ const isActive = (path) => {
               <img
                 src="../assets/icons/account.svg"
                 alt="account"
-                class="w-6 h-6 drop-shadow-sm" />
-              <span class="text-base font-semibold">ACCOUNT</span>
+                class="w-5 h-5 drop-shadow-sm" />
+              <span class="text-sm font-semibold">ACCOUNT</span>
             </router-link>
             <router-link
               to="/payment"
               @click="closeMobileMenu"
               :class="[
-                'flex items-center gap-4 py-4 px-5 rounded-2xl transition-smooth min-h-[48px] relative',
+                'flex items-center gap-3 py-3 px-4 rounded-xl transition-smooth min-h-[44px] relative',
                 isActive('/payment')
                   ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7] shadow-glass-sm'
                   : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7] hover:shadow-glass-sm',
@@ -254,15 +256,15 @@ const isActive = (path) => {
                 <img
                   src="../assets/icons/cart.svg"
                   alt="cart"
-                  class="w-6 h-6 drop-shadow-sm" />
+                  class="w-5 h-5 drop-shadow-sm" />
                 <!-- Cart Badge for Mobile -->
                 <span
                   v-if="cartItemCount > 0"
-                  class="absolute -top-2 -right-2 bg-gradient-to-br from-[#F5A3B7] to-[#E392A6] text-white text-[10px] font-bold rounded-full min-w-[20px] h-[20px] flex items-center justify-center px-1 shadow-glass border border-white/30">
+                  class="absolute -top-1.5 -right-1.5 bg-gradient-to-br from-[#F5A3B7] to-[#E392A6] text-white text-[9px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-0.5 shadow-glass border border-white/30">
                   {{ cartItemCount > 99 ? "99+" : cartItemCount }}
                 </span>
               </div>
-              <span class="text-base font-semibold">CART</span>
+              <span class="text-sm font-semibold">CART</span>
             </router-link>
           </div>
         </div>
