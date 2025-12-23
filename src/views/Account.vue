@@ -1,7 +1,6 @@
 <script setup>
 import {ref, computed} from "vue";
 import NavbarComponent from "../components/NavBarComponent.vue";
-import FooterComponent from "../components/FooterComponent.vue";
 import {useToast} from "../composables/useToast";
 
 const {success, info} = useToast();
@@ -786,9 +785,6 @@ const setDefaultAddress = (id) => {
         </div>
       </div>
     </div>
-
-    <!-- Footer -->
-    <FooterComponent />
   </div>
 </template>
 

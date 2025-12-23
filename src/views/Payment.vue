@@ -26,14 +26,13 @@
               >Cart</span
             >
           </div>
-          <div
-            class="h-0.5 w-8 sm:w-16 bg-gradient-to-r from-green-500 to-pink-500 rounded-full"></div>
+          <div class="h-0.5 w-8 sm:w-16 bg-[#F5A3B7] rounded-full"></div>
           <div class="flex items-center gap-1.5">
             <div
-              class="w-7 h-7 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center">
+              class="w-7 h-7 rounded-full bg-[#F5A3B7] flex items-center justify-center">
               <span class="text-xs font-bold text-white">2</span>
             </div>
-            <span class="text-xs font-semibold text-pink-600">Checkout</span>
+            <span class="text-xs font-semibold text-[#F5A3B7]">Checkout</span>
           </div>
           <div class="h-0.5 w-8 sm:w-16 bg-gray-300 rounded-full"></div>
           <div class="flex items-center gap-1.5">
@@ -55,13 +54,12 @@
         <div
           class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <!-- Header -->
-          <div
-            class="bg-gradient-to-r from-pink-50 to-rose-50 px-4 py-3 border-b border-gray-200">
+          <div class="bg-[#F5A3B7]/10 px-4 py-3 border-b border-gray-200">
             <div class="flex items-center justify-between">
               <h2
                 class="text-lg font-bold text-gray-800 flex items-center gap-2">
                 <svg
-                  class="w-5 h-5 text-pink-600"
+                  class="w-5 h-5 text-[#F5A3B7]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -74,7 +72,7 @@
                 Your Order
               </h2>
               <span
-                class="px-3 py-1 bg-pink-100 text-pink-700 text-xs font-semibold rounded-full">
+                class="px-3 py-1 bg-[#F5A3B7]/20 text-[#F5A3B7] text-xs font-semibold rounded-full">
                 {{ cartItems.length }}
                 {{ cartItems.length === 1 ? "Item" : "Items" }}
               </span>
@@ -102,7 +100,7 @@
             </p>
             <router-link to="/product">
               <button
-                class="px-6 py-2.5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold text-sm rounded-lg transition-all">
+                class="px-6 py-2.5 bg-[#F5A3B7] hover:bg-[#E392A6] text-white font-semibold text-sm rounded-lg transition-all">
                 Explore Products
               </button>
             </router-link>
@@ -186,7 +184,7 @@
                         >
                         <button
                           @click="increaseQuantity(item.id)"
-                          class="w-7 h-7 flex items-center justify-center rounded-md text-sm font-semibold bg-pink-500 hover:bg-pink-600 text-white transition-colors">
+                          class="w-7 h-7 flex items-center justify-center rounded-md text-sm font-semibold bg-[#F5A3B7] hover:bg-[#E392A6] text-white transition-colors">
                           +
                         </button>
                       </div>
@@ -194,7 +192,7 @@
 
                     <!-- Subtotal -->
                     <td class="px-4 py-3 text-right">
-                      <span class="text-sm font-bold text-pink-600">
+                      <span class="text-sm font-bold text-[#F5A3B7]">
                         ${{
                           (
                             parseFloat(item.price.replace("$", "")) *
@@ -292,13 +290,13 @@
                     >
                     <button
                       @click="increaseQuantity(item.id)"
-                      class="w-7 h-7 flex items-center justify-center rounded-md text-sm font-semibold bg-pink-500 hover:bg-pink-600 text-white transition-colors">
+                      class="w-7 h-7 flex items-center justify-center rounded-md text-sm font-semibold bg-[#F5A3B7] hover:bg-[#E392A6] text-white transition-colors">
                       +
                     </button>
                   </div>
                   <div class="text-right">
                     <p class="text-xs text-gray-500 mb-0.5">Subtotal</p>
-                    <p class="text-sm font-bold text-pink-600">
+                    <p class="text-sm font-bold text-[#F5A3B7]">
                       ${{
                         (
                           parseFloat(item.price.replace("$", "")) *
@@ -319,7 +317,7 @@
                   <label
                     class="text-xs font-semibold text-gray-700 flex items-center gap-2 mb-2">
                     <svg
-                      class="w-4 h-4 text-pink-500"
+                      class="w-4 h-4 text-[#F5A3B7]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -335,9 +333,9 @@
                     <input
                       type="text"
                       placeholder="Enter code"
-                      class="flex-grow px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent" />
+                      class="flex-grow px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent" />
                     <button
-                      class="px-4 py-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white text-sm font-semibold rounded-lg transition-all whitespace-nowrap">
+                      class="px-4 py-2 bg-[#F5A3B7] hover:bg-[#E392A6] text-white text-sm font-semibold rounded-lg transition-all whitespace-nowrap">
                       Apply
                     </button>
                   </div>
@@ -389,11 +387,11 @@
                         >
                       </div>
                       <div
-                        class="flex justify-between px-4 py-3 bg-gradient-to-r from-pink-50 to-rose-50">
+                        class="flex justify-between px-4 py-3 bg-[#F5A3B7]/10">
                         <span class="text-base font-bold text-gray-800"
                           >Total</span
                         >
-                        <span class="text-lg font-bold text-pink-600"
+                        <span class="text-lg font-bold text-[#F5A3B7]"
                           >${{ total }}</span
                         >
                       </div>
@@ -443,11 +441,11 @@
                         >
                       </div>
                       <div
-                        class="flex justify-between px-3 py-2.5 bg-gradient-to-r from-pink-50 to-rose-50">
+                        class="flex justify-between px-3 py-2.5 bg-[#F5A3B7]/10">
                         <span class="text-sm font-bold text-gray-800"
                           >Total</span
                         >
-                        <span class="text-base font-bold text-pink-600"
+                        <span class="text-base font-bold text-[#F5A3B7]"
                           >${{ total }}</span
                         >
                       </div>
@@ -461,11 +459,9 @@
       </div>
 
       <!-- Checkout Form Section -->
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6"
-        v-if="!isEmpty">
-        <!-- Left Column: Contact & Shipping -->
-        <div class="space-y-4">
+      <div class="space-y-6" v-if="!isEmpty">
+        <!-- Contact & Shipping Details Section -->
+        <div class="w-full">
           <div
             class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <!-- Section Header -->
@@ -511,12 +507,39 @@
                       class="text-xs font-semibold text-gray-500 uppercase mb-1">
                       Email
                     </div>
-                    <div class="text-sm text-gray-800 font-semibold break-all">
-                      daraa.veasna@gmail.com
+                    <!-- Display mode -->
+                    <div
+                      v-if="!editModes.email"
+                      class="text-sm text-gray-800 font-semibold break-all">
+                      {{ contactInfo.email }}
+                    </div>
+                    <!-- Edit mode -->
+                    <div v-else class="space-y-2">
+                      <input
+                        type="email"
+                        v-model="editData.email"
+                        placeholder="Enter your email"
+                        class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent"
+                        @keydown.enter="saveEmail"
+                        @keydown.esc="cancelEmailEdit" />
+                      <div class="flex gap-2">
+                        <button
+                          @click="saveEmail"
+                          class="flex-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#F5A3B7] hover:bg-[#E392A6] rounded-md transition-colors">
+                          Save
+                        </button>
+                        <button
+                          @click="cancelEmailEdit"
+                          class="flex-1 px-3 py-1.5 text-xs font-semibold text-gray-600 hover:text-gray-700 hover:bg-gray-100 border border-gray-300 rounded-md transition-colors">
+                          Cancel
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <button
-                    class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-pink-600 hover:text-pink-700 hover:bg-pink-50 border border-gray-300 rounded-md transition-colors">
+                    v-if="!editModes.email"
+                    @click="startEditEmail"
+                    class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-[#F5A3B7] hover:text-[#E392A6] hover:bg-[#F5A3B7]/10 border border-gray-300 rounded-md transition-colors">
                     Edit
                   </button>
                 </div>
@@ -549,12 +572,38 @@
                       class="text-xs font-semibold text-gray-500 uppercase mb-1">
                       Address
                     </div>
-                    <div class="text-sm text-gray-800 font-semibold">
-                      Khan Toul Kouk, Phnom Penh, Cambodia
+                    <!-- Display mode -->
+                    <div
+                      v-if="!editModes.address"
+                      class="text-sm text-gray-800 font-semibold">
+                      {{ shippingInfo.address }}
+                    </div>
+                    <!-- Edit mode -->
+                    <div v-else class="space-y-2">
+                      <textarea
+                        v-model="editData.address"
+                        placeholder="Enter your address"
+                        rows="2"
+                        class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent resize-none"
+                        @keydown.esc="cancelAddressEdit"></textarea>
+                      <div class="flex gap-2">
+                        <button
+                          @click="saveAddress"
+                          class="flex-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#F5A3B7] hover:bg-[#E392A6] rounded-md transition-colors">
+                          Save
+                        </button>
+                        <button
+                          @click="cancelAddressEdit"
+                          class="flex-1 px-3 py-1.5 text-xs font-semibold text-gray-600 hover:text-gray-700 hover:bg-gray-100 border border-gray-300 rounded-md transition-colors">
+                          Cancel
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <button
-                    class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-pink-600 hover:text-pink-700 hover:bg-pink-50 border border-gray-300 rounded-md transition-colors">
+                    v-if="!editModes.address"
+                    @click="startEditAddress"
+                    class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-[#F5A3B7] hover:text-[#E392A6] hover:bg-[#F5A3B7]/10 border border-gray-300 rounded-md transition-colors">
                     Edit
                   </button>
                 </div>
@@ -585,15 +634,78 @@
                       class="text-xs font-semibold text-gray-500 uppercase mb-1">
                       Delivery
                     </div>
-                    <div class="text-sm text-gray-800 font-semibold">
-                      Fast Shipping - <span class="text-pink-600">$5.00</span>
+                    <!-- Display mode -->
+                    <div v-if="!editModes.delivery">
+                      <div class="text-sm text-gray-800 font-semibold">
+                        {{ deliveryInfo.method }} -
+                        <span class="text-[#F5A3B7]"
+                          >${{ deliveryInfo.cost.toFixed(2) }}</span
+                        >
+                      </div>
+                      <div class="text-xs text-gray-600 mt-0.5">
+                        Est: {{ deliveryInfo.estimate }}
+                      </div>
                     </div>
-                    <div class="text-xs text-gray-600 mt-0.5">
-                      Est: 3-5 business days
+                    <!-- Edit mode -->
+                    <div v-else class="space-y-2">
+                      <div class="grid grid-cols-2 gap-2">
+                        <div>
+                          <label
+                            class="text-xs font-medium text-gray-700 block mb-1"
+                            >Method</label
+                          >
+                          <input
+                            type="text"
+                            v-model="editData.deliveryMethod"
+                            placeholder="Shipping method"
+                            class="w-full px-2 py-1.5 text-sm bg-white border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#F5A3B7]"
+                            @keydown.esc="cancelDeliveryEdit" />
+                        </div>
+                        <div>
+                          <label
+                            class="text-xs font-medium text-gray-700 block mb-1"
+                            >Cost ($)</label
+                          >
+                          <input
+                            type="number"
+                            v-model.number="editData.deliveryCost"
+                            placeholder="0.00"
+                            step="0.01"
+                            min="0"
+                            class="w-full px-2 py-1.5 text-sm bg-white border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#F5A3B7]"
+                            @keydown.esc="cancelDeliveryEdit" />
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          class="text-xs font-medium text-gray-700 block mb-1"
+                          >Estimate</label
+                        >
+                        <input
+                          type="text"
+                          v-model="editData.deliveryEstimate"
+                          placeholder="e.g., 3-5 business days"
+                          class="w-full px-2 py-1.5 text-sm bg-white border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#F5A3B7]"
+                          @keydown.esc="cancelDeliveryEdit" />
+                      </div>
+                      <div class="flex gap-2">
+                        <button
+                          @click="saveDelivery"
+                          class="flex-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#F5A3B7] hover:bg-[#E392A6] rounded-md transition-colors">
+                          Save
+                        </button>
+                        <button
+                          @click="cancelDeliveryEdit"
+                          class="flex-1 px-3 py-1.5 text-xs font-semibold text-gray-600 hover:text-gray-700 hover:bg-gray-100 border border-gray-300 rounded-md transition-colors">
+                          Cancel
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <button
-                    class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-pink-600 hover:text-pink-700 hover:bg-pink-50 border border-gray-300 rounded-md transition-colors">
+                    v-if="!editModes.delivery"
+                    @click="startEditDelivery"
+                    class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-[#F5A3B7] hover:text-[#E392A6] hover:bg-[#F5A3B7]/10 border border-gray-300 rounded-md transition-colors">
                     Edit
                   </button>
                 </div>
@@ -602,8 +714,8 @@
           </div>
         </div>
 
-        <!-- Right Column: Payment Method -->
-        <div class="space-y-4">
+        <!-- Payment Method Section -->
+        <div class="w-full">
           <div
             class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <!-- Section Header -->
@@ -637,7 +749,7 @@
                   :class="[
                     'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all',
                     selectedPaymentMethod === 'card'
-                      ? 'border-pink-500 bg-pink-50'
+                      ? 'border-[#F5A3B7] bg-[#F5A3B7]/10'
                       : 'border-gray-300 hover:border-gray-400',
                   ]">
                   <input
@@ -645,7 +757,7 @@
                     name="payment"
                     value="card"
                     v-model="selectedPaymentMethod"
-                    class="w-4 h-4 text-pink-500 border-gray-300 focus:ring-pink-500 cursor-pointer" />
+                    class="w-4 h-4 text-[#F5A3B7] border-gray-300 focus:ring-[#F5A3B7] cursor-pointer" />
                   <span class="text-sm font-semibold text-gray-800 flex-grow"
                     >Credit / Debit Card</span
                   >
@@ -660,7 +772,7 @@
                   :class="[
                     'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all',
                     selectedPaymentMethod === 'paypal'
-                      ? 'border-pink-500 bg-pink-50'
+                      ? 'border-[#F5A3B7] bg-[#F5A3B7]/10'
                       : 'border-gray-300 hover:border-gray-400',
                   ]">
                   <input
@@ -668,7 +780,7 @@
                     name="payment"
                     value="paypal"
                     v-model="selectedPaymentMethod"
-                    class="w-4 h-4 text-pink-500 border-gray-300 focus:ring-pink-500 cursor-pointer" />
+                    class="w-4 h-4 text-[#F5A3B7] border-gray-300 focus:ring-[#F5A3B7] cursor-pointer" />
                   <span class="text-sm font-semibold text-gray-800 flex-grow"
                     >PayPal</span
                   >
@@ -683,7 +795,7 @@
                   :class="[
                     'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all',
                     selectedPaymentMethod === 'bitcoin'
-                      ? 'border-pink-500 bg-pink-50'
+                      ? 'border-[#F5A3B7] bg-[#F5A3B7]/10'
                       : 'border-gray-300 hover:border-gray-400',
                   ]">
                   <input
@@ -691,7 +803,7 @@
                     name="payment"
                     value="bitcoin"
                     v-model="selectedPaymentMethod"
-                    class="w-4 h-4 text-pink-500 border-gray-300 focus:ring-pink-500 cursor-pointer" />
+                    class="w-4 h-4 text-[#F5A3B7] border-gray-300 focus:ring-[#F5A3B7] cursor-pointer" />
                   <span class="text-sm font-semibold text-gray-800 flex-grow"
                     >Bitcoin (BTC)</span
                   >
@@ -706,7 +818,7 @@
                   :class="[
                     'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all',
                     selectedPaymentMethod === 'binance'
-                      ? 'border-pink-500 bg-pink-50'
+                      ? 'border-[#F5A3B7] bg-[#F5A3B7]/10'
                       : 'border-gray-300 hover:border-gray-400',
                   ]">
                   <input
@@ -714,7 +826,7 @@
                     name="payment"
                     value="binance"
                     v-model="selectedPaymentMethod"
-                    class="w-4 h-4 text-pink-500 border-gray-300 focus:ring-pink-500 cursor-pointer" />
+                    class="w-4 h-4 text-[#F5A3B7] border-gray-300 focus:ring-[#F5A3B7] cursor-pointer" />
                   <span class="text-sm font-semibold text-gray-800 flex-grow"
                     >Binance Pay</span
                   >
@@ -736,7 +848,7 @@
                     </h4>
                     <button
                       @click="showAddCardForm = !showAddCardForm"
-                      class="text-xs font-semibold text-pink-600 hover:text-pink-700 flex items-center gap-1 transition-colors">
+                      class="text-xs font-semibold text-[#F5A3B7] hover:text-[#E392A6] flex items-center gap-1 transition-colors">
                       <svg
                         class="w-4 h-4"
                         fill="none"
@@ -760,7 +872,7 @@
                       :class="[
                         'block p-3 border rounded-lg cursor-pointer transition-all',
                         selectedCard === card.id
-                          ? 'border-pink-500 bg-pink-50'
+                          ? 'border-[#F5A3B7] bg-[#F5A3B7]/10'
                           : 'border-gray-300 hover:border-gray-400',
                       ]">
                       <div class="flex items-center gap-3">
@@ -769,7 +881,7 @@
                           name="saved-card"
                           :value="card.id"
                           v-model="selectedCard"
-                          class="w-4 h-4 text-pink-500 border-gray-300 focus:ring-pink-500 cursor-pointer" />
+                          class="w-4 h-4 text-[#F5A3B7] border-gray-300 focus:ring-[#F5A3B7] cursor-pointer" />
 
                         <div class="flex-grow min-w-0">
                           <div class="flex items-center gap-2 mb-1">
@@ -852,7 +964,7 @@
                             v-model="newCard.number"
                             placeholder="1234 5678 9012 3456"
                             maxlength="19"
-                            class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent" />
+                            class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent" />
                         </div>
 
                         <div>
@@ -864,7 +976,7 @@
                             type="text"
                             v-model="newCard.name"
                             placeholder="Dara Veasna"
-                            class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent" />
+                            class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent" />
                         </div>
 
                         <div class="grid grid-cols-2 gap-3">
@@ -878,7 +990,7 @@
                               v-model="newCard.expiry"
                               placeholder="MM/YY"
                               maxlength="5"
-                              class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent" />
+                              class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent" />
                           </div>
                           <div>
                             <label
@@ -890,7 +1002,7 @@
                               v-model="newCard.cvv"
                               placeholder="123"
                               maxlength="4"
-                              class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent" />
+                              class="w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent" />
                           </div>
                         </div>
 
@@ -898,7 +1010,7 @@
                           <input
                             type="checkbox"
                             v-model="newCard.saveCard"
-                            class="w-4 h-4 text-pink-500 border-gray-300 rounded focus:ring-pink-500" />
+                            class="w-4 h-4 text-[#F5A3B7] border-gray-300 rounded focus:ring-[#F5A3B7]" />
                           <span class="text-xs text-gray-700 font-medium"
                             >Save for future use</span
                           >
@@ -906,7 +1018,7 @@
 
                         <button
                           @click="addNewCard"
-                          class="w-full py-2.5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white text-sm font-semibold rounded-lg transition-all">
+                          class="w-full py-2.5 bg-[#F5A3B7] hover:bg-[#E392A6] text-white text-sm font-semibold rounded-lg transition-all">
                           Add Card
                         </button>
                       </div>
@@ -1064,7 +1176,7 @@
             'w-full sm:flex-1 px-6 py-3 text-sm font-semibold text-white rounded-lg transition-all flex items-center justify-center gap-2',
             isEmpty
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 shadow-sm hover:shadow-md',
+              : 'bg-[#F5A3B7] hover:bg-[#E392A6] shadow-sm hover:shadow-md',
           ]">
           <svg
             class="w-5 h-5"
@@ -1081,14 +1193,11 @@
         </button>
       </div>
     </div>
-
-    <FooterComponentVue />
   </div>
 </template>
 
 <script setup>
 import {computed, ref, reactive} from "vue";
-import FooterComponentVue from "../components/FooterComponent.vue";
 import NavBarComponentVue from "../components/NavBarComponent.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
@@ -1102,6 +1211,37 @@ const selectedPaymentMethod = ref("card");
 // Card management state
 const selectedCard = ref(1);
 const showAddCardForm = ref(false);
+
+// Contact & Shipping edit modes
+const editModes = reactive({
+  email: false,
+  address: false,
+  delivery: false,
+});
+
+// Contact & Shipping data
+const contactInfo = reactive({
+  email: "daraa.veasna@gmail.com",
+});
+
+const shippingInfo = reactive({
+  address: "Khan Toul Kouk, Phnom Penh, Cambodia",
+});
+
+const deliveryInfo = reactive({
+  method: "Fast Shipping",
+  cost: 5.0,
+  estimate: "3-5 business days",
+});
+
+// Temporary edit data (for form inputs)
+const editData = reactive({
+  email: "",
+  address: "",
+  deliveryMethod: "",
+  deliveryCost: 0,
+  deliveryEstimate: "",
+});
 
 // Saved cards data
 const savedCards = ref([
@@ -1193,6 +1333,83 @@ const decreaseQuantity = (productId) => {
 const removeItem = (productId) => {
   productStore.removeFromCart(productId);
   success("Item removed from cart");
+};
+
+// Contact & Shipping edit functions
+const startEditEmail = () => {
+  editData.email = contactInfo.email;
+  editModes.email = true;
+};
+
+const saveEmail = () => {
+  if (!editData.email.trim()) {
+    errorToast("Email is required");
+    return;
+  }
+
+  // Basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(editData.email)) {
+    errorToast("Please enter a valid email address");
+    return;
+  }
+
+  contactInfo.email = editData.email;
+  editModes.email = false;
+  success("Email updated successfully!");
+};
+
+const cancelEmailEdit = () => {
+  editModes.email = false;
+  editData.email = "";
+};
+
+const startEditAddress = () => {
+  editData.address = shippingInfo.address;
+  editModes.address = true;
+};
+
+const saveAddress = () => {
+  if (!editData.address.trim()) {
+    errorToast("Address is required");
+    return;
+  }
+
+  shippingInfo.address = editData.address;
+  editModes.address = false;
+  success("Address updated successfully!");
+};
+
+const cancelAddressEdit = () => {
+  editModes.address = false;
+  editData.address = "";
+};
+
+const startEditDelivery = () => {
+  editData.deliveryMethod = deliveryInfo.method;
+  editData.deliveryCost = deliveryInfo.cost;
+  editData.deliveryEstimate = deliveryInfo.estimate;
+  editModes.delivery = true;
+};
+
+const saveDelivery = () => {
+  if (!editData.deliveryMethod.trim()) {
+    errorToast("Delivery method is required");
+    return;
+  }
+
+  deliveryInfo.method = editData.deliveryMethod;
+  deliveryInfo.cost = editData.deliveryCost;
+  deliveryInfo.estimate = editData.deliveryEstimate;
+  editModes.delivery = false;
+  success("Delivery method updated successfully!");
+};
+
+const cancelDeliveryEdit = () => {
+  editModes.delivery = false;
+  editData.deliveryMethod = "";
+  editData.deliveryCost = 0;
+  editData.deliveryEstimate = "";
 };
 
 // Card management methods

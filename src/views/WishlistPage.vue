@@ -182,8 +182,6 @@
         </button>
       </div>
     </div>
-
-    <FooterComponent />
   </div>
 </template>
 
@@ -192,7 +190,6 @@ import {computed} from "vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import NavBarComponent from "../components/NavBarComponent.vue";
-import FooterComponent from "../components/FooterComponent.vue";
 
 const store = useProductStore();
 const {success, info} = useToast();
