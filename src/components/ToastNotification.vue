@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch, onMounted} from "vue";
+import {ref, watch, onUnmounted, computed} from "vue";
 
 const props = defineProps({
   message: {
@@ -23,25 +23,147 @@ const props = defineProps({
 const emit = defineEmits(["close"]);
 
 const isVisible = ref(props.show);
+const toastRef = ref(null);
+const touchStartX = ref(0);
+const touchEndX = ref(0);
+const isDragging = ref(false);
+const dragOffset = ref(0);
+const progressWidth = ref(100);
+const isAnimating = ref(false);
+
+let autoCloseTimer = null;
+let progressAnimationFrame = null;
+let startTime = null;
+let pausedTime = 0;
+
+// Optimized progress animation using CSS transitions
+const animateProgress = (timestamp) => {
+  if (!startTime) startTime = timestamp;
+  const elapsed = timestamp - startTime - pausedTime;
+  const remaining = Math.max(0, props.duration - elapsed);
+
+  progressWidth.value = (remaining / props.duration) * 100;
+
+  if (remaining > 0 && isAnimating.value) {
+    progressAnimationFrame = requestAnimationFrame(animateProgress);
+  } else if (remaining <= 0) {
+    progressWidth.value = 0;
+  }
+};
 
 watch(
   () => props.show,
   (newVal) => {
-    isVisible.value = newVal;
-    if (newVal && props.duration > 0) {
-      setTimeout(() => {
-        closeToast();
-      }, props.duration);
+    if (newVal) {
+      isVisible.value = true;
+
+      if (props.duration > 0) {
+        // Reset state
+        progressWidth.value = 100;
+        startTime = null;
+        pausedTime = 0;
+        isAnimating.value = true;
+
+        // Use requestAnimationFrame for next frame to ensure DOM is ready
+        requestAnimationFrame(() => {
+          progressAnimationFrame = requestAnimationFrame(animateProgress);
+        });
+
+        // Set auto-close timer
+        autoCloseTimer = setTimeout(() => {
+          closeToast();
+        }, props.duration);
+      }
+    } else {
+      isVisible.value = false;
     }
-  }
+  },
+  {immediate: true}
 );
+
+onUnmounted(() => {
+  if (autoCloseTimer) {
+    clearTimeout(autoCloseTimer);
+  }
+  if (progressAnimationFrame) {
+    cancelAnimationFrame(progressAnimationFrame);
+  }
+});
 
 const closeToast = () => {
   isVisible.value = false;
+  isAnimating.value = false;
+  if (autoCloseTimer) {
+    clearTimeout(autoCloseTimer);
+    autoCloseTimer = null;
+  }
+  if (progressAnimationFrame) {
+    cancelAnimationFrame(progressAnimationFrame);
+    progressAnimationFrame = null;
+  }
   emit("close");
 };
 
-const getTypeStyles = () => {
+// Optimized touch swipe to dismiss
+const handleTouchStart = (e) => {
+  touchStartX.value = e.touches[0].clientX;
+  isDragging.value = true;
+
+  // Pause timers
+  const currentTime = performance.now();
+  if (startTime && isAnimating.value) {
+    pausedTime = currentTime - startTime - pausedTime;
+  }
+  isAnimating.value = false;
+
+  if (autoCloseTimer) {
+    clearTimeout(autoCloseTimer);
+    autoCloseTimer = null;
+  }
+  if (progressAnimationFrame) {
+    cancelAnimationFrame(progressAnimationFrame);
+    progressAnimationFrame = null;
+  }
+};
+
+const handleTouchMove = (e) => {
+  if (!isDragging.value) return;
+  touchEndX.value = e.touches[0].clientX;
+  dragOffset.value = touchEndX.value - touchStartX.value;
+
+  // Only allow right swipe (positive offset)
+  if (dragOffset.value < 0) {
+    dragOffset.value = 0;
+  }
+};
+
+const handleTouchEnd = () => {
+  isDragging.value = false;
+
+  // If swiped more than 100px, close the toast
+  if (dragOffset.value > 100) {
+    closeToast();
+  } else {
+    // Reset position
+    dragOffset.value = 0;
+
+    // Resume auto-close and progress if duration remaining
+    if (props.duration > 0 && progressWidth.value > 0) {
+      isAnimating.value = true;
+      const remainingDuration = (progressWidth.value / 100) * props.duration;
+
+      startTime = performance.now();
+      progressAnimationFrame = requestAnimationFrame(animateProgress);
+
+      autoCloseTimer = setTimeout(() => {
+        closeToast();
+      }, remainingDuration);
+    }
+  }
+};
+
+// Computed styles for better performance
+const typeStyles = computed(() => {
   const styles = {
     success: {
       bg: "glass-card-strong",
@@ -73,9 +195,9 @@ const getTypeStyles = () => {
     },
   };
   return styles[props.type] || styles.success;
-};
+});
 
-const getIcon = () => {
+const iconPath = computed(() => {
   const icons = {
     success: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />`,
     error: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />`,
@@ -83,48 +205,77 @@ const getIcon = () => {
     info: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />`,
   };
   return icons[props.type] || icons.success;
-};
+});
+
+const transformStyle = computed(() => {
+  if (isDragging.value) {
+    return {
+      transform: `translateX(${dragOffset.value}px)`,
+      transition: "none",
+    };
+  }
+  return {
+    transform: "",
+    transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  };
+});
 </script>
 
 <template>
   <transition
-    enter-active-class="transition ease-out duration-300"
-    enter-from-class="opacity-0 translate-y-2 sm:translate-y-0 sm:translate-x-4"
-    enter-to-class="opacity-100 translate-y-0 sm:translate-x-0"
-    leave-active-class="transition ease-in duration-200"
-    leave-from-class="opacity-100 translate-y-0"
-    leave-to-class="opacity-0 translate-y-2">
+    enter-active-class="transition ease-out duration-200 transform"
+    enter-from-class="opacity-0 translate-x-full scale-95"
+    enter-to-class="opacity-100 translate-x-0 scale-100"
+    leave-active-class="transition ease-in duration-150 transform"
+    leave-from-class="opacity-100 translate-x-0 scale-100"
+    leave-to-class="opacity-0 translate-x-full scale-95">
     <div
       v-if="isVisible"
+      ref="toastRef"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+      :style="transformStyle"
       :class="[
-        getTypeStyles().bg,
-        getTypeStyles().border,
-        getTypeStyles().glow,
-        'fixed top-4 right-4 z-[100] max-w-sm w-full shadow-glass-lg rounded-3xl border-l-4 p-5 sm:p-6 backdrop-blur-xl animate-slide-up',
+        typeStyles.bg,
+        typeStyles.border,
+        typeStyles.glow,
+        'w-full shadow-glass-lg rounded-2xl sm:rounded-3xl border-l-4 p-3 sm:p-5 backdrop-blur-xl',
+        'touch-pan-y select-none',
+        'max-w-full',
       ]"
-      role="alert">
-      <div class="flex items-start gap-4">
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true">
+      <div class="flex items-start gap-2.5 sm:gap-4">
         <!-- Icon -->
         <div class="flex-shrink-0">
-          <div class="p-2 rounded-xl bg-white/50 backdrop-blur-sm">
+          <div
+            class="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/50 backdrop-blur-sm">
             <svg
-              :class="[getTypeStyles().icon, 'w-6 h-6']"
+              :class="[typeStyles.icon, 'w-4 h-4 sm:w-6 sm:h-6']"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
               stroke-width="2.5"
-              v-html="getIcon()"></svg>
+              v-html="iconPath"></svg>
           </div>
         </div>
 
         <!-- Message -->
-        <div class="flex-1 min-w-0">
+        <div class="flex-1 min-w-0 pt-0.5">
           <p
             :class="[
-              getTypeStyles().text,
-              'text-sm sm:text-base font-bold leading-relaxed',
+              typeStyles.text,
+              'text-xs sm:text-sm md:text-base font-bold leading-relaxed break-words',
             ]">
             {{ message }}
+          </p>
+          <!-- Swipe hint on mobile (shown briefly) -->
+          <p
+            v-if="isDragging"
+            class="text-[10px] sm:hidden text-gray-500 mt-1 font-medium">
+            Swipe right to dismiss →
           </p>
         </div>
 
@@ -132,12 +283,12 @@ const getIcon = () => {
         <button
           @click="closeToast"
           :class="[
-            getTypeStyles().text,
-            'flex-shrink-0 hover:scale-110 active:scale-95 transition-smooth p-1 rounded-lg hover:bg-white/30',
+            typeStyles.text,
+            'flex-shrink-0 hover:scale-110 active:scale-95 transition-smooth p-1 rounded-lg hover:bg-white/30 touch-manipulation',
           ]"
-          aria-label="Close">
+          aria-label="Close notification">
           <svg
-            class="w-5 h-5"
+            class="w-4 h-4 sm:w-5 sm:h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -150,6 +301,68 @@ const getIcon = () => {
           </svg>
         </button>
       </div>
+
+      <!-- Optimized progress bar -->
+      <div
+        v-if="props.duration > 0"
+        class="absolute bottom-0 left-0 right-0 h-1 bg-black/10 rounded-b-2xl sm:rounded-b-3xl overflow-hidden">
+        <div
+          :class="[
+            typeStyles.icon,
+            'h-full bg-current ease-linear origin-left will-change-transform',
+          ]"
+          :style="{
+            width: `${progressWidth}%`,
+            opacity: isDragging ? 0.5 : 1,
+            transition: 'width 0.05s linear, opacity 0.2s ease',
+          }"></div>
+      </div>
     </div>
   </transition>
 </template>
+
+<style scoped>
+/* Optimize rendering with GPU acceleration */
+.will-change-transform {
+  will-change: width, opacity;
+}
+
+/* Improve touch handling */
+.touch-pan-y {
+  touch-action: pan-y;
+}
+
+/* Prevent text selection while dragging */
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Smooth transitions with hardware acceleration */
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Better touch targets for mobile */
+button {
+  min-width: 28px;
+  min-height: 28px;
+}
+
+@media (min-width: 640px) {
+  button {
+    min-width: 32px;
+    min-height: 32px;
+  }
+}
+
+/* Performance optimizations */
+[role="alert"] {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+</style>

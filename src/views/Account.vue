@@ -2,6 +2,9 @@
 import {ref, computed} from "vue";
 import NavbarComponent from "../components/NavBarComponent.vue";
 import FooterComponent from "../components/FooterComponent.vue";
+import {useToast} from "../composables/useToast";
+
+const {success, info} = useToast();
 
 // User data (in a real app, this would come from a store or API)
 const user = ref({
@@ -96,16 +99,19 @@ const toggleEdit = () => {
     // Save changes
     user.value = {...formData.value};
     isEditing.value = false;
+    success("Profile updated successfully! ✓", 2500);
   } else {
     // Enter edit mode
     formData.value = {...user.value};
     isEditing.value = true;
+    info("Edit mode enabled", 2000);
   }
 };
 
 const cancelEdit = () => {
   formData.value = {...user.value};
   isEditing.value = false;
+  info("Changes discarded", 2000);
 };
 
 const getStatusColor = (status) => {
@@ -124,7 +130,11 @@ const getStatusColor = (status) => {
 };
 
 const removeFromWishlist = (id) => {
+  const item = wishlist.value.find((item) => item.id === id);
   wishlist.value = wishlist.value.filter((item) => item.id !== id);
+  if (item) {
+    info(`${item.name} removed from wishlist`, 2500);
+  }
 };
 
 const setDefaultAddress = (id) => {
@@ -132,6 +142,7 @@ const setDefaultAddress = (id) => {
     ...addr,
     isDefault: addr.id === id,
   }));
+  success("Default address updated! ✓", 2500);
 };
 </script>
 

@@ -596,6 +596,7 @@ const goToPage = (page) => {
 
 const handleAddToCart = (product) => {
   store.addToCart(product);
+  success(`${product.title} added to cart! 🛒`, 3000);
   console.log("Added to cart:", product);
 };
 </script>

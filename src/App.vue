@@ -107,18 +107,25 @@ onErrorCaptured((err, instance, info) => {
       </Suspense>
     </RouterView>
 
-    <!-- Toast Container -->
+    <!-- Toast Container - All Devices (Top-Right) -->
     <div
-      class="fixed top-4 right-4 z-[100] flex flex-col gap-3 max-w-sm w-full pointer-events-none px-4">
-      <ToastNotification
-        v-for="toast in toasts"
-        :key="toast.id"
-        :message="toast.message"
-        :type="toast.type"
-        :duration="toast.duration"
-        :show="toast.show"
-        @close="removeToast(toast.id)"
-        class="pointer-events-auto" />
+      class="fixed top-4 right-4 left-4 sm:left-auto z-[100] flex flex-col gap-2 sm:gap-3 pointer-events-none w-auto sm:w-full sm:max-w-sm"
+      aria-live="polite"
+      aria-atomic="false">
+      <TransitionGroup
+        name="toast-list"
+        tag="div"
+        class="flex flex-col gap-2 sm:gap-3">
+        <ToastNotification
+          v-for="toast in toasts"
+          :key="toast.id"
+          :message="toast.message"
+          :type="toast.type"
+          :duration="toast.duration"
+          :show="toast.show"
+          @close="removeToast(toast.id)"
+          class="pointer-events-auto" />
+      </TransitionGroup>
     </div>
   </div>
 </template>
@@ -140,6 +147,32 @@ onErrorCaptured((err, instance, info) => {
   opacity: 0;
   transform: translateY(-20px) scale(0.98);
   filter: blur(4px);
+}
+
+/* Toast List Animations - Slide from right on all devices */
+.toast-list-move,
+.toast-list-enter-active,
+.toast-list-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast-list-enter-from {
+  opacity: 0;
+  transform: translateX(100%) scale(0.95);
+}
+
+.toast-list-leave-to {
+  opacity: 0;
+  transform: translateX(100%) scale(0.95);
+}
+
+.toast-list-leave-active {
+  position: absolute;
+  width: 100%;
+}
+
+.toast-list-move {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Global Navigation Loading Overlay Transition */

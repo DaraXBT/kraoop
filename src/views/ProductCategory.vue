@@ -208,9 +208,11 @@ import CartComponent from "../components/CartComponent.vue";
 import SearchBar from "../components/SearchBar.vue";
 import ModernFilterSidebar from "../components/ModernFilterSidebar.vue";
 import {useProductStore} from "../stores/ProductStore";
+import {useToast} from "../composables/useToast";
 import {computed, ref, watch} from "vue";
 
 const store = useProductStore();
+const {success} = useToast();
 
 // Filter for double cleanse category products
 const doubleCleanseCategories = [
@@ -571,6 +573,7 @@ const goToPage = (page) => {
 
 const handleAddToCart = (product) => {
   store.addToCart(product);
+  success(`${product.title} added to cart! 🛒`, 3000);
   console.log("Added to cart:", product);
 };
 </script>
