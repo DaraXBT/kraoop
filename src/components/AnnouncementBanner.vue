@@ -44,7 +44,7 @@
     0 0 20px rgba(236, 72, 153, 0.1);
 }
 
-/* Marquee Animation - Edge to Edge for All Devices */
+/* Marquee Animation - Edge to Edge for All Devices - OPTIMIZED */
 .marquee-container {
   overflow: hidden;
   width: 100%;
@@ -57,8 +57,10 @@
   width: max-content;
   position: relative;
   animation: marquee-loop 20s linear infinite;
-  /* Start from right edge */
-  transform: translateX(0);
+  /* Performance optimizations */
+  will-change: transform;
+  transform: translateZ(0) translateX(0);
+  backface-visibility: hidden;
 }
 
 .marquee-content::after {
@@ -91,10 +93,10 @@
 
 @keyframes marquee-loop {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 

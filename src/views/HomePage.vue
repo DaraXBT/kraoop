@@ -147,7 +147,9 @@ const handleAddToCart = (product) => {
               <img
                 src="../assets/images/jennie.png"
                 alt="jennie"
-                class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg object-contain float-animation" />
+                class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg object-contain float-animation"
+                fetchpriority="high"
+                decoding="async" />
             </div>
           </div>
         </div>
@@ -349,7 +351,9 @@ const handleAddToCart = (product) => {
             <img
               class="w-full h-full object-cover max-w-full group-hover:scale-105 transition-transform duration-500"
               src="../assets/images/innisfree.jpg"
-              alt="innisfree" />
+              alt="innisfree"
+              loading="lazy"
+              decoding="async" />
           </div>
         </div>
       </div>
@@ -365,7 +369,9 @@ const handleAddToCart = (product) => {
             <img
               class="w-full h-full object-cover max-w-full"
               src="../assets/images/sunscreen.jpg"
-              alt="sunscreen" />
+              alt="sunscreen"
+              loading="lazy"
+              decoding="async" />
           </div>
 
           <!-- Content -->

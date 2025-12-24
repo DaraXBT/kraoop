@@ -39,17 +39,17 @@ import {useProductStore} from "./stores/ProductStore";
 router
   .isReady()
   .then(async () => {
-    // Initialize product store early
+    //Mount immediately for faster initial load
+    app.mount("#app");
+    
+    // Initialize product store in background (non-blocking)
     const productStore = useProductStore(pinia);
     if (!productStore.isInitialized) {
-      try {
-        await productStore.fetchProducts();
-      } catch (error) {
+      // Non-blocking background load
+      productStore.fetchProducts().catch((error) => {
         console.warn("Failed to preload products:", error);
-      }
+      });
     }
-
-    app.mount("#app");
   })
   .catch((err) => {
     console.error("Router initialization error:", err);

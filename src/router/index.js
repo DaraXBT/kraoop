@@ -5,7 +5,7 @@ import {ref, nextTick} from "vue";
 // Global loading state for route transitions
 export const isNavigating = ref(false);
 let navigationStartTime = 0;
-const MIN_LOADING_TIME = 150; // Minimum time to show loading (prevents flash)
+const MIN_LOADING_TIME = 50; // Minimum time to show loading (prevents flash) - optimized for speed
 
 // Lazy load pages for better performance with loading delay
 const HomePage = () => import("../views/HomePage.vue");
@@ -208,7 +208,7 @@ router.afterEach(async (to, from) => {
 
   // Additional delay to ensure DOM is fully painted
   // This is crucial for lazy-loaded components on first load
-  await new Promise((resolve) => setTimeout(resolve, 100));
+  await new Promise((resolve) => setTimeout(resolve, 30)); // Optimized from 100ms
 
   // Final check - wait for images and resources
   if (document.readyState !== "complete") {

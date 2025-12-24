@@ -30,41 +30,51 @@
       <!-- Active Filters Display -->
       <div
         v-if="hasActiveFilters"
-        class="glass-pink p-5 rounded-3xl border border-pink-200/40">
-        <div class="flex items-center justify-between mb-4">
-          <h4 class="text-sm font-bold text-gray-800">Active Filters</h4>
-          <span
-            class="text-xs bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white px-3 py-1.5 rounded-full font-bold"
-            >{{ activeFilterCount }}</span
-          >
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <span
-            v-for="(filter, index) in activeFiltersList"
-            :key="index"
-            class="inline-flex items-center gap-2 px-4 py-2 glass-card text-sm text-gray-700 rounded-full border border-white/30 group hover:border-red-300 transition-smooth font-semibold">
-            {{ filter.label }}
-            <LiquidButton
-              @click="$emit('remove-filter', filter)"
-              variant="danger"
-              size="sm"
-              icon-only
-              class="w-4 h-4 !p-0">
-              <template v-slot:icon-left>
+        class="liquid-filter-container">
+        <!-- Shadow element for depth -->
+        <div class="liquid-filter-shadow"></div>
+        
+        <!-- Main content -->
+        <div class="liquid-filter-content">
+          <!-- Reflective overlay -->
+          <div class="liquid-filter-reflection"></div>
+          
+          <div class="flex items-center justify-between mb-4 relative z-10">
+            <h4 class="text-sm font-bold text-gray-900 drop-shadow-sm">Active Filters</h4>
+            <span
+              class="liquid-filter-badge"
+              >{{ activeFilterCount }}</span
+            >
+          </div>
+          <div class="flex flex-wrap gap-2 relative z-10">
+            <span
+              v-for="(filter, index) in activeFiltersList"
+              :key="index"
+              class="liquid-filter-tag">
+              <!-- Tag reflection overlay -->
+              <span class="liquid-tag-reflection"></span>
+              
+              <span class="relative z-10 text-sm text-gray-800 font-semibold drop-shadow-sm">
+                {{ filter.label }}
+              </span>
+              <button
+                @click="$emit('remove-filter', filter)"
+                class="liquid-remove-btn"
+                aria-label="Remove filter">
                 <svg
                   class="w-3 h-3"
                   fill="none"
                   stroke="currentColor"
+                  stroke-width="2.5"
                   viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                     d="M6 18L18 6M6 6l12 12" />
                 </svg>
-              </template>
-            </LiquidButton>
-          </span>
+              </button>
+            </span>
+          </div>
         </div>
       </div>
 
@@ -762,4 +772,385 @@ input[type="number"] {
   );
   border-radius: 10px;
 }
+
+/* ========================================
+   LIQUID GLASS ACTIVE FILTERS STYLING
+   ======================================== */
+
+/* CSS Custom Properties for Filter Animations */
+@property --filter-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 135deg;
+}
+
+@property --filter-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+/* Main Liquid Filter Container */
+.liquid-filter-container {
+  position: relative;
+  border-radius: 1.5rem;
+  transition: all var(--liquid-anim-time, 400ms) cubic-bezier(0.25, 1, 0.5, 1);
+  perspective: 1000px;
+  margin-bottom: 1.25rem;
+}
+
+/* Advanced Shadow Element */
+.liquid-filter-shadow {
+  position: absolute;
+  pointer-events: none;
+  --shadow-offset: 1.5em;
+  width: calc(100% + var(--shadow-offset));
+  height: calc(100% + var(--shadow-offset));
+  top: calc(0% - var(--shadow-offset) / 2);
+  left: calc(0% - var(--shadow-offset) / 2);
+  border-radius: 1.5rem;
+  filter: blur(clamp(2px, 0.125em, 8px));
+  transition: all var(--liquid-anim-time, 400ms) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.liquid-filter-shadow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, rgba(245, 163, 183, 0.2), rgba(227, 146, 166, 0.1));
+  width: calc(100% - var(--shadow-offset) - 0.25em);
+  height: calc(100% - var(--shadow-offset) - 0.25em);
+  top: calc(var(--shadow-offset) / 2 - 0.25em);
+  left: calc(var(--shadow-offset) / 2 - 0.5em);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  transition: all var(--liquid-anim-time, 400ms) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Main Content Container with Glass Effect */
+.liquid-filter-content {
+  position: relative;
+  padding: 1.25rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  
+  /* Advanced Glass Background */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.85)
+  );
+  
+  /* Complex Shadow System */
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4),
+    0 4px 12px -2px rgba(245, 163, 183, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  /* Advanced Backdrop Filter */
+  backdrop-filter: blur(clamp(8px, 0.5em, 16px)) saturate(150%);
+  -webkit-backdrop-filter: blur(clamp(8px, 0.5em, 16px)) saturate(150%);
+  
+  border: 1px solid rgba(245, 163, 183, 0.3);
+  transition: all var(--liquid-anim-time, 400ms) cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Animated border */
+.liquid-filter-content::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: 1.5rem;
+  padding: clamp(1px, 0.0625em, 2px);
+  background: conic-gradient(
+    from var(--filter-angle-1) at 50% 50%,
+    rgba(245, 163, 183, 0.6),
+    rgba(255, 255, 255, 0.2) 15% 35%,
+    rgba(245, 163, 183, 0.6) 50%,
+    rgba(255, 255, 255, 0.2) 65% 85%,
+    rgba(245, 163, 183, 0.6)
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  transition: all var(--liquid-anim-time, 400ms) cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+/* Reflective Overlay */
+.liquid-filter-reflection {
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    var(--filter-angle-2),
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 35% 45%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: screen;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: 
+    background-position calc(var(--liquid-anim-time, 400ms) * 1.25) cubic-bezier(0.25, 1, 0.5, 1),
+    --filter-angle-2 calc(var(--liquid-anim-time, 400ms) * 1.25) cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 5;
+}
+
+/* Hover Effects */
+.liquid-filter-container:hover .liquid-filter-content {
+  transform: scale(0.99);
+  backdrop-filter: blur(clamp(12px, 0.75em, 20px)) saturate(160%);
+  -webkit-backdrop-filter: blur(clamp(12px, 0.75em, 20px)) saturate(160%);
+  
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.5),
+    0 6px 16px -2px rgba(245, 163, 183, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.liquid-filter-container:hover .liquid-filter-content::before {
+  --filter-angle-1: 225deg;
+}
+
+.liquid-filter-container:hover .liquid-filter-reflection {
+  background-position: 50% 50%;
+}
+
+.liquid-filter-container:hover .liquid-filter-shadow {
+  filter: blur(clamp(3px, 0.1875em, 10px));
+}
+
+/* Liquid Filter Badge */
+.liquid-filter-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  overflow: hidden;
+  
+  /* Glass background with gradient */
+  background: linear-gradient(
+    135deg,
+    rgba(245, 163, 183, 0.95),
+    rgba(227, 146, 166, 0.9)
+  );
+  
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 6px rgba(245, 163, 183, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-filter-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.liquid-filter-container:hover .liquid-filter-badge {
+  transform: scale(1.05);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 3px 8px rgba(245, 163, 183, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Liquid Filter Tag */
+.liquid-filter-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  cursor: default;
+  
+  /* Glass effect */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.65)
+  );
+  
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.03);
+  
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tag Reflection */
+.liquid-tag-reflection {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 40% 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.liquid-filter-tag:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(245, 163, 183, 0.15),
+    rgba(255, 255, 255, 0.75)
+  );
+  
+  border-color: rgba(245, 163, 183, 0.4);
+  
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 3px 8px rgba(245, 163, 183, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  
+  transform: translateY(-1px);
+}
+
+.liquid-filter-tag:hover .liquid-tag-reflection {
+  opacity: 0.7;
+}
+
+/* Liquid Remove Button */
+.liquid-remove-btn {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  cursor: pointer;
+  
+  /* Glass effect */
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.15),
+    rgba(220, 38, 38, 0.1)
+  );
+  
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  
+  color: rgba(220, 38, 38, 0.8);
+  
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.liquid-remove-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 50%
+  );
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.liquid-remove-btn:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.25),
+    rgba(220, 38, 38, 0.2)
+  );
+  
+  border-color: rgba(239, 68, 68, 0.4);
+  
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 6px rgba(239, 68, 68, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  
+  color: rgba(220, 38, 38, 1);
+  transform: scale(1.1);
+}
+
+.liquid-remove-btn:hover::before {
+  opacity: 0.7;
+}
+
+.liquid-remove-btn:active {
+  transform: scale(0.95);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .liquid-filter-container,
+  .liquid-filter-content,
+  .liquid-filter-shadow,
+  .liquid-filter-reflection,
+  .liquid-filter-content::before,
+  .liquid-filter-tag,
+  .liquid-remove-btn {
+    transition: none;
+    animation: none;
+  }
+  
+  .liquid-filter-reflection {
+    background-position: 25% 50%;
+  }
+}
+
 </style>

@@ -1,5 +1,10 @@
-/* Premium Font Imports for Kraoop Beauty */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lexend:wght@300;400;500;600&family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap");
+/* Premium Font Imports for Kraoop Beauty - Optimized Loading */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lexend:wght@300;400;500;600&family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap&text=KraopBeutyDiscvrnalbfghjmqwxyz0123456789");
+
+/* Preconnect for faster font loading */
+@supports (font-display: swap) {
+  /* Font loading is optimized with swap strategy */
+}
 
 @tailwind base;
 @tailwind components;
