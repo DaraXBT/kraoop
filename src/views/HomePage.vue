@@ -2,6 +2,7 @@
 import NavbarComponent from "../components/NavBarComponent.vue";
 import FooterComponent from "../components/FooterComponent.vue";
 import CartComponent from "../components/CartComponent.vue";
+import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import {useSEO} from "../composables/useSEO";
@@ -33,6 +34,9 @@ const handleAddToCart = (product) => {
 <template>
   <!--================>>Navbar -->
   <NavbarComponent />
+
+  <!--================>>Announcement Banner -->
+  <AnnouncementBanner />
 
   <!--================>>Cover -->
   <div

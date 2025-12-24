@@ -2,6 +2,9 @@
   <div class="min-h-screen relative overflow-x-hidden bg-gray-50">
     <NavBarComponentVue />
 
+    <!-- Announcement Banner -->
+    <AnnouncementBanner />
+
     <!-- Progress Steps - Minimal Modern -->
     <div
       class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-16 z-40">
@@ -1410,6 +1413,7 @@ import {computed, ref, reactive} from "vue";
 import NavBarComponentVue from "../components/NavBarComponent.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
+import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 
 const productStore = useProductStore();
 const {success, error: errorToast, info} = useToast();

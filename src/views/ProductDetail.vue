@@ -2,6 +2,7 @@
   <div
     class="min-h-screen bg-gradient-to-br from-gray-50/50 via-pink-50/20 to-purple-50/20">
     <NavBarComponentVue />
+    <AnnouncementBanner />
 
     <!-- Loading State -->
     <div v-if="isLoading" class="min-h-screen flex items-center justify-center">
@@ -784,6 +785,7 @@ import FooterComponentVue from "../components/FooterComponent.vue";
 import NavBarComponentVue from "../components/NavBarComponent.vue";
 import CartComponent from "../components/CartComponent.vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
+import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import {useSEO} from "../composables/useSEO";

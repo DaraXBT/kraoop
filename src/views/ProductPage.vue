@@ -2,6 +2,7 @@
   <div
     class="min-h-screen bg-gradient-to-br from-blue-50/10 via-purple-50/15 to-pink-50/20">
     <NavBarComponentVue />
+    <AnnouncementBanner />
 
     <!-- Loading State -->
     <div
@@ -222,6 +223,7 @@ import NavBarComponentVue from "../components/NavBarComponent.vue";
 import CartComponent from "../components/CartComponent.vue";
 import SearchBar from "../components/SearchBar.vue";
 import ModernFilterSidebar from "../components/ModernFilterSidebar.vue";
+import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useSEO} from "../composables/useSEO";
 import {useToast} from "../composables/useToast";

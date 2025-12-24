@@ -2,6 +2,7 @@
   <div
     class="min-h-screen bg-gradient-to-br from-pink-50/20 via-purple-50/15 to-rose-50/15">
     <NavBarComponentVue />
+    <AnnouncementBanner />
 
     <div
       class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
@@ -434,6 +435,7 @@ import FooterComponentVue from "../components/FooterComponent.vue";
 import NavBarComponentVue from "../components/NavBarComponent.vue";
 import CartComponent from "../components/CartComponent.vue";
 import SearchBar from "../components/SearchBar.vue";
+import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import {computed, ref} from "vue";
