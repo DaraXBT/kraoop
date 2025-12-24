@@ -100,15 +100,19 @@
         <!-- Order Summary Section -->
         <div class="mb-4 sm:mb-6">
           <div
-            class="liquid-glass-payment-card overflow-hidden relative">
-            <!-- Header -->
+            class="liquid-glass-payment-card overflow-hidden relative transition-all duration-300 hover:shadow-lg hover:shadow-pink-100/20">
+            <!-- Header with Solid Light Pink -->
             <div
-              class="bg-white/40 backdrop-blur-md px-4 py-3 border-b border-white/50 relative z-10">
-              <div class="flex items-center justify-between">
+              class="relative px-4 py-4 border-b overflow-hidden group"
+              style="background: #f5a3b7; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(clamp(1px, 0.125em, 4px)); -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));">
+              <!-- Subtle shine overlay -->
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div class="flex items-center justify-between relative z-10">
                 <h2
-                  class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  class="text-lg font-bold text-white flex items-center gap-2">
                   <svg
-                    class="w-5 h-5 text-gray-900"
+                    class="w-5 h-5 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -120,10 +124,16 @@
                   </svg>
                   Your Order
                 </h2>
+                <!-- Subtle Liquid Glass Badge -->
                 <span
-                  class="px-3 py-1 bg-gray-900/20 text-gray-900 text-xs font-semibold rounded-full border border-gray-900/30">
-                  {{ cartItems.length }}
-                  {{ cartItems.length === 1 ? "Item" : "Items" }}
+                  class="relative px-4 py-1.5 text-xs font-bold rounded-full overflow-hidden shadow-sm transition-all duration-300 hover:scale-105"
+                  style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 2px 8px rgba(255, 255, 255, 0.15);">
+                  <!-- Glass shine effect -->
+                  <span class="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none"></span>
+                  <span class="relative z-10 text-white font-bold">
+                    {{ cartItems.length }}
+                    {{ cartItems.length === 1 ? "Item" : "Items" }}
+                  </span>
                 </span>
               </div>
             </div>
@@ -160,32 +170,32 @@
               <div class="hidden md:block overflow-x-auto">
                 <table class="w-full">
                   <thead>
-                    <tr class="bg-gray-900/10 border-b border-gray-900/20">
+                    <tr style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                       <th
-                        class="px-4 py-3 text-left text-xs font-semibold text-gray-900 uppercase">
+                        class="px-4 py-3 text-left text-xs font-semibold text-gray-800 uppercase">
                         Product
                       </th>
                       <th
-                        class="px-4 py-3 text-center text-xs font-semibold text-gray-900 uppercase">
+                        class="px-4 py-3 text-center text-xs font-semibold text-gray-800 uppercase">
                         Price
                       </th>
                       <th
-                        class="px-4 py-3 text-center text-xs font-semibold text-gray-900 uppercase">
+                        class="px-4 py-3 text-center text-xs font-semibold text-gray-800 uppercase">
                         Quantity
                       </th>
                       <th
-                        class="px-4 py-3 text-right text-xs font-semibold text-gray-900 uppercase">
+                        class="px-4 py-3 text-right text-xs font-semibold text-gray-800 uppercase">
                         Subtotal
                       </th>
                       <th
-                        class="px-4 py-3 text-center text-xs font-semibold text-gray-900 uppercase w-16"></th>
+                        class="px-4 py-3 text-center text-xs font-semibold text-gray-800 uppercase w-16"></th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-black/10">
                     <tr
                       v-for="item in cartItems"
                       :key="item.id"
-                      class="hover:bg-gray-900/10 transition-colors">
+                      class="hover:bg-pink-50/30 transition-all duration-300">
                       <!-- Product Info -->
                       <td class="px-4 py-3">
                         <div class="flex items-center gap-3">
@@ -375,13 +385,17 @@
               <div
                 class="bg-white/20 backdrop-blur-sm border-t border-white/40 relative z-10">
                 <div class="px-4 py-4 space-y-4">
-                  <!-- Promo Code Section -->
+                  <!-- Promo Code Section with Subtle Styling -->
                   <div
-                    class="bg-white/30 backdrop-blur-sm rounded-lg p-3 border border-white/40 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                    class="relative rounded-2xl p-4 border overflow-hidden transition-all duration-300 hover:shadow-md hover:shadow-pink-100/20"
+                    style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
+                    <!-- Glass shine overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none"></div>
+                    
                     <label
-                      class="text-xs font-semibold text-gray-900 flex items-center gap-2 mb-2 relative z-10">
+                      class="text-sm font-semibold text-gray-700 flex items-center gap-2 mb-3 relative z-10">
                       <svg
-                        class="w-4 h-4 text-gray-900"
+                        class="w-4 h-4 text-[#F5A3B7]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -396,11 +410,14 @@
                     <div class="flex gap-2 relative z-10">
                       <input
                         type="text"
-                        placeholder="Enter code"
-                        class="flex-grow px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500" />
+                        placeholder="Enter your promo code"
+                        class="flex-grow px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-300"
+                        style="background: rgba(255, 255, 255, 0.9); border: 1.5px solid rgba(245, 163, 183, 0.25); color: #374151; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);"
+                        onfocus="this.style.borderColor='rgba(245, 163, 183, 0.5)'; this.style.background='rgba(255, 255, 255, 0.98)'; this.style.boxShadow='0 0 0 3px rgba(245, 163, 183, 0.08), inset 0 1px 3px rgba(0, 0, 0, 0.05)'"
+                        onblur="this.style.borderColor='rgba(245, 163, 183, 0.25)'; this.style.background='rgba(255, 255, 255, 0.9)'; this.style.boxShadow='inset 0 1px 3px rgba(0, 0, 0, 0.05)'" />
                       <LiquidButton
                         variant="primary"
-                        class="px-4 py-2 text-sm whitespace-nowrap">
+                        class="px-5 py-2.5 text-sm font-semibold whitespace-nowrap">
                         Apply
                       </LiquidButton>
                     </div>
@@ -438,7 +455,8 @@
                         </div>
                         <div
                           v-if="discount > 0"
-                          class="flex justify-between px-4 py-2.5 bg-green-500/10">
+                          class="flex justify-between px-4 py-2.5"
+                          style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span
                             class="text-sm font-medium text-green-700 flex items-center gap-1">
                             Discount (15%)
@@ -452,7 +470,8 @@
                           >
                         </div>
                         <div
-                          class="flex justify-between px-4 py-3 bg-[#F5A3B7]/20">
+                          class="flex justify-between px-4 py-3"
+                          style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span class="text-base font-bold text-gray-900"
                             >Total</span
                           >
@@ -492,7 +511,8 @@
                         </div>
                         <div
                           v-if="discount > 0"
-                          class="flex justify-between px-3 py-2 bg-green-500/10">
+                          class="flex justify-between px-3 py-2"
+                          style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span
                             class="text-xs font-medium text-green-700 flex items-center gap-1">
                             Discount (15%)
@@ -506,7 +526,8 @@
                           >
                         </div>
                         <div
-                          class="flex justify-between px-3 py-2.5 bg-[#F5A3B7]/20">
+                          class="flex justify-between px-3 py-2.5"
+                          style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span class="text-sm font-bold text-gray-900"
                             >Total</span
                           >
@@ -529,13 +550,14 @@
           <div class="w-full">
             <div
               class="liquid-glass-payment-card overflow-hidden relative">
-              <!-- Section Header -->
+              <!-- Section Header with Solid Light Pink -->
               <div
-                class="bg-white/40 backdrop-blur-md px-4 py-3 border-b border-white/50 relative z-10">
+                class="relative px-4 py-3 overflow-hidden group"
+                style="background: #f5a3b7; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(clamp(1px, 0.125em, 4px)); -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));">
                 <h3
-                  class="text-base font-bold text-gray-900 flex items-center gap-2">
+                  class="text-base font-bold text-white flex items-center gap-2 relative z-10">
                   <svg
-                    class="w-5 h-5 text-gray-900"
+                    class="w-5 h-5 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -784,13 +806,14 @@
           <div class="w-full">
             <div
               class="liquid-glass-payment-card overflow-hidden relative">
-              <!-- Section Header -->
+              <!-- Section Header with Solid Light Pink -->
               <div
-                class="bg-white/40 backdrop-blur-md px-4 py-3 border-b border-white/50 relative z-10">
+                class="relative px-4 py-3 overflow-hidden group"
+                style="background: #f5a3b7; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(clamp(1px, 0.125em, 4px)); -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));">
                 <h3
-                  class="text-base font-bold text-gray-900 flex items-center gap-2">
+                  class="text-base font-bold text-white flex items-center gap-2 relative z-10">
                   <svg
-                    class="w-5 h-5 text-gray-900"
+                    class="w-5 h-5 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
