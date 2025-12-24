@@ -312,19 +312,6 @@
                 variant="accent"
                 size="lg"
                 :class="'flex-1 sm:flex-none sm:min-w-[200px] min-h-[48px]'">
-                <template #icon>
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                  </svg>
-                </template>
                 Add to Bag
               </LiquidButton>
               <LiquidButton
@@ -332,19 +319,6 @@
                 variant="primary"
                 size="lg"
                 :class="'flex-1 sm:flex-none sm:min-w-[200px] min-h-[48px]'">
-                <template #icon>
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </template>
                 Buy Now
               </LiquidButton>
               <LiquidButton
@@ -355,12 +329,12 @@
                 :active="isInWishlist">
                 <template #icon>
                   <svg
-                    class="w-5 h-5 transition-colors"
+                    class="w-5 h-5 transition-colors relative z-10"
                     :class="{
-                      'text-white fill-white': isInWishlist,
-                      'text-gray-400': !isInWishlist,
+                      'text-white': isInWishlist,
+                      'text-gray-700': !isInWishlist,
                     }"
-                    fill="none"
+                    :fill="isInWishlist ? 'currentColor' : 'none'"
                     stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path
@@ -386,14 +360,14 @@
                   :class="'w-10 h-10'">
                   <template #icon>
                     <svg
-                      class="w-4 h-4"
+                      class="w-4 h-4 text-gray-700 relative z-10"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        stroke-width="2"
+                        stroke-width="2.5"
                         d="M20 12H4" />
                     </svg>
                   </template>
@@ -409,14 +383,14 @@
                   :class="'w-10 h-10'">
                   <template #icon>
                     <svg
-                      class="w-4 h-4"
+                      class="w-4 h-4 text-gray-700 relative z-10"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        stroke-width="2"
+                        stroke-width="2.5"
                         d="M12 4v16m8-8H4" />
                     </svg>
                   </template>
@@ -531,12 +505,12 @@
           <div class="space-y-6 sm:space-y-8">
             <!-- Review 1 -->
             <div
-              class="glass-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl border border-white/40 group hover:scale-[1.01] transition-all duration-300">
+              class="liquid-glass-review-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-5 sm:p-7 rounded-2xl group transition-all duration-500">
               <img
-                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-2 border-white shadow-sm"
+                class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-3 border-white shadow-lg ring-2 ring-pink-100/50"
                 src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
                 alt="reviewer" />
-              <div class="flex-grow space-y-3">
+              <div class="relative z-10 flex-grow space-y-3">
                 <div
                   class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
@@ -545,17 +519,17 @@
                       >Cathy K.</span
                     >
                     <span
-                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/10 px-2 py-0.5 rounded-full"
+                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/15 px-2.5 py-1 rounded-full backdrop-blur-sm"
                       >Verified Buyer</span
                     >
                   </div>
-                  <span class="text-xs sm:text-sm text-gray-500 font-medium">27/02/24</span>
+                  <span class="text-xs sm:text-sm text-gray-600 font-medium">27/02/24</span>
                 </div>
                 <div class="flex items-center gap-1">
                   <svg
                     v-for="i in 5"
                     :key="i"
-                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-sm"
+                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-md"
                     viewBox="0 0 24 24">
                     <path
                       d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -570,7 +544,7 @@
                   didn't even break out when I first started using it. Love it!
                 </p>
                 <img
-                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
+                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border-2 border-white/70 shadow-lg hover:scale-105 transition-transform duration-300 cursor-zoom-in"
                   src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-6.jpg?v=1685603393"
                   alt="review" />
               </div>
@@ -578,12 +552,12 @@
 
             <!-- Review 2 -->
             <div
-              class="glass-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl border border-white/40 group hover:scale-[1.01] transition-all duration-300">
+              class="liquid-glass-review-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-5 sm:p-7 rounded-2xl group transition-all duration-500">
               <img
-                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-2 border-white shadow-sm"
+                class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-3 border-white shadow-lg ring-2 ring-pink-100/50"
                 src="https://cdn.i-scmp.com/sites/default/files/styles/square/public/d8/yp/images/neymar_aug_2017_ap9.jpg?itok=6hnplXy7"
                 alt="reviewer" />
-              <div class="flex-grow space-y-3">
+              <div class="relative z-10 flex-grow space-y-3">
                 <div
                   class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
@@ -592,17 +566,17 @@
                       >Cathy K.</span
                     >
                     <span
-                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/10 px-2 py-0.5 rounded-full"
+                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/15 px-2.5 py-1 rounded-full backdrop-blur-sm"
                       >Verified Buyer</span
                     >
                   </div>
-                  <span class="text-xs sm:text-sm text-gray-500 font-medium">26/02/24</span>
+                  <span class="text-xs sm:text-sm text-gray-600 font-medium">26/02/24</span>
                 </div>
                 <div class="flex items-center gap-1">
                   <svg
                     v-for="i in 5"
                     :key="i"
-                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-sm"
+                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-md"
                     viewBox="0 0 24 24">
                     <path
                       d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -618,11 +592,11 @@
                 </p>
                 <div class="flex gap-3">
                   <img
-                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
+                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border-2 border-white/70 shadow-lg hover:scale-105 transition-transform duration-300 cursor-zoom-in"
                     src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-10.jpg?v=1685603406"
                     alt="review" />
                   <img
-                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
+                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border-2 border-white/70 shadow-lg hover:scale-105 transition-transform duration-300 cursor-zoom-in"
                     src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-1.jpg?v=1685603379"
                     alt="review" />
                 </div>
@@ -631,12 +605,12 @@
 
             <!-- Review 3 -->
             <div
-              class="glass-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl border border-white/40 group hover:scale-[1.01] transition-all duration-300">
+              class="liquid-glass-review-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-5 sm:p-7 rounded-2xl group transition-all duration-500">
               <img
-                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-2 border-white shadow-sm"
+                class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-3 border-white shadow-lg ring-2 ring-pink-100/50"
                 src="https://pics.craiyon.com/2023-07-02/7488d4fbaf62421d8ca8b6cec4e9604b.webp"
                 alt="reviewer" />
-              <div class="flex-grow space-y-3">
+              <div class="relative z-10 flex-grow space-y-3">
                 <div
                   class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
@@ -645,17 +619,17 @@
                       >Aileen R.</span
                     >
                     <span
-                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/10 px-2 py-0.5 rounded-full"
+                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/15 px-2.5 py-1 rounded-full backdrop-blur-sm"
                       >Verified Buyer</span
                     >
                   </div>
-                  <span class="text-xs sm:text-sm text-gray-500 font-medium">26/02/24</span>
+                  <span class="text-xs sm:text-sm text-gray-600 font-medium">26/02/24</span>
                 </div>
                 <div class="flex items-center gap-1">
                   <svg
                     v-for="i in 5"
                     :key="i"
-                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-sm"
+                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-md"
                     viewBox="0 0 24 24">
                     <path
                       d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -670,7 +644,7 @@
                   skin.
                 </p>
                 <img
-                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
+                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border-2 border-white/70 shadow-lg hover:scale-105 transition-transform duration-300 cursor-zoom-in"
                   src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-9.jpg?v=1685603403"
                   alt="review" />
               </div>

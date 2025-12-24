@@ -190,16 +190,18 @@
               </div>
 
               <!-- Login Button -->
-              <LiquidButton
-                type="submit"
-                variant="primary"
-                size="lg"
-                full-width
-                :loading="isLoading"
-                :disabled="isLoading">
-                <span v-if="!isLoading">Sign In</span>
-                <span v-else>Signing in...</span>
-              </LiquidButton>
+              <div class="py-2">
+                <LiquidButton
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  full-width
+                  :loading="isLoading"
+                  :disabled="isLoading">
+                  <span v-if="!isLoading">Sign In</span>
+                  <span v-else>Signing in...</span>
+                </LiquidButton>
+              </div>
 
               <!-- Divider -->
               <div class="relative py-4">
@@ -214,15 +216,17 @@
               </div>
 
               <!-- Sign Up Link -->
-              <router-link to="/signup">
-                <LiquidButton
-                  type="button"
-                  variant="secondary"
-                  size="lg"
-                  full-width>
-                  Create Account
-                </LiquidButton>
-              </router-link>
+              <div class="py-2">
+                <router-link to="/signup">
+                  <LiquidButton
+                    type="button"
+                    variant="secondary"
+                    size="lg"
+                    full-width>
+                    Create Account
+                  </LiquidButton>
+                </router-link>
+              </div>
             </form>
           </div>
 

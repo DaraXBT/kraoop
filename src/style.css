@@ -353,25 +353,32 @@ img {
   background-position: 25% 50%;
 }
 
-/* Accent Button - Colorful with Liquid Glass */
+/* Accent Button - Clean White Glass Effect */
 .liquid-glass-btn-accent {
-  @apply relative inline-flex items-center justify-center px-6 py-3 text-white text-sm font-semibold rounded-xl;
+  @apply relative inline-flex items-center justify-center px-6 py-3 text-gray-900 text-sm font-semibold rounded-xl;
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.3), 0 0 20px rgba(102, 126, 234, 0.3),
-    0 4px 15px rgba(0, 0, 0, 0.15);
+    inset 0 -1px 1px rgba(255, 255, 255, 0.3),
+    0 3px 6px -2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
 
   backdrop-filter: blur(clamp(1px, 0.125em, 4px));
   -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
 }
 
 .liquid-glass-btn-accent:hover {
-  transform: scale(0.98) translateY(-1px);
+  transform: scale(0.98);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.4), 0 0 25px rgba(102, 126, 234, 0.4),
-    0 8px 25px rgba(0, 0, 0, 0.2);
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .liquid-glass-btn-accent::before {
@@ -387,7 +394,9 @@ img {
   background-size: 200% 200%;
   background-position: 0% 50%;
   transition: background-position calc(var(--liquid-anim-time) * 1.25)
-    var(--liquid-anim-ease);
+      var(--liquid-anim-ease),
+    --liquid-angle-2 calc(var(--liquid-anim-time) * 1.25)
+      var(--liquid-anim-ease);
 }
 
 .liquid-glass-btn-accent:hover::before {
@@ -895,6 +904,98 @@ img {
   -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+/* Liquid Glass Review Card - Premium Effect */
+.liquid-glass-review-card {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.98) 50%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+}
+
+/* Light reflection layer */
+.liquid-glass-review-card::before {
+  content: "";
+  @apply absolute inset-0 pointer-events-none;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 60%,
+    transparent 100%
+  );
+  opacity: 0.8;
+  z-index: 1;
+}
+
+/* Animated border gradient */
+.liquid-glass-review-card::after {
+  content: "";
+  @apply absolute pointer-events-none;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--liquid-border-width);
+  background: conic-gradient(
+    from var(--liquid-angle-1) at 50% 50%,
+    rgba(245, 163, 183, 0.4),
+    rgba(245, 163, 183, 0) 5% 40%,
+    rgba(245, 163, 183, 0.4) 50%,
+    rgba(245, 163, 183, 0) 60% 95%,
+    rgba(245, 163, 183, 0.4)
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+  opacity: 0;
+  z-index: 2;
+}
+
+.liquid-glass-review-card:hover {
+  transform: translateY(-2px) scale(1.005);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(248, 250, 252, 1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.12),
+    0 0 20px rgba(245, 163, 183, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+  border-color: rgba(245, 163, 183, 0.3);
+}
+
+.liquid-glass-review-card:hover::after {
+  --liquid-angle-1: -125deg;
+  opacity: 1;
+}
+
+.liquid-glass-review-card:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.3) 40%,
+    transparent 60%,
+    transparent 100%
+  );
+  opacity: 1;
+}
+
 
 /* iOS-style blur utilities */
 .blur-ios-sm {

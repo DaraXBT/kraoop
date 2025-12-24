@@ -31,6 +31,7 @@
     </svg>
 
     <!-- Icon (left) -->
+    <slot name="icon" v-if="$slots['icon']"></slot>
     <slot name="icon-left" v-if="$slots['icon-left']"></slot>
     <component v-else-if="iconLeft" :is="iconLeft" :class="iconClasses" />
 
