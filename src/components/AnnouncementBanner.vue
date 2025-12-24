@@ -1,49 +1,24 @@
 <template>
   <div
-    v-if="showBanner"
-    class="relative isolate flex items-center gap-x-6 overflow-hidden liquid-glass-banner px-6 py-1.5 sm:py-2.5 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10 sm:px-3.5 sm:before:flex-1">
-    <!-- Marquee Content -->
-    <div class="flex-1 min-w-0 overflow-hidden">
+    class="relative isolate overflow-hidden liquid-glass-banner py-1.5 sm:py-2.5 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+    <!-- Marquee Content - Full Width Edge to Edge -->
+    <div class="w-full overflow-hidden">
       <div class="marquee-container">
-        <div class="marquee-content">
-          <span class="marquee-item" id="marquee-text">
-            <strong class="font-semibold">KRAOOP Beauty Sale 2025</strong>
-            <svg
-              viewBox="0 0 2 2"
-              class="mx-2 inline size-0.5 fill-current"
-              aria-hidden="true">
-              <circle cx="1" cy="1" r="1" />
-            </svg>
-            Get 25% off all skincare products – Limited time offer ending soon!
+        <div
+          class="marquee-content"
+          :data-text="'KRAOOP Beauty Sale 2025 \u00A0\u00A0·\u00A0\u00A0 Get 25% off all skincare products – Limited time offer ending soon!'"
+        >
+          <span class="marquee-item">
+            KRAOOP Beauty Sale 2025 &nbsp;&nbsp;·&nbsp;&nbsp; Get 25% off all skincare products – Limited time offer ending soon!
           </span>
         </div>
       </div>
-    </div>
-
-    <div class="flex flex-none justify-end">
-      <button
-        type="button"
-        class="-m-3 p-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        @click="dismissBanner">
-        <span class="sr-only">Dismiss</span>
-        <XMarkIcon class="size-5 text-gray-100" aria-hidden="true" />
-      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from "vue";
-import {XMarkIcon} from "@heroicons/vue/20/solid";
-import LiquidButton from "./LiquidButton.vue";
-
-// Banner visibility state
-const showBanner = ref(true);
-
-// Banner dismiss function
-const dismissBanner = () => {
-  showBanner.value = false;
-};
+// No imports or state needed - banner is always visible
 </script>
 
 <style scoped>
@@ -81,19 +56,20 @@ const dismissBanner = () => {
   align-items: center;
   width: max-content;
   position: relative;
-  animation: marquee-loop 18s linear infinite;
+  animation: marquee-loop 20s linear infinite;
+  /* Start from right edge */
+  transform: translateX(0);
 }
 
 .marquee-content::after {
   content: attr(data-text);
   display: inline-block;
   white-space: nowrap;
-  margin-left: 8rem;
+  margin-left: 2rem;
   color: inherit;
-  font: inherit;
-  font-weight: inherit;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 400; /* font-normal */
   pointer-events: none;
-  opacity: 0.5;
 }
 
 .marquee-content[data-text]::after {
@@ -101,10 +77,16 @@ const dismissBanner = () => {
 }
 
 .marquee-item {
-  @apply text-sm/6 text-gray-900 font-medium;
+  @apply text-xs text-gray-900 font-normal;
   white-space: nowrap;
-  margin-right: 8rem;
+  margin-right: 2rem;
   flex-shrink: 0;
+}
+
+.bullet-separator {
+  font-size: 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @keyframes marquee-loop {
@@ -124,50 +106,50 @@ const dismissBanner = () => {
 
 @media (max-width: 480px) {
   .marquee-content {
-    animation-duration: 20s;
+    animation-duration: 15s;
   }
   .marquee-item {
     @apply text-xs;
-    margin-right: 4rem;
+    margin-right: 1.5rem;
   }
   .marquee-content::after {
-    margin-left: 4rem;
+    margin-left: 1.5rem;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
   .marquee-content {
-    animation-duration: 22s;
+    animation-duration: 18s;
   }
   .marquee-item {
-    margin-right: 6rem;
+    margin-right: 2rem;
   }
   .marquee-content::after {
-    margin-left: 6rem;
+    margin-left: 2rem;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .marquee-content {
-    animation-duration: 25s;
+    animation-duration: 22s;
   }
   .marquee-item {
-    margin-right: 8rem;
+    margin-right: 2.5rem;
   }
   .marquee-content::after {
-    margin-left: 8rem;
+    margin-left: 2.5rem;
   }
 }
 
 @media (min-width: 1025px) {
   .marquee-content {
-    animation-duration: 30s;
+    animation-duration: 25s;
   }
   .marquee-item {
-    margin-right: 10rem;
+    margin-right: 3rem;
   }
   .marquee-content::after {
-    margin-left: 10rem;
+    margin-left: 3rem;
   }
 }
 

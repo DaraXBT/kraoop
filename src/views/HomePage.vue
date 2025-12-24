@@ -3,6 +3,8 @@ import NavbarComponent from "../components/NavBarComponent.vue";
 import FooterComponent from "../components/FooterComponent.vue";
 import CartComponent from "../components/CartComponent.vue";
 import LiquidButton from "../components/LiquidButton.vue";
+import AdvancedLiquidButton from "../components/AdvancedLiquidButton.vue";
+import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import {useSEO} from "../composables/useSEO";
@@ -80,6 +82,7 @@ const handleAddToCart = (product) => {
     <div class="relative z-10">
       <!--================>>Navbar -->
       <NavbarComponent />
+      <AnnouncementBanner />
 
       <!--================>>Cover -->
       <div
@@ -161,22 +164,25 @@ const handleAddToCart = (product) => {
             class="text-sm sm:text-base lg:text-lg text-gray-600 mb-5 px-2 font-medium">
             Discover our latest products ✨
           </p>
-          <router-link
-            to="/product"
-            class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group whitespace-nowrap hover:scale-105 rounded-xl">
-            <span>View all</span>
-            <svg
-              class="w-4 h-4 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7" />
-            </svg>
-          </router-link>
+          <AdvancedLiquidButton
+            variant="primary"
+            size="md"
+            @click="() => $router.push('/product')">
+            View all
+            <template v-slot:icon-right>
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7" />
+              </svg>
+            </template>
+          </AdvancedLiquidButton>
         </div>
       </div>
 
@@ -214,22 +220,25 @@ const handleAddToCart = (product) => {
               class="text-sm sm:text-base lg:text-lg text-gray-600 mb-5 font-medium">
               Our most loved products 💖
             </p>
-            <router-link
-              to="/best-selling"
-              class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group hover:scale-105 rounded-xl">
-              <span>View all</span>
-              <svg
-                class="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7" />
-              </svg>
-            </router-link>
+            <AdvancedLiquidButton
+              variant="primary"
+              size="md"
+              @click="() => $router.push('/best-selling')">
+              View all
+              <template v-slot:icon-right>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7" />
+                </svg>
+              </template>
+            </AdvancedLiquidButton>
           </div>
         </div>
       </div>
