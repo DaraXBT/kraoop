@@ -52,43 +52,43 @@
 
       <!-- Progress Steps - Minimal Modern -->
       <div
-        class="bg-black/20 backdrop-blur-sm border-b border-white/30 sticky top-16 z-40">
+        class="liquid-steps-nav sticky top-16 z-40 transition-all duration-300">
         <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-3">
           <div class="flex items-center justify-center gap-2 sm:gap-3">
-            <div class="flex items-center gap-1.5">
+            <div class="flex items-center gap-1.5 group">
               <div
-                class="w-7 h-7 rounded-full bg-green-500 flex items-center justify-center">
+                class="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 shadow-[0_0_10px_rgba(74,222,128,0.5)] flex items-center justify-center border border-white/20 transition-transform group-hover:scale-110">
                 <svg
-                  class="w-4 h-4 text-white"
+                  class="w-4 h-4 text-white drop-shadow-sm"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  stroke-width="2.5">
+                  stroke-width="3">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
               </div>
-              <span class="hidden sm:inline text-xs font-semibold text-white"
+              <span class="hidden sm:inline text-xs font-bold text-gray-800 drop-shadow-sm"
                 >Cart</span
               >
             </div>
-            <div class="h-0.5 w-8 sm:w-16 bg-[#F5A3B7] rounded-full"></div>
-            <div class="flex items-center gap-1.5">
+            <div class="h-1 w-8 sm:w-16 bg-gradient-to-r from-green-400 to-[#F5A3B7] rounded-full shadow-sm"></div>
+            <div class="flex items-center gap-1.5 group">
               <div
-                class="w-7 h-7 rounded-full bg-[#F5A3B7] flex items-center justify-center">
-                <span class="text-xs font-bold text-white">2</span>
+                class="w-8 h-8 rounded-full bg-gradient-to-br from-[#F5A3B7] to-[#e87995] shadow-[0_0_10px_rgba(245,163,183,0.5)] flex items-center justify-center border border-white/20 transition-transform group-hover:scale-110">
+                <span class="text-xs font-bold text-white drop-shadow-sm">2</span>
               </div>
-              <span class="text-xs font-semibold text-white">Checkout</span>
+              <span class="text-xs font-bold text-gray-800 drop-shadow-sm">Checkout</span>
             </div>
-            <div class="h-0.5 w-8 sm:w-16 bg-white/30 rounded-full"></div>
-            <div class="flex items-center gap-1.5">
+            <div class="h-1 w-8 sm:w-16 bg-gray-200/50 rounded-full shadow-inner"></div>
+            <div class="flex items-center gap-1.5 group">
               <div
-                class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center border border-white/30">
-                <span class="text-xs font-bold text-white/70">3</span>
+                class="w-8 h-8 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center border border-white/50 shadow-sm transition-transform group-hover:scale-110">
+                <span class="text-xs font-bold text-gray-500">3</span>
               </div>
-              <span class="hidden sm:inline text-xs font-semibold text-white/70"
+              <span class="hidden sm:inline text-xs font-semibold text-gray-500"
                 >Complete</span
               >
             </div>
@@ -100,7 +100,7 @@
         <!-- Order Summary Section -->
         <div class="mb-4 sm:mb-6">
           <div
-            class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl overflow-hidden relative">
+            class="liquid-glass-panel overflow-hidden relative">
             <!-- Header -->
             <div
               class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
@@ -397,7 +397,7 @@
                       <input
                         type="text"
                         placeholder="Enter code"
-                        class="flex-grow px-3 py-2 text-sm bg-black/20 backdrop-blur-sm border border-black/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent text-white/90 placeholder:text-white/70" />
+                        class="flex-grow px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500" />
                       <LiquidButton
                         variant="primary"
                         class="px-4 py-2 text-sm whitespace-nowrap">
@@ -528,7 +528,7 @@
           <!-- Contact & Shipping Details Section -->
           <div class="w-full">
             <div
-              class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl overflow-hidden relative">
+              class="liquid-glass-panel overflow-hidden relative">
               <!-- Section Header -->
               <div
                 class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
@@ -552,7 +552,7 @@
               <div class="p-4 space-y-3 relative z-10">
                 <!-- Contact Email -->
                 <div
-                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="p-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/50 hover:bg-white/50 transition-all shadow-sm relative overflow-hidden group">
                   <div class="flex items-start gap-3 relative z-10">
                     <div
                       class="flex-shrink-0 w-10 h-10 bg-blue-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
@@ -570,7 +570,7 @@
                     </div>
                     <div class="flex-grow min-w-0">
                       <div
-                        class="text-xs font-semibold text-gray-800 uppercase mb-1">
+                        class="text-xs font-bold text-gray-600 uppercase mb-1 tracking-wider">
                         Email
                       </div>
                       <!-- Display mode -->
@@ -585,7 +585,7 @@
                           type="email"
                           v-model="editData.email"
                           placeholder="Enter your email"
-                          class="w-full px-3 py-2 text-sm bg-gray-900/20 backdrop-blur-sm border border-gray-900/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent text-gray-900 placeholder:text-gray-700"
+                          class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500"
                           @keydown.enter="saveEmail"
                           @keydown.esc="cancelEmailEdit" />
                         <div class="flex gap-2">
@@ -613,7 +613,7 @@
 
                 <!-- Shipping Address -->
                 <div
-                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="p-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/50 hover:bg-white/50 transition-all shadow-sm relative overflow-hidden group">
                   <div class="flex items-start gap-3 relative z-10">
                     <div
                       class="flex-shrink-0 w-10 h-10 bg-green-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
@@ -635,7 +635,7 @@
                     </div>
                     <div class="flex-grow min-w-0">
                       <div
-                        class="text-xs font-semibold text-gray-800 uppercase mb-1">
+                        class="text-xs font-bold text-gray-600 uppercase mb-1 tracking-wider">
                         Address
                       </div>
                       <!-- Display mode -->
@@ -650,7 +650,7 @@
                           v-model="editData.address"
                           placeholder="Enter your address"
                           rows="2"
-                          class="w-full px-3 py-2 text-sm bg-gray-900/20 backdrop-blur-sm border border-gray-900/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent resize-none text-gray-900 placeholder:text-gray-700"
+                          class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500 resize-none"
                           @keydown.esc="cancelAddressEdit"></textarea>
                         <div class="flex gap-2">
                           <button
@@ -677,7 +677,7 @@
 
                 <!-- Delivery Method -->
                 <div
-                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="p-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/50 hover:bg-white/50 transition-all shadow-sm relative overflow-hidden group">
                   <div class="flex items-start gap-3 relative z-10">
                     <div
                       class="flex-shrink-0 w-10 h-10 bg-orange-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
@@ -724,12 +724,12 @@
                               type="text"
                               v-model="editData.deliveryMethod"
                               placeholder="Shipping method"
-                              class="w-full px-2 py-1.5 text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded focus:outline-none focus:ring-1 focus:ring-[#F5A3B7] text-white placeholder:text-white/60"
+                              class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500"
                               @keydown.esc="cancelDeliveryEdit" />
                           </div>
                           <div>
                             <label
-                              class="text-xs font-medium text-white/80 block mb-1"
+                              class="text-xs font-medium text-gray-700 block mb-1"
                               >Cost ($)</label
                             >
                             <input
@@ -738,20 +738,20 @@
                               placeholder="0.00"
                               step="0.01"
                               min="0"
-                              class="w-full px-2 py-1.5 text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded focus:outline-none focus:ring-1 focus:ring-[#F5A3B7] text-white placeholder:text-white/60"
+                              class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500"
                               @keydown.esc="cancelDeliveryEdit" />
                           </div>
                         </div>
                         <div>
                           <label
-                            class="text-xs font-medium text-white/80 block mb-1"
+                            class="text-xs font-medium text-gray-700 block mb-1"
                             >Estimate</label
                           >
                           <input
                             type="text"
                             v-model="editData.deliveryEstimate"
                             placeholder="e.g., 3-5 business days"
-                            class="w-full px-2 py-1.5 text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded focus:outline-none focus:ring-1 focus:ring-[#F5A3B7] text-white placeholder:text-white/60"
+                            class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500"
                             @keydown.esc="cancelDeliveryEdit" />
                         </div>
                         <div class="flex gap-2">
@@ -783,7 +783,7 @@
           <!-- Payment Method Section -->
           <div class="w-full">
             <div
-              class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl overflow-hidden relative">
+              class="liquid-glass-panel overflow-hidden relative">
               <!-- Section Header -->
               <div
                 class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
@@ -814,10 +814,10 @@
                   <!-- Apple Pay -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                      'flex items-center gap-3 p-4 border rounded-2xl cursor-pointer transition-all relative overflow-hidden group shadow-sm',
                       selectedPaymentMethod === 'applepay'
-                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
-                        : 'border-white/30 hover:border-white/40',
+                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20 shadow-[0_0_15px_rgba(245,163,183,0.2)]'
+                        : 'border-white/40 bg-white/30 hover:bg-white/50 hover:border-white/60',
                     ]">
                     <input
                       type="radio"
@@ -862,10 +862,10 @@
                   <!-- Google Pay -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                      'flex items-center gap-3 p-4 border rounded-2xl cursor-pointer transition-all relative overflow-hidden group shadow-sm',
                       selectedPaymentMethod === 'googlepay'
-                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
-                        : 'border-white/30 hover:border-white/40',
+                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20 shadow-[0_0_15px_rgba(245,163,183,0.2)]'
+                        : 'border-white/40 bg-white/30 hover:bg-white/50 hover:border-white/60',
                     ]">
                     <input
                       type="radio"
@@ -922,10 +922,10 @@
                   <!-- PayPal -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                      'flex items-center gap-3 p-4 border rounded-2xl cursor-pointer transition-all relative overflow-hidden group shadow-sm',
                       selectedPaymentMethod === 'paypal'
-                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
-                        : 'border-white/30 hover:border-white/40',
+                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20 shadow-[0_0_15px_rgba(245,163,183,0.2)]'
+                        : 'border-white/40 bg-white/30 hover:bg-white/50 hover:border-white/60',
                     ]">
                     <input
                       type="radio"
@@ -985,10 +985,10 @@
                   <!-- Credit Card -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all',
+                      'flex items-center gap-3 p-4 border rounded-2xl cursor-pointer transition-all relative overflow-hidden group shadow-sm',
                       selectedPaymentMethod === 'card'
-                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/10'
-                        : 'border-gray-300 hover:border-gray-400',
+                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20 shadow-[0_0_15px_rgba(245,163,183,0.2)]'
+                        : 'border-white/40 bg-white/30 hover:bg-white/50 hover:border-white/60',
                     ]">
                     <input
                       type="radio"
@@ -1072,10 +1072,10 @@
                   <!-- Bitcoin -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all',
+                      'flex items-center gap-3 p-4 border rounded-2xl cursor-pointer transition-all relative overflow-hidden group shadow-sm',
                       selectedPaymentMethod === 'bitcoin'
-                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/10'
-                        : 'border-gray-300 hover:border-gray-400',
+                        ? 'border-[#F5A3B7] bg-[#F5A3B7]/20 shadow-[0_0_15px_rgba(245,163,183,0.2)]'
+                        : 'border-white/40 bg-white/30 hover:bg-white/50 hover:border-white/60',
                     ]">
                     <input
                       type="radio"
@@ -1150,10 +1150,10 @@
                         v-for="card in savedCards"
                         :key="card.id"
                         :class="[
-                          'block p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                          'block p-4 border rounded-2xl cursor-pointer transition-all relative overflow-hidden group shadow-sm',
                           selectedCard === card.id
-                            ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
-                            : 'border-white/30 hover:border-white/40',
+                            ? 'border-[#F5A3B7] bg-[#F5A3B7]/20 shadow-[0_0_15px_rgba(245,163,183,0.2)]'
+                            : 'border-white/40 bg-white/30 hover:bg-white/50 hover:border-white/60',
                         ]">
                         <div class="flex items-center gap-3 relative z-10">
                           <input
@@ -1210,15 +1210,15 @@
                     <transition name="fade-slide">
                       <div
                         v-if="showAddCardForm"
-                        class="p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 space-y-3 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                        class="p-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/50 space-y-3 relative shadow-inner">
                         <div
                           class="flex items-center justify-between relative z-10">
-                          <h5 class="text-sm font-semibold text-white">
+                          <h5 class="text-sm font-semibold text-gray-900">
                             Add New Card
                           </h5>
                           <button
                             @click="showAddCardForm = false"
-                            class="text-white/70 hover:text-white transition-colors">
+                            class="text-gray-500 hover:text-gray-900 transition-colors">
                             <svg
                               class="w-5 h-5"
                               fill="none"
@@ -1236,7 +1236,7 @@
                         <div class="space-y-3 relative z-10">
                           <div>
                             <label
-                              class="text-xs font-semibold text-white/80 block mb-1"
+                              class="text-xs font-semibold text-gray-700 block mb-1"
                               >Card Number</label
                             >
                             <input
@@ -1244,25 +1244,25 @@
                               v-model="newCard.number"
                               placeholder="1234 5678 9012 3456"
                               maxlength="19"
-                              class="w-full px-3 py-2 text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent text-white placeholder:text-white/60" />
+                              class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500" />
                           </div>
 
                           <div>
                             <label
-                              class="text-xs font-semibold text-white/80 block mb-1"
+                              class="text-xs font-semibold text-gray-700 block mb-1"
                               >Cardholder Name</label
                             >
                             <input
                               type="text"
                               v-model="newCard.name"
                               placeholder="Dara Veasna"
-                              class="w-full px-3 py-2 text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent text-white placeholder:text-white/60" />
+                              class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500" />
                           </div>
 
                           <div class="grid grid-cols-2 gap-3">
                             <div>
                               <label
-                                class="text-xs font-semibold text-white/80 block mb-1"
+                                class="text-xs font-semibold text-gray-700 block mb-1"
                                 >Expiry</label
                               >
                               <input
@@ -1270,11 +1270,11 @@
                                 v-model="newCard.expiry"
                                 placeholder="MM/YY"
                                 maxlength="5"
-                                class="w-full px-3 py-2 text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent text-white placeholder:text-white/60" />
+                                class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500" />
                             </div>
                             <div>
                               <label
-                                class="text-xs font-semibold text-white/80 block mb-1"
+                                class="text-xs font-semibold text-gray-700 block mb-1"
                                 >CVV</label
                               >
                               <input
@@ -1282,7 +1282,7 @@
                                 v-model="newCard.cvv"
                                 placeholder="123"
                                 maxlength="4"
-                                class="w-full px-3 py-2 text-sm bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7] focus:border-transparent text-white placeholder:text-white/60" />
+                                class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500" />
                             </div>
                           </div>
 
@@ -1290,15 +1290,15 @@
                             <input
                               type="checkbox"
                               v-model="newCard.saveCard"
-                              class="w-4 h-4 text-[#F5A3B7] border-white/30 rounded focus:ring-[#F5A3B7]" />
-                            <span class="text-xs text-white/80 font-medium"
+                              class="w-4 h-4 text-[#F5A3B7] border-gray-300 rounded focus:ring-[#F5A3B7]" />
+                            <span class="text-xs text-gray-700 font-medium"
                               >Save for future use</span
                             >
                           </label>
 
                           <button
                             @click="addNewCard"
-                            class="w-full py-2.5 bg-[#F5A3B7] hover:bg-[#E392A6] text-white text-sm font-semibold rounded-lg transition-all">
+                            class="w-full py-2.5 bg-[#F5A3B7] hover:bg-[#E392A6] text-white text-sm font-semibold rounded-lg transition-all shadow-md hover:shadow-lg">
                             Add Card
                           </button>
                         </div>
@@ -1441,27 +1441,27 @@
 
             <!-- Security Notice -->
             <div
-              class="mt-4 p-3 bg-green-500/20 backdrop-blur-sm rounded-lg border border-green-300/50 flex items-start gap-3 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+              class="mt-4 p-4 bg-gradient-to-r from-green-500/10 to-green-500/5 backdrop-blur-sm rounded-2xl border border-green-500/20 flex items-start gap-4 shadow-sm">
               <div
-                class="flex-shrink-0 w-8 h-8 bg-green-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30 relative z-10">
+                class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20">
                 <svg
-                  class="w-4 h-4 text-white"
+                  class="w-5 h-5 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  stroke-width="2">
+                  stroke-width="2.5">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                 </svg>
               </div>
-              <div class="relative z-10">
-                <h4 class="text-sm font-semibold text-white mb-1">
+              <div>
+                <h4 class="text-sm font-bold text-gray-800 mb-1">
                   Secure Checkout
                 </h4>
-                <p class="text-xs text-white/80 leading-relaxed">
-                  Your payment is encrypted. We never store card details.
+                <p class="text-xs text-gray-600 leading-relaxed font-medium">
+                  Your payment is encrypted and secure. We never store your card details.
                 </p>
               </div>
             </div>
