@@ -13,7 +13,7 @@ const user = ref({
   email: "daraa.veasna@gmail.com",
   phone: "+855 12 345 678",
   dateJoined: "January 15, 2024",
-  avatar: "",
+  avatar: "https://avatars.githubusercontent.com/u/112950879?v=4",
 });
 
 // Active tab

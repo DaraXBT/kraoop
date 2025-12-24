@@ -410,10 +410,7 @@ import LiquidButton from "../components/LiquidButton.vue";
               to="/product">
               Shop Now
             </LiquidButton>
-            <button
-              class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base font-semibold text-white bg-transparent border-2 border-white rounded-lg hover:bg-white hover:text-[#F5A3B7] transition-all">
-              Contact Us
-            </button>
+            <LiquidButton variant="glass" size="lg"> Contact Us </LiquidButton>
           </div>
         </div>
       </div>

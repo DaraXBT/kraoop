@@ -141,7 +141,7 @@ export default {
           baseClasses.push("liquid-glass-btn-danger");
           break;
         case "glass":
-          // Just use the base liquid-glass-btn class
+          baseClasses.push("liquid-glass-btn-glass");
           break;
       }
 

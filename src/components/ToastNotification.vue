@@ -110,6 +110,11 @@ const handleTouchStart = (e) => {
   touchStartX.value = e.touches[0].clientX;
   isDragging.value = true;
 
+  // Add liquid dragging effect
+  if (toastRef.value) {
+    toastRef.value.classList.add("dragging");
+  }
+
   // Pause timers
   const currentTime = performance.now();
   if (startTime && isAnimating.value) {
@@ -141,6 +146,11 @@ const handleTouchMove = (e) => {
 const handleTouchEnd = () => {
   isDragging.value = false;
 
+  // Remove liquid dragging effect
+  if (toastRef.value) {
+    toastRef.value.classList.remove("dragging");
+  }
+
   // If swiped more than 100px, close the toast
   if (dragOffset.value > 100) {
     closeToast();
@@ -163,36 +173,36 @@ const handleTouchEnd = () => {
   }
 };
 
-// Computed styles for better performance
+// Computed styles for better performance with liquid glass effects
 const typeStyles = computed(() => {
   const styles = {
     success: {
-      bg: "glass-card-strong",
-      border: "border-green-400/50",
+      bg: "liquid-toast liquid-toast-success",
+      border: "",
       text: "text-green-800",
       icon: "text-green-500",
-      glow: "",
+      glow: "shadow-green-400/20",
     },
     error: {
-      bg: "glass-card-strong",
-      border: "border-red-400/50",
+      bg: "liquid-toast liquid-toast-error",
+      border: "",
       text: "text-red-800",
       icon: "text-red-500",
-      glow: "",
+      glow: "shadow-red-400/20",
     },
     warning: {
-      bg: "glass-card-strong",
-      border: "border-yellow-400/50",
+      bg: "liquid-toast liquid-toast-warning",
+      border: "",
       text: "text-yellow-800",
       icon: "text-yellow-500",
-      glow: "",
+      glow: "shadow-yellow-400/20",
     },
     info: {
-      bg: "glass-card-strong",
-      border: "border-blue-400/50",
+      bg: "liquid-toast liquid-toast-info",
+      border: "",
       text: "text-blue-800",
       icon: "text-blue-500",
-      glow: "",
+      glow: "shadow-blue-400/20",
     },
   };
   return styles[props.type] || styles.success;
@@ -239,11 +249,10 @@ const transformStyle = computed(() => {
       :style="transformStyle"
       :class="[
         typeStyles.bg,
-        typeStyles.border,
         typeStyles.glow,
-        'w-full rounded-2xl sm:rounded-3xl border-l-4 p-3 sm:p-5 backdrop-blur-xl',
+        'w-full rounded-2xl sm:rounded-3xl p-3 sm:p-5',
         'touch-pan-y select-none',
-        'max-w-full',
+        'max-w-full relative',
       ]"
       role="alert"
       aria-live="polite"
@@ -324,6 +333,274 @@ const transformStyle = computed(() => {
 </template>
 
 <style scoped>
+/* CSS Custom Properties for Liquid Animation */
+@property --liquid-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --liquid-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+:root {
+  --liquid-anim-time: 400ms;
+  --liquid-anim-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --liquid-border-width: clamp(1px, 0.0625em, 2px);
+}
+
+/* Base Liquid Toast Styles */
+.liquid-toast {
+  @apply relative;
+
+  /* Advanced Glass Background */
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
+
+  /* Complex Shadow System */
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.3),
+    0 3px 6px -2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
+
+  /* Advanced Backdrop Filter */
+  backdrop-filter: blur(clamp(2px, 0.125em, 8px));
+  -webkit-backdrop-filter: blur(clamp(2px, 0.125em, 8px));
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+}
+
+/* Animated Border for Toast */
+.liquid-toast::after {
+  content: "";
+  @apply absolute pointer-events-none;
+  inset: 0;
+  border-radius: 1rem; /* sm:1.5rem for responsive */
+  padding: var(--liquid-border-width);
+  background: conic-gradient(
+    from var(--liquid-angle-1) at 50% 50%,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0) 5% 40%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0) 60% 95%,
+    rgba(0, 0, 0, 0.2)
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: xor;
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+  animation: liquidBorderRotate 3s linear infinite;
+}
+
+@media (min-width: 640px) {
+  .liquid-toast::after {
+    border-radius: 1.5rem;
+  }
+}
+
+/* Type-specific Liquid Glass Effects */
+.liquid-toast-success {
+  background: linear-gradient(
+    -75deg,
+    rgba(34, 197, 94, 0.08),
+    rgba(34, 197, 94, 0.18),
+    rgba(34, 197, 94, 0.08)
+  );
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.liquid-toast-success::after {
+  background: conic-gradient(
+    from var(--liquid-angle-1) at 50% 50%,
+    rgba(34, 197, 94, 0.4),
+    rgba(34, 197, 94, 0) 5% 40%,
+    rgba(34, 197, 94, 0.4) 50%,
+    rgba(34, 197, 94, 0) 60% 95%,
+    rgba(34, 197, 94, 0.4)
+  );
+}
+
+.liquid-toast-error {
+  background: linear-gradient(
+    -75deg,
+    rgba(239, 68, 68, 0.08),
+    rgba(239, 68, 68, 0.18),
+    rgba(239, 68, 68, 0.08)
+  );
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.liquid-toast-error::after {
+  background: conic-gradient(
+    from var(--liquid-angle-1) at 50% 50%,
+    rgba(239, 68, 68, 0.4),
+    rgba(239, 68, 68, 0) 5% 40%,
+    rgba(239, 68, 68, 0.4) 50%,
+    rgba(239, 68, 68, 0) 60% 95%,
+    rgba(239, 68, 68, 0.4)
+  );
+}
+
+.liquid-toast-warning {
+  background: linear-gradient(
+    -75deg,
+    rgba(245, 158, 11, 0.08),
+    rgba(245, 158, 11, 0.18),
+    rgba(245, 158, 11, 0.08)
+  );
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.liquid-toast-warning::after {
+  background: conic-gradient(
+    from var(--liquid-angle-1) at 50% 50%,
+    rgba(245, 158, 11, 0.4),
+    rgba(245, 158, 11, 0) 5% 40%,
+    rgba(245, 158, 11, 0.4) 50%,
+    rgba(245, 158, 11, 0) 60% 95%,
+    rgba(245, 158, 11, 0.4)
+  );
+}
+
+.liquid-toast-info {
+  background: linear-gradient(
+    -75deg,
+    rgba(59, 130, 246, 0.08),
+    rgba(59, 130, 246, 0.18),
+    rgba(59, 130, 246, 0.08)
+  );
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.liquid-toast-info::after {
+  background: conic-gradient(
+    from var(--liquid-angle-1) at 50% 50%,
+    rgba(59, 130, 246, 0.4),
+    rgba(59, 130, 246, 0) 5% 40%,
+    rgba(59, 130, 246, 0.4) 50%,
+    rgba(59, 130, 246, 0) 60% 95%,
+    rgba(59, 130, 246, 0.4)
+  );
+}
+
+/* Border Animation */
+@keyframes liquidBorderRotate {
+  0% {
+    --liquid-angle-1: -75deg;
+  }
+  100% {
+    --liquid-angle-1: 285deg;
+  }
+}
+
+/* Advanced Shadow and Reflection System */
+.liquid-toast::before {
+  content: "";
+  @apply absolute pointer-events-none;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--liquid-angle-2),
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 40% 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: screen;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: background-position calc(var(--liquid-anim-time) * 1.25)
+      var(--liquid-anim-ease),
+    --liquid-angle-2 calc(var(--liquid-anim-time) * 1.25)
+      var(--liquid-anim-ease);
+  z-index: 1;
+}
+
+/* Enhanced Hover Effects for Liquid Glass */
+.liquid-toast:hover {
+  transform: scale(1.01);
+  backdrop-filter: blur(clamp(3px, 0.1875em, 10px));
+  -webkit-backdrop-filter: blur(clamp(3px, 0.1875em, 10px));
+
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4),
+    0 8px 20px -4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.liquid-toast:hover::after {
+  --liquid-angle-1: -125deg;
+}
+
+.liquid-toast:hover::before {
+  background-position: 25% 50%;
+}
+
+/* Touch and Drag Interaction Effects */
+.liquid-toast.dragging {
+  backdrop-filter: blur(clamp(4px, 0.25em, 12px));
+  -webkit-backdrop-filter: blur(clamp(4px, 0.25em, 12px));
+
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.2),
+    0 12px 30px -6px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.liquid-toast.dragging::after {
+  animation-play-state: paused;
+}
+
+.liquid-toast.dragging::before {
+  background-position: 50% 15%;
+  --liquid-angle-2: -15deg;
+}
+
+/* Performance optimizations for liquid glass */
+.liquid-toast {
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: transform, backdrop-filter, box-shadow;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .liquid-toast,
+  .liquid-toast::before,
+  .liquid-toast::after {
+    transition: none;
+    animation: none;
+  }
+
+  .liquid-toast::after {
+    --liquid-angle-1: -75deg;
+  }
+
+  .liquid-toast::before {
+    background-position: 25% 50%;
+    --liquid-angle-2: -45deg;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .liquid-toast:hover {
+    transform: none;
+  }
+
+  .liquid-toast::after,
+  .liquid-toast:hover::after {
+    --liquid-angle-1: -75deg;
+  }
+
+  .liquid-toast::before,
+  .liquid-toast:hover::before {
+    --liquid-angle-2: -45deg;
+  }
+}
 /* Optimize rendering with GPU acceleration */
 .will-change-transform {
   will-change: width, opacity;

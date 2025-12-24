@@ -430,6 +430,29 @@ img {
   background-position: 25% 50%;
 }
 
+/* Glass Button - Neutral with dark text for better visibility */
+.liquid-glass-btn-glass {
+  @apply text-gray-700;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(248, 250, 252, 0.8) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.liquid-glass-btn-glass:hover {
+  @apply text-gray-900;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(248, 250, 252, 1) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 /* Small Button Variants */
 .liquid-glass-btn-sm {
   @apply px-3 py-1.5 text-xs;
