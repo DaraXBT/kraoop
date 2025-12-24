@@ -30,11 +30,11 @@
       <!-- Active Filters Display -->
       <div
         v-if="hasActiveFilters"
-        class="glass-pink p-5 rounded-3xl border border-pink-200/40 shadow-glass">
+        class="glass-pink p-5 rounded-3xl border border-pink-200/40">
         <div class="flex items-center justify-between mb-4">
           <h4 class="text-sm font-bold text-gray-800">Active Filters</h4>
           <span
-            class="text-xs bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white px-3 py-1.5 rounded-full font-bold shadow-glass-sm"
+            class="text-xs bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white px-3 py-1.5 rounded-full font-bold"
             >{{ activeFilterCount }}</span
           >
         </div>
@@ -42,7 +42,7 @@
           <span
             v-for="(filter, index) in activeFiltersList"
             :key="index"
-            class="inline-flex items-center gap-2 px-4 py-2 glass-card text-sm text-gray-700 rounded-full border border-white/30 group hover:border-red-300 transition-smooth hover:shadow-glass font-semibold">
+            class="inline-flex items-center gap-2 px-4 py-2 glass-card text-sm text-gray-700 rounded-full border border-white/30 group hover:border-red-300 transition-smooth font-semibold">
             {{ filter.label }}
             <LiquidButton
               @click="$emit('remove-filter', filter)"
@@ -69,8 +69,7 @@
       </div>
 
       <!-- Categories Section -->
-      <div
-        class="glass-card-strong p-6 rounded-3xl shadow-glass border border-white/30">
+      <div class="glass-card-strong p-6 rounded-3xl border border-white/30">
         <h3
           class="font-bold text-xl text-neutral-900 mb-5 flex items-center gap-2">
           <div
@@ -136,8 +135,7 @@
       </div>
 
       <!-- Price Range Filter -->
-      <div
-        class="glass-card-strong p-6 rounded-3xl shadow-glass border border-white/30">
+      <div class="glass-card-strong p-6 rounded-3xl border border-white/30">
         <h3
           class="font-bold text-xl text-neutral-900 mb-5 flex items-center gap-2">
           <div
@@ -187,7 +185,7 @@
                 type="number"
                 v-model="minPrice"
                 :placeholder="`$${priceRange.min}`"
-                class="w-full px-4 py-3 text-sm glass-card border border-white/30 rounded-2xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-smooth font-semibold shadow-glass-sm"
+                class="w-full px-4 py-3 text-sm glass-card border border-white/30 rounded-2xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-smooth font-semibold"
                 @change="
                   $emit('price-change', {min: minPrice, max: maxPrice})
                 " />
@@ -201,7 +199,7 @@
                 type="number"
                 v-model="maxPrice"
                 :placeholder="`$${priceRange.max}`"
-                class="w-full px-4 py-3 text-sm glass-card border border-white/30 rounded-2xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-smooth font-semibold shadow-glass-sm"
+                class="w-full px-4 py-3 text-sm glass-card border border-white/30 rounded-2xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-smooth font-semibold"
                 @change="
                   $emit('price-change', {min: minPrice, max: maxPrice})
                 " />
@@ -213,7 +211,7 @@
       <!-- Brand Filter -->
       <div
         v-if="brands && brands.length > 0"
-        class="glass-card-strong p-6 rounded-3xl shadow-glass border border-white/30">
+        class="glass-card-strong p-6 rounded-3xl border border-white/30">
         <h3
           class="font-bold text-xl text-neutral-900 mb-5 flex items-center gap-2">
           <div
@@ -280,7 +278,7 @@
       <!-- Skin Type Filter -->
       <div
         v-if="skinTypes && skinTypes.length > 0"
-        class="glass-card-strong p-6 rounded-3xl shadow-glass border border-white/30">
+        class="glass-card-strong p-6 rounded-3xl border border-white/30">
         <h3
           class="font-bold text-xl text-neutral-900 mb-5 flex items-center gap-2">
           <div
@@ -340,7 +338,7 @@
       </div>
 
       <!-- Rating Filter -->
-      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+      <div class="bg-white p-5 rounded-xl border border-gray-100">
         <h3
           class="font-bold text-lg text-neutral-900 mb-4 flex items-center gap-2">
           <svg
@@ -390,7 +388,7 @@
       <!-- Additional Filters -->
       <div
         v-if="additionalFilters && additionalFilters.length > 0"
-        class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+        class="bg-white p-5 rounded-xl border border-gray-100">
         <h3
           class="font-bold text-lg text-neutral-900 mb-4 flex items-center gap-2">
           <svg
@@ -449,7 +447,7 @@
       <!-- Clear Filters Button -->
       <button
         @click="$emit('clear-filters')"
-        class="w-full py-3 px-4 bg-gradient-to-r from-gray-100 to-gray-50 text-neutral-900 rounded-xl text-sm font-semibold hover:from-gray-200 hover:to-gray-100 transition-all duration-200 shadow-sm border border-gray-200 flex items-center justify-center gap-2">
+        class="w-full py-3 px-4 bg-gradient-to-r from-gray-100 to-gray-50 text-neutral-900 rounded-xl text-sm font-semibold hover:from-gray-200 hover:to-gray-100 transition-all duration-200 border border-gray-200 flex items-center justify-center gap-2">
         <svg
           class="w-4 h-4"
           fill="none"
@@ -653,7 +651,6 @@ const activeFiltersList = computed(() => {
   opacity: 0;
   transform: scale(0) rotate(-45deg);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
 
 .modern-checkbox:checked ~ .checkbox-custom {

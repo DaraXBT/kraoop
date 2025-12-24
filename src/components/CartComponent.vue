@@ -71,7 +71,7 @@ const calculateOriginalPrice = () => {
   <div class="card group relative w-full">
     <!-- Card Container - Modern Glass Style -->
     <div
-      class="w-full glass-card hover:glass-card-strong rounded-2xl flex flex-col hover:shadow-glass-lg transition-smooth overflow-hidden border border-white/30 hover:border-white/50 min-w-0 hover:scale-[1.02] backdrop-blur-xl">
+      class="w-full glass-card hover:glass-card-strong rounded-2xl flex flex-col transition-smooth overflow-hidden border border-white/30 hover:border-white/50 min-w-0 hover:scale-[1.02] backdrop-blur-xl">
       <!-- Image Section with Favorite Icon -->
       <router-link
         :to="`/detail?id=${id}`"
@@ -79,7 +79,7 @@ const calculateOriginalPrice = () => {
         <!-- Favorite Icon - Glass Style -->
         <button
           @click.prevent="toggleFavorite"
-          class="absolute top-2 left-2 z-10 cursor-pointer transition-smooth hover:scale-110 active:scale-95 p-1.5 glass-card-strong rounded-full hover:shadow-glass group/heart border border-white/30">
+          class="absolute top-2 left-2 z-10 cursor-pointer transition-smooth hover:scale-110 active:scale-95 p-1.5 glass-card-strong rounded-full group/heart border border-white/30">
           <svg
             :class="{
               'fill-[#F5A3B7] stroke-[#F5A3B7]': isFavorite,

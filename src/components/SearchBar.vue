@@ -18,7 +18,7 @@
         v-model="searchQuery"
         type="text"
         :placeholder="placeholder"
-        class="liquid-glass-search-input w-full pl-11 pr-12 py-3.5 text-white text-base bg-black/20 border border-white/50 backdrop-blur-sm rounded-full shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] placeholder:text-white/70 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all duration-300 min-h-[48px] relative z-10"
+        class="liquid-glass-search-input w-full pl-11 pr-12 py-3.5 text-white text-base bg-black/20 border border-white/50 backdrop-blur-sm rounded-full  placeholder:text-white/70 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all duration-300 min-h-[48px] relative z-10"
         @input="onSearch"
         @focus="showSuggestions = true"
         @blur="handleBlur" />
@@ -54,7 +54,7 @@
           showSuggestions &&
           (filteredSuggestions.length > 0 || recentSearches.length > 0)
         "
-        class="absolute z-50 w-full mt-2 bg-white/90 backdrop-blur-xl rounded-xl shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)] border border-white/30 overflow-hidden max-h-96 overflow-y-auto liquid-glass-dropdown">
+        class="absolute z-50 w-full mt-2 bg-white/90 backdrop-blur-xl rounded-xl  border border-white/30 overflow-hidden max-h-96 overflow-y-auto liquid-glass-dropdown">
         <!-- Recent Searches -->
         <div
           v-if="recentSearches.length > 0 && !searchQuery"

@@ -52,7 +52,7 @@
 
       <!-- Progress Steps - Minimal Modern -->
       <div
-        class="bg-black/20 backdrop-blur-sm border-b border-white/30 sticky top-16 z-40 shadow-[inset_0_1px_0px_rgba(255,255,255,0.4),0_0_9px_rgba(0,0,0,0.2)]">
+        class="bg-black/20 backdrop-blur-sm border-b border-white/30 sticky top-16 z-40">
         <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-3">
           <div class="flex items-center justify-center gap-2 sm:gap-3">
             <div class="flex items-center gap-1.5">
@@ -100,7 +100,7 @@
         <!-- Order Summary Section -->
         <div class="mb-4 sm:mb-6">
           <div
-            class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl shadow-[inset_0_1px_0px_rgba(255,255,255,0.4),0_0_9px_rgba(0,0,0,0.1),0_3px_8px_rgba(0,0,0,0.1)] overflow-hidden relative">
+            class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl overflow-hidden relative">
             <!-- Header -->
             <div
               class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
@@ -285,7 +285,7 @@
                 <div
                   v-for="item in cartItems"
                   :key="item.id"
-                  class="bg-black/10 backdrop-blur-sm rounded-lg border border-black/30 overflow-hidden shadow-[inset_0_1px_0px_rgba(255,255,255,0.4),0_0_9px_rgba(0,0,0,0.1)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="bg-black/10 backdrop-blur-sm rounded-lg border border-black/30 overflow-hidden relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                   <div class="flex gap-3 p-3 relative z-10">
                     <!-- Product Image -->
                     <img
@@ -377,7 +377,7 @@
                 <div class="px-4 py-4 space-y-4">
                   <!-- Promo Code Section -->
                   <div
-                    class="bg-black/10 backdrop-blur-sm rounded-lg p-3 border border-black/30 shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                    class="bg-black/10 backdrop-blur-sm rounded-lg p-3 border border-black/30 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                     <label
                       class="text-xs font-semibold text-white/90 flex items-center gap-2 mb-2 relative z-10">
                       <svg
@@ -408,7 +408,7 @@
 
                   <!-- Order Summary -->
                   <div
-                    class="bg-black/10 backdrop-blur-sm rounded-lg border border-black/30 overflow-hidden shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                    class="bg-black/10 backdrop-blur-sm rounded-lg border border-black/30 overflow-hidden relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                     <!-- Desktop View -->
                     <div class="hidden sm:block relative z-10">
                       <div class="divide-y divide-black/20">
@@ -528,7 +528,7 @@
           <!-- Contact & Shipping Details Section -->
           <div class="w-full">
             <div
-              class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl shadow-[inset_0_1px_0px_rgba(255,255,255,0.4),0_0_9px_rgba(0,0,0,0.1),0_3px_8px_rgba(0,0,0,0.1)] overflow-hidden relative">
+              class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl overflow-hidden relative">
               <!-- Section Header -->
               <div
                 class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
@@ -552,7 +552,7 @@
               <div class="p-4 space-y-3 relative z-10">
                 <!-- Contact Email -->
                 <div
-                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                   <div class="flex items-start gap-3 relative z-10">
                     <div
                       class="flex-shrink-0 w-10 h-10 bg-blue-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
@@ -613,7 +613,7 @@
 
                 <!-- Shipping Address -->
                 <div
-                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                   <div class="flex items-start gap-3 relative z-10">
                     <div
                       class="flex-shrink-0 w-10 h-10 bg-green-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
@@ -677,7 +677,7 @@
 
                 <!-- Delivery Method -->
                 <div
-                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 hover:border-white/40 transition-colors relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                   <div class="flex items-start gap-3 relative z-10">
                     <div
                       class="flex-shrink-0 w-10 h-10 bg-orange-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30">
@@ -783,7 +783,7 @@
           <!-- Payment Method Section -->
           <div class="w-full">
             <div
-              class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl shadow-[inset_0_1px_0px_rgba(255,255,255,0.4),0_0_9px_rgba(0,0,0,0.1),0_3px_8px_rgba(0,0,0,0.1)] overflow-hidden relative">
+              class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl overflow-hidden relative">
               <!-- Section Header -->
               <div
                 class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
@@ -814,7 +814,7 @@
                   <!-- Apple Pay -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
                       selectedPaymentMethod === 'applepay'
                         ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
                         : 'border-white/30 hover:border-white/40',
@@ -862,7 +862,7 @@
                   <!-- Google Pay -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
                       selectedPaymentMethod === 'googlepay'
                         ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
                         : 'border-white/30 hover:border-white/40',
@@ -922,7 +922,7 @@
                   <!-- PayPal -->
                   <label
                     :class="[
-                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                      'flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
                       selectedPaymentMethod === 'paypal'
                         ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
                         : 'border-white/30 hover:border-white/40',
@@ -1150,7 +1150,7 @@
                         v-for="card in savedCards"
                         :key="card.id"
                         :class="[
-                          'block p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
+                          'block p-3 border rounded-lg cursor-pointer transition-all bg-white/10 backdrop-blur-sm  relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none',
                           selectedCard === card.id
                             ? 'border-[#F5A3B7] bg-[#F5A3B7]/20'
                             : 'border-white/30 hover:border-white/40',
@@ -1210,7 +1210,7 @@
                     <transition name="fade-slide">
                       <div
                         v-if="showAddCardForm"
-                        class="p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 space-y-3 shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                        class="p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/30 space-y-3 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                         <div
                           class="flex items-center justify-between relative z-10">
                           <h5 class="text-sm font-semibold text-white">
@@ -1441,7 +1441,7 @@
 
             <!-- Security Notice -->
             <div
-              class="mt-4 p-3 bg-green-500/20 backdrop-blur-sm rounded-lg border border-green-300/50 flex items-start gap-3 shadow-[inset_0_1px_0px_rgba(255,255,255,0.4)] relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+              class="mt-4 p-3 bg-green-500/20 backdrop-blur-sm rounded-lg border border-green-300/50 flex items-start gap-3 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/20 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
               <div
                 class="flex-shrink-0 w-8 h-8 bg-green-500/80 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/30 relative z-10">
                 <svg
@@ -1518,9 +1518,6 @@
           </LiquidButton>
         </div>
       </div>
-
-      <!-- Footer with liquid glass effect -->
-      <FooterComponent />
     </div>
   </div>
 </template>
@@ -1528,7 +1525,6 @@
 <script setup>
 import {computed, ref, reactive} from "vue";
 import NavBarComponentVue from "../components/NavBarComponent.vue";
-import FooterComponent from "../components/FooterComponent.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import AnnouncementBanner from "../components/AnnouncementBanner.vue";

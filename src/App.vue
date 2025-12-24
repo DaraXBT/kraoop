@@ -42,7 +42,7 @@ onErrorCaptured((err, instance, info) => {
       v-if="hasError"
       class="min-h-screen flex items-center justify-center p-4">
       <div
-        class="text-center max-w-md glass-card-strong p-8 rounded-2xl shadow-glass-xl border border-white/30 animate-fade-in">
+        class="text-center max-w-md glass-card-strong p-8 rounded-2xl  border border-white/30 animate-fade-in">
         <div class="mb-5">
           <div
             class="w-16 h-16 mx-auto bg-gradient-to-br from-red-400/20 to-red-600/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -66,7 +66,7 @@ onErrorCaptured((err, instance, info) => {
         <p class="text-gray-600 mb-6 font-medium text-sm">{{ errorMessage }}</p>
         <button
           @click="() => window.location.reload()"
-          class="px-6 py-3 bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white rounded-xl hover:shadow-glass-lg transition-smooth font-bold hover:scale-105 active:scale-95 border-2 border-white/30 text-sm">
+          class="px-6 py-3 bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] text-white rounded-xl  transition-smooth font-bold hover:scale-105 active:scale-95 border-2 border-white/30 text-sm">
           Reload Page
         </button>
       </div>

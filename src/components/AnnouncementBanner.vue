@@ -65,11 +65,17 @@
         </svg>
         Get 25% off all skincare products – Limited time offer ending soon!
       </p>
-      <a
+      <LiquidButton
+        variant="ghost"
+        size="sm"
+        tag="a"
         href="/products"
-        class="flex-none rounded-full bg-white/10 px-3.5 py-1 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-white/20 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-        Shop now <span aria-hidden="true">&rarr;</span>
-      </a>
+        class="flex-none text-sm">
+        Shop now
+        <template v-slot:icon-right>
+          <span aria-hidden="true">&rarr;</span>
+        </template>
+      </LiquidButton>
     </div>
     <div class="flex flex-1 justify-end">
       <button
@@ -86,6 +92,7 @@
 <script setup>
 import {ref} from "vue";
 import {XMarkIcon} from "@heroicons/vue/20/solid";
+import LiquidButton from "./LiquidButton.vue";
 
 // Banner visibility state
 const showBanner = ref(true);

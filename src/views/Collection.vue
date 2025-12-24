@@ -95,7 +95,7 @@
             <div :class="{'hidden lg:block': !showFilters}" class="space-y-6">
               <!-- Collection Section -->
               <div
-                class="menu-product bg-white p-5 sm:p-6 rounded-xl shadow-sm">
+                class="menu-product bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-100">
                 <h3 class="font-bold text-xl sm:text-2xl text-[#383838] mb-6">
                   COLLECTION
                 </h3>
@@ -182,7 +182,7 @@
 
               <!-- Filters Section -->
               <div
-                class="menu-product bg-white p-5 sm:p-6 rounded-xl shadow-sm">
+                class="menu-product bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-100">
                 <h3 class="font-bold text-xl sm:text-2xl text-[#383838] mb-6">
                   FILTERS
                 </h3>

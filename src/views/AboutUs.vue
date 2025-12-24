@@ -1,6 +1,7 @@
 <script setup>
 import NavbarComponent from "../components/NavBarComponent.vue";
 import FooterComponent from "../components/FooterComponent.vue";
+import LiquidButton from "../components/LiquidButton.vue";
 </script>
 
 <template>
@@ -97,7 +98,7 @@ import FooterComponent from "../components/FooterComponent.vue";
               natural ingredients.
             </p>
           </div>
-          <div class="rounded-2xl overflow-hidden shadow-lg">
+          <div class="rounded-2xl overflow-hidden">
             <img
               src="../assets/images/innisfree.jpg"
               alt="Our Story"
@@ -117,8 +118,7 @@ import FooterComponent from "../components/FooterComponent.vue";
           <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             <!-- Value 1 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="bg-white p-8 rounded-xl hover: transition-shadow">
               <div
                 class="w-16 h-16 bg-[#F5A3B7] bg-opacity-20 rounded-full flex items-center justify-center mb-6">
                 <svg
@@ -144,8 +144,7 @@ import FooterComponent from "../components/FooterComponent.vue";
             </div>
 
             <!-- Value 2 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="bg-white p-8 rounded-xl hover: transition-shadow">
               <div
                 class="w-16 h-16 bg-[#B2D8B7] bg-opacity-30 rounded-full flex items-center justify-center mb-6">
                 <svg
@@ -171,8 +170,7 @@ import FooterComponent from "../components/FooterComponent.vue";
             </div>
 
             <!-- Value 3 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="bg-white p-8 rounded-xl hover: transition-shadow">
               <div
                 class="w-16 h-16 bg-[#A6CAF0] bg-opacity-30 rounded-full flex items-center justify-center mb-6">
                 <svg
@@ -204,7 +202,7 @@ import FooterComponent from "../components/FooterComponent.vue";
         class="w-full max-w-7xl mx-auto py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div
           class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          <div class="rounded-2xl overflow-hidden shadow-lg">
+          <div class="rounded-2xl overflow-hidden">
             <img
               src="../assets/images/sunscreen.jpg"
               alt="Our Mission"
@@ -405,11 +403,13 @@ import FooterComponent from "../components/FooterComponent.vue";
             latest product launches. Together, let's embrace natural beauty!
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <router-link
-              to="/product"
-              class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base font-semibold text-[#F5A3B7] bg-white border border-transparent rounded-lg hover:bg-gray-100 transition-all">
+            <LiquidButton
+              variant="primary"
+              size="lg"
+              tag="router-link"
+              to="/product">
               Shop Now
-            </router-link>
+            </LiquidButton>
             <button
               class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-center text-sm sm:text-base font-semibold text-white bg-transparent border-2 border-white rounded-lg hover:bg-white hover:text-[#F5A3B7] transition-all">
               Contact Us

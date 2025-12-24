@@ -203,7 +203,7 @@ const setDefaultAddress = (id) => {
           <div class="flex flex-col sm:flex-row items-center gap-6">
             <!-- Avatar -->
             <div
-              class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-[#F5A3B7] bg-opacity-30 flex items-center justify-center text-4xl sm:text-5xl font-bold text-[#F5A3B7] shadow-lg">
+              class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-[#F5A3B7] bg-opacity-30 flex items-center justify-center text-4xl sm:text-5xl font-bold text-[#F5A3B7]">
               {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
             </div>
             <div class="text-center sm:text-left">
@@ -226,7 +226,7 @@ const setDefaultAddress = (id) => {
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
           <!-- Sidebar Navigation -->
           <div class="lg:col-span-1">
-            <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 sticky top-24">
+            <div class="bg-white rounded-xl p-4 sm:p-6 sticky top-24">
               <nav class="space-y-2">
                 <LiquidButton
                   @click="activeTab = 'profile'"
@@ -376,7 +376,7 @@ const setDefaultAddress = (id) => {
             <!-- Profile Tab -->
             <div
               v-if="activeTab === 'profile'"
-              class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+              class="bg-white rounded-xl p-6 sm:p-8">
               <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl sm:text-3xl font-bold text-[#383838]">
                   Profile Information
@@ -482,7 +482,7 @@ const setDefaultAddress = (id) => {
             <!-- Orders Tab -->
             <div
               v-if="activeTab === 'orders'"
-              class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+              class="bg-white rounded-xl p-6 sm:p-8">
               <h2 class="text-2xl sm:text-3xl font-bold text-[#383838] mb-6">
                 Order History
               </h2>
@@ -491,7 +491,7 @@ const setDefaultAddress = (id) => {
                 <div
                   v-for="order in orders"
                   :key="order.id"
-                  class="border border-gray-200 rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow">
+                  class="border border-gray-200 rounded-lg p-4 sm:p-6 hover: transition-shadow">
                   <div
                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
                     <div>
@@ -548,7 +548,7 @@ const setDefaultAddress = (id) => {
             <!-- Wishlist Tab -->
             <div
               v-if="activeTab === 'wishlist'"
-              class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+              class="bg-white rounded-xl p-6 sm:p-8">
               <h2 class="text-2xl sm:text-3xl font-bold text-[#383838] mb-6">
                 My Wishlist
               </h2>
@@ -557,7 +557,7 @@ const setDefaultAddress = (id) => {
                 <div
                   v-for="item in wishlist"
                   :key="item.id"
-                  class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  class="border border-gray-200 rounded-lg p-4 hover: transition-shadow">
                   <div
                     class="aspect-square bg-gray-100 rounded-lg mb-4 overflow-hidden">
                     <img
@@ -621,7 +621,7 @@ const setDefaultAddress = (id) => {
             <!-- Addresses Tab -->
             <div
               v-if="activeTab === 'addresses'"
-              class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+              class="bg-white rounded-xl p-6 sm:p-8">
               <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl sm:text-3xl font-bold text-[#383838]">
                   Saved Addresses
@@ -636,7 +636,7 @@ const setDefaultAddress = (id) => {
                 <div
                   v-for="address in addresses"
                   :key="address.id"
-                  class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                  class="border border-gray-200 rounded-lg p-6 hover: transition-shadow">
                   <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center gap-3">
                       <span
@@ -683,7 +683,7 @@ const setDefaultAddress = (id) => {
             <!-- Settings Tab -->
             <div
               v-if="activeTab === 'settings'"
-              class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+              class="bg-white rounded-xl p-6 sm:p-8">
               <h2 class="text-2xl sm:text-3xl font-bold text-[#383838] mb-6">
                 Account Settings
               </h2>
@@ -887,7 +887,6 @@ const setDefaultAddress = (id) => {
   opacity: 0;
   transform: scale(0) rotate(-45deg);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
 
 .modern-checkbox-account:checked ~ .checkbox-custom-account {

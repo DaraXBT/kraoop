@@ -93,41 +93,26 @@ img {
 /* Glass Card Base Styles */
 @layer components {
   .glass-card {
-    @apply bg-white/70 backdrop-blur-xl rounded-2xl border border-white/20 shadow-lg;
+    @apply bg-white/70 backdrop-blur-xl rounded-2xl border border-white/20;
   }
 
   .glass-card-strong {
-    @apply bg-white/80 backdrop-blur-2xl rounded-2xl border border-white/30 shadow-xl;
+    @apply bg-white/80 backdrop-blur-2xl rounded-2xl border border-white/30;
   }
 
   .glass-card-subtle {
-    @apply bg-white/50 backdrop-blur-md rounded-2xl border border-white/10 shadow-md;
+    @apply bg-white/50 backdrop-blur-md rounded-2xl border border-white/10;
   }
 
   .glass-dark {
-    @apply bg-gray-900/70 backdrop-blur-xl rounded-2xl border border-white/10 shadow-xl;
+    @apply bg-gray-900/70 backdrop-blur-xl rounded-2xl border border-white/10;
   }
 
   .glass-pink {
-    @apply bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-xl rounded-2xl border border-pink-200/30 shadow-lg;
+    @apply bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-xl rounded-2xl border border-pink-200/30;
   }
 
-  /* iOS-style elevation shadows */
-  .ios-shadow-sm {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-  }
-
-  .ios-shadow {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
-  }
-
-  .ios-shadow-lg {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
-  }
-
-  .ios-shadow-xl {
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.1);
-  }
+  /* iOS-style elevation shadows removed */
 }
 
 /* Smooth iOS-style transitions */
@@ -183,11 +168,7 @@ img {
       rgba(255, 255, 255, 0.05)
     );
 
-    /* Complex Shadow System */
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6),
-      inset 0 -1px 1px rgba(255, 255, 255, 0.3),
-      0 3px 6px -2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2),
-      0 0 0 0 rgba(255, 255, 255, 1);
+    /* Complex Shadow System removed */
 
     /* Advanced Backdrop Filter */
     backdrop-filter: blur(clamp(1px, 0.125em, 4px));
@@ -201,11 +182,6 @@ img {
     transform: scale(0.98);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7),
-      inset 0 -1px 1px rgba(255, 255, 255, 0.4),
-      0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.3),
-      0 0 0 0 rgba(255, 255, 255, 1);
   }
 }
 
@@ -233,13 +209,7 @@ img {
   --liquid-angle-1: -125deg;
 }
 
-/* Active Effects */
-.liquid-button-active .liquid-glass-btn {
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.2),
-    0 1px 3px -1px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.15),
-    0 2px 0 0 rgba(255, 255, 255, 0.6), inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-}
+/* Active Effects removed */
 
 /* Top gradient layer (light reflection) */
 .liquid-glass-btn::before {
@@ -262,10 +232,6 @@ img {
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
   background: linear-gradient(135deg, #f5a3b7 0%, #e392a6 50%, #d07b8f 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.3),
-    0 3px 6px -2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2),
-    0 0 20px rgba(245, 163, 183, 0.3);
 
   /* Advanced Backdrop Filter */
   backdrop-filter: blur(clamp(1px, 0.125em, 4px));
@@ -274,9 +240,6 @@ img {
 
 .liquid-glass-btn-primary:hover {
   transform: scale(0.98) translateY(-1px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 25px rgba(245, 163, 183, 0.4);
 }
 
 .liquid-glass-btn-primary::before {
@@ -655,9 +618,6 @@ img {
 .liquid-glass-card {
   @apply relative bg-white/10 backdrop-blur-md rounded-3xl border border-white/20;
   @apply transition-all duration-500 ease-out;
-
-  box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.6),
-    0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .liquid-glass-card::before {
@@ -674,8 +634,6 @@ img {
 .liquid-glass-card:hover {
   @apply bg-white/15;
   transform: translateY(-2px);
-  box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.8),
-    0 16px 48px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Liquid Glass Panel - Full liquid effect */
@@ -762,7 +720,7 @@ img {
 
 /* Hover and interaction states */
 .glass-interactive {
-  @apply transition-smooth hover:scale-[1.02] hover:shadow-xl active:scale-[0.98];
+  @apply transition-smooth hover:scale-[1.02]  active:scale-[0.98];
 }
 
 /* Enhanced Glassy Button Styles */

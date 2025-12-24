@@ -171,28 +171,28 @@ const typeStyles = computed(() => {
       border: "border-green-400/50",
       text: "text-green-800",
       icon: "text-green-500",
-      glow: "shadow-green-500/20",
+      glow: "",
     },
     error: {
       bg: "glass-card-strong",
       border: "border-red-400/50",
       text: "text-red-800",
       icon: "text-red-500",
-      glow: "shadow-red-500/20",
+      glow: "",
     },
     warning: {
       bg: "glass-card-strong",
       border: "border-yellow-400/50",
       text: "text-yellow-800",
       icon: "text-yellow-500",
-      glow: "shadow-yellow-500/20",
+      glow: "",
     },
     info: {
       bg: "glass-card-strong",
       border: "border-blue-400/50",
       text: "text-blue-800",
       icon: "text-blue-500",
-      glow: "shadow-blue-500/20",
+      glow: "",
     },
   };
   return styles[props.type] || styles.success;
@@ -241,7 +241,7 @@ const transformStyle = computed(() => {
         typeStyles.bg,
         typeStyles.border,
         typeStyles.glow,
-        'w-full shadow-glass-lg rounded-2xl sm:rounded-3xl border-l-4 p-3 sm:p-5 backdrop-blur-xl',
+        'w-full rounded-2xl sm:rounded-3xl border-l-4 p-3 sm:p-5 backdrop-blur-xl',
         'touch-pan-y select-none',
         'max-w-full',
       ]"

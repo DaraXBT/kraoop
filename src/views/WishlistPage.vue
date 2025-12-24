@@ -67,7 +67,7 @@
         <!-- Empty State -->
         <div
           v-if="wishlistCount === 0"
-          class="text-center py-16 bg-white rounded-2xl shadow-sm">
+          class="text-center py-16 bg-white rounded-2xl ">
           <svg
             class="w-32 h-32 mx-auto text-gray-300 mb-6"
             fill="none"
@@ -85,22 +85,26 @@
           <p class="text-gray-500 mb-8">
             Save your favorite products for later!
           </p>
-          <router-link
-            to="/product"
-            class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-[#F5A3B7] to-[#B76E79] text-white font-semibold rounded-xl hover:shadow-lg transition-all">
-            <span>Browse Products</span>
-            <svg
-              class="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </router-link>
+          <LiquidButton
+            variant="primary"
+            size="lg"
+            tag="router-link"
+            to="/product">
+            Browse Products
+            <template v-slot:icon-right>
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </template>
+          </LiquidButton>
         </div>
 
         <!-- Wishlist Grid -->
@@ -110,7 +114,7 @@
           <div
             v-for="product in wishlist"
             :key="product.id"
-            class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+            class="bg-white rounded-xl   transition-all duration-300 overflow-hidden group">
             <!-- Product Image -->
             <div class="relative aspect-square overflow-hidden bg-gray-50">
               <router-link :to="`/detail/${product.id}`">
@@ -123,7 +127,7 @@
               <!-- Promotion Badge -->
               <div
                 v-if="product.promotion"
-                class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full ">
                 {{ product.promotion }}
               </div>
 
@@ -133,7 +137,7 @@
                 size="sm"
                 icon-only
                 @click="handleRemoveFromWishlist(product)"
-                class="absolute top-3 right-3 !p-2 rounded-full shadow-lg">
+                class="absolute top-3 right-3 !p-2 rounded-full ">
                 <template v-slot:icon-left>
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path

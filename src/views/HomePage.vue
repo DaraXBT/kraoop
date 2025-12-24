@@ -100,12 +100,12 @@ const handleAddToCart = (product) => {
           <div
             class="text-content order-2 lg:order-1 text-center lg:text-left min-w-0 px-2">
             <h1
-              class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#383838] leading-tight mb-4 sm:mb-5 break-words animate-fade-in drop-shadow-sm">
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#383838] leading-tight mb-4 sm:mb-5 break-words animate-fade-in ">
               Discover Your<br class="hidden sm:inline" />
               Inner Beauty<br class="hidden sm:inline" />
               with
               <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] drop-shadow-lg"
+                class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] "
                 >KRAOOP</span
               >
             </h1>
@@ -115,22 +115,27 @@ const handleAddToCart = (product) => {
             </p>
             <div
               class="button flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-              <router-link
-                class="glass-card-strong inline-flex items-center justify-center px-8 sm:px-10 py-3 sm:py-3.5 text-center text-sm sm:text-base font-bold text-white bg-gradient-to-r from-[#383838] to-[#525252] border-2 border-white/30 rounded-xl gap-x-2.5 hover:scale-105 hover:shadow-glass-xl transition-smooth min-h-[48px] sm:min-h-[52px] whitespace-nowrap group"
-                to="/product">
-                <span>Shop now</span>
-                <svg
-                  class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </router-link>
+              <LiquidButton
+                variant="primary"
+                size="lg"
+                tag="router-link"
+                to="/product"
+                class="min-h-[48px] sm:min-h-[52px]">
+                Shop now
+                <template v-slot:icon-right>
+                  <svg
+                    class="w-4 h-4 sm:w-5 sm:h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </template>
+              </LiquidButton>
             </div>
           </div>
 
@@ -143,7 +148,7 @@ const handleAddToCart = (product) => {
               <img
                 src="../assets/images/jennie.png"
                 alt="jennie"
-                class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg object-contain drop-shadow-2xl float-animation" />
+                class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg object-contain  float-animation" />
             </div>
           </div>
         </div>
@@ -162,7 +167,7 @@ const handleAddToCart = (product) => {
           </p>
           <router-link
             to="/product"
-            class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group whitespace-nowrap hover:shadow-glass hover:scale-105 rounded-xl">
+            class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group whitespace-nowrap  hover:scale-105 rounded-xl">
             <span>View all</span>
             <svg
               class="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -215,7 +220,7 @@ const handleAddToCart = (product) => {
             </p>
             <router-link
               to="/best-selling"
-              class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group hover:shadow-glass hover:scale-105 rounded-xl">
+              class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group  hover:scale-105 rounded-xl">
               <span>View all</span>
               <svg
                 class="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -255,7 +260,7 @@ const handleAddToCart = (product) => {
       <div
         class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12 sm:my-14 lg:my-16 overflow-hidden">
         <div
-          class="glass-card-strong grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-w-0 rounded-2xl p-5 sm:p-6 lg:p-10 shadow-glass-xl border border-white/30 hover:shadow-glass-xl transition-smooth">
+          class="glass-card-strong grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-w-0 rounded-2xl p-5 sm:p-6 lg:p-10  border border-white/30 -xl transition-smooth">
           <!-- Content -->
           <div class="flex flex-col order-2 lg:order-1 min-w-0">
             <h2
@@ -272,37 +277,42 @@ const handleAddToCart = (product) => {
             <div class="mb-5 hashtag overflow-hidden">
               <div class="flex flex-wrap gap-2 tag">
                 <div
-                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:shadow-glass hover:scale-105 transition-smooth border border-white/20">
+                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold  hover:scale-105 transition-smooth border border-white/20">
                   # Vegan 🌱
                 </div>
                 <div
-                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:shadow-glass hover:scale-105 transition-smooth border border-white/20">
+                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold  hover:scale-105 transition-smooth border border-white/20">
                   # Cruelty-free 🐰
                 </div>
                 <div
-                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:shadow-glass hover:scale-105 transition-smooth border border-white/20">
+                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold  hover:scale-105 transition-smooth border border-white/20">
                   # Eco-friendly 🌍
                 </div>
               </div>
             </div>
             <div
               class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 btn">
-              <router-link
-                class="glass-card-strong inline-flex items-center justify-center px-8 py-3 text-center text-sm font-bold text-white bg-gradient-to-r from-neutral-900 to-neutral-700 border-2 border-white/30 rounded-xl gap-x-2 hover:scale-105 hover:shadow-glass-lg transition-smooth min-h-[48px] whitespace-nowrap group"
-                to="/product">
-                <span>Shop now</span>
-                <svg
-                  class="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </router-link>
+              <LiquidButton
+                variant="primary"
+                size="lg"
+                tag="router-link"
+                to="/product"
+                class="min-h-[48px]">
+                Shop now
+                <template v-slot:icon-right>
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </template>
+              </LiquidButton>
               <LiquidButton
                 variant="secondary"
                 size="lg"
@@ -330,7 +340,7 @@ const handleAddToCart = (product) => {
 
           <!-- Image -->
           <div
-            class="order-1 lg:order-2 w-full aspect-square lg:aspect-auto lg:h-[320px] xl:h-[380px] object-cover items-center flex overflow-hidden rounded-xl min-w-0 shadow-glass-lg hover:shadow-glass-xl transition-smooth group">
+            class="order-1 lg:order-2 w-full aspect-square lg:aspect-auto lg:h-[320px] xl:h-[380px] object-cover items-center flex overflow-hidden rounded-xl min-w-0  -xl transition-smooth group">
             <img
               class="w-full h-full object-cover max-w-full group-hover:scale-105 transition-transform duration-500"
               src="../assets/images/innisfree.jpg"
@@ -384,11 +394,14 @@ const handleAddToCart = (product) => {
             </div>
             <div
               class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 btn">
-              <router-link
-                class="inline-flex items-center justify-center px-10 sm:px-12 py-2.5 text-center text-sm font-semibold text-white bg-[#F5A3B7] border border-transparent rounded-lg gap-x-2 hover:bg-gray-900 transition-colors min-h-[48px]"
-                to="/product">
+              <LiquidButton
+                variant="primary"
+                size="lg"
+                tag="router-link"
+                to="/product"
+                class="min-h-[48px]">
                 Shop now
-              </router-link>
+              </LiquidButton>
               <LiquidButton
                 variant="secondary"
                 size="lg"

@@ -36,7 +36,7 @@ const handleSubscribe = () => {
                 class="hover:opacity-90 transition-smooth hover:scale-105 block">
                 <p class="lg:block hidden">
                   <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] drop-shadow-lg"
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] "
                     >Kraoop</span
                   >
                   <span class="text-white"> Beauty</span>
@@ -66,7 +66,7 @@ const handleSubscribe = () => {
                   <img
                     src="../assets/icons/Call.svg"
                     alt="phone"
-                    class="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-sm" />
+                    class="w-4 h-4 sm:w-5 sm:h-5 " />
                 </div>
                 <div class="number text-gray-200 font-medium truncate">
                   +855 7707070
@@ -79,7 +79,7 @@ const handleSubscribe = () => {
                   <img
                     src="../assets/icons/Message.svg"
                     alt="email"
-                    class="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-sm" />
+                    class="w-4 h-4 sm:w-5 sm:h-5 " />
                 </div>
                 <div class="email text-gray-200 font-medium truncate">
                   kraoop@beauty.com
@@ -141,9 +141,9 @@ const handleSubscribe = () => {
           <div class="signUp col-span-1 sm:col-span-2 lg:col-span-3 min-w-0">
             <!-- Clean design for all screen sizes -->
             <div
-              class="rounded-2xl lg:rounded-none p-5 lg:p-0 border border-white/20 lg:border-0 shadow-sm lg:shadow-none transition-smooth">
+              class="rounded-2xl lg:rounded-none p-5 lg:p-0 border border-white/20 lg:border-0   transition-smooth">
               <div
-                class="text-white font-bold text-lg sm:text-lg lg:text-base mb-2.5 sm:mb-2.5 lg:mb-3 flex items-center gap-2 drop-shadow-sm">
+                class="text-white font-bold text-lg sm:text-lg lg:text-base mb-2.5 sm:mb-2.5 lg:mb-3 flex items-center gap-2 ">
                 <span class="text-xl sm:text-xl lg:text-lg">💌</span> Stay
                 Connected
               </div>
@@ -163,7 +163,7 @@ const handleSubscribe = () => {
                     type="email"
                     id="hs-hero-email-mobile"
                     required
-                    class="block w-full px-4 py-4 lg:py-3 text-base sm:text-base lg:text-sm border-2 border-white/30 rounded-2xl lg:rounded-xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/30 bg-white/10 lg:bg-gray-800/50 text-white placeholder-white/70 transition-smooth shadow-glass-sm font-medium backdrop-blur-sm"
+                    class="block w-full px-4 py-4 lg:py-3 text-base sm:text-base lg:text-sm border-2 border-white/30 rounded-2xl lg:rounded-xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/30 bg-white/10 lg:bg-gray-800/50 text-white placeholder-white/70 transition-smooth  font-medium backdrop-blur-sm"
                     placeholder="Enter your email" />
                 </div>
                 <LiquidButton

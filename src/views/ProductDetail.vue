@@ -111,7 +111,7 @@
               @mouseleave="isHovering = false"
               @mousemove="handleMouseMove"
               @click="openLightbox"
-              class="relative w-full aspect-square overflow-hidden rounded-xl shadow-sm cursor-zoom-in group bg-gray-50">
+              class="relative w-full aspect-square overflow-hidden rounded-xl  cursor-zoom-in group bg-gray-50">
               <img
                 :src="selectedImage"
                 alt="product"
@@ -121,7 +121,7 @@
               <!-- Zoom Indicator -->
               <div
                 v-if="!isHovering"
-                class="absolute top-3 right-3 bg-white bg-opacity-90 rounded-full p-1.5 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                class="absolute top-3 right-3 bg-white bg-opacity-90 rounded-full p-1.5  opacity-0 group-hover:opacity-100 transition-opacity">
                 <svg
                   class="w-4 h-4 text-gray-700"
                   fill="none"
@@ -146,7 +146,7 @@
                 @click.stop="previousImage"
                 variant="glass"
                 size="sm"
-                :class="'absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all rounded-full p-1.5 shadow-lg'">
+                :class="'absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all rounded-full p-1.5 '">
                 <template #icon>
                   <svg
                     class="w-5 h-5 text-gray-700"
@@ -165,7 +165,7 @@
                 @click.stop="nextImage"
                 variant="glass"
                 size="sm"
-                :class="'absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all rounded-full p-1.5 shadow-lg'">
+                :class="'absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all rounded-full p-1.5 '">
                 <template #icon>
                   <svg
                     class="w-5 h-5 text-gray-700"
@@ -803,7 +803,7 @@
             <!-- Previous Button -->
             <button
               @click="previousImage"
-              class="absolute left-0 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all z-10">
+              class="absolute left-0 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3  transition-all z-10">
               <svg
                 class="w-6 h-6 text-gray-700"
                 fill="none"
@@ -821,12 +821,12 @@
             <img
               :src="selectedImage"
               alt="Product"
-              class="max-h-[90vh] max-w-full object-contain rounded-lg shadow-2xl" />
+              class="max-h-[90vh] max-w-full object-contain rounded-lg " />
 
             <!-- Next Button -->
             <button
               @click="nextImage"
-              class="absolute right-0 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 shadow-lg transition-all z-10">
+              class="absolute right-0 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3  transition-all z-10">
               <svg
                 class="w-6 h-6 text-gray-700"
                 fill="none"
@@ -842,7 +842,7 @@
 
             <!-- Image Counter -->
             <div
-              class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white bg-opacity-90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white bg-opacity-90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium ">
               {{ currentImageIndex + 1 }} / {{ images.length }}
             </div>
           </div>
