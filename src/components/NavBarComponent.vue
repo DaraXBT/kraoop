@@ -2,10 +2,12 @@
 import {ref, computed} from "vue";
 import {useRoute} from "vue-router";
 import {useProductStore} from "../stores/ProductStore";
+import {useAuth} from "../composables/useAuth";
 import LiquidButton from "./LiquidButton.vue";
 
 const route = useRoute();
 const productStore = useProductStore();
+const {isAuthenticated} = useAuth();
 
 // Cart item count
 const cartItemCount = computed(() => productStore.cartItemCount);
@@ -91,8 +93,24 @@ const isActive = (path) => {
 
       <!-- Desktop Icons -->
       <div
-        class="hidden md:flex items-center gap-2.5 lg:gap-4 menu text-xs flex-shrink-0">
+        class="hidden md:flex items-center gap-2.5 lg:gap-3 menu text-xs flex-shrink-0">
+        <!-- Auth Buttons (when not logged in) -->
+        <div v-if="!isAuthenticated" class="hidden lg:flex items-center gap-2">
+          <router-link to="/login">
+            <LiquidButton variant="ghost" size="sm" class="text-xs">
+              Login
+            </LiquidButton>
+          </router-link>
+          <router-link to="/signup">
+            <LiquidButton variant="primary" size="sm" class="text-xs">
+              Sign Up
+            </LiquidButton>
+          </router-link>
+        </div>
+        
+        <!-- Account Icon (when logged in) -->
         <router-link
+          v-else
           to="/account"
           :class="[
             'hidden lg:flex flex-col items-center gap-1 cursor-pointer transition-smooth hover:scale-110 p-1.5 rounded-lg',
@@ -234,7 +252,23 @@ const isActive = (path) => {
 
           <!-- Mobile Menu Icons -->
           <div class="pt-4 border-t border-white/20 space-y-1.5">
+            <!-- Auth Buttons (when not logged in) -->
+            <div v-if="!isAuthenticated" class="space-y-2 pb-2">
+              <router-link to="/login" @click="closeMobileMenu">
+                <LiquidButton variant="ghost" size="md" full-width class="justify-center">
+                  Login
+                </LiquidButton>
+              </router-link>
+              <router-link to="/signup" @click="closeMobileMenu">
+                <LiquidButton variant="primary" size="md" full-width class="justify-center">
+                  Sign Up
+                </LiquidButton>
+              </router-link>
+            </div>
+            
+            <!-- Account Link (when logged in) -->
             <router-link
+              v-else
               to="/account"
               @click="closeMobileMenu"
               :class="[

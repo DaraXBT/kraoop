@@ -105,6 +105,41 @@ const router = createRouter({
         title: "My Wishlist - Kraoop Beauty",
       },
     },
+    // Authentication Routes
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../views/auth/LoginPage.vue"),
+      meta: {
+        title: "Login - Kraoop Beauty",
+        description: "Sign in to your Kraoop Beauty account",
+      },
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: () => import("../views/auth/SignupPage.vue"),
+      meta: {
+        title: "Sign Up - Kraoop Beauty",
+        description: "Create your Kraoop Beauty account",
+      },
+    },
+    {
+      path: "/forgot-password",
+      name: "forgot-password",
+      component: () => import("../views/auth/ForgotPassword.vue"),
+      meta: {
+        title: "Forgot Password - Kraoop Beauty",
+      },
+    },
+    {
+      path: "/reset-password/:token",
+      name: "reset-password",
+      component: () => import("../views/auth/ResetPassword.vue"),
+      meta: {
+        title: "Reset Password - Kraoop Beauty",
+      },
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     // Restore saved scroll position (browser back/forward)
@@ -158,12 +193,8 @@ router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
     const {isAuthenticated} = useAuth();
     if (!isAuthenticated.value) {
-      // Redirect to home or login page
-      console.warn("Authentication required for", to.path);
-      // TODO: Redirect to login page when implemented
-      // next({name: 'login', query: {redirect: to.fullPath}});
-      // For now, allow access
-      next();
+      // Redirect to login page with return URL
+      next({name: 'login', query: {redirect: to.fullPath}});
     } else {
       next();
     }
