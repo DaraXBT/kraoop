@@ -519,19 +519,21 @@
               </div>
               <span class="text-sm sm:text-base text-gray-500">4 reviews</span>
             </div>
-            <button
-              class="px-8 sm:px-12 py-2.5 sm:py-3 bg-white rounded-lg border-2 border-neutral-800 text-sm sm:text-base font-semibold text-neutral-700 hover:bg-neutral-800 hover:text-white transition-all duration-300">
+            <LiquidButton
+              variant="secondary"
+              size="lg"
+              class="px-8 sm:px-12">
               Write a Review
-            </button>
+            </LiquidButton>
           </div>
 
           <!-- Review Cards -->
           <div class="space-y-6 sm:space-y-8">
             <!-- Review 1 -->
             <div
-              class="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 bg-white rounded-lg border border-gray-200">
+              class="glass-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl border border-white/40 group hover:scale-[1.01] transition-all duration-300">
               <img
-                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0"
+                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-2 border-white shadow-sm"
                 src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
                 alt="reviewer" />
               <div class="flex-grow space-y-3">
@@ -539,47 +541,36 @@
                   class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
                     <span
-                      class="text-sm sm:text-base font-semibold text-neutral-800"
+                      class="text-sm sm:text-base font-bold text-neutral-900"
                       >Cathy K.</span
                     >
-                    <span class="text-xs sm:text-sm text-gray-500 ml-2"
-                      >Verified Reviews</span
+                    <span
+                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/10 px-2 py-0.5 rounded-full"
+                      >Verified Buyer</span
                     >
                   </div>
-                  <span class="text-xs sm:text-sm text-gray-400">27/02/24</span>
+                  <span class="text-xs sm:text-sm text-gray-500 font-medium">27/02/24</span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
+                  <svg
+                    v-for="i in 5"
+                    :key="i"
+                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-sm"
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
                 </div>
-                <h4 class="text-sm sm:text-base font-semibold text-neutral-800">
+                <h4 class="text-sm sm:text-base font-bold text-neutral-900">
                   VERY MOISTURIZING
                 </h4>
-                <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
                   I didn't know how effective the gel cream would be since I was
                   skeptical of the texture, but my sensitive skin loved it and I
                   didn't even break out when I first started using it. Love it!
                 </p>
                 <img
-                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg"
+                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
                   src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-6.jpg?v=1685603393"
                   alt="review" />
               </div>
@@ -587,9 +578,9 @@
 
             <!-- Review 2 -->
             <div
-              class="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 bg-white rounded-lg border border-gray-200">
+              class="glass-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl border border-white/40 group hover:scale-[1.01] transition-all duration-300">
               <img
-                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0"
+                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-2 border-white shadow-sm"
                 src="https://cdn.i-scmp.com/sites/default/files/styles/square/public/d8/yp/images/neymar_aug_2017_ap9.jpg?itok=6hnplXy7"
                 alt="reviewer" />
               <div class="flex-grow space-y-3">
@@ -597,52 +588,41 @@
                   class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
                     <span
-                      class="text-sm sm:text-base font-semibold text-neutral-800"
+                      class="text-sm sm:text-base font-bold text-neutral-900"
                       >Cathy K.</span
                     >
-                    <span class="text-xs sm:text-sm text-gray-500 ml-2"
-                      >Verified Reviews</span
+                    <span
+                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/10 px-2 py-0.5 rounded-full"
+                      >Verified Buyer</span
                     >
                   </div>
-                  <span class="text-xs sm:text-sm text-gray-400">26/02/24</span>
+                  <span class="text-xs sm:text-sm text-gray-500 font-medium">26/02/24</span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
+                  <svg
+                    v-for="i in 5"
+                    :key="i"
+                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-sm"
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
                 </div>
-                <h4 class="text-sm sm:text-base font-semibold text-neutral-800">
+                <h4 class="text-sm sm:text-base font-bold text-neutral-900">
                   VERY MOISTURIZING
                 </h4>
-                <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
                   I didn't know how effective the gel cream would be since I was
                   skeptical of the texture, but my sensitive skin loved it and I
                   didn't even break out when I first started using it. Love it!
                 </p>
                 <div class="flex gap-3">
                   <img
-                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg"
+                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
                     src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-10.jpg?v=1685603406"
                     alt="review" />
                   <img
-                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg"
+                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
                     src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-1.jpg?v=1685603379"
                     alt="review" />
                 </div>
@@ -651,9 +631,9 @@
 
             <!-- Review 3 -->
             <div
-              class="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 bg-white rounded-lg border border-gray-200">
+              class="glass-card flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl border border-white/40 group hover:scale-[1.01] transition-all duration-300">
               <img
-                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0"
+                class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover flex-shrink-0 border-2 border-white shadow-sm"
                 src="https://pics.craiyon.com/2023-07-02/7488d4fbaf62421d8ca8b6cec4e9604b.webp"
                 alt="reviewer" />
               <div class="flex-grow space-y-3">
@@ -661,47 +641,36 @@
                   class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
                     <span
-                      class="text-sm sm:text-base font-semibold text-neutral-800"
+                      class="text-sm sm:text-base font-bold text-neutral-900"
                       >Aileen R.</span
                     >
-                    <span class="text-xs sm:text-sm text-gray-500 ml-2"
-                      >Verified Reviews</span
+                    <span
+                      class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/10 px-2 py-0.5 rounded-full"
+                      >Verified Buyer</span
                     >
                   </div>
-                  <span class="text-xs sm:text-sm text-gray-400">26/02/24</span>
+                  <span class="text-xs sm:text-sm text-gray-500 font-medium">26/02/24</span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
-                  <img
-                    src="../assets/icons/starFill.svg"
-                    alt="star"
-                    class="w-4 h-4" />
+                  <svg
+                    v-for="i in 5"
+                    :key="i"
+                    class="w-4 h-4 text-yellow-400 fill-current drop-shadow-sm"
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
                 </div>
-                <h4 class="text-sm sm:text-base font-semibold text-neutral-800">
+                <h4 class="text-sm sm:text-base font-bold text-neutral-900">
                   REALLY LIGHT AND NOT STICKY.
                 </h4>
-                <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
                   Really light and not sticky. My skin soaked it right up! I mix
                   it with the green tea products and it helps balance my combo
                   skin.
                 </p>
                 <img
-                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg"
+                  class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl border border-white/50 shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
                   src="https://www.cosrx.com/cdn/shop/files/aloe-soothing-sun-cream-spf50-pa-cosrx-official-9.jpg?v=1685603403"
                   alt="review" />
               </div>

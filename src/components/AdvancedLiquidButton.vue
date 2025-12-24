@@ -187,8 +187,7 @@ export default {
 
 /* Advanced Liquid Button Container */
 .liquid-button-wrap {
-  @apply relative inline-block;
-  border-radius: inherit;
+  @apply relative inline-block rounded-xl;
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
   min-width: fit-content;
   /* No max-width constraint - allow natural flex growth */

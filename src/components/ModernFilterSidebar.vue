@@ -348,16 +348,19 @@
       </div>
 
       <!-- Rating Filter -->
-      <div class="bg-white p-5 rounded-xl border border-gray-100">
+      <div class="glass-card-strong p-6 rounded-3xl border border-white/30">
         <h3
-          class="font-bold text-lg text-neutral-900 mb-4 flex items-center gap-2">
-          <svg
-            class="w-5 h-5 text-[#F5A3B7]"
-            fill="currentColor"
-            viewBox="0 0 24 24">
-            <path
-              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
+          class="font-bold text-xl text-neutral-900 mb-5 flex items-center gap-2">
+          <div
+            class="p-2 rounded-xl bg-gradient-to-br from-[#F5A3B7]/20 to-[#E392A6]/10">
+            <svg
+              class="w-5 h-5 text-[#F5A3B7]"
+              fill="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
           Rating
         </h3>
 
@@ -367,16 +370,16 @@
             :key="rating"
             @click="$emit('rating-change', rating)"
             :class="[
-              'flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-all',
+              'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 group relative overflow-hidden',
               selectedRating === rating
-                ? 'bg-[#F5A3B7]/10 border-2 border-[#F5A3B7] text-neutral-900'
-                : 'bg-white border border-gray-200 text-gray-700 hover:border-[#F5A3B7]/30 hover:bg-gray-50',
+                ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-[#E392A6]/10 border-2 border-[#F5A3B7] text-neutral-900 shadow-lg'
+                : 'bg-white/50 border border-white/40 text-gray-600 hover:bg-white/80 hover:border-[#F5A3B7]/50 hover:shadow-md hover:text-neutral-900 hover:scale-[1.02]',
             ]">
             <div class="flex items-center gap-1">
               <svg
                 v-for="star in rating"
                 :key="'filled-' + star"
-                class="w-4 h-4 text-yellow-400 fill-current"
+                class="w-4 h-4 text-yellow-400 fill-current drop-shadow-sm"
                 viewBox="0 0 24 24">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -398,20 +401,23 @@
       <!-- Additional Filters -->
       <div
         v-if="additionalFilters && additionalFilters.length > 0"
-        class="bg-white p-5 rounded-xl border border-gray-100">
+        class="glass-card-strong p-6 rounded-3xl border border-white/30">
         <h3
-          class="font-bold text-lg text-neutral-900 mb-4 flex items-center gap-2">
-          <svg
-            class="w-5 h-5 text-[#F5A3B7]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-          </svg>
+          class="font-bold text-xl text-neutral-900 mb-5 flex items-center gap-2">
+          <div
+            class="p-2 rounded-xl bg-gradient-to-br from-[#F5A3B7]/20 to-[#E392A6]/10">
+            <svg
+              class="w-5 h-5 text-[#F5A3B7]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+          </div>
           More Filters
         </h3>
 
@@ -419,10 +425,10 @@
           <div
             v-for="(filter, index) in additionalFilters"
             :key="index"
-            class="group">
+            class="group p-2 rounded-xl hover:bg-white/50 transition-smooth">
             <label
               :for="`filter-${index}`"
-              class="flex items-center cursor-pointer p-2 rounded-lg hover:bg-white/50 transition-smooth">
+              class="flex items-center cursor-pointer">
               <div class="checkbox-wrapper checkbox-sm">
                 <input
                   :id="`filter-${index}`"
@@ -446,7 +452,7 @@
                 </span>
               </div>
               <span
-                class="ml-3 text-sm font-medium text-gray-700 group-hover:text-neutral-900 transition-colors">
+                class="ml-3 text-sm font-semibold text-gray-700 group-hover:text-neutral-900 transition-smooth">
                 {{ filter.label }}
               </span>
             </label>
