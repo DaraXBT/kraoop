@@ -736,6 +736,53 @@ img {
   transform: translateY(-2px);
 }
 
+/* Liquid Glass Payment Card - Lighter, Premium */
+.liquid-glass-payment-card {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(240, 249, 255, 0.6) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03),
+    inset 0 2px 0px rgba(255, 255, 255, 1);
+  border-radius: 1.5rem;
+}
+
+.liquid-glass-payment-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Liquid Input */
+.liquid-input {
+  @apply w-full bg-white/50 border border-white/60 text-gray-900 placeholder-gray-500 rounded-xl transition-all duration-300;
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+}
+
+.liquid-input:focus {
+  @apply bg-white/80 border-[#F5A3B7] ring-2 ring-[#F5A3B7]/20 outline-none;
+  box-shadow: 
+    0 0 0 4px rgba(245, 163, 183, 0.1),
+    inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  transform: translateY(-1px);
+}
+
 /* Liquid Glass Panel - Full liquid effect */
 .liquid-glass-panel {
   @apply relative overflow-hidden;

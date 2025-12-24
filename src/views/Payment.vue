@@ -100,10 +100,10 @@
         <!-- Order Summary Section -->
         <div class="mb-4 sm:mb-6">
           <div
-            class="liquid-glass-panel overflow-hidden relative">
+            class="liquid-glass-payment-card overflow-hidden relative">
             <!-- Header -->
             <div
-              class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
+              class="bg-white/40 backdrop-blur-md px-4 py-3 border-b border-white/50 relative z-10">
               <div class="flex items-center justify-between">
                 <h2
                   class="text-lg font-bold text-gray-900 flex items-center gap-2">
@@ -285,7 +285,7 @@
                 <div
                   v-for="item in cartItems"
                   :key="item.id"
-                  class="bg-black/10 backdrop-blur-sm rounded-lg border border-black/30 overflow-hidden relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                  class="bg-white/40 backdrop-blur-sm rounded-lg border border-white/40 overflow-hidden relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                   <div class="flex gap-3 p-3 relative z-10">
                     <!-- Product Image -->
                     <img
@@ -296,14 +296,14 @@
                     <!-- Product Details -->
                     <div class="flex-grow min-w-0">
                       <h3
-                        class="text-sm font-semibold text-white/90 line-clamp-2 mb-1">
+                        class="text-sm font-semibold text-gray-900 line-clamp-2 mb-1">
                         {{ item.title }}
                       </h3>
-                      <p class="text-xs text-white/70 mb-2">
+                      <p class="text-xs text-gray-600 mb-2">
                         {{ item.product }}
                       </p>
                       <div class="flex items-center justify-between">
-                        <span class="text-sm font-semibold text-white/90">{{
+                        <span class="text-sm font-semibold text-gray-900">{{
                           item.price
                         }}</span>
                         <LiquidButton
@@ -332,7 +332,7 @@
 
                   <!-- Quantity and Subtotal -->
                   <div
-                    class="bg-black/5 px-3 py-2.5 flex items-center justify-between border-t border-black/20 relative z-10">
+                    class="bg-white/20 px-3 py-2.5 flex items-center justify-between border-t border-white/30 relative z-10">
                     <div class="flex items-center gap-1">
                       <LiquidButton
                         @click="decreaseQuantity(item.id)"
@@ -344,7 +344,7 @@
                         −
                       </LiquidButton>
                       <span
-                        class="font-semibold text-white/90 min-w-[2rem] text-center text-sm"
+                        class="font-semibold text-gray-900 min-w-[2rem] text-center text-sm"
                         >{{ item.quantity }}</span
                       >
                       <LiquidButton
@@ -357,7 +357,7 @@
                       </LiquidButton>
                     </div>
                     <div class="text-right">
-                      <p class="text-xs text-white/70 mb-0.5">Subtotal</p>
+                      <p class="text-xs text-gray-600 mb-0.5">Subtotal</p>
                       <p class="text-sm font-bold text-[#F5A3B7]">
                         ${{
                           (
@@ -373,15 +373,15 @@
 
               <!-- Order Summary & Promo Code -->
               <div
-                class="bg-black/5 backdrop-blur-sm border-t border-black/20 relative z-10">
+                class="bg-white/20 backdrop-blur-sm border-t border-white/40 relative z-10">
                 <div class="px-4 py-4 space-y-4">
                   <!-- Promo Code Section -->
                   <div
-                    class="bg-black/10 backdrop-blur-sm rounded-lg p-3 border border-black/30 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                    class="bg-white/30 backdrop-blur-sm rounded-lg p-3 border border-white/40 relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                     <label
-                      class="text-xs font-semibold text-white/90 flex items-center gap-2 mb-2 relative z-10">
+                      class="text-xs font-semibold text-gray-900 flex items-center gap-2 mb-2 relative z-10">
                       <svg
-                        class="w-4 h-4 text-white/90"
+                        class="w-4 h-4 text-gray-900"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -408,55 +408,55 @@
 
                   <!-- Order Summary -->
                   <div
-                    class="bg-black/10 backdrop-blur-sm rounded-lg border border-black/30 overflow-hidden relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/30 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
+                    class="bg-white/30 backdrop-blur-sm rounded-lg border border-white/40 overflow-hidden relative before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-white/60 before:via-transparent before:to-transparent before:opacity-50 before:pointer-events-none">
                     <!-- Desktop View -->
                     <div class="hidden sm:block relative z-10">
-                      <div class="divide-y divide-black/20">
+                      <div class="divide-y divide-white/40">
                         <div class="flex justify-between px-4 py-2.5">
-                          <span class="text-sm font-medium text-white/80"
+                          <span class="text-sm font-medium text-gray-700"
                             >Subtotal</span
                           >
-                          <span class="text-sm font-semibold text-white/90"
+                          <span class="text-sm font-semibold text-gray-900"
                             >${{ subtotal }}</span
                           >
                         </div>
                         <div class="flex justify-between px-4 py-2.5">
-                          <span class="text-sm font-medium text-white/80"
+                          <span class="text-sm font-medium text-gray-700"
                             >Shipping</span
                           >
-                          <span class="text-sm font-semibold text-white/90"
+                          <span class="text-sm font-semibold text-gray-900"
                             >${{ shipping.toFixed(2) }}</span
                           >
                         </div>
                         <div class="flex justify-between px-4 py-2.5">
-                          <span class="text-sm font-medium text-white/90"
+                          <span class="text-sm font-medium text-gray-900"
                             >Tax (10%)</span
                           >
-                          <span class="text-sm font-semibold text-white"
+                          <span class="text-sm font-semibold text-gray-900"
                             >${{ tax }}</span
                           >
                         </div>
                         <div
                           v-if="discount > 0"
-                          class="flex justify-between px-4 py-2.5 bg-green-500/20">
+                          class="flex justify-between px-4 py-2.5 bg-green-500/10">
                           <span
-                            class="text-sm font-medium text-green-200 flex items-center gap-1">
+                            class="text-sm font-medium text-green-700 flex items-center gap-1">
                             Discount (15%)
                             <span
                               class="px-1.5 py-0.5 bg-green-500 text-white text-xs font-bold rounded"
                               >SAVE</span
                             >
                           </span>
-                          <span class="text-sm font-semibold text-green-200"
+                          <span class="text-sm font-semibold text-green-700"
                             >-${{ discount }}</span
                           >
                         </div>
                         <div
                           class="flex justify-between px-4 py-3 bg-[#F5A3B7]/20">
-                          <span class="text-base font-bold text-white"
+                          <span class="text-base font-bold text-gray-900"
                             >Total</span
                           >
-                          <span class="text-lg font-bold text-[#F5A3B7]"
+                          <span class="text-lg font-bold text-[#D07B8F]"
                             >${{ total }}</span
                           >
                         </div>
@@ -465,52 +465,52 @@
 
                     <!-- Mobile View -->
                     <div class="sm:hidden relative z-10">
-                      <div class="divide-y divide-white/20">
+                      <div class="divide-y divide-white/40">
                         <div class="flex justify-between px-3 py-2">
-                          <span class="text-xs font-medium text-white/90"
+                          <span class="text-xs font-medium text-gray-700"
                             >Subtotal</span
                           >
-                          <span class="text-sm font-semibold text-white"
+                          <span class="text-sm font-semibold text-gray-900"
                             >${{ subtotal }}</span
                           >
                         </div>
                         <div class="flex justify-between px-3 py-2">
-                          <span class="text-xs font-medium text-white/90"
+                          <span class="text-xs font-medium text-gray-700"
                             >Shipping</span
                           >
-                          <span class="text-sm font-semibold text-white"
+                          <span class="text-sm font-semibold text-gray-900"
                             >${{ shipping.toFixed(2) }}</span
                           >
                         </div>
                         <div class="flex justify-between px-3 py-2">
-                          <span class="text-xs font-medium text-white/90"
+                          <span class="text-xs font-medium text-gray-900"
                             >Tax (10%)</span
                           >
-                          <span class="text-sm font-semibold text-white"
+                          <span class="text-sm font-semibold text-gray-900"
                             >${{ tax }}</span
                           >
                         </div>
                         <div
                           v-if="discount > 0"
-                          class="flex justify-between px-3 py-2 bg-green-500/20">
+                          class="flex justify-between px-3 py-2 bg-green-500/10">
                           <span
-                            class="text-xs font-medium text-green-200 flex items-center gap-1">
+                            class="text-xs font-medium text-green-700 flex items-center gap-1">
                             Discount (15%)
                             <span
                               class="px-1 py-0.5 bg-green-500 text-white text-xs font-bold rounded"
                               >SAVE</span
                             >
                           </span>
-                          <span class="text-sm font-semibold text-green-200"
+                          <span class="text-sm font-semibold text-green-700"
                             >-${{ discount }}</span
                           >
                         </div>
                         <div
                           class="flex justify-between px-3 py-2.5 bg-[#F5A3B7]/20">
-                          <span class="text-sm font-bold text-white"
+                          <span class="text-sm font-bold text-gray-900"
                             >Total</span
                           >
-                          <span class="text-base font-bold text-[#F5A3B7]"
+                          <span class="text-base font-bold text-[#D07B8F]"
                             >${{ total }}</span
                           >
                         </div>
@@ -528,10 +528,10 @@
           <!-- Contact & Shipping Details Section -->
           <div class="w-full">
             <div
-              class="liquid-glass-panel overflow-hidden relative">
+              class="liquid-glass-payment-card overflow-hidden relative">
               <!-- Section Header -->
               <div
-                class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
+                class="bg-white/40 backdrop-blur-md px-4 py-3 border-b border-white/50 relative z-10">
                 <h3
                   class="text-base font-bold text-gray-900 flex items-center gap-2">
                   <svg
@@ -783,10 +783,10 @@
           <!-- Payment Method Section -->
           <div class="w-full">
             <div
-              class="liquid-glass-panel overflow-hidden relative">
+              class="liquid-glass-payment-card overflow-hidden relative">
               <!-- Section Header -->
               <div
-                class="bg-white/5 backdrop-blur-sm px-4 py-3 border-b border-white/20 relative z-10">
+                class="bg-white/40 backdrop-blur-md px-4 py-3 border-b border-white/50 relative z-10">
                 <h3
                   class="text-base font-bold text-gray-900 flex items-center gap-2">
                   <svg

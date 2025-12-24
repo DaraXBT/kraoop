@@ -190,7 +190,7 @@ const handleAddToCart = (product) => {
 
       <!--================>>Cart -->
       <div
-        class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 overflow-hidden">
+        class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <div
           class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 min-w-0">
           <CartComponent
@@ -246,7 +246,7 @@ const handleAddToCart = (product) => {
       </div>
 
       <div
-        class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-14 lg:mb-16 overflow-hidden">
+        class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-14 lg:mb-16">
         <div
           class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 min-w-0">
           <CartComponent

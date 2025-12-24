@@ -68,7 +68,7 @@ const calculateOriginalPrice = () => {
 </script>
 
 <template>
-  <div class="card group relative w-full">
+  <div class="card group relative w-full hover:z-10">
     <!-- Card Container - Liquid Glass Style -->
     <div
       class="liquid-glass-product-card w-full rounded-3xl flex flex-col overflow-hidden min-w-0 transition-all duration-500">
@@ -172,9 +172,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 
     inset 0 2px 0px rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0px rgba(0, 0, 0, 0.05),
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.04);
+    inset 0 -1px 0px rgba(0, 0, 0, 0.05);
 }
 
 .liquid-glass-product-card::before {
@@ -237,9 +235,7 @@ a {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 
     inset 0 2px 0px rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0px rgba(0, 0, 0, 0.08),
-    0 16px 48px rgba(0, 0, 0, 0.12),
-    0 4px 16px rgba(0, 0, 0, 0.08);
+    inset 0 -1px 0px rgba(0, 0, 0, 0.08);
   border-color: rgba(255, 255, 255, 0.8);
 }
 
