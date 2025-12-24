@@ -294,9 +294,10 @@ const transformStyle = computed(() => {
           @click="closeToast"
           variant="glass"
           size="sm"
+          icon-only
           :class="'flex-shrink-0'"
           aria-label="Close notification">
-          <template #icon>
+          <template #icon-left>
             <svg
               class="w-4 h-4 sm:w-5 sm:h-5"
               fill="none"

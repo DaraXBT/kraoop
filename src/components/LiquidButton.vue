@@ -195,7 +195,9 @@ export default {
         this.createRipple(event);
       }
 
-      this.$emit("click", event);
+      // Note: We don't emit a custom click event here because v-bind="$attrs"
+      // already passes through the native click event to the parent component.
+      // Emitting would cause the handler to fire twice in Vue 3.
     },
 
     createRipple(event) {

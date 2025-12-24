@@ -90,6 +90,30 @@ const addresses = ref([
   },
 ]);
 
+// Address editing state
+const editingAddressId = ref(null);
+const showAddressForm = ref(false);
+const addressFormData = ref({
+  type: "",
+  name: "",
+  address: "",
+  phone: "",
+});
+
+// Password change state
+const passwordData = ref({
+  current: "",
+  new: "",
+  confirm: "",
+});
+
+// Notification preferences
+const notifications = ref({
+  orderEmails: true,
+  promotional: true,
+  sms: false,
+});
+
 const fullName = computed(
   () => `${user.value.firstName} ${user.value.lastName}`
 );
@@ -117,15 +141,45 @@ const cancelEdit = () => {
 const getStatusColor = (status) => {
   switch (status) {
     case "Delivered":
-      return "bg-green-100 text-green-800";
+      return {
+        bg: "bg-gradient-to-r from-green-50 to-emerald-50",
+        text: "text-green-700",
+        border: "border-green-200",
+        icon: "✓",
+        dot: "bg-green-500"
+      };
     case "In Transit":
-      return "bg-blue-100 text-blue-800";
+      return {
+        bg: "bg-gradient-to-r from-blue-50 to-cyan-50",
+        text: "text-blue-700",
+        border: "border-blue-200",
+        icon: "🚚",
+        dot: "bg-blue-500"
+      };
     case "Processing":
-      return "bg-yellow-100 text-yellow-800";
+      return {
+        bg: "bg-gradient-to-r from-yellow-50 to-amber-50",
+        text: "text-yellow-700",
+        border: "border-yellow-200",
+        icon: "⏳",
+        dot: "bg-yellow-500"
+      };
     case "Cancelled":
-      return "bg-red-100 text-red-800";
+      return {
+        bg: "bg-gradient-to-r from-red-50 to-rose-50",
+        text: "text-red-700",
+        border: "border-red-200",
+        icon: "✕",
+        dot: "bg-red-500"
+      };
     default:
-      return "bg-gray-100 text-gray-800";
+      return {
+        bg: "bg-gradient-to-r from-gray-50 to-slate-50",
+        text: "text-gray-700",
+        border: "border-gray-200",
+        icon: "•",
+        dot: "bg-gray-500"
+      };
   }
 };
 
@@ -143,6 +197,97 @@ const setDefaultAddress = (id) => {
     isDefault: addr.id === id,
   }));
   success("Default address updated! ✓", 2500);
+};
+
+const startEditAddress = (address) => {
+  editingAddressId.value = address.id;
+  addressFormData.value = { ...address };
+};
+
+const cancelEditAddress = () => {
+  editingAddressId.value = null;
+  addressFormData.value = {
+    type: "",
+    name: "",
+    address: "",
+    phone: "",
+  };
+};
+
+const saveAddress = (id) => {
+  const index = addresses.value.findIndex((addr) => addr.id === id);
+  if (index !== -1) {
+    addresses.value[index] = {
+      ...addressFormData.value,
+      id,
+      isDefault: addresses.value[index].isDefault,
+    };
+    success("Address updated successfully! ✓", 2500);
+  }
+  cancelEditAddress();
+};
+
+const deleteAddress = (id) => {
+  const address = addresses.value.find((addr) => addr.id === id);
+  if (address && !address.isDefault) {
+    addresses.value = addresses.value.filter((addr) => addr.id !== id);
+    info("Address deleted", 2000);
+  } else if (address && address.isDefault) {
+    info("Cannot delete default address", 2500);
+  }
+};
+
+const openAddressForm = () => {
+  showAddressForm.value = true;
+  addressFormData.value = {
+    type: "Home",
+    name: fullName.value,
+    address: "",
+    phone: user.value.phone,
+  };
+};
+
+const closeAddressForm = () => {
+  showAddressForm.value = false;
+  addressFormData.value = {
+    type: "",
+    name: "",
+    address: "",
+    phone: "",
+  };
+};
+
+const addNewAddress = () => {
+  const newId = Math.max(...addresses.value.map((a) => a.id)) + 1;
+  addresses.value.push({
+    ...addressFormData.value,
+    id: newId,
+    isDefault: addresses.value.length === 0,
+  });
+  success("New address added! ✓", 2500);
+  closeAddressForm();
+};
+
+const updatePassword = () => {
+  if (!passwordData.value.current || !passwordData.value.new || !passwordData.value.confirm) {
+    info("Please fill all password fields", 2500);
+    return;
+  }
+  if (passwordData.value.new !== passwordData.value.confirm) {
+    info("New passwords do not match", 2500);
+    return;
+  }
+  if (passwordData.value.new.length < 8) {
+    info("Password must be at least 8 characters", 2500);
+    return;
+  }
+  // In a real app, this would call an API
+  success("Password updated successfully! ✓", 2500);
+  passwordData.value = {
+    current: "",
+    new: "",
+    confirm: "",
+  };
 };
 </script>
 
@@ -500,13 +645,21 @@ const setDefaultAddress = (id) => {
                       </h3>
                       <p class="text-sm text-[#697586]">{{ order.date }}</p>
                     </div>
-                    <span
+                    <div
                       :class="[
-                        'inline-block px-3 py-1 rounded-full text-sm font-medium w-fit',
-                        getStatusColor(order.status),
+                        'inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold w-fit border shadow-sm transition-all hover:shadow-md',
+                        getStatusColor(order.status).bg,
+                        getStatusColor(order.status).text,
+                        getStatusColor(order.status).border,
                       ]">
-                      {{ order.status }}
-                    </span>
+                      <span
+                        :class="[
+                          'w-2 h-2 rounded-full animate-pulse',
+                          getStatusColor(order.status).dot,
+                        ]"></span>
+                      <span class="text-lg leading-none">{{ getStatusColor(order.status).icon }}</span>
+                      <span>{{ order.status }}</span>
+                    </div>
                   </div>
                   <div
                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t border-gray-100">
@@ -516,10 +669,12 @@ const setDefaultAddress = (id) => {
                         order.total
                       }}</span>
                     </div>
-                    <button
-                      class="px-4 py-2 border border-[#F5A3B7] text-[#F5A3B7] rounded-lg hover:bg-[#F5A3B7] hover:text-white transition-colors w-fit">
+                    <LiquidButton
+                      variant="glass"
+                      size="sm"
+                      :class="'w-fit'">
                       View Details
-                    </button>
+                    </LiquidButton>
                   </div>
                 </div>
               </div>
@@ -577,9 +732,10 @@ const setDefaultAddress = (id) => {
                     </LiquidButton>
                     <LiquidButton
                       @click="removeFromWishlist(item.id)"
-                      variant="glass"
-                      size="sm">
-                      <template #icon>
+                      variant="danger"
+                      size="sm"
+                      icon-only>
+                      <template #icon-left>
                         <svg
                           class="w-5 h-5"
                           fill="none"
@@ -589,7 +745,7 @@ const setDefaultAddress = (id) => {
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                       </template>
                     </LiquidButton>
@@ -626,56 +782,214 @@ const setDefaultAddress = (id) => {
                 <h2 class="text-2xl sm:text-3xl font-bold text-[#383838]">
                   Saved Addresses
                 </h2>
-                <button
-                  class="px-4 py-2 bg-[#F5A3B7] text-white rounded-lg hover:bg-[#e392a6] transition-colors">
+                <LiquidButton
+                  @click="openAddressForm"
+                  variant="primary"
+                  size="md">
                   + Add New
-                </button>
+                </LiquidButton>
+              </div>
+
+              <!-- Add New Address Form -->
+              <div
+                v-if="showAddressForm"
+                class="mb-6 p-6 border-2 border-[#F5A3B7] rounded-lg bg-pink-50/30">
+                <h3 class="text-lg font-semibold text-[#383838] mb-4">
+                  Add New Address
+                </h3>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-[#383838] mb-2"
+                      >Address Type</label
+                    >
+                    <select
+                      v-model="addressFormData.type"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]">
+                      <option value="Home">Home</option>
+                      <option value="Office">Office</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-[#383838] mb-2"
+                      >Full Name</label
+                    >
+                    <input
+                      v-model="addressFormData.name"
+                      type="text"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-[#383838] mb-2"
+                      >Address</label
+                    >
+                    <textarea
+                      v-model="addressFormData.address"
+                      rows="3"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]"></textarea>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-[#383838] mb-2"
+                      >Phone Number</label
+                    >
+                    <input
+                      v-model="addressFormData.phone"
+                      type="tel"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]" />
+                  </div>
+                  <div class="flex gap-3 pt-2">
+                    <LiquidButton
+                      @click="addNewAddress"
+                      variant="primary"
+                      size="md"
+                      :class="'flex-1'">
+                      Save Address
+                    </LiquidButton>
+                    <LiquidButton
+                      @click="closeAddressForm"
+                      variant="secondary"
+                      size="md"
+                      :class="'flex-1'">
+                      Cancel
+                    </LiquidButton>
+                  </div>
+                </div>
               </div>
 
               <div class="space-y-4">
                 <div
                   v-for="address in addresses"
                   :key="address.id"
-                  class="border border-gray-200 rounded-lg p-6 hover: transition-shadow">
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex items-center gap-3">
-                      <span
-                        class="px-3 py-1 bg-[#F5A3B7] bg-opacity-20 text-[#F5A3B7] rounded-full text-sm font-medium">
-                        {{ address.type }}
-                      </span>
-                      <span
-                        v-if="address.isDefault"
-                        class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
-                        Default
-                      </span>
+                  class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                  <!-- Editing Mode -->
+                  <div v-if="editingAddressId === address.id">
+                    <div class="space-y-4">
+                      <div>
+                        <label
+                          class="block text-sm font-medium text-[#383838] mb-2"
+                          >Address Type</label
+                        >
+                        <select
+                          v-model="addressFormData.type"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]">
+                          <option value="Home">Home</option>
+                          <option value="Office">Office</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label
+                          class="block text-sm font-medium text-[#383838] mb-2"
+                          >Full Name</label
+                        >
+                        <input
+                          v-model="addressFormData.name"
+                          type="text"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]" />
+                      </div>
+                      <div>
+                        <label
+                          class="block text-sm font-medium text-[#383838] mb-2"
+                          >Address</label
+                        >
+                        <textarea
+                          v-model="addressFormData.address"
+                          rows="3"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]"></textarea>
+                      </div>
+                      <div>
+                        <label
+                          class="block text-sm font-medium text-[#383838] mb-2"
+                          >Phone Number</label
+                        >
+                        <input
+                          v-model="addressFormData.phone"
+                          type="tel"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]" />
+                      </div>
+                      <div class="flex gap-3 pt-2">
+                        <LiquidButton
+                          @click="saveAddress(address.id)"
+                          variant="primary"
+                          size="md"
+                          :class="'flex-1'">
+                          Save Changes
+                        </LiquidButton>
+                        <LiquidButton
+                          @click="cancelEditAddress"
+                          variant="secondary"
+                          size="md"
+                          :class="'flex-1'">
+                          Cancel
+                        </LiquidButton>
+                      </div>
                     </div>
-                    <button class="text-[#697586] hover:text-[#F5A3B7]">
-                      <svg
-                        class="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                      </svg>
-                    </button>
                   </div>
-                  <h3 class="font-semibold text-[#383838] mb-2">
-                    {{ address.name }}
-                  </h3>
-                  <p class="text-[#697586] mb-1">{{ address.address }}</p>
-                  <p class="text-[#697586] mb-4">{{ address.phone }}</p>
-                  <LiquidButton
-                    v-if="!address.isDefault"
-                    @click="setDefaultAddress(address.id)"
-                    variant="glass"
-                    size="sm"
-                    :class="'text-sm'">
-                    Set as default
-                  </LiquidButton>
+
+                  <!-- View Mode -->
+                  <div v-else>
+                    <div class="flex justify-between items-start mb-4">
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="px-3 py-1 bg-[#F5A3B7] bg-opacity-20 text-[#F5A3B7] rounded-full text-sm font-medium">
+                          {{ address.type }}
+                        </span>
+                        <span
+                          v-if="address.isDefault"
+                          class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                          Default
+                        </span>
+                      </div>
+                      <div class="flex gap-2">
+                        <button
+                          @click="startEditAddress(address)"
+                          class="text-[#697586] hover:text-[#F5A3B7] transition-colors"
+                          title="Edit address">
+                          <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                          </svg>
+                        </button>
+                        <button
+                          v-if="!address.isDefault"
+                          @click="deleteAddress(address.id)"
+                          class="text-[#697586] hover:text-red-600 transition-colors"
+                          title="Delete address">
+                          <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <h3 class="font-semibold text-[#383838] mb-2">
+                      {{ address.name }}
+                    </h3>
+                    <p class="text-[#697586] mb-1">{{ address.address }}</p>
+                    <p class="text-[#697586] mb-4">{{ address.phone }}</p>
+                    <LiquidButton
+                      v-if="!address.isDefault"
+                      @click="setDefaultAddress(address.id)"
+                      variant="glass"
+                      size="sm"
+                      :class="'text-sm'">
+                      Set as default
+                    </LiquidButton>
+                  </div>
                 </div>
               </div>
             </div>
@@ -701,6 +1015,7 @@ const setDefaultAddress = (id) => {
                         >Current Password</label
                       >
                       <input
+                        v-model="passwordData.current"
                         type="password"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]" />
                     </div>
@@ -710,6 +1025,7 @@ const setDefaultAddress = (id) => {
                         >New Password</label
                       >
                       <input
+                        v-model="passwordData.new"
                         type="password"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]" />
                     </div>
@@ -719,13 +1035,16 @@ const setDefaultAddress = (id) => {
                         >Confirm New Password</label
                       >
                       <input
+                        v-model="passwordData.confirm"
                         type="password"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]" />
                     </div>
-                    <button
-                      class="px-6 py-3 bg-[#F5A3B7] text-white rounded-lg hover:bg-[#e392a6] transition-colors font-medium">
+                    <LiquidButton
+                      @click="updatePassword"
+                      variant="primary"
+                      size="md">
                       Update Password
-                    </button>
+                    </LiquidButton>
                   </div>
                 </div>
 
@@ -739,8 +1058,8 @@ const setDefaultAddress = (id) => {
                       class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-gray-50 transition-all">
                       <div class="checkbox-wrapper-account">
                         <input
+                          v-model="notifications.orderEmails"
                           type="checkbox"
-                          checked
                           class="modern-checkbox-account" />
                         <span class="checkbox-custom-account">
                           <svg
@@ -766,8 +1085,8 @@ const setDefaultAddress = (id) => {
                       class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-gray-50 transition-all">
                       <div class="checkbox-wrapper-account">
                         <input
+                          v-model="notifications.promotional"
                           type="checkbox"
-                          checked
                           class="modern-checkbox-account" />
                         <span class="checkbox-custom-account">
                           <svg
@@ -793,6 +1112,7 @@ const setDefaultAddress = (id) => {
                       class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-gray-50 transition-all">
                       <div class="checkbox-wrapper-account">
                         <input
+                          v-model="notifications.sms"
                           type="checkbox"
                           class="modern-checkbox-account" />
                         <span class="checkbox-custom-account">
@@ -827,10 +1147,9 @@ const setDefaultAddress = (id) => {
                     Once you delete your account, there is no going back. Please
                     be certain.
                   </p>
-                  <button
-                    class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium">
+                  <LiquidButton variant="danger" size="md">
                     Delete Account
-                  </button>
+                  </LiquidButton>
                 </div>
               </div>
             </div>
