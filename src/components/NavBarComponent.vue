@@ -252,23 +252,9 @@ const isActive = (path) => {
 
           <!-- Mobile Menu Icons -->
           <div class="pt-4 border-t border-white/20 space-y-1.5">
-            <!-- Auth Buttons (when not logged in) -->
-            <div v-if="!isAuthenticated" class="space-y-2 pb-2">
-              <router-link to="/login" @click="closeMobileMenu">
-                <LiquidButton variant="ghost" size="md" full-width class="justify-center">
-                  Login
-                </LiquidButton>
-              </router-link>
-              <router-link to="/signup" @click="closeMobileMenu">
-                <LiquidButton variant="primary" size="md" full-width class="justify-center">
-                  Sign Up
-                </LiquidButton>
-              </router-link>
-            </div>
-            
             <!-- Account Link (when logged in) -->
             <router-link
-              v-else
+              v-if="isAuthenticated"
               to="/account"
               @click="closeMobileMenu"
               :class="[
@@ -283,6 +269,8 @@ const isActive = (path) => {
                 class="w-5 h-5" />
               <span class="text-sm font-semibold">ACCOUNT</span>
             </router-link>
+            
+            <!-- Cart Link -->
             <router-link
               to="/payment"
               @click="closeMobileMenu"
@@ -306,6 +294,20 @@ const isActive = (path) => {
               </div>
               <span class="text-sm font-semibold">CART</span>
             </router-link>
+            
+            <!-- Auth Buttons (when not logged in) - At Bottom -->
+            <div v-if="!isAuthenticated" class="space-y-4 pt-4 border-t border-white/20">
+              <router-link to="/login" @click="closeMobileMenu">
+                <LiquidButton variant="ghost" size="lg" full-width class="justify-center min-h-[52px]">
+                  Login
+                </LiquidButton>
+              </router-link>
+              <router-link to="/signup" @click="closeMobileMenu" class="block pt-0.5">
+                <LiquidButton variant="primary" size="lg" full-width class="justify-center min-h-[52px]">
+                  Sign Up
+                </LiquidButton>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
