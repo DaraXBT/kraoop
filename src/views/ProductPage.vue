@@ -1,97 +1,212 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-blue-50/10 via-purple-50/15 to-pink-50/20">
-    <NavBarComponentVue />
-    <AnnouncementBanner />
-
-    <!-- Loading State -->
+  <div class="min-h-screen w-full relative">
+    <!-- Dashed Grid -->
     <div
-      v-if="isInitializing"
-      class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
-      <div class="flex items-center justify-center min-h-[60vh]">
-        <div class="text-center">
-          <div
-            class="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#F5A3B7] mb-4"></div>
-          <p class="text-gray-600 font-semibold text-lg">Loading products...</p>
+      class="absolute inset-0 z-0"
+      style="
+        background-image: linear-gradient(
+            to right,
+            #e7e5e4 1px,
+            transparent 1px
+          ),
+          linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 0;
+        mask-image: repeating-linear-gradient(
+            to right,
+            black 0px,
+            black 3px,
+            transparent 3px,
+            transparent 8px
+          ),
+          repeating-linear-gradient(
+            to bottom,
+            black 0px,
+            black 3px,
+            transparent 3px,
+            transparent 8px
+          );
+        -webkit-mask-image: repeating-linear-gradient(
+            to right,
+            black 0px,
+            black 3px,
+            transparent 3px,
+            transparent 8px
+          ),
+          repeating-linear-gradient(
+            to bottom,
+            black 0px,
+            black 3px,
+            transparent 3px,
+            transparent 8px
+          );
+        mask-composite: intersect;
+        -webkit-mask-composite: source-in;
+      "></div>
+
+    <div class="relative z-10">
+      <NavBarComponentVue />
+      <AnnouncementBanner />
+
+      <!-- Loading State -->
+      <div
+        v-if="isInitializing"
+        class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
+        <div class="flex items-center justify-center min-h-[60vh]">
+          <div class="text-center">
+            <div
+              class="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#F5A3B7] mb-4"></div>
+            <p class="text-gray-600 font-semibold text-lg">
+              Loading products...
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Main Content -->
-    <div
-      v-else
-      class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-6 sm:py-8 lg:py-10">
-      <!-- Search Bar Section -->
-      <div class="mb-6">
-        <h1 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-5">
-          Discover Products
-        </h1>
-        <SearchBar
-          v-model="searchQuery"
-          :suggestions="searchSuggestions"
-          :popularSearches="popularSearches"
-          @search="handleSearch" />
-      </div>
+      <!-- Main Content -->
+      <div
+        v-else
+        class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-6 sm:py-8 lg:py-10">
+        <!-- Search Bar Section -->
+        <div class="mb-6">
+          <h1 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-5">
+            Discover Products
+          </h1>
+          <SearchBar
+            v-model="searchQuery"
+            :suggestions="searchSuggestions"
+            :popularSearches="popularSearches"
+            @search="handleSearch" />
+        </div>
 
-      <div class="flex flex-col lg:flex-row gap-6 lg:gap-10">
-        <!-- Sidebar / Filters -->
-        <ModernFilterSidebar
-          title="Categories"
-          :categories="categories"
-          :brands="brands"
-          :skinTypes="skinTypes"
-          :additionalFilters="additionalFilters"
-          :showFilters="showFilters"
-          :priceRange="priceRange"
-          :selectedRating="selectedRating"
-          @toggle-filters="showFilters = !showFilters"
-          @category-change="handleCategoryChange"
-          @brand-change="handleBrandChange"
-          @skin-type-change="handleSkinTypeChange"
-          @filter-change="handleFilterChange"
-          @price-change="handlePriceChange"
-          @rating-change="handleRatingChange"
-          @clear-filters="clearAllFilters"
-          @remove-filter="removeFilter" />
+        <div class="flex flex-col lg:flex-row gap-6 lg:gap-10">
+          <!-- Sidebar / Filters -->
+          <ModernFilterSidebar
+            title="Categories"
+            :categories="categories"
+            :brands="brands"
+            :skinTypes="skinTypes"
+            :additionalFilters="additionalFilters"
+            :showFilters="showFilters"
+            :priceRange="priceRange"
+            :selectedRating="selectedRating"
+            @toggle-filters="showFilters = !showFilters"
+            @category-change="handleCategoryChange"
+            @brand-change="handleBrandChange"
+            @skin-type-change="handleSkinTypeChange"
+            @filter-change="handleFilterChange"
+            @price-change="handlePriceChange"
+            @rating-change="handleRatingChange"
+            @clear-filters="clearAllFilters"
+            @remove-filter="removeFilter" />
 
-        <!-- Product List -->
-        <main class="flex-1">
-          <!-- Results Info and Sort Bar -->
-          <div
-            class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
-            <div class="text-sm sm:text-base">
-              <span class="text-neutral-900 font-semibold">
-                {{ filteredProducts.length }}
-              </span>
-              <span class="text-gray-600">
-                {{ filteredProducts.length === 1 ? "Product" : "Products" }}
-              </span>
-              <span v-if="searchQuery" class="text-gray-500 ml-2">
-                for "{{ searchQuery }}"
-              </span>
+          <!-- Product List -->
+          <main class="flex-1">
+            <!-- Results Info and Sort Bar -->
+            <div
+              class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
+              <div class="text-sm sm:text-base">
+                <span class="text-neutral-900 font-semibold">
+                  {{ filteredProducts.length }}
+                </span>
+                <span class="text-gray-600">
+                  {{ filteredProducts.length === 1 ? "Product" : "Products" }}
+                </span>
+                <span v-if="searchQuery" class="text-gray-500 ml-2">
+                  for "{{ searchQuery }}"
+                </span>
+              </div>
+
+              <!-- Sort Dropdown -->
+              <div class="flex items-center gap-2.5 text-sm w-full sm:w-auto">
+                <span class="text-gray-700 font-medium">Sort By</span>
+                <div class="relative flex-1 sm:flex-none sm:min-w-[200px]">
+                  <select
+                    v-model="sortBy"
+                    @change="sortProducts"
+                    class="enhanced-dropdown w-full py-3 pl-3.5 pr-10 rounded-xl border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none bg-white text-sm min-h-[44px] appearance-none cursor-pointer transition-all duration-200">
+                    <option value="featured">Featured</option>
+                    <option value="best-selling">Best Selling</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating-high">Highest Rated</option>
+                    <option value="a-z">A-Z</option>
+                    <option value="z-a">Z-A</option>
+                    <option value="newest">Newest First</option>
+                  </select>
+                  <div
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-500">
+                    <svg
+                      class="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Sort Dropdown -->
-            <div class="flex items-center gap-2.5 text-sm w-full sm:w-auto">
-              <span class="text-gray-700 font-medium">Sort By</span>
-              <div class="relative flex-1 sm:flex-none sm:min-w-[200px]">
-                <select
-                  v-model="sortBy"
-                  @change="sortProducts"
-                  class="enhanced-dropdown w-full py-3 pl-3.5 pr-10 rounded-xl border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none bg-white text-sm min-h-[44px] appearance-none cursor-pointer transition-all duration-200">
-                  <option value="featured">Featured</option>
-                  <option value="best-selling">Best Selling</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="rating-high">Highest Rated</option>
-                  <option value="a-z">A-Z</option>
-                  <option value="z-a">Z-A</option>
-                  <option value="newest">Newest First</option>
-                </select>
-                <div
-                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-500">
+            <!-- No Results Message -->
+            <div
+              v-if="filteredProducts.length === 0"
+              class="text-center py-12 px-6">
+              <svg
+                class="mx-auto h-20 w-20 text-gray-300 mb-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                No products found
+              </h3>
+              <p class="text-gray-600 mb-5 text-sm">
+                Try adjusting your filters or search query
+              </p>
+              <button
+                @click="clearAllFilters"
+                class="px-5 py-2.5 bg-[#F5A3B7] text-white rounded-xl font-medium hover:bg-[#e392a6] transition-colors text-sm">
+                Clear All Filters
+              </button>
+            </div>
+
+            <!-- Products Grid -->
+            <div
+              v-else
+              class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 xl:gap-5 mb-8">
+              <div v-for="product in paginatedProducts" :key="product.id">
+                <CartComponent
+                  :id="product.id"
+                  :promotion="product.promotion"
+                  :image="product.image"
+                  :title="product.title"
+                  :product="product.product"
+                  :rating="product.rating"
+                  :price="product.price"
+                  @add-to-cart="handleAddToCart" />
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div v-if="totalPages > 1" class="flex justify-center">
+              <nav class="flex items-center gap-x-2">
+                <button
+                  type="button"
+                  @click="previousPage"
+                  :disabled="currentPage === 1"
+                  class="min-h-[48px] min-w-[48px] py-3 px-3.5 inline-flex justify-center items-center gap-x-1.5 text-base rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
                   <svg
-                    class="h-4 w-4"
+                    class="flex-shrink-0 w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24">
@@ -99,121 +214,53 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M19 9l-7 7-7-7" />
+                      d="m15 18-6-6 6-6" />
                   </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- No Results Message -->
-          <div
-            v-if="filteredProducts.length === 0"
-            class="text-center py-12 px-6">
-            <svg
-              class="mx-auto h-20 w-20 text-gray-300 mb-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              No products found
-            </h3>
-            <p class="text-gray-600 mb-5 text-sm">
-              Try adjusting your filters or search query
-            </p>
-            <button
-              @click="clearAllFilters"
-              class="px-5 py-2.5 bg-[#F5A3B7] text-white rounded-xl font-medium hover:bg-[#e392a6] transition-colors text-sm">
-              Clear All Filters
-            </button>
-          </div>
-
-          <!-- Products Grid -->
-          <div
-            v-else
-            class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 xl:gap-5 mb-8">
-            <div v-for="product in paginatedProducts" :key="product.id">
-              <CartComponent
-                :id="product.id"
-                :promotion="product.promotion"
-                :image="product.image"
-                :title="product.title"
-                :product="product.product"
-                :rating="product.rating"
-                :price="product.price"
-                @add-to-cart="handleAddToCart" />
-            </div>
-          </div>
-
-          <!-- Pagination -->
-          <div v-if="totalPages > 1" class="flex justify-center">
-            <nav class="flex items-center gap-x-2">
-              <button
-                type="button"
-                @click="previousPage"
-                :disabled="currentPage === 1"
-                class="min-h-[48px] min-w-[48px] py-3 px-3.5 inline-flex justify-center items-center gap-x-1.5 text-base rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
-                <svg
-                  class="flex-shrink-0 w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m15 18-6-6 6-6" />
-                </svg>
-                <span class="hidden sm:inline">Previous</span>
-              </button>
-
-              <div class="flex items-center gap-x-2">
-                <button
-                  v-for="page in displayedPages"
-                  :key="page"
-                  type="button"
-                  @click="goToPage(page)"
-                  :class="[
-                    'min-h-[48px] min-w-[48px] flex justify-center items-center py-3 px-4 text-base rounded-lg focus:outline-none transition-colors',
-                    currentPage === page
-                      ? 'bg-[#F5A3B7] text-white font-semibold hover:bg-[#e392a6]'
-                      : 'text-gray-800 hover:bg-gray-100 bg-white',
-                  ]">
-                  {{ page }}
+                  <span class="hidden sm:inline">Previous</span>
                 </button>
-              </div>
 
-              <button
-                type="button"
-                @click="nextPage"
-                :disabled="currentPage === totalPages"
-                class="min-h-[48px] min-w-[48px] py-3 px-3.5 inline-flex justify-center items-center gap-x-1.5 text-base rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
-                <span class="hidden sm:inline">Next</span>
-                <svg
-                  class="flex-shrink-0 w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m9 18 6-6-6-6" />
-                </svg>
-              </button>
-            </nav>
-          </div>
-        </main>
+                <div class="flex items-center gap-x-2">
+                  <button
+                    v-for="page in displayedPages"
+                    :key="page"
+                    type="button"
+                    @click="goToPage(page)"
+                    :class="[
+                      'min-h-[48px] min-w-[48px] flex justify-center items-center py-3 px-4 text-base rounded-lg focus:outline-none transition-colors',
+                      currentPage === page
+                        ? 'bg-[#F5A3B7] text-white font-semibold hover:bg-[#e392a6]'
+                        : 'text-gray-800 hover:bg-gray-100 bg-white',
+                    ]">
+                    {{ page }}
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  @click="nextPage"
+                  :disabled="currentPage === totalPages"
+                  class="min-h-[48px] min-w-[48px] py-3 px-3.5 inline-flex justify-center items-center gap-x-1.5 text-base rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+                  <span class="hidden sm:inline">Next</span>
+                  <svg
+                    class="flex-shrink-0 w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </nav>
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
 
-    <FooterComponentVue />
+      <FooterComponentVue />
+    </div>
   </div>
 </template>
 

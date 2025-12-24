@@ -2,6 +2,7 @@
 import {ref, computed} from "vue";
 import {useRoute} from "vue-router";
 import {useProductStore} from "../stores/ProductStore";
+import LiquidButton from "./LiquidButton.vue";
 
 const route = useRoute();
 const productStore = useProductStore();
@@ -136,35 +137,39 @@ const isActive = (path) => {
       </div>
 
       <!-- Mobile Menu Button -->
-      <button
+      <LiquidButton
         @click="toggleMobileMenu"
-        class="lg:hidden p-2.5 rounded-xl hover:bg-white/80 backdrop-blur-sm transition-smooth min-h-[44px] min-w-[44px] flex items-center justify-center shadow-glass-sm hover:shadow-glass"
+        variant="glass"
+        size="md"
+        :class="'lg:hidden backdrop-blur-sm shadow-glass-sm hover:shadow-glass'"
         aria-label="Toggle menu">
-        <svg
-          v-if="!mobileMenuOpen"
-          class="w-6 h-6 text-gray-700"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg
-          v-else
-          class="w-6 h-6 text-gray-700"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+        <template #icon>
+          <svg
+            v-if="!mobileMenuOpen"
+            class="w-6 h-6 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg
+            v-else
+            class="w-6 h-6 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </template>
+      </LiquidButton>
     </div>
 
     <!-- Mobile Menu -->

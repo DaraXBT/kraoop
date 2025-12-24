@@ -1,5 +1,6 @@
 <script setup>
 import {ref, watch, onUnmounted, computed} from "vue";
+import LiquidButton from "./LiquidButton.vue";
 
 const props = defineProps({
   message: {
@@ -280,26 +281,27 @@ const transformStyle = computed(() => {
         </div>
 
         <!-- Close Button -->
-        <button
+        <LiquidButton
           @click="closeToast"
-          :class="[
-            typeStyles.text,
-            'flex-shrink-0 hover:scale-110 active:scale-95 transition-smooth p-1 rounded-lg hover:bg-white/30 touch-manipulation',
-          ]"
+          variant="glass"
+          size="sm"
+          :class="'flex-shrink-0'"
           aria-label="Close notification">
-          <svg
-            class="w-4 h-4 sm:w-5 sm:h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            stroke-width="2.5">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+          <template #icon>
+            <svg
+              class="w-4 h-4 sm:w-5 sm:h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2.5">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </template>
+        </LiquidButton>
       </div>
 
       <!-- Optimized progress bar -->

@@ -18,6 +18,9 @@ const Payment = () => import("../views/Payment.vue");
 const AboutUs = () => import("../views/AboutUs.vue");
 const Account = () => import("../views/Account.vue");
 const WishlistPage = () => import("../views/WishlistPage.vue");
+const LiquidButtonComparison = () =>
+  import("../views/LiquidButtonComparison.vue");
+const ButtonSizeTest = () => import("../views/ButtonSizeTest.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -103,6 +106,26 @@ const router = createRouter({
       component: WishlistPage,
       meta: {
         title: "My Wishlist - Kraoop Beauty",
+      },
+    },
+    {
+      path: "/liquid-comparison",
+      name: "liquid-comparison",
+      component: LiquidButtonComparison,
+      meta: {
+        title: "Liquid Button Comparison - Kraoop Beauty",
+        description:
+          "Compare original and advanced liquid glass button implementations",
+      },
+    },
+    {
+      path: "/button-size-test",
+      name: "button-size-test",
+      component: ButtonSizeTest,
+      meta: {
+        title: "Button Size Test - Kraoop Beauty",
+        description:
+          "Test consistency between LiquidButton and AdvancedLiquidButton sizing",
       },
     },
   ],

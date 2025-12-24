@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from "vue";
+import LiquidButton from "./LiquidButton.vue";
 
 const email = ref("");
 
@@ -165,25 +166,30 @@ const handleSubscribe = () => {
                     class="block w-full px-4 py-4 lg:py-3 text-base sm:text-base lg:text-sm border-2 border-white/30 rounded-2xl lg:rounded-xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/30 bg-white/10 lg:bg-gray-800/50 text-white placeholder-white/70 transition-smooth shadow-glass-sm font-medium backdrop-blur-sm"
                     placeholder="Enter your email" />
                 </div>
-                <button
+                <LiquidButton
+                  variant="primary"
                   type="submit"
-                  class="w-full inline-flex justify-center items-center px-6 py-4 lg:py-3 text-base sm:text-base lg:text-sm font-bold text-white bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] rounded-2xl lg:rounded-xl hover:shadow-glass-lg transition-smooth hover:scale-105 active:scale-95 border-2 border-white/30">
+                  full-width
+                  size="lg"
+                  class="py-4 lg:py-3">
                   Subscribe Now
-                  <svg
-                    class="flex-shrink-0 w-5 h-5 sm:w-5 sm:h-5 lg:w-4 lg:h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </button>
+                  <template v-slot:icon-right>
+                    <svg
+                      class="w-5 h-5 sm:w-5 sm:h-5 lg:w-4 lg:h-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </template>
+                </LiquidButton>
               </form>
             </div>
           </div>

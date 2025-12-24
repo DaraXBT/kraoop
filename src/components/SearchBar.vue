@@ -3,47 +3,44 @@
     <!-- Search Input -->
     <div class="relative">
       <div
-        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
         <svg
-          class="h-5 w-5 text-gray-400"
-          fill="none"
-          stroke="currentColor"
+          class="h-5 w-5 text-white/70"
+          fill="currentColor"
           viewBox="0 0 24 24">
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            fill-rule="evenodd"
+            d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+            clip-rule="evenodd" />
         </svg>
       </div>
       <input
         v-model="searchQuery"
         type="text"
         :placeholder="placeholder"
-        class="w-full pl-11 pr-12 py-3.5 text-base border-2 border-gray-200 rounded-xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 bg-white min-h-[48px]"
+        class="liquid-glass-search-input w-full pl-11 pr-12 py-3.5 text-white text-base bg-black/20 border border-white/50 backdrop-blur-sm rounded-full shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] placeholder:text-white/70 focus:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all duration-300 min-h-[48px] relative z-10"
         @input="onSearch"
         @focus="showSuggestions = true"
         @blur="handleBlur" />
 
       <!-- Clear Button -->
-      <button
+      <LiquidButton
         v-if="searchQuery"
         @click="clearSearch"
-        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors">
-        <svg
-          class="h-5 w-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+        variant="glass"
+        size="sm"
+        :class="'absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white z-20 p-1'"
+        aria-label="Clear search">
+        <template #icon>
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              fill-rule="evenodd"
+              d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
+              clip-rule="evenodd" />
+          </svg>
+        </template>
+      </LiquidButton>
     </div>
-
     <!-- Search Suggestions Dropdown -->
     <transition
       enter-active-class="transition ease-out duration-200"
@@ -57,7 +54,7 @@
           showSuggestions &&
           (filteredSuggestions.length > 0 || recentSearches.length > 0)
         "
-        class="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden max-h-96 overflow-y-auto">
+        class="absolute z-50 w-full mt-2 bg-white/90 backdrop-blur-xl rounded-xl shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)] border border-white/30 overflow-hidden max-h-96 overflow-y-auto liquid-glass-dropdown">
         <!-- Recent Searches -->
         <div
           v-if="recentSearches.length > 0 && !searchQuery"
@@ -67,11 +64,13 @@
               class="text-xs font-semibold text-gray-500 uppercase tracking-wide">
               Recent Searches
             </h4>
-            <button
+            <LiquidButton
               @click="clearRecentSearches"
-              class="text-xs text-[#F5A3B7] hover:text-[#e392a6] font-medium">
+              variant="danger"
+              size="sm"
+              class="text-xs">
               Clear
-            </button>
+            </LiquidButton>
           </div>
           <button
             v-for="(search, index) in recentSearches"
@@ -179,6 +178,7 @@
 
 <script setup>
 import {ref, computed, watch} from "vue";
+import LiquidButton from "./LiquidButton.vue";
 
 const props = defineProps({
   placeholder: {

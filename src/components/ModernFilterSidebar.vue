@@ -1,25 +1,30 @@
 <template>
   <aside class="w-full lg:w-72 flex-shrink-0">
     <!-- Mobile Filter Toggle Button -->
-    <button
+    <LiquidButton
       @click="$emit('toggle-filters')"
-      class="lg:hidden w-full mb-4 px-6 py-4 glass-card-strong text-gray-900 rounded-2xl font-bold flex items-center justify-between min-h-[56px] shadow-glass hover:shadow-glass-lg transition-smooth hover:scale-[1.02] border border-white/30">
+      variant="secondary"
+      size="lg"
+      full-width
+      class="lg:hidden mb-4">
       <span class="text-sm">{{
         showFilters ? "Hide Filters" : "Show Filters"
       }}</span>
-      <svg
-        :class="{'rotate-180': showFilters}"
-        class="w-5 h-5 transition-transform"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
+      <template v-slot:icon-right>
+        <svg
+          :class="{'rotate-180': showFilters}"
+          class="w-5 h-5 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7" />
+        </svg>
+      </template>
+    </LiquidButton>
 
     <div :class="{'hidden lg:block': !showFilters}" class="space-y-5">
       <!-- Active Filters Display -->
@@ -39,21 +44,26 @@
             :key="index"
             class="inline-flex items-center gap-2 px-4 py-2 glass-card text-sm text-gray-700 rounded-full border border-white/30 group hover:border-red-300 transition-smooth hover:shadow-glass font-semibold">
             {{ filter.label }}
-            <button
+            <LiquidButton
               @click="$emit('remove-filter', filter)"
-              class="text-gray-400 hover:text-red-500 transition-smooth hover:scale-110">
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+              variant="danger"
+              size="sm"
+              icon-only
+              class="w-4 h-4 !p-0">
+              <template v-slot:icon-left>
+                <svg
+                  class="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </template>
+            </LiquidButton>
           </span>
         </div>
       </div>
@@ -459,6 +469,7 @@
 
 <script setup>
 import {ref, computed} from "vue";
+import LiquidButton from "./LiquidButton.vue";
 
 const props = defineProps({
   title: {

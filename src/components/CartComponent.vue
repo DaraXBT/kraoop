@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from "vue";
+import LiquidButton from "./LiquidButton.vue";
 
 const props = defineProps({
   id: {
@@ -123,12 +124,14 @@ const calculateOriginalPrice = () => {
           </span>
         </div>
 
-        <!-- Add to Cart Button - Glass Style -->
-        <button
+        <!-- Add to Cart Button - Liquid Glass Style -->
+        <LiquidButton
+          variant="primary"
+          full-width
           @click="addToBag"
-          class="w-full py-2.5 sm:py-3 px-3 glass-card-strong text-gray-900 border-2 border-gray-900/80 rounded-xl justify-center items-center inline-flex cursor-pointer hover:bg-gray-900 hover:text-white hover:border-gray-900 active:scale-[0.95] transition-smooth touch-manipulation font-bold text-xs sm:text-sm shadow-glass-sm hover:shadow-glass">
-          <span class="whitespace-nowrap"> Add to cart </span>
-        </button>
+          class="py-2.5 sm:py-3">
+          <span class="whitespace-nowrap">Add to cart</span>
+        </LiquidButton>
       </div>
     </div>
   </div>
