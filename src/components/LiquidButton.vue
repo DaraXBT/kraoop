@@ -62,7 +62,7 @@ export default {
       type: String,
       default: "primary",
       validator: (value) =>
-        ["primary", "secondary", "accent", "danger", "glass"].includes(value),
+        ["primary", "secondary", "accent", "danger", "glass", "ghost"].includes(value),
     },
 
     // Button sizes
@@ -142,6 +142,9 @@ export default {
           break;
         case "glass":
           baseClasses.push("liquid-glass-btn-glass");
+          break;
+        case "ghost":
+          baseClasses.push("liquid-glass-btn-ghost");
           break;
       }
 

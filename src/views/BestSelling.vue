@@ -421,60 +421,65 @@
             <!-- Pagination -->
             <div class="flex justify-center">
               <nav class="flex items-center gap-x-1">
-                <button
-                  type="button"
-                  class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
-                  <svg
-                    class="flex-shrink-0 w-3.5 h-3.5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="m15 18-6-6 6-6" />
-                  </svg>
+                <LiquidButton variant="glass" size="sm" class="min-h-[38px]">
+                  <template v-slot:icon-left>
+                    <svg
+                      class="w-3.5 h-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="m15 18-6-6 6-6" />
+                    </svg>
+                  </template>
                   <span class="hidden sm:inline">Previous</span>
-                </button>
+                </LiquidButton>
                 <div class="flex items-center gap-x-1">
-                  <button
-                    type="button"
-                    class="min-h-[38px] min-w-[38px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none bg-gray-100 font-medium"
-                    aria-current="page">
+                  <LiquidButton
+                    variant="secondary"
+                    size="sm"
+                    icon-only
+                    class="min-h-[38px] min-w-[38px] bg-gray-100 font-medium">
                     1
-                  </button>
-                  <button
-                    type="button"
-                    class="min-h-[38px] min-w-[38px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+                  </LiquidButton>
+                  <LiquidButton
+                    variant="glass"
+                    size="sm"
+                    icon-only
+                    class="min-h-[38px] min-w-[38px]">
                     2
-                  </button>
-                  <button
-                    type="button"
-                    class="min-h-[38px] min-w-[38px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+                  </LiquidButton>
+                  <LiquidButton
+                    variant="glass"
+                    size="sm"
+                    icon-only
+                    class="min-h-[38px] min-w-[38px]">
                     3
-                  </button>
+                  </LiquidButton>
                 </div>
-                <button
-                  type="button"
-                  class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+                <LiquidButton variant="glass" size="sm" class="min-h-[38px]">
                   <span class="hidden sm:inline">Next</span>
-                  <svg
-                    class="flex-shrink-0 w-3.5 h-3.5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="m9 18 6-6-6-6" />
-                  </svg>
-                </button>
+                  <template v-slot:icon-right>
+                    <svg
+                      class="w-3.5 h-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg>
+                  </template>
+                </LiquidButton>
               </nav>
             </div>
           </main>

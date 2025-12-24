@@ -371,17 +371,19 @@ const updatePassword = () => {
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
           <!-- Sidebar Navigation -->
           <div class="lg:col-span-1">
-            <div class="bg-white rounded-xl p-4 sm:p-6 sticky top-24">
-              <nav class="space-y-2">
+            <div
+              class="bg-white/80 backdrop-blur-xl border border-white/20 rounded-xl p-2 sm:p-6 sticky top-20 sm:top-24 z-20 shadow-sm lg:shadow-none mb-6 lg:mb-0">
+              <nav
+                class="flex lg:flex-col gap-3 lg:gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide -mx-2 px-2 lg:mx-0 lg:px-0">
                 <LiquidButton
                   @click="activeTab = 'profile'"
-                  :variant="activeTab === 'profile' ? 'primary' : 'glass'"
+                  :variant="activeTab === 'profile' ? 'primary' : 'ghost'"
                   size="md"
-                  :class="'w-full text-left justify-start'"
+                  :class="'w-auto lg:w-full justify-center lg:justify-start whitespace-nowrap flex-shrink-0'"
                   :active="activeTab === 'profile'">
                   <template #icon>
                     <svg
-                      class="w-5 h-5"
+                      class="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
@@ -397,13 +399,13 @@ const updatePassword = () => {
 
                 <LiquidButton
                   @click="activeTab = 'orders'"
-                  :variant="activeTab === 'orders' ? 'primary' : 'glass'"
+                  :variant="activeTab === 'orders' ? 'primary' : 'ghost'"
                   size="md"
-                  :class="'w-full text-left justify-start'"
+                  :class="'w-auto lg:w-full justify-center lg:justify-start whitespace-nowrap flex-shrink-0'"
                   :active="activeTab === 'orders'">
                   <template #icon>
                     <svg
-                      class="w-5 h-5"
+                      class="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
@@ -419,13 +421,13 @@ const updatePassword = () => {
 
                 <LiquidButton
                   @click="activeTab = 'wishlist'"
-                  :variant="activeTab === 'wishlist' ? 'primary' : 'glass'"
+                  :variant="activeTab === 'wishlist' ? 'primary' : 'ghost'"
                   size="md"
-                  :class="'w-full text-left justify-start'"
+                  :class="'w-auto lg:w-full justify-center lg:justify-start whitespace-nowrap flex-shrink-0'"
                   :active="activeTab === 'wishlist'">
                   <template #icon>
                     <svg
-                      class="w-5 h-5"
+                      class="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
@@ -441,13 +443,13 @@ const updatePassword = () => {
 
                 <LiquidButton
                   @click="activeTab = 'addresses'"
-                  :variant="activeTab === 'addresses' ? 'primary' : 'glass'"
+                  :variant="activeTab === 'addresses' ? 'primary' : 'ghost'"
                   size="md"
-                  :class="'w-full text-left justify-start'"
+                  :class="'w-auto lg:w-full justify-center lg:justify-start whitespace-nowrap flex-shrink-0'"
                   :active="activeTab === 'addresses'">
                   <template #icon>
                     <svg
-                      class="w-5 h-5"
+                      class="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
@@ -468,13 +470,13 @@ const updatePassword = () => {
 
                 <LiquidButton
                   @click="activeTab = 'settings'"
-                  :variant="activeTab === 'settings' ? 'primary' : 'glass'"
+                  :variant="activeTab === 'settings' ? 'primary' : 'ghost'"
                   size="md"
-                  :class="'w-full text-left justify-start'"
+                  :class="'w-auto lg:w-full justify-center lg:justify-start whitespace-nowrap flex-shrink-0'"
                   :active="activeTab === 'settings'">
                   <template #icon>
                     <svg
-                      class="w-5 h-5"
+                      class="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
@@ -494,12 +496,12 @@ const updatePassword = () => {
                 </LiquidButton>
 
                 <LiquidButton
-                  variant="danger"
+                  variant="ghost"
                   size="md"
-                  :class="'w-full text-left justify-start'">
+                  :class="'w-auto lg:w-full justify-center lg:justify-start whitespace-nowrap flex-shrink-0 ml-auto lg:ml-0 text-red-500 hover:text-red-700 hover:bg-red-50'">
                   <template #icon>
                     <svg
-                      class="w-5 h-5"
+                      class="w-5 h-5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
@@ -522,7 +524,7 @@ const updatePassword = () => {
             <div
               v-if="activeTab === 'profile'"
               class="bg-white rounded-xl p-6 sm:p-8">
-              <div class="flex justify-between items-center mb-6">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
                 <h2 class="text-2xl sm:text-3xl font-bold text-[#383838]">
                   Profile Information
                 </h2>
@@ -670,7 +672,7 @@ const updatePassword = () => {
                       }}</span>
                     </div>
                     <LiquidButton
-                      variant="glass"
+                      variant="ghost"
                       size="sm"
                       :class="'w-fit'">
                       View Details
@@ -778,7 +780,7 @@ const updatePassword = () => {
             <div
               v-if="activeTab === 'addresses'"
               class="bg-white rounded-xl p-6 sm:p-8">
-              <div class="flex justify-between items-center mb-6">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
                 <h2 class="text-2xl sm:text-3xl font-bold text-[#383838]">
                   Saved Addresses
                 </h2>
@@ -984,7 +986,7 @@ const updatePassword = () => {
                     <LiquidButton
                       v-if="!address.isDefault"
                       @click="setDefaultAddress(address.id)"
-                      variant="glass"
+                      variant="ghost"
                       size="sm"
                       :class="'text-sm'">
                       Set as default
@@ -1256,5 +1258,13 @@ const updatePassword = () => {
 /* Custom scrollbar for sidebar */
 .sticky {
   position: sticky;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>

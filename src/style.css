@@ -458,6 +458,20 @@ img {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+/* Ghost Button - Transparent until hovered */
+.liquid-glass-btn-ghost {
+  @apply text-gray-600;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.liquid-glass-btn-ghost:hover {
+  @apply text-gray-900;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
 /* Small Button Variants */
 .liquid-glass-btn-sm {
   @apply px-3 py-1.5 text-xs;
@@ -1147,4 +1161,25 @@ img {
 
 .liquid-glass-clear-btn:hover::after {
   --liquid-angle-1: -125deg;
+}
+
+/* Ghost Button - Transparent with hover effect */
+.liquid-glass-btn-ghost {
+  @apply text-gray-600;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.liquid-glass-btn-ghost:hover {
+  @apply text-gray-900;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.liquid-glass-btn-ghost:disabled {
+  @apply opacity-40 cursor-not-allowed bg-transparent border-transparent;
+  transform: none;
 }

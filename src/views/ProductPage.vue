@@ -213,60 +213,70 @@
 
             <!-- Pagination -->
             <div v-if="totalPages > 1" class="flex justify-center">
-              <nav class="flex items-center gap-x-2">
-                <button
-                  type="button"
+              <nav class="flex items-center gap-x-1">
+                <LiquidButton
                   @click="previousPage"
                   :disabled="currentPage === 1"
-                  class="min-h-[48px] min-w-[48px] py-3 px-3.5 inline-flex justify-center items-center gap-x-1.5 text-base rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
-                  <svg
-                    class="flex-shrink-0 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                  variant="glass"
+                  size="sm"
+                  class="min-h-[38px]">
+                  <template v-slot:icon-left>
+                    <svg
+                      class="w-3.5 h-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
                       stroke-width="2"
-                      d="m15 18-6-6 6-6" />
-                  </svg>
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="m15 18-6-6 6-6" />
+                    </svg>
+                  </template>
                   <span class="hidden sm:inline">Previous</span>
-                </button>
+                </LiquidButton>
 
-                <div class="flex items-center gap-x-2">
-                  <button
+                <div class="flex items-center gap-x-1">
+                  <LiquidButton
                     v-for="page in displayedPages"
                     :key="page"
-                    type="button"
                     @click="goToPage(page)"
+                    :variant="currentPage === page ? 'secondary' : 'glass'"
+                    size="sm"
+                    icon-only
                     :class="[
-                      'min-h-[48px] min-w-[48px] flex justify-center items-center py-3 px-4 text-base rounded-lg focus:outline-none transition-colors',
-                      currentPage === page
-                        ? 'bg-[#F5A3B7] text-white font-semibold hover:bg-[#e392a6]'
-                        : 'text-gray-800 hover:bg-gray-100 bg-white',
+                      'min-h-[38px] min-w-[38px]',
+                      currentPage === page ? 'bg-gray-100 font-medium' : ''
                     ]">
                     {{ page }}
-                  </button>
+                  </LiquidButton>
                 </div>
 
-                <button
-                  type="button"
+                <LiquidButton
                   @click="nextPage"
                   :disabled="currentPage === totalPages"
-                  class="min-h-[48px] min-w-[48px] py-3 px-3.5 inline-flex justify-center items-center gap-x-1.5 text-base rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+                  variant="glass"
+                  size="sm"
+                  class="min-h-[38px]">
                   <span class="hidden sm:inline">Next</span>
-                  <svg
-                    class="flex-shrink-0 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                  <template v-slot:icon-right>
+                    <svg
+                      class="w-3.5 h-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
                       stroke-width="2"
-                      d="m9 18 6-6-6-6" />
-                  </svg>
-                </button>
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="m9 18 6-6-6-6" />
+                    </svg>
+                  </template>
+                </LiquidButton>
               </nav>
             </div>
           </main>
@@ -288,6 +298,7 @@ import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useSEO} from "../composables/useSEO";
 import {useToast} from "../composables/useToast";
+import LiquidButton from "../components/LiquidButton.vue";
 import {computed, ref, watch, onMounted} from "vue";
 
 const store = useProductStore();
