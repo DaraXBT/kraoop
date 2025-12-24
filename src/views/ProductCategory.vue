@@ -107,7 +107,7 @@
                   <select
                     v-model="sortBy"
                     @change="sortProducts"
-                    class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 rounded-xl border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none bg-white min-h-[48px] appearance-none cursor-pointer transition-all duration-200">
+                    class="liquid-glass-select min-h-[48px]">
                     <option value="featured">Featured</option>
                     <option value="best-selling">Best Selling</option>
                     <option value="price-low">Price: Low to High</option>
@@ -647,47 +647,5 @@ const handleAddToCart = (product) => {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.enhanced-dropdown {
-  background-color: #fff;
-  cursor: pointer;
-  font-weight: 500;
-  color: #383838;
-}
 
-.enhanced-dropdown:hover {
-  box-shadow: 0 2px 8px rgba(245, 163, 183, 0.15);
-}
-
-.enhanced-dropdown:focus {
-  box-shadow: 0 0 0 3px rgba(245, 163, 183, 0.1);
-}
-
-.enhanced-dropdown option {
-  padding: 12px;
-  font-weight: 500;
-}
-
-.enhanced-dropdown option:hover {
-  background-color: #fff5f7;
-  color: #f5a3b7;
-}
-
-/* Custom scrollbar for dropdowns */
-.enhanced-dropdown::-webkit-scrollbar {
-  width: 8px;
-}
-
-.enhanced-dropdown::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.enhanced-dropdown::-webkit-scrollbar-thumb {
-  background: #f5a3b7;
-  border-radius: 4px;
-}
-
-.enhanced-dropdown::-webkit-scrollbar-thumb:hover {
-  background: #e392a6;
-}
 </style>

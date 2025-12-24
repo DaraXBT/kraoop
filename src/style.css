@@ -633,6 +633,64 @@ img {
   z-index: 1;
 }
 
+/* Liquid Glass Select (Standard <select>) */
+.liquid-glass-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 0.875rem 1rem; /* Match py-3.5 pl-4 (~14px 16px) */
+  padding-right: 2.5rem; /* Space for the arrow */
+  font-size: 1rem; /* text-base */
+  font-weight: 500;
+  color: #383838;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+}
+
+.liquid-glass-select:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  box-shadow: 
+    0 10px 15px -3px rgba(245, 163, 183, 0.15),
+    0 4px 6px -2px rgba(245, 163, 183, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-color: rgba(245, 163, 183, 0.5);
+  transform: translateY(-1px);
+}
+
+.liquid-glass-select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #F5A3B7;
+  box-shadow: 
+    0 0 0 4px rgba(245, 163, 183, 0.15),
+    0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.liquid-glass-select option {
+  background-color: white;
+  color: #383838;
+  padding: 12px;
+  font-weight: 500;
+}
+
 /* Icon Button Variants */
 .liquid-glass-btn-icon {
   @apply p-3 rounded-full;

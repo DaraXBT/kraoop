@@ -124,7 +124,7 @@
                   <select
                     v-model="sortBy"
                     @change="sortProducts"
-                    class="enhanced-dropdown w-full py-3 pl-3.5 pr-10 rounded-xl border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none bg-white text-sm min-h-[44px] appearance-none cursor-pointer transition-all duration-200">
+                    class="liquid-glass-select min-h-[44px]">
                     <option value="featured">Featured</option>
                     <option value="best-selling">Best Selling</option>
                     <option value="price-low">Price: Low to High</option>
@@ -665,23 +665,5 @@ const handleAddToCart = (product) => {
 </script>
 
 <style scoped>
-.enhanced-dropdown {
-  background-color: #fff;
-  cursor: pointer;
-  font-weight: 500;
-  color: #383838;
-}
 
-.enhanced-dropdown:hover {
-  box-shadow: 0 2px 8px rgba(245, 163, 183, 0.15);
-}
-
-.enhanced-dropdown:focus {
-  box-shadow: 0 0 0 3px rgba(245, 163, 183, 0.1);
-}
-
-.enhanced-dropdown option {
-  padding: 12px;
-  font-weight: 500;
-}
 </style>

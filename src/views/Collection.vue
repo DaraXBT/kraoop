@@ -108,7 +108,7 @@
                   <div class="relative">
                     <select
                       v-model="selectedCleansingBalms"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Cleansing Balms</option>
                       <option value="gentle">Gentle Cleansing Balm</option>
                       <option value="deep">Deep Clean Balm</option>
@@ -132,7 +132,7 @@
                   <div class="relative">
                     <select
                       v-model="selectedOilCleansers"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Oil Cleansers</option>
                       <option value="light">Light Oil Cleanser</option>
                       <option value="deep">Deep Cleansing Oil</option>
@@ -156,7 +156,7 @@
                   <div class="relative">
                     <select
                       v-model="selectedWaterCleansers"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Water Cleansers</option>
                       <option value="foam">Foaming Cleanser</option>
                       <option value="gel">Gel Cleanser</option>
@@ -183,14 +183,21 @@
               <!-- Filters Section -->
               <div
                 class="menu-product bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 class="font-bold text-xl sm:text-2xl text-[#383838] mb-6">
-                  FILTERS
-                </h3>
+                <div class="flex justify-between items-center mb-6">
+                  <h3 class="font-bold text-xl sm:text-2xl text-[#383838]">
+                    FILTERS
+                  </h3>
+                  <button
+                    @click="clearFilters"
+                    class="text-sm font-medium text-gray-400 hover:text-[#F5A3B7] transition-colors underline decoration-2 decoration-transparent hover:decoration-[#F5A3B7] underline-offset-4 cursor-pointer">
+                    Clear All
+                  </button>
+                </div>
                 <div class="flex flex-col space-y-4">
                   <div class="relative">
                     <select
                       v-model="filterDoubleCleanse"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Double-Cleanse</option>
                       <option value="all">All Double Cleanse</option>
                       <option value="balms">Cleansing Balms</option>
@@ -215,7 +222,7 @@
                   <div class="relative">
                     <select
                       v-model="filterCleansingBalms"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Cleansing Balms</option>
                       <option value="gentle">Gentle Formula</option>
                       <option value="deep">Deep Cleansing</option>
@@ -239,7 +246,7 @@
                   <div class="relative">
                     <select
                       v-model="filterOilCleansers"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Oil Cleansers</option>
                       <option value="light">Light Oil</option>
                       <option value="heavy">Heavy Oil</option>
@@ -263,7 +270,7 @@
                   <div class="relative">
                     <select
                       v-model="filterWaterCleansers"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Water Cleansers</option>
                       <option value="foam">Foaming Cleanser</option>
                       <option value="gel">Gel Cleanser</option>
@@ -287,7 +294,7 @@
                   <div class="relative">
                     <select
                       v-model="filterToners"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Toners</option>
                       <option value="hydrating">Hydrating Toner</option>
                       <option value="exfoliating">Exfoliating Toner</option>
@@ -311,7 +318,7 @@
                   <div class="relative">
                     <select
                       v-model="filterEyeCare"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Eye Care</option>
                       <option value="cream">Eye Cream</option>
                       <option value="serum">Eye Serum</option>
@@ -335,7 +342,7 @@
                   <div class="relative">
                     <select
                       v-model="filterExfoliators"
-                      class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 text-base rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none transition-all duration-200 min-h-[48px] appearance-none bg-white cursor-pointer">
+                      class="liquid-glass-select min-h-[48px]">
                       <option value="">Exfoliators</option>
                       <option value="physical">Physical Exfoliator</option>
                       <option value="chemical">Chemical Exfoliator</option>
@@ -372,7 +379,7 @@
                 <div class="relative flex-1 sm:flex-none">
                   <select
                     v-model="sortBy"
-                    class="enhanced-dropdown w-full py-3.5 pl-4 pr-10 rounded-lg border-2 border-gray-200 hover:border-[#F5A3B7] focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/20 outline-none bg-white text-base min-h-[48px] appearance-none cursor-pointer transition-all duration-200">
+                    class="liquid-glass-select min-h-[48px]">
                     <option value="best-selling">Best Selling</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
@@ -563,6 +570,22 @@ const handleAddToCart = (product) => {
 const handleSearch = (query) => {
   searchQuery.value = query;
 };
+
+const clearFilters = () => {
+  // Collection dropdowns
+  selectedCleansingBalms.value = "";
+  selectedOilCleansers.value = "";
+  selectedWaterCleansers.value = "";
+
+  // Filter dropdowns
+  filterDoubleCleanse.value = "";
+  filterCleansingBalms.value = "";
+  filterOilCleansers.value = "";
+  filterWaterCleansers.value = "";
+  filterToners.value = "";
+  filterEyeCare.value = "";
+  filterExfoliators.value = "";
+};
 </script>
 
 <style scoped>
@@ -573,49 +596,7 @@ const handleSearch = (query) => {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.enhanced-dropdown {
-  background-color: #fff;
-  cursor: pointer;
-  font-weight: 500;
-  color: #383838;
-}
 
-.enhanced-dropdown:hover {
-  box-shadow: 0 2px 8px rgba(245, 163, 183, 0.15);
-}
-
-.enhanced-dropdown:focus {
-  box-shadow: 0 0 0 3px rgba(245, 163, 183, 0.1);
-}
-
-.enhanced-dropdown option {
-  padding: 12px;
-  font-weight: 500;
-}
-
-.enhanced-dropdown option:hover {
-  background-color: #fff5f7;
-  color: #f5a3b7;
-}
-
-/* Custom scrollbar for dropdowns */
-.enhanced-dropdown::-webkit-scrollbar {
-  width: 8px;
-}
-
-.enhanced-dropdown::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.enhanced-dropdown::-webkit-scrollbar-thumb {
-  background: #f5a3b7;
-  border-radius: 4px;
-}
-
-.enhanced-dropdown::-webkit-scrollbar-thumb:hover {
-  background: #e392a6;
-}
 
 .option-shop {
   background-color: #fff;

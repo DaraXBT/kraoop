@@ -804,7 +804,7 @@ const updatePassword = () => {
                     >
                     <select
                       v-model="addressFormData.type"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]">
+                      class="liquid-glass-select">
                       <option value="Home">Home</option>
                       <option value="Office">Office</option>
                       <option value="Other">Other</option>
@@ -871,7 +871,7 @@ const updatePassword = () => {
                         >
                         <select
                           v-model="addressFormData.type"
-                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F5A3B7]">
+                          class="liquid-glass-select">
                           <option value="Home">Home</option>
                           <option value="Office">Office</option>
                           <option value="Other">Other</option>

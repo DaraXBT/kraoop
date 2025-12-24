@@ -118,80 +118,95 @@ import LiquidButton from "../components/LiquidButton.vue";
           <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             <!-- Value 1 -->
-            <div class="bg-white p-8 rounded-xl hover: transition-shadow">
-              <div
-                class="w-16 h-16 bg-[#F5A3B7] bg-opacity-20 rounded-full flex items-center justify-center mb-6">
-                <svg
-                  class="w-8 h-8 text-[#F5A3B7]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
+            <div class="liquid-card-wrap group">
+              <div class="liquid-card">
+                <div class="liquid-card-content">
+                  <div
+                    class="w-16 h-16 bg-[#F5A3B7] bg-opacity-20 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg
+                      class="w-8 h-8 text-[#F5A3B7]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                  </div>
+                  <h3 class="text-2xl font-semibold text-[#383838] mb-4">
+                    100% Natural
+                  </h3>
+                  <p class="text-[#697586] leading-relaxed">
+                    We use only the finest natural ingredients, carefully selected
+                    for their purity and effectiveness. No harmful chemicals, just
+                    nature's best.
+                  </p>
+                </div>
               </div>
-              <h3 class="text-2xl font-semibold text-[#383838] mb-4">
-                100% Natural
-              </h3>
-              <p class="text-[#697586] leading-relaxed">
-                We use only the finest natural ingredients, carefully selected
-                for their purity and effectiveness. No harmful chemicals, just
-                nature's best.
-              </p>
+              <div class="liquid-card-shadow"></div>
             </div>
 
             <!-- Value 2 -->
-            <div class="bg-white p-8 rounded-xl hover: transition-shadow">
-              <div
-                class="w-16 h-16 bg-[#B2D8B7] bg-opacity-30 rounded-full flex items-center justify-center mb-6">
-                <svg
-                  class="w-8 h-8 text-[#4A9B52]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
+            <div class="liquid-card-wrap group">
+              <div class="liquid-card">
+                <div class="liquid-card-content">
+                  <div
+                    class="w-16 h-16 bg-[#B2D8B7] bg-opacity-30 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg
+                      class="w-8 h-8 text-[#4A9B52]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <h3 class="text-2xl font-semibold text-[#383838] mb-4">
+                    Cruelty-Free
+                  </h3>
+                  <p class="text-[#697586] leading-relaxed">
+                    We love animals and never test on them. Our products are
+                    certified cruelty-free, ensuring ethical beauty for conscious
+                    consumers.
+                  </p>
+                </div>
               </div>
-              <h3 class="text-2xl font-semibold text-[#383838] mb-4">
-                Cruelty-Free
-              </h3>
-              <p class="text-[#697586] leading-relaxed">
-                We love animals and never test on them. Our products are
-                certified cruelty-free, ensuring ethical beauty for conscious
-                consumers.
-              </p>
+              <div class="liquid-card-shadow"></div>
             </div>
 
             <!-- Value 3 -->
-            <div class="bg-white p-8 rounded-xl hover: transition-shadow">
-              <div
-                class="w-16 h-16 bg-[#A6CAF0] bg-opacity-30 rounded-full flex items-center justify-center mb-6">
-                <svg
-                  class="w-8 h-8 text-[#4A90E2]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            <div class="liquid-card-wrap group">
+              <div class="liquid-card">
+                <div class="liquid-card-content">
+                  <div
+                    class="w-16 h-16 bg-[#A6CAF0] bg-opacity-30 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg
+                      class="w-8 h-8 text-[#4A90E2]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                  </div>
+                  <h3 class="text-2xl font-semibold text-[#383838] mb-4">
+                    Eco-Friendly
+                  </h3>
+                  <p class="text-[#697586] leading-relaxed">
+                    Sustainability is at our core. From recyclable packaging to
+                    sustainable sourcing, we minimize our environmental impact.
+                  </p>
+                </div>
               </div>
-              <h3 class="text-2xl font-semibold text-[#383838] mb-4">
-                Eco-Friendly
-              </h3>
-              <p class="text-[#697586] leading-relaxed">
-                Sustainability is at our core. From recyclable packaging to
-                sustainable sourcing, we minimize our environmental impact.
-              </p>
+              <div class="liquid-card-shadow"></div>
             </div>
           </div>
         </div>
@@ -287,7 +302,8 @@ import LiquidButton from "../components/LiquidButton.vue";
       </div>
 
       <!-- Team Section -->
-      <div class="w-full bg-[#F9F9F9] py-12 sm:py-16 lg:py-20 px-4">
+      <div
+        class="w-full bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-pink-50/50 py-12 sm:py-16 lg:py-20 px-4">
         <div class="w-full max-w-7xl mx-auto">
           <h2
             class="text-3xl sm:text-4xl font-bold text-[#383838] text-center mb-4 sm:mb-6">
@@ -301,89 +317,122 @@ import LiquidButton from "../components/LiquidButton.vue";
           <div
             class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
             <!-- Team Member 1 -->
-            <div class="text-center">
-              <div
-                class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br from-[#F5A3B7] to-[#FFC0CB] overflow-hidden">
-                <img
-                  src="../assets/images/jennie.png"
-                  alt="Team Member"
-                  class="w-full h-full object-cover" />
+            <div class="liquid-card-wrap group">
+              <div class="liquid-card team-card">
+                <div class="liquid-card-content text-center">
+                  <div
+                    class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 rounded-full p-1 bg-gradient-to-br from-[#F5A3B7] to-white/50 shadow-inner">
+                    <div class="w-full h-full rounded-full overflow-hidden">
+                      <img
+                        src="../assets/images/jennie.png"
+                        alt="Team Member"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                  </div>
+                  <h3
+                    class="text-base sm:text-lg lg:text-xl font-bold text-[#383838] mb-1">
+                    Sarah Johnson
+                  </h3>
+                  <p
+                    class="text-sm sm:text-base text-[#F5A3B7] font-semibold mb-2">
+                    Founder & CEO
+                  </p>
+                  <p class="text-xs sm:text-sm text-[#697586] font-medium">
+                    Skincare Expert
+                  </p>
+                </div>
               </div>
-              <h3
-                class="text-base sm:text-lg lg:text-xl font-semibold text-[#383838] mb-1">
-                Sarah Johnson
-              </h3>
-              <p
-                class="text-sm sm:text-base text-[#F5A3B7] font-medium mb-1 sm:mb-2">
-                Founder & CEO
-              </p>
-              <p class="text-xs sm:text-sm text-[#697586]">Skincare Expert</p>
+              <div class="liquid-card-shadow"></div>
             </div>
 
             <!-- Team Member 2 -->
-            <div class="text-center">
-              <div
-                class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br from-[#A6CAF0] to-[#B2D8E8] flex items-center justify-center">
-                <span
-                  class="text-4xl sm:text-5xl lg:text-6xl text-white font-bold"
-                  >MK</span
-                >
+            <div class="liquid-card-wrap group">
+              <div class="liquid-card team-card">
+                <div class="liquid-card-content text-center">
+                  <div
+                    class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 rounded-full p-1 bg-gradient-to-br from-[#A6CAF0] to-white/50 shadow-inner">
+                    <div
+                      class="w-full h-full rounded-full bg-gradient-to-br from-[#A6CAF0] to-[#B2D8E8] flex items-center justify-center overflow-hidden">
+                      <span
+                        class="text-4xl sm:text-5xl lg:text-6xl text-white font-bold group-hover:scale-110 transition-transform duration-500"
+                        >MK</span
+                      >
+                    </div>
+                  </div>
+                  <h3
+                    class="text-base sm:text-lg lg:text-xl font-bold text-[#383838] mb-1">
+                    Michael Kim
+                  </h3>
+                  <p
+                    class="text-sm sm:text-base text-[#7DA0C4] font-semibold mb-2">
+                    Chief Product Officer
+                  </p>
+                  <p class="text-xs sm:text-sm text-[#697586] font-medium">
+                    Formulation Specialist
+                  </p>
+                </div>
               </div>
-              <h3
-                class="text-base sm:text-lg lg:text-xl font-semibold text-[#383838] mb-1">
-                Michael Kim
-              </h3>
-              <p
-                class="text-sm sm:text-base text-[#F5A3B7] font-medium mb-1 sm:mb-2">
-                Chief Product Officer
-              </p>
-              <p class="text-xs sm:text-sm text-[#697586]">
-                Formulation Specialist
-              </p>
+              <div class="liquid-card-shadow"></div>
             </div>
 
             <!-- Team Member 3 -->
-            <div class="text-center">
-              <div
-                class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br from-[#B2D8B7] to-[#C8E6C9] flex items-center justify-center">
-                <span
-                  class="text-4xl sm:text-5xl lg:text-6xl text-white font-bold"
-                  >EP</span
-                >
+            <div class="liquid-card-wrap group">
+              <div class="liquid-card team-card">
+                <div class="liquid-card-content text-center">
+                  <div
+                    class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 rounded-full p-1 bg-gradient-to-br from-[#B2D8B7] to-white/50 shadow-inner">
+                    <div
+                      class="w-full h-full rounded-full bg-gradient-to-br from-[#B2D8B7] to-[#C8E6C9] flex items-center justify-center overflow-hidden">
+                      <span
+                        class="text-4xl sm:text-5xl lg:text-6xl text-white font-bold group-hover:scale-110 transition-transform duration-500"
+                        >EP</span
+                      >
+                    </div>
+                  </div>
+                  <h3
+                    class="text-base sm:text-lg lg:text-xl font-bold text-[#383838] mb-1">
+                    Emma Patel
+                  </h3>
+                  <p
+                    class="text-sm sm:text-base text-[#88B88D] font-semibold mb-2">
+                    Head of Research
+                  </p>
+                  <p class="text-xs sm:text-sm text-[#697586] font-medium">
+                    Botanist & Chemist
+                  </p>
+                </div>
               </div>
-              <h3
-                class="text-base sm:text-lg lg:text-xl font-semibold text-[#383838] mb-1">
-                Emma Patel
-              </h3>
-              <p
-                class="text-sm sm:text-base text-[#F5A3B7] font-medium mb-1 sm:mb-2">
-                Head of Research
-              </p>
-              <p class="text-xs sm:text-sm text-[#697586]">
-                Botanist & Chemist
-              </p>
+              <div class="liquid-card-shadow"></div>
             </div>
 
             <!-- Team Member 4 -->
-            <div class="text-center">
-              <div
-                class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br from-[#FFD1DC] to-[#FFB6C1] flex items-center justify-center">
-                <span
-                  class="text-4xl sm:text-5xl lg:text-6xl text-white font-bold"
-                  >DL</span
-                >
+            <div class="liquid-card-wrap group">
+              <div class="liquid-card team-card">
+                <div class="liquid-card-content text-center">
+                  <div
+                    class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-4 rounded-full p-1 bg-gradient-to-br from-[#FFD1DC] to-white/50 shadow-inner">
+                    <div
+                      class="w-full h-full rounded-full bg-gradient-to-br from-[#FFD1DC] to-[#FFB6C1] flex items-center justify-center overflow-hidden">
+                      <span
+                        class="text-4xl sm:text-5xl lg:text-6xl text-white font-bold group-hover:scale-110 transition-transform duration-500"
+                        >DL</span
+                      >
+                    </div>
+                  </div>
+                  <h3
+                    class="text-base sm:text-lg lg:text-xl font-bold text-[#383838] mb-1">
+                    David Lee
+                  </h3>
+                  <p
+                    class="text-sm sm:text-base text-[#E597A8] font-semibold mb-2">
+                    Sustainability Director
+                  </p>
+                  <p class="text-xs sm:text-sm text-[#697586] font-medium">
+                    Environmental Expert
+                  </p>
+                </div>
               </div>
-              <h3
-                class="text-base sm:text-lg lg:text-xl font-semibold text-[#383838] mb-1">
-                David Lee
-              </h3>
-              <p
-                class="text-sm sm:text-base text-[#F5A3B7] font-medium mb-1 sm:mb-2">
-                Sustainability Director
-              </p>
-              <p class="text-xs sm:text-sm text-[#697586]">
-                Environmental Expert
-              </p>
+              <div class="liquid-card-shadow"></div>
             </div>
           </div>
         </div>
@@ -422,5 +471,166 @@ import LiquidButton from "../components/LiquidButton.vue";
 </template>
 
 <style scoped>
-/* Add any additional custom styles if needed */
+/* CSS Custom Properties for Animation */
+@property --liquid-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --liquid-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+:root {
+  --liquid-anim-time: 400ms;
+  --liquid-anim-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --liquid-border-width: clamp(1px, 0.0625em, 3px);
+}
+
+/* Liquid Card Container */
+.liquid-card-wrap {
+  position: relative;
+  display: block;
+  border-radius: 1rem; /* rounded-2xl */
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+  width: 100%;
+  height: 100%;
+}
+
+/* Advanced Shadow Element */
+.liquid-card-shadow {
+  position: absolute;
+  pointer-events: none;
+  --shadow-offset: 1.5em;
+  width: calc(100% + var(--shadow-offset));
+  height: calc(100% + var(--shadow-offset));
+  top: calc(0% - var(--shadow-offset) / 2);
+  left: calc(0% - var(--shadow-offset) / 2);
+  border-radius: inherit;
+  filter: blur(clamp(2px, 0.125em, 8px));
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+  z-index: 0;
+}
+
+.liquid-card-shadow::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.05));
+  width: calc(100% - var(--shadow-offset) - 0.25em);
+  height: calc(100% - var(--shadow-offset) - 0.25em);
+  top: calc(var(--shadow-offset) / 2 - 0.25em);
+  left: calc(var(--shadow-offset) / 2 - 0.5em);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: xor;
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+}
+
+/* Base Card Styles */
+.liquid-card {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2)
+  );
+  border-radius: inherit;
+  padding: 2rem; /* p-8 */
+  z-index: 10;
+  backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.3),
+    0 3px 6px -2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 0 0 rgba(255, 255, 255, 1);
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+  overflow: hidden;
+}
+
+/* Team Card Padding Adjustment */
+.liquid-card.team-card {
+  padding: 1.5rem; /* p-6 */
+}
+
+/* Animated Border */
+.liquid-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--liquid-border-width);
+  background: conic-gradient(
+    from var(--liquid-angle-1) at 50% 50%,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0) 5% 40%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0) 60% 95%,
+    rgba(0, 0, 0, 0.1)
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: xor;
+  transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
+}
+
+/* Content Shine Effect - Applied to Content Wrapper */
+.liquid-card-content {
+  position: relative;
+  z-index: 20;
+}
+
+.liquid-card-content::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: -3rem; /* Shine covers more area */
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--liquid-angle-2),
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 40% 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: screen;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: background-position calc(var(--liquid-anim-time) * 1.25)
+      var(--liquid-anim-ease),
+    --liquid-angle-2 calc(var(--liquid-anim-time) * 1.25)
+      var(--liquid-anim-ease),
+    opacity var(--liquid-anim-time) var(--liquid-anim-ease);
+  opacity: 0;
+}
+
+/* Hover Effects */
+.liquid-card-wrap:hover .liquid-card {
+  transform: translateY(-4px); /* Lift */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 0 0 rgba(255, 255, 255, 1);
+}
+
+.liquid-card-wrap:hover .liquid-card::after {
+  --liquid-angle-1: -125deg;
+}
+
+.liquid-card-wrap:hover .liquid-card-content::before {
+  opacity: 1;
+  background-position: 25% 50%;
+}
+
+.liquid-card-wrap:hover .liquid-card-shadow {
+  filter: blur(clamp(1px, 0.0625em, 4px));
+  transform: translateY(4px);
+}
+
 </style>
