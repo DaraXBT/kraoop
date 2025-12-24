@@ -2,7 +2,6 @@
 import NavbarComponent from "../components/NavBarComponent.vue";
 import FooterComponent from "../components/FooterComponent.vue";
 import CartComponent from "../components/CartComponent.vue";
-import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import LiquidButton from "../components/LiquidButton.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
@@ -82,9 +81,6 @@ const handleAddToCart = (product) => {
       <!--================>>Navbar -->
       <NavbarComponent />
 
-      <!--================>>Announcement Banner -->
-      <AnnouncementBanner />
-
       <!--================>>Cover -->
       <div
         class="object-cover w-full cover flex items-center justify-center relative overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
@@ -100,12 +96,12 @@ const handleAddToCart = (product) => {
           <div
             class="text-content order-2 lg:order-1 text-center lg:text-left min-w-0 px-2">
             <h1
-              class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#383838] leading-tight mb-4 sm:mb-5 break-words animate-fade-in ">
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#383838] leading-tight mb-4 sm:mb-5 break-words animate-fade-in">
               Discover Your<br class="hidden sm:inline" />
               Inner Beauty<br class="hidden sm:inline" />
               with
               <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A3B7] to-[#E392A6] "
+                class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A3B7] to-[#E392A6]"
                 >KRAOOP</span
               >
             </h1>
@@ -148,7 +144,7 @@ const handleAddToCart = (product) => {
               <img
                 src="../assets/images/jennie.png"
                 alt="jennie"
-                class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg object-contain  float-animation" />
+                class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg object-contain float-animation" />
             </div>
           </div>
         </div>
@@ -167,7 +163,7 @@ const handleAddToCart = (product) => {
           </p>
           <router-link
             to="/product"
-            class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group whitespace-nowrap  hover:scale-105 rounded-xl">
+            class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group whitespace-nowrap hover:scale-105 rounded-xl">
             <span>View all</span>
             <svg
               class="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -220,7 +216,7 @@ const handleAddToCart = (product) => {
             </p>
             <router-link
               to="/best-selling"
-              class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group  hover:scale-105 rounded-xl">
+              class="glass-card inline-flex items-center gap-2.5 px-5 py-2.5 text-sm sm:text-base text-neutral-900 font-bold hover:text-[#F5A3B7] transition-smooth cursor-pointer group hover:scale-105 rounded-xl">
               <span>View all</span>
               <svg
                 class="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -260,7 +256,7 @@ const handleAddToCart = (product) => {
       <div
         class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12 sm:my-14 lg:my-16 overflow-hidden">
         <div
-          class="glass-card-strong grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-w-0 rounded-2xl p-5 sm:p-6 lg:p-10  border border-white/30 -xl transition-smooth">
+          class="glass-card-strong grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-w-0 rounded-2xl p-5 sm:p-6 lg:p-10 border border-white/30 -xl transition-smooth">
           <!-- Content -->
           <div class="flex flex-col order-2 lg:order-1 min-w-0">
             <h2
@@ -277,15 +273,15 @@ const handleAddToCart = (product) => {
             <div class="mb-5 hashtag overflow-hidden">
               <div class="flex flex-wrap gap-2 tag">
                 <div
-                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold  hover:scale-105 transition-smooth border border-white/20">
+                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:scale-105 transition-smooth border border-white/20">
                   # Vegan 🌱
                 </div>
                 <div
-                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold  hover:scale-105 transition-smooth border border-white/20">
+                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:scale-105 transition-smooth border border-white/20">
                   # Cruelty-free 🐰
                 </div>
                 <div
-                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold  hover:scale-105 transition-smooth border border-white/20">
+                  class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:scale-105 transition-smooth border border-white/20">
                   # Eco-friendly 🌍
                 </div>
               </div>
@@ -340,7 +336,7 @@ const handleAddToCart = (product) => {
 
           <!-- Image -->
           <div
-            class="order-1 lg:order-2 w-full aspect-square lg:aspect-auto lg:h-[320px] xl:h-[380px] object-cover items-center flex overflow-hidden rounded-xl min-w-0  -xl transition-smooth group">
+            class="order-1 lg:order-2 w-full aspect-square lg:aspect-auto lg:h-[320px] xl:h-[380px] object-cover items-center flex overflow-hidden rounded-xl min-w-0 -xl transition-smooth group">
             <img
               class="w-full h-full object-cover max-w-full group-hover:scale-105 transition-transform duration-500"
               src="../assets/images/innisfree.jpg"
