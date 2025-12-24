@@ -1,10 +1,15 @@
 <template>
   <component
     :is="tag"
+    ref="button"
     :class="computedClasses"
     :disabled="disabled || loading"
     v-bind="$attrs"
-    @click="handleClick">
+    @click="handleClick"
+    @mouseenter="onHover"
+    @mouseleave="offHover"
+    @mousedown="onActive"
+    @mouseup="offActive">
     <!-- Loading spinner -->
     <svg
       v-if="loading"
@@ -212,26 +217,74 @@ export default {
         if (ripple.parentNode) {
           ripple.remove();
         }
-      }, 600);
+      }, 800);
+    },
+
+    onHover() {
+      this.$el.classList.add("liquid-button-hover");
+    },
+
+    offHover() {
+      this.$el.classList.remove("liquid-button-hover");
+    },
+
+    onActive() {
+      this.$el.classList.add("liquid-button-active");
+    },
+
+    offActive() {
+      this.$el.classList.remove("liquid-button-active");
     },
   },
 };
 </script>
 
 <style scoped>
-/* Component-specific styles if needed */
+/* CSS Custom Properties for Animation */
+@property --liquid-angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --liquid-angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+:root {
+  --liquid-anim-time: 400ms;
+  --liquid-anim-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --liquid-border-width: clamp(1px, 0.0625em, 3px);
+}
+
+/* Enhanced Ripple Effect */
 .liquid-ripple {
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
-  animation: ripple 0.6s linear;
-  background-color: rgba(255, 255, 255, 0.3);
+  animation: liquidRipple 800ms cubic-bezier(0.25, 1, 0.5, 1);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
   pointer-events: none;
 }
 
-@keyframes ripple {
-  to {
-    transform: scale(4);
+@keyframes liquidRipple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
     opacity: 0;
   }
 }
