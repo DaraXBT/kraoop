@@ -157,7 +157,7 @@
                   <input
                     v-model="rememberMe"
                     type="checkbox"
-                    class="w-4 h-4 rounded border-gray-300 text-[#F5A3B7] focus:ring-[#F5A3B7] focus:ring-offset-0 transition-all cursor-pointer" />
+                    class="liquid-checkbox" />
                   <span
                     class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
                     Remember me
@@ -202,7 +202,7 @@
               </LiquidButton>
 
               <!-- Divider -->
-              <div class="relative">
+              <div class="relative py-4">
                 <div class="absolute inset-0 flex items-center">
                   <div class="w-full border-t border-gray-200"></div>
                 </div>

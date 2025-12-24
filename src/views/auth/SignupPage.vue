@@ -240,11 +240,11 @@
 
               <!-- Terms & Conditions -->
               <div>
-                <label class="flex items-start cursor-pointer group">
+                <label class="flex items-center cursor-pointer group">
                   <input
                     v-model="acceptTerms"
                     type="checkbox"
-                    class="mt-1 w-4 h-4 rounded border-gray-300 text-[#F5A3B7] focus:ring-[#F5A3B7] focus:ring-offset-0 transition-all cursor-pointer"
+                    class="liquid-checkbox flex-shrink-0"
                     :class="{'border-red-400': errors.acceptTerms}" />
                   <span
                     class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
@@ -298,7 +298,7 @@
               </LiquidButton>
 
               <!-- Divider -->
-              <div class="relative">
+              <div class="relative py-4">
                 <div class="absolute inset-0 flex items-center">
                   <div class="w-full border-t border-gray-200"></div>
                 </div>

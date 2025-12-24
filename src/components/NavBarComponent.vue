@@ -52,40 +52,32 @@ const isActive = (path) => {
         <router-link
           to="/product"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
-            isActive('/product')
-              ? 'text-[#F5A3B7] bg-pink-50/80'
-              : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
+            'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
+            isActive('/product') ? 'nav-link-active' : '',
           ]">
           <span class="relative z-10">SHOP ALL</span>
         </router-link>
         <router-link
           to="/best-selling"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
-            isActive('/best-selling')
-              ? 'text-[#F5A3B7] bg-pink-50/80'
-              : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
+            'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
+            isActive('/best-selling') ? 'nav-link-active' : '',
           ]">
           <span class="relative z-10">BEST SELLING</span>
         </router-link>
         <router-link
           to="/collection"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
-            isActive('/collection')
-              ? 'text-[#F5A3B7] bg-pink-50/80'
-              : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
+            'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
+            isActive('/collection') ? 'nav-link-active' : '',
           ]">
           <span class="relative z-10">COLLECTION</span>
         </router-link>
         <router-link
           to="/about-us"
           :class="[
-            'cursor-pointer transition-smooth whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
-            isActive('/about-us')
-              ? 'text-[#F5A3B7] bg-pink-50/80'
-              : 'hover:text-[#F5A3B7] hover:bg-pink-50/50',
+            'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
+            isActive('/about-us') ? 'nav-link-active' : '',
           ]">
           <span class="relative z-10">ABOUT US</span>
         </router-link>
@@ -97,12 +89,12 @@ const isActive = (path) => {
         <!-- Auth Buttons (when not logged in) -->
         <div v-if="!isAuthenticated" class="hidden lg:flex items-center gap-2">
           <router-link to="/login">
-            <LiquidButton variant="ghost" size="sm" class="text-xs">
+            <LiquidButton variant="ghost" size="sm" class="text-xs py-2 px-3.5 min-h-[36px]">
               Login
             </LiquidButton>
           </router-link>
           <router-link to="/signup">
-            <LiquidButton variant="primary" size="sm" class="text-xs">
+            <LiquidButton variant="primary" size="sm" class="text-xs py-2 px-3.5 min-h-[36px]">
               Sign Up
             </LiquidButton>
           </router-link>
@@ -314,3 +306,103 @@ const isActive = (path) => {
     </transition>
   </nav>
 </template>
+
+<style scoped>
+/* Liquid Glass Navigation Links */
+.nav-link-liquid {
+  position: relative;
+  color: #383838;
+  transition: all 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+/* Liquid glass background layer */
+.nav-link-liquid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Animated gradient overlay */
+.nav-link-liquid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    -45deg,
+    rgba(245, 163, 183, 0) 0%,
+    rgba(245, 163, 183, 0.15) 50%,
+    rgba(245, 163, 183, 0) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 100% 50%;
+  opacity: 0;
+  transition: all 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hover state */
+.nav-link-liquid:hover {
+  color: #F5A3B7;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(248, 250, 252, 0.7) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 163, 183, 0.2);
+  transform: translateY(-1px);
+}
+
+.nav-link-liquid:hover::before {
+  opacity: 1;
+}
+
+.nav-link-liquid:hover::after {
+  opacity: 1;
+  background-position: 0% 50%;
+}
+
+/* Active state */
+.nav-link-active {
+  color: #F5A3B7;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 163, 183, 0.15) 0%,
+    rgba(245, 163, 183, 0.08) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 163, 183, 0.3);
+}
+
+.nav-link-active::before {
+  opacity: 0.8;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+}
+
+.nav-link-active::after {
+  opacity: 0.6;
+  background-position: 50% 50%;
+}
+</style>
