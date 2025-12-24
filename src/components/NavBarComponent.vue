@@ -141,9 +141,10 @@ const isActive = (path) => {
         @click="toggleMobileMenu"
         variant="glass"
         size="md"
-        :class="'lg:hidden backdrop-blur-sm'"
+        iconOnly
+        class="lg:hidden backdrop-blur-sm"
         aria-label="Toggle menu">
-        <template #icon>
+        <template #icon-left>
           <svg
             v-if="!mobileMenuOpen"
             class="w-6 h-6 text-gray-700"

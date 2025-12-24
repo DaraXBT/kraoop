@@ -370,7 +370,7 @@ const highlightMatch = (text) => {
   height: calc(100% + var(--shadow-offset));
   top: calc(0% - var(--shadow-offset) / 2);
   left: calc(0% - var(--shadow-offset) / 2);
-  border-radius: 9999px;
+  border-radius: inherit;
   filter: blur(clamp(2px, 0.125em, 8px));
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
 }
@@ -379,7 +379,7 @@ const highlightMatch = (text) => {
   @apply absolute;
   content: "";
   inset: 0;
-  border-radius: 9999px;
+  border-radius: inherit;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.05));
   width: calc(100% - var(--shadow-offset) - 0.25em);
   height: calc(100% - var(--shadow-offset) - 0.25em);
@@ -395,7 +395,7 @@ const highlightMatch = (text) => {
 /* Main Search Container - Matching button's border system */
 .liquid-search-container {
   @apply relative;
-  border-radius: 9999px;
+  border-radius: inherit;
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
   will-change: transform;
 }
@@ -405,7 +405,7 @@ const highlightMatch = (text) => {
   content: "";
   @apply absolute pointer-events-none;
   inset: 0;
-  border-radius: 9999px;
+  border-radius: inherit;
   padding: var(--liquid-border-width);
   background: conic-gradient(
     from var(--search-angle-1) at 50% 50%,
@@ -428,7 +428,7 @@ const highlightMatch = (text) => {
   @apply relative cursor-text select-none;
   @apply font-medium tracking-tight;
   @apply border-0 outline-none;
-  border-radius: 9999px;
+  border-radius: inherit;
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
   
   /* Advanced Glass Background - Same as button */
@@ -458,7 +458,7 @@ const highlightMatch = (text) => {
 .liquid-search-reflection {
   @apply absolute pointer-events-none;
   inset: 0;
-  border-radius: 9999px;
+  border-radius: inherit;
   background: linear-gradient(
     var(--search-angle-2),
     rgba(255, 255, 255, 0) 0%,

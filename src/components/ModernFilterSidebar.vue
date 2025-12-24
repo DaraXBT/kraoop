@@ -454,22 +454,25 @@
         </div>
       </div>
 
-      <!-- Clear Filters Button -->
-      <button
+      <!-- Clear Filters Button - Liquid Glass Inspired -->
+  <button
         @click="$emit('clear-filters')"
-        class="w-full py-3 px-4 bg-gradient-to-r from-gray-100 to-gray-50 text-neutral-900 rounded-xl text-sm font-semibold hover:from-gray-200 hover:to-gray-100 transition-all duration-200 border border-gray-200 flex items-center justify-center gap-2">
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-        </svg>
-        Clear All Filters
+        class="liquid-glass-clear-btn w-full mt-2"
+        aria-label="Clear all filters">
+        <div class="flex items-center justify-center gap-2 relative z-20">
+          <svg
+            class="w-4 h-4 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span class="text-sm font-bold text-gray-800">Clear All Filters</span>
+        </div>
       </button>
     </div>
   </aside>
@@ -808,7 +811,7 @@ input[type="number"] {
   height: calc(100% + var(--shadow-offset));
   top: calc(0% - var(--shadow-offset) / 2);
   left: calc(0% - var(--shadow-offset) / 2);
-  border-radius: 1.5rem;
+  border-radius: inherit;
   filter: blur(clamp(2px, 0.125em, 8px));
   transition: all var(--liquid-anim-time, 400ms) cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -817,7 +820,7 @@ input[type="number"] {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 1.5rem;
+  border-radius: inherit;
   background: linear-gradient(180deg, rgba(245, 163, 183, 0.2), rgba(227, 146, 166, 0.1));
   width: calc(100% - var(--shadow-offset) - 0.25em);
   height: calc(100% - var(--shadow-offset) - 0.25em);
@@ -867,7 +870,7 @@ input[type="number"] {
   position: absolute;
   pointer-events: none;
   inset: 0;
-  border-radius: 1.5rem;
+  border-radius: inherit;
   padding: clamp(1px, 0.0625em, 2px);
   background: conic-gradient(
     from var(--filter-angle-1) at 50% 50%,
@@ -890,7 +893,7 @@ input[type="number"] {
   position: absolute;
   pointer-events: none;
   inset: 0;
-  border-radius: 1.5rem;
+  border-radius: inherit;
   background: linear-gradient(
     var(--filter-angle-2),
     rgba(255, 255, 255, 0) 0%,
@@ -1135,7 +1138,89 @@ input[type="number"] {
     0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-/* Reduced Motion Support */
+/* ========================================
+   LIQUID GLASS CLEAR ALL BUTTON
+   ======================================== */
+
+.liquid-glass-clear-btn {
+  @apply relative overflow-hidden py-3 px-4 rounded-2xl transition-all duration-300;
+  @apply flex items-center justify-center;
+  
+  /* Advanced Glass Background - Matching AdvancedLiquidButton */
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05)
+  );
+
+  /* Shadow system matching AdvancedLiquidButton */
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.3),
+    0 3px 6px -2px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+}
+
+.liquid-glass-clear-btn:hover {
+  transform: scale(0.98);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4), 
+    0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.liquid-glass-clear-btn::before {
+  content: "";
+  @apply absolute pointer-events-none;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--filter-angle-2, -45deg),
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 40% 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: screen;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: background-position 0.5s ease;
+  z-index: 1;
+}
+
+.liquid-glass-clear-btn:hover::before {
+  background-position: 25% 50%;
+}
+
+.liquid-glass-clear-btn::after {
+  content: "";
+  @apply absolute pointer-events-none;
+  inset: 0;
+  border-radius: inherit;
+  padding: clamp(1px, 0.0625em, 2px);
+  background: conic-gradient(
+    from var(--filter-angle-1, -75deg) at 50% 50%,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0) 5% 40%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0) 60% 95%,
+    rgba(0, 0, 0, 0.3)
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  transition: all 0.4s ease;
+}
+
+.liquid-glass-clear-btn:hover::after {
+  --filter-angle-1: -125deg;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .liquid-filter-container,
   .liquid-filter-content,
@@ -1143,7 +1228,8 @@ input[type="number"] {
   .liquid-filter-reflection,
   .liquid-filter-content::before,
   .liquid-filter-tag,
-  .liquid-remove-btn {
+  .liquid-remove-btn,
+  .liquid-glass-clear-btn {
     transition: none;
     animation: none;
   }
@@ -1152,5 +1238,4 @@ input[type="number"] {
     background-position: 25% 50%;
   }
 }
-
 </style>

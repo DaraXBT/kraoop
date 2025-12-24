@@ -383,7 +383,7 @@ const transformStyle = computed(() => {
   content: "";
   @apply absolute pointer-events-none;
   inset: 0;
-  border-radius: 1rem; /* sm:1.5rem for responsive */
+  border-radius: inherit;
   padding: var(--liquid-border-width);
   background: conic-gradient(
     from var(--liquid-angle-1) at 50% 50%,
@@ -400,9 +400,8 @@ const transformStyle = computed(() => {
 }
 
 @media (min-width: 640px) {
-  .liquid-toast::after {
-    border-radius: 1.5rem;
-  }
+  /* Responsive radius inherited from parent */
+
 }
 
 /* Type-specific Liquid Glass Effects */

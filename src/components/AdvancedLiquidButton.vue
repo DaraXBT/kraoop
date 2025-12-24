@@ -188,7 +188,7 @@ export default {
 /* Advanced Liquid Button Container */
 .liquid-button-wrap {
   @apply relative inline-block;
-  border-radius: 0.75rem; /* Match LiquidButton's rounded-xl */
+  border-radius: inherit;
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
   min-width: fit-content;
   /* No max-width constraint - allow natural flex growth */
@@ -204,7 +204,7 @@ export default {
   height: calc(100% + var(--shadow-offset));
   top: calc(0% - var(--shadow-offset) / 2);
   left: calc(0% - var(--shadow-offset) / 2);
-  border-radius: 0.75rem; /* Match LiquidButton's rounded-xl */
+  border-radius: inherit;
   filter: blur(clamp(2px, 0.125em, 8px));
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
 }
@@ -213,7 +213,7 @@ export default {
   @apply absolute;
   content: "";
   inset: 0;
-  border-radius: 0.75rem; /* Match LiquidButton's rounded-xl */
+  border-radius: inherit;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.05));
   width: calc(100% - var(--shadow-offset) - 0.25em);
   height: calc(100% - var(--shadow-offset) - 0.25em);
@@ -231,7 +231,7 @@ export default {
   @apply border-0 outline-none;
   @apply transition-all duration-300;
   @apply inline-flex items-center justify-center; /* Add flex layout for proper alignment */
-  border-radius: 0.75rem; /* Match LiquidButton's rounded-xl */
+  border-radius: inherit;
 
   /* Ensure flexible width behavior */
   width: 100%;
@@ -288,7 +288,7 @@ export default {
   content: "";
   @apply absolute pointer-events-none;
   inset: 0;
-  border-radius: 0.75rem; /* Match LiquidButton's rounded-xl */
+  border-radius: inherit; /* Match LiquidButton's rounded-xl */
   padding: var(--liquid-border-width);
   background: conic-gradient(
     from var(--liquid-angle-1) at 50% 50%,
