@@ -906,41 +906,56 @@ img {
 }
 
 /* Liquid Glass Review Card - Premium Effect */
+/* Advanced Liquid Glass Review Card - Inspired by AdvancedLiquidButton */
 .liquid-glass-review-card {
   @apply relative overflow-hidden;
+  
+  /* Advanced Glass Background with angled gradient - TRUE TRANSPARENCY */
   background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(248, 250, 252, 0.98) 50%,
-    rgba(255, 255, 255, 0.95) 100%
+    -75deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
   );
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  
+  /* Complex Shadow System */
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.3),
+    0 3px 6px -2px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  
+  /* Advanced Backdrop Filter with clamped values */
+  backdrop-filter: blur(clamp(8px, 1em, 20px)) saturate(180%);
+  -webkit-backdrop-filter: blur(clamp(8px, 1em, 20px)) saturate(180%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
 }
 
-/* Light reflection layer */
+/* Primary Reflection Layer with Dynamic Angle */
 .liquid-glass-review-card::before {
   content: "";
-  @apply absolute inset-0 pointer-events-none;
+  @apply absolute pointer-events-none;
+  inset: 0;
   border-radius: inherit;
   background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.2) 40%,
-    transparent 60%,
-    transparent 100%
+    var(--liquid-angle-2),
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 35% 45%,
+    rgba(255, 255, 255, 0) 55%
   );
-  opacity: 0.8;
+  mix-blend-mode: screen;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: 
+    background-position calc(var(--liquid-anim-time) * 1.25) var(--liquid-anim-ease),
+    --liquid-angle-2 calc(var(--liquid-anim-time) * 1.25) var(--liquid-anim-ease);
   z-index: 1;
 }
 
-/* Animated border gradient */
+/* Animated Border with Conic Gradient */
 .liquid-glass-review-card::after {
   content: "";
   @apply absolute pointer-events-none;
@@ -949,51 +964,19 @@ img {
   padding: var(--liquid-border-width);
   background: conic-gradient(
     from var(--liquid-angle-1) at 50% 50%,
-    rgba(245, 163, 183, 0.4),
+    rgba(245, 163, 183, 0.5),
     rgba(245, 163, 183, 0) 5% 40%,
-    rgba(245, 163, 183, 0.4) 50%,
+    rgba(245, 163, 183, 0.5) 50%,
     rgba(245, 163, 183, 0) 60% 95%,
-    rgba(245, 163, 183, 0.4)
+    rgba(245, 163, 183, 0.5)
   );
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: xor;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   transition: all var(--liquid-anim-time) var(--liquid-anim-ease);
-  opacity: 0;
+  opacity: 0.3;
   z-index: 2;
-}
-
-.liquid-glass-review-card:hover {
-  transform: translateY(-2px) scale(1.005);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(248, 250, 252, 1) 50%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.12),
-    0 0 20px rgba(245, 163, 183, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.6);
-  border-color: rgba(245, 163, 183, 0.3);
-}
-
-.liquid-glass-review-card:hover::after {
-  --liquid-angle-1: -125deg;
-  opacity: 1;
-}
-
-.liquid-glass-review-card:hover::before {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.3) 40%,
-    transparent 60%,
-    transparent 100%
-  );
-  opacity: 1;
 }
 
 
