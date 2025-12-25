@@ -120,34 +120,13 @@
               <!-- Sort Dropdown -->
               <div class="flex items-center gap-2.5 text-sm w-full sm:w-auto">
                 <span class="text-gray-700 font-medium">Sort By</span>
-                <div class="relative flex-1 sm:flex-none sm:min-w-[200px]">
-                  <select
+                <div class="flex-1 sm:flex-none sm:min-w-[200px]">
+                  <SelectDropdown
                     v-model="sortBy"
-                    @change="sortProducts"
-                    class="liquid-glass-select min-h-[44px]">
-                    <option value="featured">Featured</option>
-                    <option value="best-selling">Best Selling</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="rating-high">Highest Rated</option>
-                    <option value="a-z">A-Z</option>
-                    <option value="z-a">Z-A</option>
-                    <option value="newest">Newest First</option>
-                  </select>
-                  <div
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-500">
-                    <svg
-                      class="h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
+                    :options="sortOptions"
+                    variant="liquid-glass"
+                    custom-class="min-h-[44px]"
+                    @update:model-value="sortProducts" />
                 </div>
               </div>
             </div>
@@ -295,6 +274,7 @@ import CartComponent from "../components/CartComponent.vue";
 import SearchBar from "../components/SearchBar.vue";
 import ModernFilterSidebar from "../components/ModernFilterSidebar.vue";
 import AnnouncementBanner from "../components/AnnouncementBanner.vue";
+import SelectDropdown from "../components/SelectDropdown.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useSEO} from "../composables/useSEO";
 import {useToast} from "../composables/useToast";
@@ -415,6 +395,18 @@ const selectedRating = ref(null);
 
 // Sorting
 const sortBy = ref("featured");
+
+// Sort options for dropdown
+const sortOptions = [
+  {value: "featured", label: "Featured"},
+  {value: "best-selling", label: "Best Selling"},
+  {value: "price-low", label: "Price: Low to High"},
+  {value: "price-high", label: "Price: High to Low"},
+  {value: "rating-high", label: "Highest Rated"},
+  {value: "a-z", label: "A-Z"},
+  {value: "z-a", label: "Z-A"},
+  {value: "newest", label: "Newest First"},
+];
 
 // Pagination
 const currentPage = ref(1);

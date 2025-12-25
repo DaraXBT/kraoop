@@ -3,17 +3,40 @@
 
       <div
         class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
-        <!-- Search Bar Section -->
+        <!-- Header Section -->
         <div class="mb-8">
-          <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6 animate-fade-in-up">
-            Our Collection
+          <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-3 animate-fade-in-up">
+            Brand Collections
           </h1>
+          <p class="text-gray-600 text-base sm:text-lg mb-6">
+            Explore our curated collections from Korea's finest beauty brands
+          </p>
           <SearchBar
             v-model="searchQuery"
             :suggestions="searchSuggestions"
             :popularSearches="popularSearches"
-            placeholder="Search our collection..."
+            placeholder="Search by brand or product..."
             @search="handleSearch" />
+        </div>
+
+        <!-- Featured Brands Showcase -->
+        <div v-if="!searchQuery && featuredBrands.length > 0" class="mb-8">
+          <h2 class="text-xl font-bold text-neutral-900 mb-4">Featured Brands</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            <button
+              v-for="brand in featuredBrands"
+              :key="brand.value"
+              @click="handleBrandShowcaseClick(brand)"
+              :class="[
+                'p-4 rounded-xl text-center transition-all duration-300 group',
+                isBrandSelected(brand.value)
+                  ? 'bg-gradient-to-br from-[#F5A3B7]/20 to-[#E392A6]/10 border-2 border-[#F5A3B7] shadow-lg'
+                  : 'bg-white/70 backdrop-blur-sm border border-white/40 hover:bg-white hover:border-[#F5A3B7]/50 hover:shadow-md hover:scale-105',
+              ]">
+              <div class="text-sm font-bold text-neutral-900 mb-1">{{ brand.label }}</div>
+              <div class="text-xs text-gray-600">{{ brand.count }} products</div>
+            </button>
+          </div>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
@@ -139,9 +162,9 @@ const showFilters = ref(false);
 
 // SEO
 useSEO({
-  title: "Our Collection - Korean Skincare & Beauty",
+  title: "Brand Collections - Korean Skincare & Beauty",
   description:
-    "Explore our curated collection of Korean skincare and beauty products. Discover new arrivals and featured items.",
+    "Explore our curated brand collections from Korea's finest beauty brands. Discover COSRX, Innisfree, Dr. Jart+, and more.",
   url: "/collection",
 });
 
@@ -151,14 +174,14 @@ const searchSuggestions = computed(() => {
   const categories = store.allCategories.map((c) => c.label);
   const brands = store.allBrands.map((b) => b.label);
   const tags = [...new Set(store.products.flatMap((p) => p.tags || []))];
-  return [...categories, ...brands, ...tags];
+  return [...brands, ...categories, ...tags]; // Prioritize brands in suggestions
 });
 
 const popularSearches = ref([
-  "New Arrivals",
-  "Moisturizer",
-  "Sunscreen",
-  "Face Mask",
+  "COSRX",
+  "Innisfree",
+  "Dr. Jart+",
+  "Beauty of Joseon",
 ]);
 
 // Categories from store
@@ -190,6 +213,28 @@ watch(
   },
   {immediate: true}
 );
+
+// Featured brands for showcase (top brands by product count)
+const featuredBrands = computed(() => {
+  return [...store.allBrands]
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 12); // Show top 12 brands
+});
+
+// Check if a brand is selected
+const isBrandSelected = (brandValue) => {
+  const brand = brands.value.find((b) => b.value === brandValue);
+  return brand ? brand.selected : false;
+};
+
+// Handle brand showcase click
+const handleBrandShowcaseClick = (brand) => {
+  const index = brands.value.findIndex((b) => b.value === brand.value);
+  if (index !== -1) {
+    brands.value[index].selected = !brands.value[index].selected;
+    currentPage.value = 1;
+  }
+};
 
 // Skin Types from store
 const skinTypes = ref([]);

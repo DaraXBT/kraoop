@@ -1,19 +1,16 @@
 <template>
   <aside class="w-full lg:w-72 flex-shrink-0">
-    <!-- Mobile Filter Toggle Button -->
+    <!-- Mobile Filter Modal Button -->
     <LiquidButton
-      @click="$emit('toggle-filters')"
+      @click="openMobileModal"
       variant="secondary"
       size="lg"
       full-width
       class="lg:hidden mb-4">
-      <span class="text-sm">{{
-        showFilters ? "Hide Filters" : "Show Filters"
-      }}</span>
+      <span class="text-sm">Filters</span>
       <template v-slot:icon-right>
         <svg
-          :class="{'rotate-180': showFilters}"
-          class="w-5 h-5 transition-transform"
+          class="w-5 h-5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24">
@@ -21,12 +18,32 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M19 9l-7 7-7-7" />
+            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
         </svg>
       </template>
     </LiquidButton>
 
-    <div :class="{'hidden lg:block': !showFilters}" class="space-y-5">
+    <!-- Mobile Filter Modal -->
+    <MobileFilterModal
+      v-model="showMobileModal"
+      :title="title"
+      :categories="categories"
+      :brands="brands"
+      :skinTypes="skinTypes"
+      :additionalFilters="additionalFilters"
+      :priceRange="priceRange"
+      :selectedRating="selectedRating"
+      @category-change="$emit('category-change', $event)"
+      @brand-change="$emit('brand-change', $event)"
+      @skin-type-change="$emit('skin-type-change', $event)"
+      @filter-change="$emit('filter-change', $event)"
+      @price-change="$emit('price-change', $event)"
+      @rating-change="$emit('rating-change', $event)"
+      @clear-filters="$emit('clear-filters')"
+      @apply-filters="handleApplyFilters" />
+
+    <!-- Desktop Sidebar (Hidden on mobile, always visible on desktop) -->
+    <div class="hidden lg:block space-y-5">
       <!-- Active Filters Display -->
       <div
         v-if="hasActiveFilters"
@@ -487,6 +504,7 @@
 <script setup>
 import {ref, computed} from "vue";
 import LiquidButton from "./LiquidButton.vue";
+import MobileFilterModal from "./MobileFilterModal.vue";
 
 const props = defineProps({
   title: {
@@ -538,6 +556,17 @@ const emit = defineEmits([
   "clear-filters",
   "remove-filter",
 ]);
+
+// Mobile modal state
+const showMobileModal = ref(false);
+
+const openMobileModal = () => {
+  showMobileModal.value = true;
+};
+
+const handleApplyFilters = () => {
+  showMobileModal.value = false;
+};
 
 const minPrice = ref(props.priceRange.min);
 const maxPrice = ref(props.priceRange.max);
