@@ -418,7 +418,7 @@ const sortBy = ref("featured");
 
 // Pagination
 const currentPage = ref(1);
-const itemsPerPage = 9;
+const itemsPerPage = 21; // 7 rows × 3 columns to align with sidebar height
 
 // Filtered products
 const filteredProducts = computed(() => {
