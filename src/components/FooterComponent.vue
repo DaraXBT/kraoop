@@ -53,8 +53,7 @@ const handleSubscribe = () => {
             <div
               class="text-xs sm:text-sm text-gray-300 mb-4 sm:mb-5 leading-relaxed break-words font-medium">
               <p class="lg:not-italic italic">
-                <span class="lg:hidden">✨ </span>Discover nature's beauty with
-                our natural care products.
+                <span class="lg:hidden">✨ </span>{{ $t('footer.slogan') }}
               </p>
             </div>
             <!-- Contact info - Glass cards -->
@@ -90,18 +89,18 @@ const handleSubscribe = () => {
 
           <!-- Help Section -->
           <div class="hidden sm:flex flex-col gap-3 help min-w-0 lg:col-span-2">
-            <div class="help text-[#F5A3B7] font-bold text-base mb-1">Help</div>
+            <div class="help text-[#F5A3B7] font-bold text-base mb-1">{{ $t('footer.help') }}</div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
-              Contact Us
+              {{ $t('footer.contact_us') }}
             </div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
-              FAQ
+              {{ $t('footer.faq') }}
             </div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
-              Shipping and Returns
+              {{ $t('footer.shipping_returns') }}
             </div>
           </div>
 
@@ -109,15 +108,15 @@ const handleSubscribe = () => {
           <div
             class="hidden sm:flex flex-col gap-3 account min-w-0 lg:col-span-2">
             <div class="myAcc text-[#F5A3B7] font-bold text-base mb-1">
-              Account
+              {{ $t('footer.account') }}
             </div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
-              Order Status
+              {{ $t('footer.order_status') }}
             </div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
-              Wishlist
+              {{ $t('footer.wishlist') }}
             </div>
           </div>
 
@@ -125,15 +124,15 @@ const handleSubscribe = () => {
           <div
             class="hidden sm:flex flex-col gap-3 customer min-w-0 lg:col-span-2">
             <div class="care text-[#F5A3B7] font-bold text-base mb-1">
-              Customer Care
+              {{ $t('footer.customer_care') }}
             </div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
-              About Us
+              {{ $t('footer.about_us') }}
             </div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth text-sm leading-relaxed break-words font-medium hover:translate-x-1">
-              Contact Us
+              {{ $t('footer.contact_us') }}
             </div>
           </div>
 
@@ -144,19 +143,18 @@ const handleSubscribe = () => {
               class="rounded-2xl lg:rounded-none p-5 lg:p-0 border border-white/20 lg:border-0   transition-smooth">
               <div
                 class="text-white font-bold text-lg sm:text-lg lg:text-base mb-2.5 sm:mb-2.5 lg:mb-3 flex items-center gap-2 ">
-                <span class="text-xl sm:text-xl lg:text-lg">💌</span> Stay
-                Connected
+                <span class="text-xl sm:text-xl lg:text-lg">💌</span> {{ $t('footer.stay_connected') }}
               </div>
               <div
                 class="text-gray-100 text-sm sm:text-sm lg:text-xs mb-4 sm:mb-4 lg:mb-3 leading-relaxed font-medium">
-                Get exclusive beauty tips & offers!
+                {{ $t('footer.newsletter_desc') }}
               </div>
               <form @submit.prevent="handleSubscribe" class="form">
                 <div class="mb-4 sm:mb-4 lg:mb-3">
                   <label
                     for="hs-hero-email-mobile"
                     class="block text-sm font-medium text-gray-200 mb-2 lg:mb-1.5">
-                    Email address
+                    {{ $t('footer.email_label') }}
                   </label>
                   <input
                     v-model="email"
@@ -164,7 +162,7 @@ const handleSubscribe = () => {
                     id="hs-hero-email-mobile"
                     required
                     class="block w-full px-4 py-4 lg:py-3 text-base sm:text-base lg:text-sm border-2 border-white/30 rounded-2xl lg:rounded-xl focus:border-[#F5A3B7] focus:ring-2 focus:ring-[#F5A3B7]/30 bg-white/10 lg:bg-gray-800/50 text-white placeholder-white/70 transition-smooth  font-medium backdrop-blur-sm"
-                    placeholder="Enter your email" />
+                    :placeholder="$t('footer.email_placeholder')" />
                 </div>
                 <LiquidButton
                   variant="primary"
@@ -172,7 +170,7 @@ const handleSubscribe = () => {
                   full-width
                   size="lg"
                   class="py-4 lg:py-3">
-                  Subscribe Now
+                  {{ $t('footer.subscribe') }}
                   <template v-slot:icon-right>
                     <svg
                       class="w-5 h-5 sm:w-5 sm:h-5 lg:w-4 lg:h-4"
@@ -220,12 +218,12 @@ const handleSubscribe = () => {
             class="flex flex-row gap-4 sm:gap-8 term text-sm sm:text-base items-center flex-wrap justify-center">
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth min-h-[44px] flex items-center font-bold whitespace-nowrap hover:scale-105">
-              Privacy
+              {{ $t('footer.privacy') }}
             </div>
             <div class="text-[#F5A3B7]/40">•</div>
             <div
               class="cursor-pointer hover:text-[#F5A3B7] transition-smooth min-h-[44px] flex items-center font-bold whitespace-nowrap hover:scale-105">
-              Terms
+              {{ $t('footer.terms') }}
             </div>
           </div>
         </div>

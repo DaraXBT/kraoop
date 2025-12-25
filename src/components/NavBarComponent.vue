@@ -4,6 +4,7 @@ import {useRoute} from "vue-router";
 import {useProductStore} from "../stores/ProductStore";
 import {useAuth} from "../composables/useAuth";
 import LiquidButton from "./LiquidButton.vue";
+import LanguageSwitcher from "./LanguageSwitcher.vue";
 
 const route = useRoute();
 const productStore = useProductStore();
@@ -55,7 +56,7 @@ const isActive = (path) => {
             'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/product') ? 'nav-link-active' : '',
           ]">
-          <span class="relative z-10">SHOP ALL</span>
+          <span class="relative z-10">{{ $t('nav.shop_all') }}</span>
         </router-link>
         <router-link
           to="/best-selling"
@@ -63,7 +64,7 @@ const isActive = (path) => {
             'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/best-selling') ? 'nav-link-active' : '',
           ]">
-          <span class="relative z-10">BEST SELLING</span>
+          <span class="relative z-10">{{ $t('nav.best_selling') }}</span>
         </router-link>
         <router-link
           to="/collection"
@@ -71,7 +72,7 @@ const isActive = (path) => {
             'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/collection') ? 'nav-link-active' : '',
           ]">
-          <span class="relative z-10">COLLECTION</span>
+          <span class="relative z-10">{{ $t('nav.collection') }}</span>
         </router-link>
         <router-link
           to="/about-us"
@@ -79,30 +80,16 @@ const isActive = (path) => {
             'nav-link-liquid cursor-pointer whitespace-nowrap py-2 px-3.5 rounded-lg relative overflow-hidden',
             isActive('/about-us') ? 'nav-link-active' : '',
           ]">
-          <span class="relative z-10">ABOUT US</span>
+          <span class="relative z-10">{{ $t('nav.about_us') }}</span>
         </router-link>
       </div>
 
       <!-- Desktop Icons -->
       <div
         class="hidden md:flex items-center gap-2.5 lg:gap-3 menu text-xs flex-shrink-0">
-        <!-- Auth Buttons (when not logged in) -->
-        <div v-if="!isAuthenticated" class="hidden lg:flex items-center gap-2">
-          <router-link to="/login">
-            <LiquidButton variant="ghost" size="sm" class="text-xs py-2 px-3.5 min-h-[36px]">
-              Login
-            </LiquidButton>
-          </router-link>
-          <router-link to="/signup">
-            <LiquidButton variant="primary" size="sm" class="text-xs py-2 px-3.5 min-h-[36px]">
-              Sign Up
-            </LiquidButton>
-          </router-link>
-        </div>
-        
         <!-- Account Icon (when logged in) -->
         <router-link
-          v-else
+          v-if="isAuthenticated"
           to="/account"
           :class="[
             'hidden lg:flex flex-col items-center gap-1 cursor-pointer transition-smooth hover:scale-110 p-1.5 rounded-lg',
@@ -117,9 +104,10 @@ const isActive = (path) => {
               class="w-full h-full" />
           </div>
           <div class="text whitespace-nowrap text-[10px] font-semibold">
-            ACCOUNT
+            {{ $t('nav.account') }}
           </div>
         </router-link>
+
         <router-link
           to="/payment"
           :class="[
@@ -141,9 +129,25 @@ const isActive = (path) => {
             </span>
           </div>
           <div class="text whitespace-nowrap text-[10px] font-semibold">
-            CART
+            {{ $t('nav.cart') }}
           </div>
         </router-link>
+
+        <LanguageSwitcher />
+
+        <!-- Auth Buttons (when not logged in) -->
+        <div v-if="!isAuthenticated" class="hidden lg:flex items-center gap-2 ml-1">
+          <router-link to="/login">
+            <LiquidButton variant="ghost" size="sm" class="text-xs py-2 px-3.5 min-h-[36px]">
+              {{ $t('nav.login') }}
+            </LiquidButton>
+          </router-link>
+          <router-link to="/signup">
+            <LiquidButton variant="primary" size="sm" class="text-xs py-2 px-3.5 min-h-[36px]">
+              {{ $t('nav.signup') }}
+            </LiquidButton>
+          </router-link>
+        </div>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -206,7 +210,7 @@ const isActive = (path) => {
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7]'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7]',
             ]">
-            SHOP ALL
+            {{ $t('nav.shop_all') }}
           </router-link>
           <router-link
             to="/best-selling"
@@ -217,7 +221,7 @@ const isActive = (path) => {
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7]'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7]',
             ]">
-            BEST SELLING
+            {{ $t('nav.best_selling') }}
           </router-link>
           <router-link
             to="/collection"
@@ -228,7 +232,7 @@ const isActive = (path) => {
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7]'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7]',
             ]">
-            COLLECTION
+            {{ $t('nav.collection') }}
           </router-link>
           <router-link
             to="/about-us"
@@ -239,7 +243,7 @@ const isActive = (path) => {
                 ? 'bg-gradient-to-r from-[#F5A3B7]/20 to-pink-200/20 text-[#F5A3B7]'
                 : 'text-gray-700 hover:bg-white/80 hover:text-[#F5A3B7]',
             ]">
-            ABOUT US
+            {{ $t('nav.about_us') }}
           </router-link>
 
           <!-- Mobile Menu Icons -->
@@ -259,7 +263,7 @@ const isActive = (path) => {
                 src="../assets/icons/account.svg"
                 alt="account"
                 class="w-5 h-5" />
-              <span class="text-sm font-semibold">ACCOUNT</span>
+              <span class="text-sm font-semibold">{{ $t('nav.account') }}</span>
             </router-link>
             
             <!-- Cart Link -->
@@ -284,19 +288,23 @@ const isActive = (path) => {
                   {{ cartItemCount > 99 ? "99+" : cartItemCount }}
                 </span>
               </div>
-              <span class="text-sm font-semibold">CART</span>
+              <span class="text-sm font-semibold">{{ $t('nav.cart') }}</span>
             </router-link>
+            
+            <div class="px-4 py-2">
+                <LanguageSwitcher />
+            </div>
             
             <!-- Auth Buttons (when not logged in) - At Bottom -->
             <div v-if="!isAuthenticated" class="space-y-4 pt-4 border-t border-white/20">
               <router-link to="/login" @click="closeMobileMenu">
                 <LiquidButton variant="ghost" size="lg" full-width class="justify-center min-h-[52px]">
-                  Login
+                  {{ $t('nav.login') }}
                 </LiquidButton>
               </router-link>
               <router-link to="/signup" @click="closeMobileMenu" class="block pt-0.5">
                 <LiquidButton variant="primary" size="lg" full-width class="justify-center min-h-[52px]">
-                  Sign Up
+                  {{ $t('nav.signup') }}
                 </LiquidButton>
               </router-link>
             </div>

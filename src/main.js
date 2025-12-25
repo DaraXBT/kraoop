@@ -5,6 +5,7 @@ import {createHead} from "@vueuse/head";
 import "./style.css";
 import App from "./App.vue";
 import router from "./router/index.js";
+import i18n from "./i18n";
 
 // Error handler for global errors
 const errorHandler = (err, instance, info) => {
@@ -31,6 +32,7 @@ window.addEventListener("unhandledrejection", (event) => {
 app.use(pinia);
 app.use(router);
 app.use(head);
+app.use(i18n);
 
 // Preload critical stores
 import {useProductStore} from "./stores/ProductStore";

@@ -4,15 +4,13 @@
         <!-- Header -->
         <div class="mb-8">
           <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-            My Wishlist
+            {{ $t('wishlist.title') }}
           </h1>
           <p class="text-gray-600">
             {{
               wishlistCount === 0
-                ? "Your wishlist is empty"
-                : `${wishlistCount} ${
-                    wishlistCount === 1 ? "item" : "items"
-                  } in your wishlist`
+                ? $t('wishlist.empty')
+                : $t('wishlist.items_count', { count: wishlistCount })
             }}
           </p>
         </div>
@@ -33,17 +31,17 @@
               d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
           <h2 class="text-2xl font-bold text-gray-700 mb-3">
-            Your wishlist is empty
+            {{ $t('wishlist.empty') }}
           </h2>
           <p class="text-gray-500 mb-8">
-            Save your favorite products for later!
+            {{ $t('wishlist.empty_desc') }}
           </p>
           <LiquidButton
             variant="primary"
             size="lg"
             tag="router-link"
             to="/product">
-            Browse Products
+            {{ $t('wishlist.browse_products') }}
             <template v-slot:icon-right>
               <svg
                 class="w-5 h-5"
@@ -104,7 +102,7 @@
                 variant="primary"
                 @click="handleAddToCart(product)"
                 class="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                Add to Cart
+                {{ $t('wishlist.add_to_cart') }}
               </LiquidButton>
             </div>
 
@@ -174,10 +172,10 @@
                 <span
                   v-if="product.inStock"
                   class="text-xs text-green-600 font-medium">
-                  In Stock
+                  {{ $t('product.in_stock') }}
                 </span>
                 <span v-else class="text-xs text-red-600 font-medium">
-                  Out of Stock
+                  {{ $t('product.out_of_stock') }}
                 </span>
               </div>
             </div>
@@ -187,7 +185,7 @@
         <!-- Clear Wishlist Button -->
         <div v-if="wishlistCount > 0" class="mt-8 text-center">
           <LiquidButton variant="danger" size="lg" @click="handleClearWishlist">
-            Clear Wishlist
+            {{ $t('wishlist.clear') }}
           </LiquidButton>
         </div>
       </div>
@@ -200,7 +198,9 @@ import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import PageLayout from "../components/PageLayout.vue";
 import LiquidButton from "../components/LiquidButton.vue";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n();
 const store = useProductStore();
 const {success, info} = useToast();
 
@@ -209,22 +209,22 @@ const wishlistCount = computed(() => store.wishlistCount);
 
 const handleRemoveFromWishlist = (product) => {
   store.removeFromWishlist(product.id);
-  info(`${product.title} removed from wishlist`, 2000);
+  info(`${product.title} ${t('wishlist.removed')}`, 2000);
 };
 
 const handleAddToCart = (product) => {
   if (!product.inStock) {
-    info("This product is currently out of stock", 2000);
+    info(t('product.out_of_stock_msg'), 2000);
     return;
   }
   store.addToCart(product);
-  success(`${product.title} added to cart! 🛒`, 2000);
+  success(`${product.title} ${t('product.added_to_cart')} 🛒`, 2000);
 };
 
 const handleClearWishlist = () => {
-  if (confirm("Are you sure you want to clear your wishlist?")) {
+  if (confirm(t('wishlist.confirm_clear'))) {
     store.clearWishlist();
-    info("Wishlist cleared", 2000);
+    info(t('wishlist.cleared'), 2000);
   }
 };
 </script>

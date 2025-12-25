@@ -53,20 +53,21 @@
         <!-- Search Bar Section -->
         <div class="mb-8">
           <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-            Double Cleanse Products
+            {{ $t('product.double_cleanse_title') }}
           </h1>
           <SearchBar
             v-model="searchQuery"
             :suggestions="searchSuggestions"
             :popularSearches="popularSearches"
-            placeholder="Search double cleanse products..."
+            :popularSearches="popularSearches"
+            :placeholder="$t('product.search_double_cleanse')"
             @search="handleSearch" />
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
           <!-- Sidebar / Filters -->
           <ModernFilterSidebar
-            title="Product Type"
+            :title="$t('product.product_type')"
             :categories="categories"
             :brands="brands"
             :skinTypes="skinTypes"
@@ -94,28 +95,28 @@
                   {{ filteredProducts.length }}
                 </span>
                 <span class="text-gray-600">
-                  {{ filteredProducts.length === 1 ? "Product" : "Products" }}
+                  {{ filteredProducts.length === 1 ? $t('product.count_product') : $t('product.count_products') }}
                 </span>
                 <span v-if="searchQuery" class="text-gray-500 ml-2">
-                  for "{{ searchQuery }}"
+                  {{ $t('product.for_query') }} "{{ searchQuery }}"
                 </span>
               </div>
 
               <div class="flex items-center gap-3 text-base w-full sm:w-auto">
-                <span class="text-gray-700 font-medium">Sort By</span>
+                <span class="text-gray-700 font-medium">{{ $t('product.sort_by') }}</span>
                 <div class="relative flex-1 sm:flex-none sm:min-w-[200px]">
                   <select
                     v-model="sortBy"
                     @change="sortProducts"
                     class="liquid-glass-select min-h-[48px]">
-                    <option value="featured">Featured</option>
-                    <option value="best-selling">Best Selling</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="rating-high">Highest Rated</option>
-                    <option value="a-z">A-Z</option>
-                    <option value="z-a">Z-A</option>
-                    <option value="newest">Newest First</option>
+                    <option value="featured">{{ $t('sort.featured') }}</option>
+                    <option value="best-selling">{{ $t('sort.best_selling') }}</option>
+                    <option value="price-low">{{ $t('sort.price_low') }}</option>
+                    <option value="price-high">{{ $t('sort.price_high') }}</option>
+                    <option value="rating-high">{{ $t('sort.rating_high') }}</option>
+                    <option value="a-z">{{ $t('sort.az') }}</option>
+                    <option value="z-a">{{ $t('sort.za') }}</option>
+                    <option value="newest">{{ $t('sort.newest') }}</option>
                   </select>
                   <div
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
@@ -151,10 +152,10 @@
                   d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                No products found
+                {{ $t('product.no_results') }}
               </h3>
               <p class="text-gray-600 mb-6">
-                Try adjusting your filters or search query
+                {{ $t('product.no_results_desc') }}
               </p>
               <button
                 @click="clearAllFilters"
@@ -172,7 +173,7 @@
                       stroke-width="2"
                       d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
-                  <span class="text-sm font-bold text-gray-800">Clear All Filters</span>
+                  <span class="text-sm font-bold text-gray-800">{{ $t('product.clear_all_filters') }}</span>
                 </div>
               </button>
             </div>
@@ -218,7 +219,7 @@
                       <path d="m15 18-6-6 6-6" />
                     </svg>
                   </template>
-                  <span class="hidden sm:inline">Previous</span>
+                  <span class="hidden sm:inline">{{ $t('product.previous') }}</span>
                 </LiquidButton>
 
                 <div class="flex items-center gap-x-1">
@@ -243,7 +244,7 @@
                   variant="glass"
                   size="sm"
                   class="min-h-[38px]">
-                  <span class="hidden sm:inline">Next</span>
+                  <span class="hidden sm:inline">{{ $t('product.next') }}</span>
                   <template v-slot:icon-right>
                     <svg
                       class="w-3.5 h-3.5"
@@ -282,7 +283,9 @@ import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import LiquidButton from "../components/LiquidButton.vue";
 import {computed, ref, watch} from "vue";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n();
 const store = useProductStore();
 const {success} = useToast();
 
@@ -363,10 +366,11 @@ watch(
 );
 
 // Additional filters
+// Additional filters
 const additionalFilters = ref([
-  {label: "Makeup Remover", value: "makeupRemover", selected: false},
-  {label: "Gentle Formula", value: "gentle", selected: false},
-  {label: "On Sale", value: "onSale", selected: false},
+  {label: computed(() => t('filter.makeup_remover')), value: "makeupRemover", selected: false},
+  {label: computed(() => t('filter.gentle_formula')), value: "gentle", selected: false},
+  {label: computed(() => t('filter.on_sale')), value: "onSale", selected: false},
 ]);
 
 // Price range
@@ -645,7 +649,7 @@ const goToPage = (page) => {
 
 const handleAddToCart = (product) => {
   store.addToCart(product);
-  success(`${product.title} added to cart! 🛒`, 3000);
+  success(`${product.title} ${t('product.added_to_cart')} 🛒`, 3000);
   console.log("Added to cart:", product);
 };
 </script>

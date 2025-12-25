@@ -60,13 +60,11 @@ import LiquidButton from "../components/LiquidButton.vue";
         <div class="w-full max-w-7xl mx-auto text-center">
           <h1
             class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#383838] mb-4 sm:mb-6">
-            About <span class="text-[#F5A3B7]">Kraoop Beauty</span>
+            {{ $t('about.title_prefix') }} <span class="text-[#F5A3B7]">Kraoop Beauty</span>
           </h1>
           <p
             class="text-base sm:text-lg lg:text-xl text-[#697586] max-w-3xl mx-auto px-4">
-            Discover nature's beauty with our natural care products. We believe
-            in harnessing the power of natural ingredients to bring out your
-            inner radiance.
+            {{ $t('about.desc') }}
           </p>
         </div>
       </div>
@@ -79,23 +77,16 @@ import LiquidButton from "../components/LiquidButton.vue";
           <div>
             <h2
               class="text-3xl sm:text-4xl font-bold text-[#383838] mb-4 sm:mb-6">
-              Our Story
+              {{ $t('about.story_title') }}
             </h2>
             <p class="text-sm sm:text-base text-[#697586] leading-relaxed mb-4">
-              Founded in the heart of Phnom Penh, Cambodia, Kraoop Beauty was
-              born from a passion for natural skincare and a commitment to
-              sustainability. Our journey began with a simple belief: beauty
-              should be natural, ethical, and accessible to everyone.
+              {{ $t('about.story_p1') }}
             </p>
             <p class="text-sm sm:text-base text-[#697586] leading-relaxed mb-4">
-              We carefully curate and create products that combine ancient
-              beauty secrets with modern science. Each product is crafted with
-              love, using ingredients sourced responsibly from nature.
+              {{ $t('about.story_p2') }}
             </p>
             <p class="text-sm sm:text-base text-[#697586] leading-relaxed">
-              Today, we're proud to serve customers who share our values of
-              sustainability, cruelty-free beauty, and the celebration of
-              natural ingredients.
+              {{ $t('about.story_p3') }}
             </p>
           </div>
           <div class="rounded-2xl overflow-hidden">
@@ -113,7 +104,7 @@ import LiquidButton from "../components/LiquidButton.vue";
         <div class="w-full max-w-7xl mx-auto">
           <h2
             class="text-3xl sm:text-4xl font-bold text-[#383838] text-center mb-10 sm:mb-12 lg:mb-16">
-            Our Values
+            {{ $t('about.values_title') }}
           </h2>
           <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
@@ -136,12 +127,10 @@ import LiquidButton from "../components/LiquidButton.vue";
                     </svg>
                   </div>
                   <h3 class="text-2xl font-semibold text-[#383838] mb-4">
-                    100% Natural
+                    {{ $t('about.value_1_title') }}
                   </h3>
                   <p class="text-[#697586] leading-relaxed">
-                    We use only the finest natural ingredients, carefully selected
-                    for their purity and effectiveness. No harmful chemicals, just
-                    nature's best.
+                    {{ $t('about.value_1_desc') }}
                   </p>
                 </div>
               </div>
@@ -167,12 +156,10 @@ import LiquidButton from "../components/LiquidButton.vue";
                     </svg>
                   </div>
                   <h3 class="text-2xl font-semibold text-[#383838] mb-4">
-                    Cruelty-Free
+                    {{ $t('about.value_2_title') }}
                   </h3>
                   <p class="text-[#697586] leading-relaxed">
-                    We love animals and never test on them. Our products are
-                    certified cruelty-free, ensuring ethical beauty for conscious
-                    consumers.
+                    {{ $t('about.value_2_desc') }}
                   </p>
                 </div>
               </div>
@@ -198,11 +185,10 @@ import LiquidButton from "../components/LiquidButton.vue";
                       </svg>
                   </div>
                   <h3 class="text-2xl font-semibold text-[#383838] mb-4">
-                    Eco-Friendly
+                    {{ $t('about.value_3_title') }}
                   </h3>
                   <p class="text-[#697586] leading-relaxed">
-                    Sustainability is at our core. From recyclable packaging to
-                    sustainable sourcing, we minimize our environmental impact.
+                    {{ $t('about.value_3_desc') }}
                   </p>
                 </div>
               </div>
@@ -226,16 +212,14 @@ import LiquidButton from "../components/LiquidButton.vue";
           <div>
             <h2
               class="text-3xl sm:text-4xl font-bold text-[#383838] mb-4 sm:mb-6">
-              Our Mission
+              {{ $t('about.mission_title') }}
             </h2>
             <p class="text-sm sm:text-base text-[#697586] leading-relaxed mb-4">
-              At Kraoop Beauty, our mission is to empower individuals to embrace
-              their natural beauty through sustainable, ethical, and effective
-              skincare products.
+              {{ $t('about.mission_desc_1') }}
             </p>
             <p
               class="text-sm sm:text-base text-[#697586] leading-relaxed mb-4 sm:mb-6">
-              We strive to:
+              {{ $t('about.mission_desc_2') }}
             </p>
             <ul class="space-y-3 mb-4 sm:mb-6">
               <li class="flex items-start">
@@ -249,8 +233,7 @@ import LiquidButton from "../components/LiquidButton.vue";
                     clip-rule="evenodd" />
                 </svg>
                 <span class="text-[#697586]"
-                  >Provide high-quality natural skincare that delivers real
-                  results</span
+                  >{{ $t('about.mission_li_1') }}</span
                 >
               </li>
               <li class="flex items-start">
@@ -264,7 +247,7 @@ import LiquidButton from "../components/LiquidButton.vue";
                     clip-rule="evenodd" />
                 </svg>
                 <span class="text-[#697586]"
-                  >Champion ethical practices and cruelty-free beauty</span
+                  >{{ $t('about.mission_li_2') }}</span
                 >
               </li>
               <li class="flex items-start">
@@ -278,8 +261,7 @@ import LiquidButton from "../components/LiquidButton.vue";
                     clip-rule="evenodd" />
                 </svg>
                 <span class="text-[#697586]"
-                  >Protect our planet through sustainable and eco-friendly
-                  practices</span
+                  >{{ $t('about.mission_li_3') }}</span
                 >
               </li>
               <li class="flex items-start">
@@ -293,7 +275,7 @@ import LiquidButton from "../components/LiquidButton.vue";
                     clip-rule="evenodd" />
                 </svg>
                 <span class="text-[#697586]"
-                  >Make natural beauty accessible to everyone</span
+                  >{{ $t('about.mission_li_4') }}</span
                 >
               </li>
             </ul>
@@ -307,12 +289,11 @@ import LiquidButton from "../components/LiquidButton.vue";
         <div class="w-full max-w-7xl mx-auto">
           <h2
             class="text-3xl sm:text-4xl font-bold text-[#383838] text-center mb-4 sm:mb-6">
-            Meet Our Team
+            {{ $t('about.team_title') }}
           </h2>
           <p
             class="text-sm sm:text-base text-[#697586] text-center mb-10 sm:mb-12 lg:mb-16 max-w-2xl mx-auto px-4">
-            Our passionate team of skincare experts and enthusiasts work
-            tirelessly to bring you the best natural beauty products.
+            {{ $t('about.team_desc') }}
           </p>
           <div
             class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -335,10 +316,10 @@ import LiquidButton from "../components/LiquidButton.vue";
                   </h3>
                   <p
                     class="text-sm sm:text-base text-[#F5A3B7] font-semibold mb-2">
-                    Founder & CEO
+                    {{ $t('about.founder') }}
                   </p>
                   <p class="text-xs sm:text-sm text-[#697586] font-medium">
-                    Skincare Expert
+                    {{ $t('about.skincare_expert') }}
                   </p>
                 </div>
               </div>
@@ -365,10 +346,10 @@ import LiquidButton from "../components/LiquidButton.vue";
                   </h3>
                   <p
                     class="text-sm sm:text-base text-[#7DA0C4] font-semibold mb-2">
-                    Chief Product Officer
+                    {{ $t('about.cpo') }}
                   </p>
                   <p class="text-xs sm:text-sm text-[#697586] font-medium">
-                    Formulation Specialist
+                    {{ $t('about.formulation_specialist') }}
                   </p>
                 </div>
               </div>
@@ -395,10 +376,10 @@ import LiquidButton from "../components/LiquidButton.vue";
                   </h3>
                   <p
                     class="text-sm sm:text-base text-[#88B88D] font-semibold mb-2">
-                    Head of Research
+                    {{ $t('about.head_research') }}
                   </p>
                   <p class="text-xs sm:text-sm text-[#697586] font-medium">
-                    Botanist & Chemist
+                    {{ $t('about.botanist') }}
                   </p>
                 </div>
               </div>
@@ -425,10 +406,10 @@ import LiquidButton from "../components/LiquidButton.vue";
                   </h3>
                   <p
                     class="text-sm sm:text-base text-[#E597A8] font-semibold mb-2">
-                    Sustainability Director
+                    {{ $t('about.sustainability_director') }}
                   </p>
                   <p class="text-xs sm:text-sm text-[#697586] font-medium">
-                    Environmental Expert
+                    {{ $t('about.env_expert') }}
                   </p>
                 </div>
               </div>
@@ -444,12 +425,11 @@ import LiquidButton from "../components/LiquidButton.vue";
         <div
           class="bg-gradient-to-r from-[#F5A3B7] to-[#FFC0CB] rounded-2xl p-8 sm:p-12 lg:p-16 text-center">
           <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">
-            Join Our Beauty Community
+            {{ $t('about.join_community_title') }}
           </h2>
           <p
             class="text-white text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
-            Stay connected with us for exclusive offers, beauty tips, and the
-            latest product launches. Together, let's embrace natural beauty!
+            {{ $t('about.join_community_desc') }}
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4">
             <LiquidButton
@@ -457,9 +437,9 @@ import LiquidButton from "../components/LiquidButton.vue";
               size="lg"
               tag="router-link"
               to="/product">
-              Shop Now
+              {{ $t('about.shop_now') }}
             </LiquidButton>
-            <LiquidButton variant="glass" size="lg"> Contact Us </LiquidButton>
+            <LiquidButton variant="glass" size="lg"> {{ $t('about.contact_us') }} </LiquidButton>
           </div>
         </div>
       </div>

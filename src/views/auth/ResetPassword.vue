@@ -69,16 +69,15 @@
               </div>
 
               <h2 class="text-2xl font-bold text-gray-900 mb-3">
-                Password Reset Successful!
+                {{ $t('auth.reset_password_success_title') }}
               </h2>
               <p class="text-gray-600 mb-6">
-                Your password has been successfully reset. You can now sign in
-                with your new password.
+                {{ $t('auth.reset_password_success_desc') }}
               </p>
 
               <router-link to="/login">
                 <LiquidButton variant="primary" size="lg" full-width>
-                  Sign In
+                  {{ $t('auth.sign_in_action') }}
                 </LiquidButton>
               </router-link>
             </div>
@@ -115,10 +114,10 @@
                   </svg>
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  Reset Password
+                  {{ $t('auth.reset_password_title') }}
                 </h1>
                 <p class="text-white/90 text-sm">
-                  Enter your new password below
+                  {{ $t('auth.reset_password_subtitle') }}
                 </p>
               </div>
             </div>
@@ -130,7 +129,7 @@
                 <label
                   for="password"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  New Password
+                  {{ $t('auth.new_password') }}
                 </label>
                 <div class="relative">
                   <input
@@ -139,7 +138,7 @@
                     :type="showPassword ? 'text' : 'password'"
                     required
                     autocomplete="new-password"
-                    placeholder="At least 8 characters"
+                    :placeholder="$t('auth.password_min_length_8')"
                     class="liquid-input w-full px-4 py-3 pr-12 text-sm"
                     :class="{'border-red-400': errors.password}" />
                   <button
@@ -230,7 +229,7 @@
                 <label
                   for="confirmPassword"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Confirm New Password
+                  {{ $t('auth.confirm_new_password') }}
                 </label>
                 <input
                   id="confirmPassword"
@@ -238,7 +237,7 @@
                   :type="showPassword ? 'text' : 'password'"
                   required
                   autocomplete="new-password"
-                  placeholder="Re-enter your password"
+                  :placeholder="$t('auth.re_enter_password')"
                   class="liquid-input w-full px-4 py-3 text-sm"
                   :class="{'border-red-400': errors.confirmPassword}" />
                 <p
@@ -274,8 +273,8 @@
                 full-width
                 :loading="isLoading"
                 :disabled="isLoading">
-                <span v-if="!isLoading">Reset Password</span>
-                <span v-else>Resetting...</span>
+                <span v-if="!isLoading">{{ $t('auth.reset_password_btn') }}</span>
+                <span v-else>{{ $t('auth.resetting') }}</span>
               </LiquidButton>
 
               <!-- Back to Login -->
@@ -298,7 +297,7 @@
                         d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                   </template>
-                  Back to Login
+                  {{ $t('auth.back_to_login') }}
                 </LiquidButton>
               </router-link>
             </form>
@@ -320,7 +319,7 @@
                   stroke-width="2"
                   d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
-              Back to Home
+              {{ $t('auth.back_to_home') }}
             </router-link>
           </div>
         </div>
@@ -332,12 +331,14 @@
 <script setup>
 import {ref, computed} from "vue";
 import {useRoute, useRouter} from "vue-router";
+import {useI18n} from "vue-i18n";
 import {useAuth} from "../../composables/useAuth";
 import {useToast} from "../../composables/useToast";
 import LiquidButton from "../../components/LiquidButton.vue";
 
 const route = useRoute();
 const router = useRouter();
+const { t } = useI18n();
 const {resetPassword, isLoading} = useAuth();
 const {success, error: showError} = useToast();
 
@@ -375,18 +376,18 @@ function validateForm() {
   let isValid = true;
 
   if (!password.value) {
-    errors.value.password = "Password is required";
+    errors.value.password = t('auth.password_required');
     isValid = false;
   } else if (password.value.length < 8) {
-    errors.value.password = "Password must be at least 8 characters";
+    errors.value.password = t('auth.password_min_length_8');
     isValid = false;
   }
 
   if (!confirmPassword.value) {
-    errors.value.confirmPassword = "Please confirm your password";
+    errors.value.confirmPassword = t('auth.confirm_password_required');
     isValid = false;
   } else if (password.value !== confirmPassword.value) {
-    errors.value.confirmPassword = "Passwords do not match";
+    errors.value.confirmPassword = t('auth.password_mismatch');
     isValid = false;
   }
 
@@ -402,8 +403,8 @@ async function handleSubmit() {
   }
 
   if (!resetToken) {
-    resetError.value = "Invalid or missing reset token";
-    showError("Invalid reset link");
+    resetError.value = t('auth.invalid_token');
+    showError(t('auth.invalid_token_toast'));
     return;
   }
 
@@ -411,11 +412,11 @@ async function handleSubmit() {
 
   if (result.success) {
     resetSuccess.value = true;
-    success("Password reset successful!");
+    success(t('auth.reset_success_toast'));
   } else {
     resetError.value =
-      result.error || "Failed to reset password. The link may have expired.";
-    showError("Failed to reset password.");
+      result.error || t('auth.reset_failed');
+    showError(t('auth.reset_failed_toast'));
   }
 }
 </script>

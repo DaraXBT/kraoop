@@ -63,10 +63,10 @@
 
               <div class="text-center relative z-10">
                 <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  Create Account
+                  {{ $t('auth.create_account_title') }}
                 </h1>
                 <p class="text-white/90 text-sm">
-                  Join Kraoop Beauty today
+                  {{ $t('auth.join_kraoop') }}
                 </p>
               </div>
             </div>
@@ -78,7 +78,7 @@
                 <label
                   for="fullName"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Full Name
+                  {{ $t('auth.full_name') }}
                 </label>
                 <input
                   id="fullName"
@@ -99,7 +99,7 @@
                 <label
                   for="email"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Email Address
+                  {{ $t('auth.email') }}
                 </label>
                 <input
                   id="email"
@@ -120,7 +120,7 @@
                 <label
                   for="password"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Password
+                  {{ $t('auth.password') }}
                 </label>
                 <div class="relative">
                   <input
@@ -129,7 +129,7 @@
                     :type="showPassword ? 'text' : 'password'"
                     required
                     autocomplete="new-password"
-                    placeholder="At least 8 characters"
+                    :placeholder="$t('auth.password_min_length_8')"
                     class="liquid-input w-full px-4 py-3 pr-12 text-sm"
                     :class="{'border-red-400': errors.password}" />
                   <button
@@ -203,12 +203,12 @@
                       ">
                       {{
                         passwordStrength === 1
-                          ? "Weak"
+                          ? $t('auth.weak')
                           : passwordStrength === 2
-                          ? "Fair"
+                          ? $t('auth.fair')
                           : passwordStrength === 3
-                          ? "Good"
-                          : "Strong"
+                          ? $t('auth.good')
+                          : $t('auth.strong')
                       }}
                     </span>
                   </p>
@@ -220,7 +220,7 @@
                 <label
                   for="confirmPassword"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Confirm Password
+                  {{ $t('auth.confirm_password') }}
                 </label>
                 <input
                   id="confirmPassword"
@@ -228,7 +228,7 @@
                   :type="showPassword ? 'text' : 'password'"
                   required
                   autocomplete="new-password"
-                  placeholder="Re-enter your password"
+                  :placeholder="$t('auth.re_enter_password')"
                   class="liquid-input w-full px-4 py-3 text-sm"
                   :class="{'border-red-400': errors.confirmPassword}" />
                 <p
@@ -248,17 +248,17 @@
                     :class="{'border-red-400': errors.acceptTerms}" />
                   <span
                     class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
-                    I agree to the
+                    {{ $t('auth.agree_terms') }}
                     <a
                       href="#"
                       class="text-[#F5A3B7] hover:text-[#E392A6] font-semibold">
-                      Terms & Conditions
+                      {{ $t('auth.terms') }}
                     </a>
-                    and
+                    {{ $t('auth.and') }}
                     <a
                       href="#"
                       class="text-[#F5A3B7] hover:text-[#E392A6] font-semibold">
-                      Privacy Policy
+                      {{ $t('auth.privacy') }}
                     </a>
                   </span>
                 </label>
@@ -294,8 +294,8 @@
                   full-width
                   :loading="isLoading"
                   :disabled="isLoading">
-                  <span v-if="!isLoading">Create Account</span>
-                  <span v-else>Creating account...</span>
+                  <span v-if="!isLoading">{{ $t('auth.create_account') }}</span>
+                  <span v-else>{{ $t('auth.creating_account') }}</span>
                 </LiquidButton>
               </div>
 
@@ -306,7 +306,7 @@
                 </div>
                 <div class="relative flex justify-center text-sm">
                   <span class="px-4 bg-white/80 text-gray-500 font-medium">
-                    Already have an account?
+                    {{ $t('auth.already_have_account') }}
                   </span>
                 </div>
               </div>
@@ -319,7 +319,7 @@
                     variant="secondary"
                     size="lg"
                     full-width>
-                    Sign In
+                    {{ $t('auth.sign_in') }}
                   </LiquidButton>
                 </router-link>
               </div>
@@ -342,7 +342,7 @@
                   stroke-width="2"
                   d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              Back to Home
+              {{ $t('auth.back_to_home') }}
             </router-link>
           </div>
         </div>
@@ -354,11 +354,13 @@
 <script setup>
 import {ref, computed} from "vue";
 import {useRouter} from "vue-router";
+import {useI18n} from "vue-i18n";
 import {useAuth} from "../../composables/useAuth";
 import {useToast} from "../../composables/useToast";
 import LiquidButton from "../../components/LiquidButton.vue";
 
 const router = useRouter();
+const { t } = useI18n();
 const {register, isLoading} = useAuth();
 const {success, error: showError} = useToast();
 
@@ -395,39 +397,39 @@ function validateForm() {
   let isValid = true;
 
   if (!fullName.value.trim()) {
-    errors.value.fullName = "Full name is required";
+    errors.value.fullName = t('auth.name_required');
     isValid = false;
   } else if (fullName.value.trim().length < 2) {
-    errors.value.fullName = "Name must be at least 2 characters";
+    errors.value.fullName = t('auth.name_min_length');
     isValid = false;
   }
 
   if (!email.value) {
-    errors.value.email = "Email is required";
+    errors.value.email = t('auth.email_required');
     isValid = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-    errors.value.email = "Please enter a valid email";
+    errors.value.email = t('auth.email_invalid');
     isValid = false;
   }
 
   if (!password.value) {
-    errors.value.password = "Password is required";
+    errors.value.password = t('auth.password_required');
     isValid = false;
   } else if (password.value.length < 8) {
-    errors.value.password = "Password must be at least 8 characters";
+    errors.value.password = t('auth.password_min_length_8');
     isValid = false;
   }
 
   if (!confirmPassword.value) {
-    errors.value.confirmPassword = "Please confirm your password";
+    errors.value.confirmPassword = t('auth.confirm_password_required');
     isValid = false;
   } else if (password.value !== confirmPassword.value) {
-    errors.value.confirmPassword = "Passwords do not match";
+    errors.value.confirmPassword = t('auth.password_mismatch');
     isValid = false;
   }
 
   if (!acceptTerms.value) {
-    errors.value.acceptTerms = "You must accept the terms and conditions";
+    errors.value.acceptTerms = t('auth.terms_required');
     isValid = false;
   }
 
@@ -451,11 +453,11 @@ async function handleSignup() {
   const result = await register(userData);
 
   if (result.success) {
-    success("Account created successfully! Welcome to Kraoop Beauty.");
+    success(t('auth.signup_success'));
     router.push("/");
   } else {
     signupError.value = result.error || "Failed to create account";
-    showError("Signup failed. Please try again.");
+    showError(t('auth.signup_failed'));
   }
 }
 </script>

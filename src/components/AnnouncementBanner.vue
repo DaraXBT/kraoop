@@ -6,10 +6,10 @@
       <div class="marquee-container">
         <div
           class="marquee-content"
-          :data-text="'KRAOOP Beauty Sale 2025 \u00A0\u00A0·\u00A0\u00A0 Get 25% off all skincare products – Limited time offer ending soon!'"
+          :data-text="$t('announcement.text')"
         >
           <span class="marquee-item">
-            KRAOOP Beauty Sale 2025 &nbsp;&nbsp;·&nbsp;&nbsp; Get 25% off all skincare products – Limited time offer ending soon!
+            {{ $t('announcement.text') }}
           </span>
         </div>
       </div>

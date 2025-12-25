@@ -5,9 +5,8 @@
       @click="openMobileModal"
       variant="secondary"
       size="lg"
-      full-width
       class="lg:hidden mb-4">
-      <span class="text-sm">Filters</span>
+      <span class="text-sm">{{ $t('product.filters_title') }}</span>
       <template v-slot:icon-right>
         <svg
           class="w-5 h-5"
@@ -57,7 +56,7 @@
           <div class="liquid-filter-reflection"></div>
           
           <div class="flex items-center justify-between mb-4 relative z-10">
-            <h4 class="text-sm font-bold text-gray-900 drop-shadow-sm">Active Filters</h4>
+            <h4 class="text-sm font-bold text-gray-900 drop-shadow-sm">{{ $t('filter.active_filters') }}</h4>
             <span
               class="liquid-filter-badge"
               >{{ activeFilterCount }}</span
@@ -179,7 +178,7 @@
                 d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          Price Range
+          {{ $t('filter.price_range') }}
         </h3>
 
         <div class="space-y-4">
@@ -206,7 +205,7 @@
           <div class="flex items-center gap-3">
             <div class="flex-1">
               <label class="text-xs text-gray-600 mb-2 block font-bold"
-                >Min</label
+                >{{ $t('filter.min') }}</label
               >
               <input
                 type="number"
@@ -220,7 +219,7 @@
             <div class="text-gray-400 mt-6 font-bold">-</div>
             <div class="flex-1">
               <label class="text-xs text-gray-600 mb-2 block font-bold"
-                >Max</label
+                >{{ $t('filter.max') }}</label
               >
               <input
                 type="number"
@@ -255,7 +254,7 @@
                 d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
-          Brands
+          {{ $t('filter.brands') }}
         </h3>
 
         <div class="flex flex-col space-y-3">
@@ -322,7 +321,7 @@
                 d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          Skin Type
+          {{ $t('filter.skin_type') }}
         </h3>
 
         <div class="flex flex-col space-y-3">
@@ -378,7 +377,7 @@
                 d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </div>
-          Rating
+          {{ $t('filter.rating') }}
         </h3>
 
         <div class="flex flex-col space-y-2">
@@ -410,7 +409,7 @@
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
-            <span>& Up</span>
+            <span>{{ $t('filter.up') }}</span>
           </button>
         </div>
       </div>
@@ -435,7 +434,7 @@
                 d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
             </svg>
           </div>
-          More Filters
+          {{ $t('filter.more_filters') }}
         </h3>
 
         <div class="flex flex-col space-y-2">
@@ -494,7 +493,7 @@
               stroke-width="2"
               d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          <span class="text-sm font-bold text-gray-800">Clear All Filters</span>
+          <span class="text-sm font-bold text-gray-800">{{ $t('product.clear_all_filters') }}</span>
         </div>
       </button>
     </div>

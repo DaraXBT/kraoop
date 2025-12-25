@@ -17,9 +17,8 @@
             {{ review.reviewer.name }}
           </span>
           <span
-            v-if="review.reviewer.verified"
             class="text-xs sm:text-sm text-[#F5A3B7] font-semibold ml-2 bg-[#F5A3B7]/15 px-2.5 py-1 rounded-full backdrop-blur-sm">
-            Verified Buyer
+            {{ $t('review.verified_buyer') }}
           </span>
         </div>
         <span class="text-xs sm:text-sm text-gray-600 font-medium">

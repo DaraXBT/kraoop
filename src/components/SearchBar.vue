@@ -79,7 +79,7 @@
           <div class="flex items-center justify-between mb-2 px-2">
             <h4
               class="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-              Recent Searches
+              {{ $t('search.recent') }}
             </h4>
             <button
               @click="clearRecentSearches"
@@ -89,7 +89,7 @@
                      backdrop-blur-sm
                      transition-all duration-200
                      font-medium">
-              Clear
+              {{ $t('search.clear') }}
             </button>
           </div>
           <button
@@ -120,7 +120,7 @@
           class="p-3 border-b border-white/10">
           <h4
             class="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2 px-2">
-            Popular Searches
+            {{ $t('search.popular') }}
           </h4>
           <button
             v-for="(search, index) in popularSearches"
@@ -149,7 +149,7 @@
           <h4
             v-if="searchQuery"
             class="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2 px-2">
-            Suggestions
+            {{ $t('search.suggestions') }}
           </h4>
           <button
             v-for="(suggestion, index) in filteredSuggestions"
@@ -188,8 +188,8 @@
               stroke-width="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <p class="text-sm text-gray-500">No suggestions found</p>
-          <p class="text-xs text-gray-400 mt-1">Try different keywords</p>
+          <p class="text-sm text-gray-500">{{ $t('search.no_suggestions') }}</p>
+          <p class="text-xs text-gray-400 mt-1">{{ $t('search.try_different') }}</p>
         </div>
       </div>
     </transition>
@@ -199,6 +199,9 @@
 <script setup>
 import {ref, computed, watch} from "vue";
 import LiquidButton from "./LiquidButton.vue";
+import {useI18n} from "vue-i18n";
+
+const { t } = useI18n();
 
 const props = defineProps({
   placeholder: {

@@ -1,6 +1,9 @@
 <script setup>
 import {ref} from "vue";
 import LiquidButton from "./LiquidButton.vue";
+import {useI18n} from "vue-i18n";
+
+const { t } = useI18n();
 
 const props = defineProps({
   id: {
@@ -135,7 +138,7 @@ const calculateOriginalPrice = () => {
           full-width
           @click="addToBag"
           class="py-2.5 sm:py-3 liquid-glass-add-btn">
-          <span class="whitespace-nowrap font-semibold">Add to cart</span>
+          <span class="whitespace-nowrap font-semibold">{{ $t('product.add_to_cart') }}</span>
         </LiquidButton>
       </div>
     </div>

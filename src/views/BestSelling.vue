@@ -6,20 +6,20 @@
         <!-- Search Bar Section -->
         <div class="mb-8">
           <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6 animate-fade-in-up">
-            Best Selling Products
+            {{ $t('product.best_selling_title') }}
           </h1>
           <SearchBar
             v-model="searchQuery"
             :suggestions="searchSuggestions"
             :popularSearches="popularSearches"
-            placeholder="Search best selling products..."
+            :placeholder="$t('product.search_best_selling')"
             @search="handleSearch" />
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
           <!-- Modern Filter Sidebar -->
           <ModernFilterSidebar
-            title="Categories"
+            :title="$t('filter.categories')"
             :categories="categories"
             :brands="brands"
             :skinTypes="skinTypes"
@@ -62,10 +62,10 @@
                   d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                No products found
+                {{ $t('product.no_results') }}
               </h3>
               <p class="text-gray-600 mb-5 text-sm">
-                Try adjusting your filters or search query
+                {{ $t('product.no_results_desc') }}
               </p>
               <button
                 @click="clearAllFilters"
@@ -83,7 +83,7 @@
                       stroke-width="2"
                       d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
-                  <span class="text-sm font-bold text-gray-800">Clear All Filters</span>
+                  <span class="text-sm font-bold text-gray-800">{{ $t('product.clear_all_filters') }}</span>
                 </div>
               </button>
             </div>
@@ -131,7 +131,9 @@ import {useSEO} from "../composables/useSEO";
 import {useToast} from "../composables/useToast";
 import {usePageTransition} from "../composables/usePageTransition";
 import {computed, ref, watch} from "vue";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n();
 const store = useProductStore();
 const {success} = useToast();
 const {getStaggerDelay} = usePageTransition();
@@ -207,10 +209,11 @@ watch(
 );
 
 // Additional filters
+// Additional filters
 const additionalFilters = ref([
-  {label: "In Stock", value: "inStock", selected: false},
-  {label: "On Sale", value: "onSale", selected: false},
-  {label: "Best Seller", value: "bestSeller", selected: true}, // Pre-select best seller filter
+  {label: computed(() => t('filter.in_stock')), value: "inStock", selected: false},
+  {label: computed(() => t('filter.on_sale')), value: "onSale", selected: false},
+  {label: computed(() => t('filter.best_seller')), value: "bestSeller", selected: true}, // Pre-select best seller filter
 ]);
 
 // Price range
@@ -373,7 +376,7 @@ const sortProducts = () => {
 
 const handleAddToCart = (product) => {
   store.addToCart(product);
-  success(`${product.title} added to cart! 🛒`, 3000);
+  success(`${product.title} ${t('product.added_to_cart')} 🛒`, 3000);
   console.log("Added to cart:", product);
 };
 

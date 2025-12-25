@@ -23,7 +23,7 @@
         <!-- Header -->
         <div class="px-6 pb-4 border-b border-white/20">
           <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-bold text-neutral-900">Filters</h2>
+            <h2 class="text-2xl font-bold text-neutral-900">{{ $t('filter.filters_title') }}</h2>
             <button
               @click="closeModal"
               class="p-2 rounded-xl hover:bg-white/50 transition-all"
@@ -42,7 +42,7 @@
             </button>
           </div>
           <p v-if="activeFilterCount > 0" class="text-sm text-gray-600 mt-2">
-            {{ activeFilterCount }} {{ activeFilterCount === 1 ? 'filter' : 'filters' }} active
+            {{ $t('filter.filter_active_nav', { count: activeFilterCount }, activeFilterCount) }}
           </p>
         </div>
 
@@ -97,7 +97,7 @@
                     stroke-width="2"
                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
-                Brands
+                {{ $t('filter.brands') }}
               </h3>
               <div class="space-y-2">
                 <label
@@ -131,7 +131,7 @@
                     stroke-width="2"
                     d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Skin Type
+                {{ $t('filter.skin_type') }}
               </h3>
               <div class="space-y-2">
                 <label
@@ -162,7 +162,7 @@
                     stroke-width="2"
                     d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Price Range
+                {{ $t('filter.price_range') }}
               </h3>
               <div class="space-y-4">
                 <input
@@ -190,7 +190,7 @@
                   <path
                     d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
-                Rating
+                {{ $t('filter.rating') }}
               </h3>
               <div class="space-y-2">
                 <button
@@ -221,7 +221,7 @@
                         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   </div>
-                  <span>& Up</span>
+                  <span>{{ $t('filter.up') }}</span>
                 </button>
               </div>
             </div>
@@ -240,7 +240,7 @@
                     stroke-width="2"
                     d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
-                More Filters
+                {{ $t('filter.more_filters') }}
               </h3>
               <div class="space-y-2">
                 <label
@@ -267,14 +267,14 @@
               variant="glass"
               size="lg"
               class="flex-1">
-              Clear All
+              {{ $t('filter.clear_all') }}
             </LiquidButton>
             <LiquidButton
               @click="applyFilters"
               variant="primary"
               size="lg"
               class="flex-1">
-              Apply Filters
+              {{ $t('filter.apply_filters') }}
             </LiquidButton>
           </div>
         </div>
@@ -303,7 +303,7 @@ const props = defineProps({
   // Filter section title
   title: {
     type: String,
-    default: 'Categories',
+    default: '',
   },
   // Categories array
   categories: {

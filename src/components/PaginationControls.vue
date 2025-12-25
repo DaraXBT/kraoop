@@ -22,7 +22,7 @@
           <path d="m15 18-6-6 6-6" />
         </svg>
       </template>
-      <span v-if="showLabels" class="hidden sm:inline">Previous</span>
+      <span v-if="showLabels" class="hidden sm:inline">{{ $t('product.previous') }}</span>
     </LiquidButton>
 
     <!-- Page Number Buttons -->
@@ -47,7 +47,7 @@
       class="min-h-[38px]"
       :disabled="currentPage === totalPages"
       @click="handlePageChange(currentPage + 1)">
-      <span v-if="showLabels" class="hidden sm:inline">Next</span>
+      <span v-if="showLabels" class="hidden sm:inline">{{ $t('product.next') }}</span>
       <template v-slot:icon-right>
         <svg
           class="w-3.5 h-3.5"

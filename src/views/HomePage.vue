@@ -52,9 +52,9 @@ const handleAddToCart = (product) => {
             class="text-content order-2 lg:order-1 text-center lg:text-left min-w-0 px-2">
             <h1
               class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#383838] leading-tight mb-4 sm:mb-5 break-words animate-fade-in-up">
-              Discover Your<br class="hidden sm:inline" />
-              Inner Beauty<br class="hidden sm:inline" />
-              with
+              {{ $t('home.hero_title_1') }}<br class="hidden sm:inline" />
+              {{ $t('home.hero_title_2') }}<br class="hidden sm:inline" />
+              {{ $t('home.hero_title_3') }}
               <span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A3B7] to-[#E392A6]"
                 >KRAOOP</span
@@ -62,7 +62,7 @@ const handleAddToCart = (product) => {
             </h1>
             <p
               class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 break-words max-w-lg mx-auto lg:mx-0 font-medium animate-fade-in-up stagger-1">
-              Great gift for yourself and loved ones ✨
+              {{ $t('home.hero_subtitle') }}
             </p>
             <div
               class="button flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start animate-fade-in-up stagger-2">
@@ -72,7 +72,7 @@ const handleAddToCart = (product) => {
                 tag="router-link"
                 to="/product"
                 class="min-h-[48px] sm:min-h-[52px]">
-                Shop now
+                {{ $t('home.shop_now') }}
                 <template v-slot:icon-right>
                   <svg
                     class="w-4 h-4 sm:w-5 sm:h-5"
@@ -112,17 +112,17 @@ const handleAddToCart = (product) => {
         <div class="text-center min-w-0 max-w-4xl mx-auto mb-10" data-animate="fade-up">
           <p
             class="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-900 mb-3 break-words px-2 bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-600">
-            NEW ARRIVALS
+            {{ $t('home.new_arrivals') }}
           </p>
           <p
             class="text-sm sm:text-base lg:text-lg text-gray-600 mb-5 px-2 font-medium">
-            Discover our latest products ✨
+            {{ $t('home.new_arrivals_desc') }}
           </p>
           <AdvancedLiquidButton
             variant="primary"
             size="md"
             @click="() => $router.push('/product')">
-            View all
+            {{ $t('home.view_all') }}
             <template v-slot:icon-right>
               <svg
                 class="w-4 h-4"
@@ -170,17 +170,17 @@ const handleAddToCart = (product) => {
           <div class="text-center max-w-4xl mx-auto mb-10" data-animate="fade-up">
             <p
               class="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-900 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-600">
-              BEST SELLERS
+              {{ $t('home.best_sellers') }}
             </p>
             <p
               class="text-sm sm:text-base lg:text-lg text-gray-600 mb-5 font-medium">
-              Our most loved products 💖
+              {{ $t('home.best_sellers_desc') }}
             </p>
             <AdvancedLiquidButton
               variant="primary"
               size="md"
               @click="() => $router.push('/best-selling')">
-              View all
+              {{ $t('home.view_all') }}
               <template v-slot:icon-right>
                 <svg
                   class="w-4 h-4"
@@ -229,28 +229,25 @@ const handleAddToCart = (product) => {
           <div class="flex flex-col order-2 lg:order-1 min-w-0">
             <h2
               class="mb-4 sm:mb-5 text-xl sm:text-2xl lg:text-3xl font-bold text-neutral-900 break-words">
-              Floral Essence Masks Sets
+              {{ $t('home.floral_mask_title') }}
             </h2>
             <p
               class="text-xs sm:text-sm text-gray-600 mb-5 leading-relaxed break-words font-medium">
-              Indulge in the beauty of nature with our Floral Essence Masks set.
-              Each mask features a unique blend of flower extracts to hydrate
-              and nourish your skin. Experience the essence of flowers in your
-              skincare routine. 🌸
+              {{ $t('home.floral_mask_desc') }}
             </p>
             <div class="mb-5 hashtag overflow-hidden">
               <div class="flex flex-wrap gap-2 tag">
                 <div
                   class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:scale-105 transition-smooth border border-white/20">
-                  # Vegan 🌱
+                  {{ $t('home.vegan') }}
                 </div>
                 <div
                   class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:scale-105 transition-smooth border border-white/20">
-                  # Cruelty-free 🐰
+                  {{ $t('home.cruelty_free') }}
                 </div>
                 <div
                   class="glass-card text-neutral-700 px-4 text-xs py-1.5 rounded-full whitespace-nowrap font-bold hover:scale-105 transition-smooth border border-white/20">
-                  # Eco-friendly 🌍
+                  {{ $t('home.eco_friendly') }}
                 </div>
               </div>
             </div>
@@ -262,7 +259,7 @@ const handleAddToCart = (product) => {
                 tag="router-link"
                 to="/product"
                 class="min-h-[48px]">
-                Shop now
+                {{ $t('home.shop_now') }}
                 <template v-slot:icon-right>
                   <svg
                     class="w-4 h-4"
@@ -281,7 +278,7 @@ const handleAddToCart = (product) => {
                 variant="secondary"
                 size="lg"
                 @click="() => $router.push('/product')">
-                Explore more
+                {{ $t('home.explore_more') }}
                 <template v-slot:icon-right>
                   <svg
                     class="w-4 h-4"
@@ -335,28 +332,25 @@ const handleAddToCart = (product) => {
           <div class="flex flex-col">
             <h2
               class="mb-5 sm:mb-6 text-xl sm:text-2xl lg:text-3xl font-medium title text-[#383838]">
-              Blossom Glow Kit
+              {{ $t('home.blossom_kit_title') }}
             </h2>
             <p
               class="text-xs sm:text-sm text-[#697586] mb-5 sm:mb-6 leading-relaxed">
-              Reveal your skin's natural glow with our Lotus Glow Kit.
-              Nourishing body and face creams with lotus extract provide deep
-              hydration and rejuvenation. Suitable for all skin types. Vegan,
-              cruelty-free, eco-friendly.
+              {{ $t('home.blossom_kit_desc') }}
             </p>
             <div class="mb-5 sm:mb-6 hashtag">
               <div class="flex flex-wrap gap-2 tag">
                 <div
                   class="text-[#383838] bg-[#B0A6BD] px-3 sm:px-4 text-xs py-1.5 bg-opacity-30 rounded-full">
-                  # Vegan
+                  {{ $t('home.vegan') }}
                 </div>
                 <div
                   class="text-[#383838] bg-[#B0A6BD] px-3 sm:px-4 text-xs py-1.5 bg-opacity-30 rounded-full">
-                  # Cruelty-free
+                  {{ $t('home.cruelty_free') }}
                 </div>
                 <div
                   class="text-[#383838] bg-[#B0A6BD] px-3 sm:px-4 text-xs py-1.5 bg-opacity-30 rounded-full">
-                  # Eco-friendly
+                  {{ $t('home.eco_friendly') }}
                 </div>
               </div>
             </div>
@@ -368,13 +362,13 @@ const handleAddToCart = (product) => {
                 tag="router-link"
                 to="/product"
                 class="min-h-[48px]">
-                Shop now
+                {{ $t('home.shop_now') }}
               </LiquidButton>
               <LiquidButton
                 variant="secondary"
                 size="lg"
                 @click="() => $router.push('/product')">
-                Explore more
+                {{ $t('home.explore_more') }}
                 <template v-slot:icon-right>
                   <svg
                     class="w-4 h-4"

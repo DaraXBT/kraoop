@@ -46,6 +46,8 @@ export default {
         sans: [
           "Plus Jakarta Sans",
           "Lexend",
+          "Plus Jakarta Sans",
+          "Lexend",
           "Kantumruy Pro",
           "-apple-system",
           "BlinkMacSystemFont",

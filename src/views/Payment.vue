@@ -71,7 +71,7 @@
                 </svg>
               </div>
               <span class="hidden sm:inline text-xs font-bold text-gray-800 drop-shadow-sm"
-                >Cart</span
+                >{{ $t('payment.cart') }}</span
               >
             </div>
             <div class="h-1 w-8 sm:w-16 bg-gradient-to-r from-green-400 to-[#F5A3B7] rounded-full shadow-sm"></div>
@@ -80,7 +80,7 @@
                 class="w-8 h-8 rounded-full bg-gradient-to-br from-[#F5A3B7] to-[#e87995] shadow-[0_0_10px_rgba(245,163,183,0.5)] flex items-center justify-center border border-white/20 transition-transform group-hover:scale-110">
                 <span class="text-xs font-bold text-white drop-shadow-sm">2</span>
               </div>
-              <span class="text-xs font-bold text-gray-800 drop-shadow-sm">Checkout</span>
+              <span class="text-xs font-bold text-gray-800 drop-shadow-sm">{{ $t('payment.checkout') }}</span>
             </div>
             <div class="h-1 w-8 sm:w-16 bg-gray-200/50 rounded-full shadow-inner"></div>
             <div class="flex items-center gap-1.5 group">
@@ -89,7 +89,7 @@
                 <span class="text-xs font-bold text-gray-500">3</span>
               </div>
               <span class="hidden sm:inline text-xs font-semibold text-gray-500"
-                >Complete</span
+                >{{ $t('payment.complete') }}</span
               >
             </div>
           </div>
@@ -103,11 +103,11 @@
             class="liquid-glass-payment-card overflow-hidden relative transition-all duration-300 hover:shadow-lg hover:shadow-pink-100/20">
             <!-- Header with LiquidSectionHeader -->
             <LiquidSectionHeader
-              title="Your Order"
+              :title="$t('payment.your_order')"
               icon="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z">
               <template #badge>
                 {{ cartItems.length }}
-                {{ cartItems.length === 1 ? "Item" : "Items" }}
+                {{ cartItems.length === 1 ? $t('payment.item') : $t('payment.items') }}
               </template>
             </LiquidSectionHeader>
 
@@ -125,14 +125,14 @@
                   d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
               </svg>
               <h3 class="text-xl font-bold text-gray-900 mb-2">
-                Your cart is empty
+                {{ $t('payment.empty_cart') }}
               </h3>
               <p class="text-gray-800 mb-6 text-sm">
-                Discover our amazing skincare products!
+                {{ $t('payment.empty_desc') }}
               </p>
               <router-link to="/product">
                 <LiquidButton variant="primary" size="lg">
-                  Explore Products
+                  {{ $t('payment.explore_products') }}
                 </LiquidButton>
               </router-link>
             </div>
@@ -146,19 +146,19 @@
                     <tr style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                       <th
                         class="px-4 py-3 text-left text-xs font-semibold text-gray-800 uppercase">
-                        Product
+                        {{ $t('payment.product') }}
                       </th>
                       <th
                         class="px-4 py-3 text-center text-xs font-semibold text-gray-800 uppercase">
-                        Price
+                        {{ $t('payment.price') }}
                       </th>
                       <th
                         class="px-4 py-3 text-center text-xs font-semibold text-gray-800 uppercase">
-                        Quantity
+                        {{ $t('payment.quantity') }}
                       </th>
                       <th
                         class="px-4 py-3 text-right text-xs font-semibold text-gray-800 uppercase">
-                        Subtotal
+                        {{ $t('payment.subtotal') }}
                       </th>
                       <th
                         class="px-4 py-3 text-center text-xs font-semibold text-gray-800 uppercase w-16"></th>
@@ -340,7 +340,7 @@
                       </LiquidButton>
                     </div>
                     <div class="text-right">
-                      <p class="text-xs text-gray-600 mb-0.5">Subtotal</p>
+                      <p class="text-xs text-gray-600 mb-0.5">{{ $t('payment.subtotal') }}</p>
                       <p class="text-sm font-bold text-[#F5A3B7]">
                         ${{
                           (
@@ -378,12 +378,12 @@
                           stroke-linejoin="round"
                           d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                       </svg>
-                      Promo Code
+                      {{ $t('payment.promo_code') }}
                     </label>
                     <div class="flex gap-2 relative z-10">
                       <input
                         type="text"
-                        placeholder="Enter your promo code"
+                        :placeholder="$t('payment.enter_promo')"
                         class="flex-grow px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-300"
                         style="background: rgba(255, 255, 255, 0.9); border: 1.5px solid rgba(245, 163, 183, 0.25); color: #374151; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);"
                         onfocus="this.style.borderColor='rgba(245, 163, 183, 0.5)'; this.style.background='rgba(255, 255, 255, 0.98)'; this.style.boxShadow='0 0 0 3px rgba(245, 163, 183, 0.08), inset 0 1px 3px rgba(0, 0, 0, 0.05)'"
@@ -391,7 +391,7 @@
                       <LiquidButton
                         variant="primary"
                         class="px-5 py-2.5 text-sm font-semibold whitespace-nowrap">
-                        Apply
+                        {{ $t('payment.apply') }}
                       </LiquidButton>
                     </div>
                   </div>
@@ -404,7 +404,7 @@
                       <div class="divide-y divide-white/40">
                         <div class="flex justify-between px-4 py-2.5">
                           <span class="text-sm font-medium text-gray-700"
-                            >Subtotal</span
+                            >{{ $t('payment.subtotal') }}</span
                           >
                           <span class="text-sm font-semibold text-gray-900"
                             >${{ subtotal }}</span
@@ -412,7 +412,7 @@
                         </div>
                         <div class="flex justify-between px-4 py-2.5">
                           <span class="text-sm font-medium text-gray-700"
-                            >Shipping</span
+                            >{{ $t('payment.shipping') }}</span
                           >
                           <span class="text-sm font-semibold text-gray-900"
                             >${{ shipping.toFixed(2) }}</span
@@ -420,7 +420,7 @@
                         </div>
                         <div class="flex justify-between px-4 py-2.5">
                           <span class="text-sm font-medium text-gray-900"
-                            >Tax (10%)</span
+                            >{{ $t('payment.tax') }}</span
                           >
                           <span class="text-sm font-semibold text-gray-900"
                             >${{ tax }}</span
@@ -432,10 +432,10 @@
                           style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span
                             class="text-sm font-medium text-green-700 flex items-center gap-1">
-                            Discount (15%)
+                            {{ $t('payment.discount') }}
                             <span
                               class="px-1.5 py-0.5 bg-green-500 text-white text-xs font-bold rounded"
-                              >SAVE</span
+                              >{{ $t('payment.save') }}</span
                             >
                           </span>
                           <span class="text-sm font-semibold text-green-700"
@@ -446,7 +446,7 @@
                           class="flex justify-between px-4 py-3"
                           style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span class="text-base font-bold text-gray-900"
-                            >Total</span
+                            >{{ $t('payment.total') }}</span
                           >
                           <span class="text-lg font-bold text-[#D07B8F]"
                             >${{ total }}</span
@@ -460,7 +460,7 @@
                       <div class="divide-y divide-white/40">
                         <div class="flex justify-between px-3 py-2">
                           <span class="text-xs font-medium text-gray-700"
-                            >Subtotal</span
+                            >{{ $t('payment.subtotal') }}</span
                           >
                           <span class="text-sm font-semibold text-gray-900"
                             >${{ subtotal }}</span
@@ -468,7 +468,7 @@
                         </div>
                         <div class="flex justify-between px-3 py-2">
                           <span class="text-xs font-medium text-gray-700"
-                            >Shipping</span
+                            >{{ $t('payment.shipping') }}</span
                           >
                           <span class="text-sm font-semibold text-gray-900"
                             >${{ shipping.toFixed(2) }}</span
@@ -476,7 +476,7 @@
                         </div>
                         <div class="flex justify-between px-3 py-2">
                           <span class="text-xs font-medium text-gray-900"
-                            >Tax (10%)</span
+                            >{{ $t('payment.tax') }}</span
                           >
                           <span class="text-sm font-semibold text-gray-900"
                             >${{ tax }}</span
@@ -488,10 +488,10 @@
                           style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span
                             class="text-xs font-medium text-green-700 flex items-center gap-1">
-                            Discount (15%)
+                            {{ $t('payment.discount') }}
                             <span
                               class="px-1 py-0.5 bg-green-500 text-white text-xs font-bold rounded"
-                              >SAVE</span
+                              >{{ $t('payment.save') }}</span
                             >
                           </span>
                           <span class="text-sm font-semibold text-green-700"
@@ -502,7 +502,7 @@
                           class="flex justify-between px-3 py-2.5"
                           style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 163, 183, 0.08) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 163, 183, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);">
                           <span class="text-sm font-bold text-gray-900"
-                            >Total</span
+                            >{{ $t('payment.total') }}</span
                           >
                           <span class="text-base font-bold text-[#D07B8F]"
                             >${{ total }}</span
@@ -525,7 +525,7 @@
               class="liquid-glass-payment-card overflow-hidden relative">
               <!-- Section Header -->
               <LiquidSectionHeader
-                title="Contact & Shipping Details"
+                :title="$t('payment.contact_shipping')"
                 icon="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 
               <div class="p-4 space-y-3 relative z-10">
@@ -550,7 +550,7 @@
                     <div class="flex-grow min-w-0">
                       <div
                         class="text-xs font-bold text-gray-600 uppercase mb-1 tracking-wider">
-                        Email
+                        {{ $t('payment.email') }}
                       </div>
                       <!-- Display mode -->
                       <div
@@ -563,7 +563,7 @@
                         <input
                           type="email"
                           v-model="editData.email"
-                          placeholder="Enter your email"
+                          :placeholder="$t('payment.enter_email')"
                           class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500"
                           @keydown.enter="saveEmail"
                           @keydown.esc="cancelEmailEdit" />
@@ -571,12 +571,12 @@
                           <button
                             @click="saveEmail"
                             class="flex-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#F5A3B7] hover:bg-[#E392A6] rounded-md transition-colors">
-                            Save
+                            {{ $t('payment.save_btn') }}
                           </button>
                           <button
                             @click="cancelEmailEdit"
                             class="flex-1 px-3 py-1.5 text-xs font-semibold text-gray-800 hover:text-gray-900 hover:bg-gray-900/10 border border-gray-900/30 rounded-md transition-colors">
-                            Cancel
+                            {{ $t('payment.cancel') }}
                           </button>
                         </div>
                       </div>
@@ -585,7 +585,7 @@
                       v-if="!editModes.email"
                       @click="startEditEmail"
                       class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-gray-900 hover:text-[#F5A3B7] hover:bg-gray-900/10 border border-gray-900/30 rounded-md transition-colors">
-                      Edit
+                      {{ $t('payment.edit') }}
                     </button>
                   </div>
                 </div>
@@ -615,7 +615,7 @@
                     <div class="flex-grow min-w-0">
                       <div
                         class="text-xs font-bold text-gray-600 uppercase mb-1 tracking-wider">
-                        Address
+                        {{ $t('payment.address') }}
                       </div>
                       <!-- Display mode -->
                       <div
@@ -627,7 +627,7 @@
                       <div v-else class="space-y-2">
                         <textarea
                           v-model="editData.address"
-                          placeholder="Enter your address"
+                          :placeholder="$t('payment.enter_address')"
                           rows="2"
                           class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500 resize-none"
                           @keydown.esc="cancelAddressEdit"></textarea>
@@ -635,12 +635,12 @@
                           <button
                             @click="saveAddress"
                             class="flex-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#F5A3B7] hover:bg-[#E392A6] rounded-md transition-colors">
-                            Save
+                            {{ $t('payment.save_btn') }}
                           </button>
                           <button
                             @click="cancelAddressEdit"
                             class="flex-1 px-3 py-1.5 text-xs font-semibold text-gray-800 hover:text-gray-900 hover:bg-gray-900/10 border border-gray-900/30 rounded-md transition-colors">
-                            Cancel
+                            {{ $t('payment.cancel') }}
                           </button>
                         </div>
                       </div>
@@ -649,7 +649,7 @@
                       v-if="!editModes.address"
                       @click="startEditAddress"
                       class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-gray-900 hover:text-[#F5A3B7] hover:bg-gray-900/10 border border-gray-900/30 rounded-md transition-colors">
-                      Edit
+                      {{ $t('payment.edit') }}
                     </button>
                   </div>
                 </div>
@@ -677,7 +677,7 @@
                     <div class="flex-grow min-w-0">
                       <div
                         class="text-xs font-semibold text-gray-800 uppercase mb-1">
-                        Delivery
+                        {{ $t('payment.delivery') }}
                       </div>
                       <!-- Display mode -->
                       <div v-if="!editModes.delivery">
@@ -697,19 +697,19 @@
                           <div>
                             <label
                               class="text-xs font-medium text-white/80 block mb-1"
-                              >Method</label
+                              >{{ $t('payment.method') }}</label
                             >
                             <input
                               type="text"
                               v-model="editData.deliveryMethod"
-                              placeholder="Shipping method"
+                              :placeholder="$t('payment.shipping_method')"
                               class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500"
                               @keydown.esc="cancelDeliveryEdit" />
                           </div>
                           <div>
                             <label
                               class="text-xs font-medium text-gray-700 block mb-1"
-                              >Cost ($)</label
+                              >{{ $t('payment.cost') }}</label
                             >
                             <input
                               type="number"
@@ -724,7 +724,7 @@
                         <div>
                           <label
                             class="text-xs font-medium text-gray-700 block mb-1"
-                            >Estimate</label
+                            >{{ $t('payment.estimate') }}</label
                           >
                           <input
                             type="text"
@@ -737,12 +737,12 @@
                           <button
                             @click="saveDelivery"
                             class="flex-1 px-3 py-1.5 text-xs font-semibold text-white bg-[#F5A3B7] hover:bg-[#E392A6] rounded-md transition-colors">
-                            Save
+                            {{ $t('payment.save_btn') }}
                           </button>
                           <button
                             @click="cancelDeliveryEdit"
                             class="flex-1 px-3 py-1.5 text-xs font-semibold text-white/80 hover:text-white hover:bg-white/10 border border-white/30 rounded-md transition-colors">
-                            Cancel
+                            {{ $t('payment.cancel') }}
                           </button>
                         </div>
                       </div>
@@ -751,7 +751,7 @@
                       v-if="!editModes.delivery"
                       @click="startEditDelivery"
                       class="flex-shrink-0 px-3 py-1.5 text-xs font-semibold text-white hover:text-[#F5A3B7] hover:bg-white/10 border border-white/30 rounded-md transition-colors">
-                      Edit
+                      {{ $t('payment.edit') }}
                     </button>
                   </div>
                 </div>
@@ -765,12 +765,12 @@
               class="liquid-glass-payment-card overflow-hidden relative">
               <!-- Section Header -->
               <LiquidSectionHeader
-                title="Payment Method"
+                :title="$t('payment.payment_method')"
                 icon="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
 
               <div class="p-4 space-y-4 relative z-10">
                 <p class="text-xs text-gray-800 font-medium">
-                  Choose your preferred payment option
+                  {{ $t('payment.choose_payment') }}
                 </p>
 
                 <!-- Payment Options -->
@@ -1088,7 +1088,7 @@
                     class="mt-3 space-y-3">
                     <div class="flex items-center justify-between">
                       <h4 class="text-sm font-semibold text-gray-900">
-                        Select Card
+                        {{ $t('payment.select_card') }}
                       </h4>
                       <button
                         @click="showAddCardForm = !showAddCardForm"
@@ -1104,7 +1104,7 @@
                             stroke-linejoin="round"
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
-                        Add New
+                        {{ $t('payment.add_new_card') }}
                       </button>
                     </div>
 
@@ -1178,7 +1178,7 @@
                         <div
                           class="flex items-center justify-between relative z-10">
                           <h5 class="text-sm font-semibold text-gray-900">
-                            Add New Card
+                            {{ $t('payment.add_new_card') }}
                           </h5>
                           <button
                             @click="showAddCardForm = false"
@@ -1201,7 +1201,7 @@
                           <div>
                             <label
                               class="text-xs font-semibold text-gray-700 block mb-1"
-                              >Card Number</label
+                              >{{ $t('payment.card_number') }}</label
                             >
                             <input
                               type="text"
@@ -1214,12 +1214,12 @@
                           <div>
                             <label
                               class="text-xs font-semibold text-gray-700 block mb-1"
-                              >Cardholder Name</label
+                              >{{ $t('payment.card_holder') }}</label
                             >
                             <input
                               type="text"
                               v-model="newCard.name"
-                              placeholder="Dara Veasna"
+                              :placeholder="$t('payment.card_placeholder')"
                               class="w-full px-3 py-2 text-sm liquid-input rounded-xl placeholder:text-gray-500" />
                           </div>
 
@@ -1227,7 +1227,7 @@
                             <div>
                               <label
                                 class="text-xs font-semibold text-gray-700 block mb-1"
-                                >Expiry</label
+                                >{{ $t('payment.expiry') }}</label
                               >
                               <input
                                 type="text"
@@ -1239,7 +1239,7 @@
                             <div>
                               <label
                                 class="text-xs font-semibold text-gray-700 block mb-1"
-                                >CVV</label
+                                >{{ $t('payment.cvc') }}</label
                               >
                               <input
                                 type="text"
@@ -1256,14 +1256,14 @@
                               v-model="newCard.saveCard"
                               class="w-4 h-4 text-[#F5A3B7] border-gray-300 rounded focus:ring-[#F5A3B7]" />
                             <span class="text-xs text-gray-700 font-medium"
-                              >Save for future use</span
+                              >{{ $t('payment.save_card') }}</span
                             >
                           </label>
 
                           <button
                             @click="addNewCard"
                             class="w-full py-2.5 bg-[#F5A3B7] hover:bg-[#E392A6] text-white text-sm font-semibold rounded-lg transition-all shadow-md hover:shadow-lg">
-                            Add Card
+                            {{ $t('payment.add_new_card') }}
                           </button>
                         </div>
                       </div>
@@ -1422,10 +1422,10 @@
               </div>
               <div>
                 <h4 class="text-sm font-bold text-gray-800 mb-1">
-                  Secure Checkout
+                  {{ $t('payment.secure_checkout') }}
                 </h4>
                 <p class="text-xs text-gray-600 leading-relaxed font-medium">
-                  Your payment is encrypted and secure. We never store your card details.
+                  {{ $t('payment.secure_desc') }}
                 </p>
               </div>
             </div>
@@ -1478,7 +1478,7 @@
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </template>
-            <span>Complete Order - ${{ total }}</span>
+            <span>{{ $t('payment.complete_order') }} - ${{ total }}</span>
           </LiquidButton>
         </div>
       </div>
@@ -1488,6 +1488,7 @@
 
 <script setup>
 import {computed, ref, reactive} from "vue";
+import {useI18n} from "vue-i18n";
 import NavBarComponentVue from "../components/NavBarComponent.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
@@ -1496,6 +1497,7 @@ import LiquidButton from "../components/LiquidButton.vue";
 import AdvancedLiquidButton from "../components/AdvancedLiquidButton.vue";
 import LiquidSectionHeader from "../components/LiquidSectionHeader.vue";
 
+const { t } = useI18n();
 const productStore = useProductStore();
 const {success, error: errorToast, info} = useToast();
 

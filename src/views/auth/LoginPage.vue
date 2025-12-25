@@ -63,10 +63,10 @@
 
               <div class="text-center relative z-10">
                 <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  Welcome Back
+                  {{ $t('auth.welcome_back') }}
                 </h1>
                 <p class="text-white/90 text-sm">
-                  Sign in to your Kraoop Beauty account
+                  {{ $t('auth.signin_to_account') }}
                 </p>
               </div>
             </div>
@@ -78,7 +78,7 @@
                 <label
                   for="email"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Email Address
+                  {{ $t('auth.email') }}
                 </label>
                 <input
                   id="email"
@@ -99,7 +99,7 @@
                 <label
                   for="password"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Password
+                  {{ $t('auth.password') }}
                 </label>
                 <div class="relative">
                   <input
@@ -108,7 +108,7 @@
                     :type="showPassword ? 'text' : 'password'"
                     required
                     autocomplete="current-password"
-                    placeholder="Enter your password"
+                    :placeholder="$t('auth.enter_password')"
                     class="liquid-input w-full px-4 py-3 pr-12 text-sm"
                     :class="{'border-red-400': errors.password}" />
                   <button
@@ -160,14 +160,14 @@
                     class="liquid-checkbox" />
                   <span
                     class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
-                    Remember me
+                    {{ $t('auth.remember_me') }}
                   </span>
                 </label>
 
                 <router-link
                   to="/forgot-password"
                   class="text-sm font-semibold text-[#F5A3B7] hover:text-[#E392A6] transition-colors">
-                  Forgot password?
+                  {{ $t('auth.forgot_password') }}
                 </router-link>
               </div>
 
@@ -198,8 +198,8 @@
                   full-width
                   :loading="isLoading"
                   :disabled="isLoading">
-                  <span v-if="!isLoading">Sign In</span>
-                  <span v-else>Signing in...</span>
+                  <span v-if="!isLoading">{{ $t('auth.sign_in_btn') }}</span>
+                  <span v-else>{{ $t('auth.signing_in') }}</span>
                 </LiquidButton>
               </div>
 
@@ -210,7 +210,7 @@
                 </div>
                 <div class="relative flex justify-center text-sm">
                   <span class="px-4 bg-white/80 text-gray-500 font-medium">
-                    Don't have an account?
+                    {{ $t('auth.no_account') }}
                   </span>
                 </div>
               </div>
@@ -223,7 +223,7 @@
                     variant="secondary"
                     size="lg"
                     full-width>
-                    Create Account
+                    {{ $t('auth.create_account') }}
                   </LiquidButton>
                 </router-link>
               </div>
@@ -246,7 +246,7 @@
                   stroke-width="2"
                   d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              Back to Home
+              {{ $t('auth.back_to_home') }}
             </router-link>
           </div>
         </div>
@@ -258,11 +258,13 @@
 <script setup>
 import {ref} from "vue";
 import {useRouter} from "vue-router";
+import {useI18n} from "vue-i18n";
 import {useAuth} from "../../composables/useAuth";
 import {useToast} from "../../composables/useToast";
 import LiquidButton from "../../components/LiquidButton.vue";
 
 const router = useRouter();
+const { t } = useI18n();
 const {login, isLoading} = useAuth();
 const {success, error: showError} = useToast();
 
@@ -282,18 +284,18 @@ function validateForm() {
   let isValid = true;
 
   if (!email.value) {
-    errors.value.email = "Email is required";
+    errors.value.email = t('auth.email_required');
     isValid = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-    errors.value.email = "Please enter a valid email";
+    errors.value.email = t('auth.email_invalid');
     isValid = false;
   }
 
   if (!password.value) {
-    errors.value.password = "Password is required";
+    errors.value.password = t('auth.password_required');
     isValid = false;
   } else if (password.value.length < 6) {
-    errors.value.password = "Password must be at least 6 characters";
+    errors.value.password = t('auth.password_min_length');
     isValid = false;
   }
 
@@ -311,14 +313,14 @@ async function handleLogin() {
   const result = await login(email.value, password.value);
 
   if (result.success) {
-    success("Welcome back! You're now signed in.");
+    success(t('auth.login_welcome'));
 
     // Redirect to intended page or home
     const redirect = router.currentRoute.value.query.redirect || "/";
     router.push(redirect);
   } else {
     loginError.value = result.error || "Invalid email or password";
-    showError("Login failed. Please check your credentials.");
+    showError(t('auth.login_failed'));
   }
 }
 </script>

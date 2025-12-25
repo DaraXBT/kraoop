@@ -57,7 +57,7 @@
             <div
               class="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#F5A3B7] mb-4"></div>
             <p class="text-gray-600 font-semibold text-lg">
-              Loading products...
+              {{ $t('product.loading') }}
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@
         <!-- Search Bar Section -->
         <div class="mb-6">
           <h1 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-5 animate-fade-in-up">
-            Discover Products
+            {{ $t('product.discover_products') }}
           </h1>
           <SearchBar
             v-model="searchQuery"
@@ -82,7 +82,7 @@
         <div class="flex flex-col lg:flex-row gap-6 lg:gap-10">
           <!-- Sidebar / Filters -->
           <ModernFilterSidebar
-            title="Categories"
+            :title="$t('filter.categories')"
             :categories="categories"
             :brands="brands"
             :skinTypes="skinTypes"
@@ -110,16 +110,16 @@
                   {{ filteredProducts.length }}
                 </span>
                 <span class="text-gray-600">
-                  {{ filteredProducts.length === 1 ? "Product" : "Products" }}
+                  {{ filteredProducts.length === 1 ? $t('product.count_product') : $t('product.count_products') }}
                 </span>
                 <span v-if="searchQuery" class="text-gray-500 ml-2">
-                  for "{{ searchQuery }}"
+                  {{ $t('product.for_query') }} "{{ searchQuery }}"
                 </span>
               </div>
 
               <!-- Sort Dropdown -->
               <div class="flex items-center gap-2.5 text-sm w-full sm:w-auto">
-                <span class="text-gray-700 font-medium">Sort By</span>
+                <span class="text-gray-700 font-medium">{{ $t('product.sort_by') }}</span>
                 <div class="flex-1 sm:flex-none sm:min-w-[200px]">
                   <SelectDropdown
                     v-model="sortBy"
@@ -147,10 +147,10 @@
                   d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                No products found
+                {{ $t('product.no_results') }}
               </h3>
               <p class="text-gray-600 mb-5 text-sm">
-                Try adjusting your filters or search query
+                {{ $t('product.no_results_desc') }}
               </p>
               <button
                 @click="clearAllFilters"
@@ -168,7 +168,7 @@
                       stroke-width="2"
                       d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
-                  <span class="text-sm font-bold text-gray-800">Clear All Filters</span>
+                  <span class="text-sm font-bold text-gray-800">{{ $t('product.clear_all_filters') }}</span>
                 </div>
               </button>
             </div>
@@ -214,7 +214,7 @@
                       <path d="m15 18-6-6 6-6" />
                     </svg>
                   </template>
-                  <span class="hidden sm:inline">Previous</span>
+                  <span class="hidden sm:inline">{{ $t('product.previous') }}</span>
                 </LiquidButton>
 
                 <div class="flex items-center gap-x-1">
@@ -239,7 +239,7 @@
                   variant="glass"
                   size="sm"
                   class="min-h-[38px]">
-                  <span class="hidden sm:inline">Next</span>
+                  <span class="hidden sm:inline">{{ $t('product.next') }}</span>
                   <template v-slot:icon-right>
                     <svg
                       class="w-3.5 h-3.5"
@@ -281,7 +281,9 @@ import {useToast} from "../composables/useToast";
 import {usePageTransition} from "../composables/usePageTransition";
 import LiquidButton from "../components/LiquidButton.vue";
 import {computed, ref, watch, onMounted} from "vue";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n();
 const store = useProductStore();
 const {success} = useToast();
 const {getStaggerDelay} = usePageTransition();
@@ -377,10 +379,11 @@ watch(
 );
 
 // Additional filters
+// Additional filters
 const additionalFilters = ref([
-  {label: "In Stock", value: "inStock", selected: false},
-  {label: "On Sale", value: "onSale", selected: false},
-  {label: "Featured", value: "featured", selected: false},
+  {label: computed(() => t('filter.in_stock')), value: "inStock", selected: false},
+  {label: computed(() => t('filter.on_sale')), value: "onSale", selected: false},
+  {label: computed(() => t('filter.featured')), value: "featured", selected: false},
 ]);
 
 // Price range
@@ -397,16 +400,17 @@ const selectedRating = ref(null);
 const sortBy = ref("featured");
 
 // Sort options for dropdown
-const sortOptions = [
-  {value: "featured", label: "Featured"},
-  {value: "best-selling", label: "Best Selling"},
-  {value: "price-low", label: "Price: Low to High"},
-  {value: "price-high", label: "Price: High to Low"},
-  {value: "rating-high", label: "Highest Rated"},
-  {value: "a-z", label: "A-Z"},
-  {value: "z-a", label: "Z-A"},
-  {value: "newest", label: "Newest First"},
-];
+// Sort options for dropdown
+const sortOptions = computed(() => [
+  {value: "featured", label: t('sort.featured')},
+  {value: "best-selling", label: t('sort.best_selling')},
+  {value: "price-low", label: t('sort.price_low')},
+  {value: "price-high", label: t('sort.price_high')},
+  {value: "rating-high", label: t('sort.rating_high')},
+  {value: "a-z", label: t('sort.az')},
+  {value: "z-a", label: t('sort.za')},
+  {value: "newest", label: t('sort.newest')},
+]);
 
 // Pagination
 const currentPage = ref(1);
@@ -590,7 +594,7 @@ const goToPage = (page) => {
 
 const handleAddToCart = (product) => {
   store.addToCart(product);
-  success(`${product.title} added to cart! 🛒`, 3000);
+  success(`${product.title} ${t('product.added_to_cart')} 🛒`, 3000);
   console.log("Added to cart:", product);
 };
 </script>

@@ -69,24 +69,24 @@
               </div>
 
               <h2 class="text-2xl font-bold text-gray-900 mb-3">
-                Check Your Email
+                {{ $t('auth.check_email') }}
               </h2>
               <p class="text-gray-600 mb-6">
-                We've sent password reset instructions to
+                {{ $t('auth.email_sent_desc') }}
                 <span class="font-semibold text-gray-900">{{ email }}</span>
               </p>
 
               <div class="space-y-3">
                 <router-link to="/login">
                   <LiquidButton variant="primary" size="lg" full-width>
-                    Back to Login
+                    {{ $t('auth.back_to_login') }}
                   </LiquidButton>
                 </router-link>
 
                 <button
                   @click="resetForm"
                   class="w-full text-sm text-gray-600 hover:text-[#F5A3B7] transition-colors font-medium">
-                  Didn't receive the email? Try again
+                  {{ $t('auth.resend_email_link') }}
                 </button>
               </div>
             </div>
@@ -123,10 +123,10 @@
                   </svg>
                 </div>
                 <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">
-                  Forgot Password?
+                  {{ $t('auth.forgot_password_title') }}
                 </h1>
                 <p class="text-white/90 text-sm">
-                  No worries, we'll send you reset instructions
+                  {{ $t('auth.forgot_password_subtitle') }}
                 </p>
               </div>
             </div>
@@ -138,7 +138,7 @@
                 <label
                   for="email"
                   class="block text-sm font-semibold text-gray-800 mb-2">
-                  Email Address
+                  {{ $t('auth.enter_email_label') }}
                 </label>
                 <input
                   id="email"
@@ -146,14 +146,14 @@
                   type="email"
                   required
                   autocomplete="email"
-                  placeholder="Enter your email"
+                  :placeholder="$t('auth.enter_email_placeholder')"
                   class="liquid-input w-full px-4 py-3 text-sm"
                   :class="{'border-red-400': errors.email}" />
                 <p v-if="errors.email" class="mt-1 text-xs text-red-500">
                   {{ errors.email }}
                 </p>
                 <p class="mt-2 text-xs text-gray-500">
-                  Enter the email address associated with your account
+                  {{ $t('auth.enter_email_hint') }}
                 </p>
               </div>
 
@@ -183,8 +183,8 @@
                 full-width
                 :loading="isLoading"
                 :disabled="isLoading">
-                <span v-if="!isLoading">Send Reset Link</span>
-                <span v-else>Sending...</span>
+                <span v-if="!isLoading">{{ $t('auth.send_reset_link') }}</span>
+                <span v-else>{{ $t('auth.sending') }}</span>
               </LiquidButton>
 
               <!-- Back to Login -->
@@ -207,7 +207,7 @@
                         d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                   </template>
-                  Back to Login
+                  {{ $t('auth.back_to_login') }}
                 </LiquidButton>
               </router-link>
             </form>
@@ -229,7 +229,7 @@
                   stroke-width="2"
                   d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
-              Back to Home
+              {{ $t('auth.back_to_home') }}
             </router-link>
           </div>
         </div>
@@ -240,10 +240,12 @@
 
 <script setup>
 import {ref} from "vue";
+import {useI18n} from "vue-i18n";
 import {useAuth} from "../../composables/useAuth";
 import {useToast} from "../../composables/useToast";
 import LiquidButton from "../../components/LiquidButton.vue";
 
+const { t } = useI18n();
 const {requestPasswordReset, isLoading} = useAuth();
 const {success, error: showError} = useToast();
 
@@ -261,10 +263,10 @@ function validateForm() {
   let isValid = true;
 
   if (!email.value) {
-    errors.value.email = "Email is required";
+    errors.value.email = t('auth.email_required');
     isValid = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-    errors.value.email = "Please enter a valid email";
+    errors.value.email = t('auth.email_invalid');
     isValid = false;
   }
 
@@ -283,11 +285,11 @@ async function handleSubmit() {
 
   if (result.success) {
     emailSent.value = true;
-    success("Password reset email sent!");
+    success(t('auth.email_sent_success'));
   } else {
     resetError.value =
-      result.error || "Failed to send reset email. Please try again.";
-    showError("Failed to send reset email.");
+      result.error || t('auth.send_reset_failed');
+    showError(t('auth.send_reset_failed_toast'));
   }
 }
 
