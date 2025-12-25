@@ -1,4 +1,4 @@
-![MaterHead](https://github.com/daraaveasna/kraoop/blob/master/src/assets/images/githubBanner.gif)
+![MaterHead](https://github.com/DaraXBT/kraoop/blob/master/src/assets/images/githubBanner.gif)
 
 <div align="center">
 
