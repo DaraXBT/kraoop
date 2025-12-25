@@ -1,9 +1,11 @@
 <script setup>
 import {ref, computed} from "vue";
+import {useI18n} from "vue-i18n";
 import NavbarComponent from "../components/NavBarComponent.vue";
 import LiquidButton from "../components/LiquidButton.vue";
 import {useToast} from "../composables/useToast";
 
+const {t} = useI18n();
 const {success, info} = useToast();
 
 // User data (in a real app, this would come from a store or API)
@@ -123,19 +125,19 @@ const toggleEdit = () => {
     // Save changes
     user.value = {...formData.value};
     isEditing.value = false;
-    success("Profile updated successfully! ✓", 2500);
+    success(t('account.profile.update_success'), 2500);
   } else {
     // Enter edit mode
     formData.value = {...user.value};
     isEditing.value = true;
-    info("Edit mode enabled", 2000);
+    info(t('account.profile.edit_mode'), 2000);
   }
 };
 
 const cancelEdit = () => {
   formData.value = {...user.value};
   isEditing.value = false;
-  info("Changes discarded", 2000);
+  info(t('account.profile.changes_discarded'), 2000);
 };
 
 const getStatusColor = (status) => {
@@ -187,7 +189,7 @@ const removeFromWishlist = (id) => {
   const item = wishlist.value.find((item) => item.id === id);
   wishlist.value = wishlist.value.filter((item) => item.id !== id);
   if (item) {
-    info(`${item.name} removed from wishlist`, 2500);
+    info(`${item.name} ${t('account.wishlist.removed')}`, 2500);
   }
 };
 
@@ -196,7 +198,7 @@ const setDefaultAddress = (id) => {
     ...addr,
     isDefault: addr.id === id,
   }));
-  success("Default address updated! ✓", 2500);
+  success(t('account.addresses.default_updated'), 2500);
 };
 
 const startEditAddress = (address) => {
@@ -222,7 +224,7 @@ const saveAddress = (id) => {
       id,
       isDefault: addresses.value[index].isDefault,
     };
-    success("Address updated successfully! ✓", 2500);
+    success(t('account.addresses.updated'), 2500);
   }
   cancelEditAddress();
 };
@@ -231,9 +233,9 @@ const deleteAddress = (id) => {
   const address = addresses.value.find((addr) => addr.id === id);
   if (address && !address.isDefault) {
     addresses.value = addresses.value.filter((addr) => addr.id !== id);
-    info("Address deleted", 2000);
+    info(t('account.addresses.deleted'), 2000);
   } else if (address && address.isDefault) {
-    info("Cannot delete default address", 2500);
+    info(t('account.addresses.cannot_delete'), 2500);
   }
 };
 
@@ -264,25 +266,25 @@ const addNewAddress = () => {
     id: newId,
     isDefault: addresses.value.length === 0,
   });
-  success("New address added! ✓", 2500);
+  success(t('account.addresses.added'), 2500);
   closeAddressForm();
 };
 
 const updatePassword = () => {
   if (!passwordData.value.current || !passwordData.value.new || !passwordData.value.confirm) {
-    info("Please fill all password fields", 2500);
+    info(t('account.settings.fill_fields'), 2500);
     return;
   }
   if (passwordData.value.new !== passwordData.value.confirm) {
-    info("New passwords do not match", 2500);
+    info(t('account.settings.password_mismatch'), 2500);
     return;
   }
   if (passwordData.value.new.length < 8) {
-    info("Password must be at least 8 characters", 2500);
+    info(t('account.settings.password_length'), 2500);
     return;
   }
   // In a real app, this would call an API
-  success("Password updated successfully! ✓", 2500);
+  success(t('account.settings.password_success'), 2500);
   passwordData.value = {
     current: "",
     new: "",
@@ -354,11 +356,11 @@ const updatePassword = () => {
             <div class="text-center sm:text-left">
               <h1
                 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#383838] mb-2">
-                Welcome back,
+                {{ t('account.welcome_back') }}
                 <span class="text-[#F5A3B7]">{{ user.firstName }}</span>
               </h1>
               <p class="text-base sm:text-lg text-[#697586]">
-                Member since {{ user.dateJoined }}
+                {{ t('account.member_since') }} {{ user.dateJoined }}
               </p>
             </div>
           </div>
@@ -372,7 +374,7 @@ const updatePassword = () => {
           <!-- Sidebar Navigation -->
           <div class="lg:col-span-1">
             <div
-              class="bg-white/80 backdrop-blur-xl border border-white/20 rounded-xl p-2 sm:p-6 sticky top-20 sm:top-24 z-20 shadow-sm lg:shadow-none mb-6 lg:mb-0">
+              class="rounded-xl p-2 sm:p-6 sticky top-20 sm:top-24 z-20 mb-6 lg:mb-0">
               <nav
                 class="flex lg:flex-col gap-3 lg:gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide -mx-2 px-2 lg:mx-0 lg:px-0">
                 <LiquidButton
@@ -394,7 +396,7 @@ const updatePassword = () => {
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </template>
-                  Profile
+                  {{ t('account.tabs.profile') }}
                 </LiquidButton>
 
                 <LiquidButton
@@ -416,7 +418,7 @@ const updatePassword = () => {
                         d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                   </template>
-                  Orders
+                  {{ t('account.tabs.orders') }}
                 </LiquidButton>
 
                 <LiquidButton
@@ -438,7 +440,7 @@ const updatePassword = () => {
                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                   </template>
-                  Wishlist
+                  {{ t('account.tabs.wishlist') }}
                 </LiquidButton>
 
                 <LiquidButton
@@ -465,7 +467,7 @@ const updatePassword = () => {
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </template>
-                  Addresses
+                  {{ t('account.tabs.addresses') }}
                 </LiquidButton>
 
                 <LiquidButton
@@ -492,28 +494,9 @@ const updatePassword = () => {
                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </template>
-                  Settings
+                  {{ t('account.tabs.settings') }}
                 </LiquidButton>
 
-                <LiquidButton
-                  variant="ghost"
-                  size="md"
-                  :class="'w-auto lg:w-full justify-center lg:justify-start whitespace-nowrap flex-shrink-0 ml-auto lg:ml-0 text-red-500 hover:text-red-700 hover:bg-red-50'">
-                  <template #icon>
-                    <svg
-                      class="w-5 h-5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                    </svg>
-                  </template>
-                  Logout
-                </LiquidButton>
               </nav>
             </div>
           </div>
@@ -526,14 +509,14 @@ const updatePassword = () => {
               class="bg-white rounded-xl p-6 sm:p-8">
               <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
                 <h2 class="text-2xl sm:text-3xl font-bold text-[#383838]">
-                  Profile Information
+                  {{ t('account.profile.title') }}
                 </h2>
                 <LiquidButton
                   v-if="!isEditing"
                   @click="toggleEdit"
                   variant="primary"
                   size="md">
-                  Edit Profile
+                  {{ t('account.profile.edit_profile') }}
                 </LiquidButton>
               </div>
 
@@ -541,7 +524,7 @@ const updatePassword = () => {
                 <!-- First Name -->
                 <div>
                   <label class="block text-sm font-medium text-[#383838] mb-2"
-                    >First Name</label
+                    >{{ t('account.profile.first_name') }}</label
                   >
                   <input
                     v-if="isEditing"
@@ -558,7 +541,7 @@ const updatePassword = () => {
                 <!-- Last Name -->
                 <div>
                   <label class="block text-sm font-medium text-[#383838] mb-2"
-                    >Last Name</label
+                    >{{ t('account.profile.last_name') }}</label
                   >
                   <input
                     v-if="isEditing"
@@ -575,7 +558,7 @@ const updatePassword = () => {
                 <!-- Email -->
                 <div>
                   <label class="block text-sm font-medium text-[#383838] mb-2"
-                    >Email Address</label
+                    >{{ t('account.profile.email') }}</label
                   >
                   <input
                     v-if="isEditing"
@@ -592,7 +575,7 @@ const updatePassword = () => {
                 <!-- Phone -->
                 <div>
                   <label class="block text-sm font-medium text-[#383838] mb-2"
-                    >Phone Number</label
+                    >{{ t('account.profile.phone') }}</label
                   >
                   <input
                     v-if="isEditing"
@@ -613,14 +596,14 @@ const updatePassword = () => {
                     variant="primary"
                     size="lg"
                     :class="'flex-1'">
-                    Save Changes
+                    {{ t('account.profile.save_changes') }}
                   </LiquidButton>
                   <LiquidButton
                     @click="cancelEdit"
                     variant="secondary"
                     size="lg"
                     :class="'flex-1'">
-                    Cancel
+                    {{ t('account.profile.cancel') }}
                   </LiquidButton>
                 </div>
               </div>
@@ -631,7 +614,7 @@ const updatePassword = () => {
               v-if="activeTab === 'orders'"
               class="bg-white rounded-xl p-6 sm:p-8">
               <h2 class="text-2xl sm:text-3xl font-bold text-[#383838] mb-6">
-                Order History
+                {{ t('account.orders.title') }}
               </h2>
 
               <div class="space-y-4">
@@ -660,13 +643,13 @@ const updatePassword = () => {
                           getStatusColor(order.status).dot,
                         ]"></span>
                       <span class="text-lg leading-none">{{ getStatusColor(order.status).icon }}</span>
-                      <span>{{ order.status }}</span>
+                      <span>{{ t('account.orders.status.' + order.status.toLowerCase().replace(' ', '_')) }}</span>
                     </div>
                   </div>
                   <div
                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t border-gray-100">
                     <div class="text-sm text-[#697586]">
-                      {{ order.items }} items • Total:
+                      {{ order.items }} {{ t('account.orders.items') }} • {{ t('account.orders.total') }}:
                       <span class="font-semibold text-[#383838]">{{
                         order.total
                       }}</span>
@@ -675,7 +658,7 @@ const updatePassword = () => {
                       variant="ghost"
                       size="sm"
                       :class="'w-fit'">
-                      View Details
+                      {{ t('account.orders.view_details') }}
                     </LiquidButton>
                   </div>
                 </div>
@@ -693,11 +676,11 @@ const updatePassword = () => {
                     stroke-width="2"
                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
-                <p class="text-[#697586] text-lg">No orders yet</p>
+                <p class="text-[#697586] text-lg">{{ t('account.orders.no_orders') }}</p>
                 <router-link
                   to="/product"
                   class="inline-block mt-4 px-6 py-3 bg-[#F5A3B7] text-white rounded-lg hover:bg-[#e392a6] transition-colors">
-                  Start Shopping
+                  {{ t('account.orders.start_shopping') }}
                 </router-link>
               </div>
             </div>
@@ -707,7 +690,7 @@ const updatePassword = () => {
               v-if="activeTab === 'wishlist'"
               class="bg-white rounded-xl p-6 sm:p-8">
               <h2 class="text-2xl sm:text-3xl font-bold text-[#383838] mb-6">
-                My Wishlist
+                {{ t('account.wishlist.title') }}
               </h2>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -730,7 +713,7 @@ const updatePassword = () => {
                   </p>
                   <div class="flex gap-2">
                     <LiquidButton variant="primary" size="sm" :class="'flex-1'">
-                      Add to Cart
+                      {{ t('account.wishlist.add_to_cart') }}
                     </LiquidButton>
                     <LiquidButton
                       @click="removeFromWishlist(item.id)"
@@ -767,11 +750,11 @@ const updatePassword = () => {
                     stroke-width="2"
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
-                <p class="text-[#697586] text-lg">Your wishlist is empty</p>
+                <p class="text-[#697586] text-lg">{{ t('account.wishlist.empty') }}</p>
                 <router-link
                   to="/product"
                   class="inline-block mt-4 px-6 py-3 bg-[#F5A3B7] text-white rounded-lg hover:bg-[#e392a6] transition-colors">
-                  Discover Products
+                  {{ t('account.wishlist.discover') }}
                 </router-link>
               </div>
             </div>
@@ -782,13 +765,13 @@ const updatePassword = () => {
               class="bg-white rounded-xl p-6 sm:p-8">
               <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
                 <h2 class="text-2xl sm:text-3xl font-bold text-[#383838]">
-                  Saved Addresses
+                  {{ t('account.addresses.title') }}
                 </h2>
                 <LiquidButton
                   @click="openAddressForm"
                   variant="primary"
                   size="md">
-                  + Add New
+                  {{ t('account.addresses.add_new_btn') }}
                 </LiquidButton>
               </div>
 
@@ -797,12 +780,12 @@ const updatePassword = () => {
                 v-if="showAddressForm"
                 class="mb-6 p-6 border-2 border-[#F5A3B7] rounded-lg bg-pink-50/30">
                 <h3 class="text-lg font-semibold text-[#383838] mb-4">
-                  Add New Address
+                  {{ t('account.addresses.add_new_title') }}
                 </h3>
                 <div class="space-y-4">
                   <div>
                     <label class="block text-sm font-medium text-[#383838] mb-2"
-                      >Address Type</label
+                      >{{ t('account.addresses.type') }}</label
                     >
                     <select
                       v-model="addressFormData.type"
@@ -814,7 +797,7 @@ const updatePassword = () => {
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-[#383838] mb-2"
-                      >Full Name</label
+                      >{{ t('account.addresses.full_name') }}</label
                     >
                     <input
                       v-model="addressFormData.name"
@@ -823,7 +806,7 @@ const updatePassword = () => {
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-[#383838] mb-2"
-                      >Address</label
+                      >{{ t('account.addresses.address') }}</label
                     >
                     <textarea
                       v-model="addressFormData.address"
@@ -832,7 +815,7 @@ const updatePassword = () => {
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-[#383838] mb-2"
-                      >Phone Number</label
+                      >{{ t('account.addresses.phone') }}</label
                     >
                     <input
                       v-model="addressFormData.phone"
@@ -845,14 +828,14 @@ const updatePassword = () => {
                       variant="primary"
                       size="md"
                       :class="'flex-1'">
-                      Save Address
+                      {{ t('account.addresses.save_address') }}
                     </LiquidButton>
                     <LiquidButton
                       @click="closeAddressForm"
                       variant="secondary"
                       size="md"
                       :class="'flex-1'">
-                      Cancel
+                      {{ t('account.addresses.cancel') }}
                     </LiquidButton>
                   </div>
                 </div>
@@ -915,14 +898,14 @@ const updatePassword = () => {
                           variant="primary"
                           size="md"
                           :class="'flex-1'">
-                          Save Changes
+                          {{ t('account.addresses.save_changes') }}
                         </LiquidButton>
                         <LiquidButton
                           @click="cancelEditAddress"
                           variant="secondary"
                           size="md"
                           :class="'flex-1'">
-                          Cancel
+                          {{ t('account.addresses.cancel') }}
                         </LiquidButton>
                       </div>
                     </div>
@@ -939,7 +922,7 @@ const updatePassword = () => {
                         <span
                           v-if="address.isDefault"
                           class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
-                          Default
+                          {{ t('account.addresses.default_badge') }}
                         </span>
                       </div>
                       <div class="flex gap-2">
@@ -989,7 +972,7 @@ const updatePassword = () => {
                       variant="ghost"
                       size="sm"
                       :class="'text-sm'">
-                      Set as default
+                      {{ t('account.addresses.set_default') }}
                     </LiquidButton>
                   </div>
                 </div>
@@ -1001,14 +984,14 @@ const updatePassword = () => {
               v-if="activeTab === 'settings'"
               class="bg-white rounded-xl p-6 sm:p-8">
               <h2 class="text-2xl sm:text-3xl font-bold text-[#383838] mb-6">
-                Account Settings
+                {{ t('account.settings.title') }}
               </h2>
 
               <div class="space-y-6">
                 <!-- Password -->
                 <div class="border-b border-gray-200 pb-6">
                   <h3 class="text-lg font-semibold text-[#383838] mb-4">
-                    Change Password
+                    {{ t('account.settings.change_password') }}
                   </h3>
                   <div class="space-y-4">
                     <div>
@@ -1045,7 +1028,7 @@ const updatePassword = () => {
                       @click="updatePassword"
                       variant="primary"
                       size="md">
-                      Update Password
+                      {{ t('account.settings.update_password') }}
                     </LiquidButton>
                   </div>
                 </div>
@@ -1053,7 +1036,7 @@ const updatePassword = () => {
                 <!-- Notifications -->
                 <div class="border-b border-gray-200 pb-6">
                   <h3 class="text-lg font-semibold text-[#383838] mb-4">
-                    Notification Preferences
+                    {{ t('account.settings.notifications') }}
                   </h3>
                   <div class="space-y-3">
                     <label
@@ -1080,7 +1063,7 @@ const updatePassword = () => {
                       </div>
                       <span
                         class="text-[#697586] group-hover:text-gray-700 transition-colors"
-                        >Email notifications for orders</span
+                        >{{ t('account.settings.email_notif') }}</span
                       >
                     </label>
                     <label
@@ -1107,7 +1090,7 @@ const updatePassword = () => {
                       </div>
                       <span
                         class="text-[#697586] group-hover:text-gray-700 transition-colors"
-                        >Promotional emails</span
+                        >{{ t('account.settings.promo_email') }}</span
                       >
                     </label>
                     <label
@@ -1134,7 +1117,7 @@ const updatePassword = () => {
                       </div>
                       <span
                         class="text-[#697586] group-hover:text-gray-700 transition-colors"
-                        >SMS notifications</span
+                        >{{ t('account.settings.sms_notif') }}</span
                       >
                     </label>
                   </div>
@@ -1143,14 +1126,13 @@ const updatePassword = () => {
                 <!-- Delete Account -->
                 <div>
                   <h3 class="text-lg font-semibold text-red-600 mb-2">
-                    Danger Zone
+                    {{ t('account.settings.danger_zone') }}
                   </h3>
                   <p class="text-sm text-[#697586] mb-4">
-                    Once you delete your account, there is no going back. Please
-                    be certain.
+                    {{ t('account.settings.delete_warning') }}
                   </p>
                   <LiquidButton variant="danger" size="md">
-                    Delete Account
+                    {{ t('account.settings.delete_account') }}
                   </LiquidButton>
                 </div>
               </div>

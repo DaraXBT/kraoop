@@ -19,6 +19,7 @@ const AboutUs = () => import("../views/AboutUs.vue");
 const Account = () => import("../views/Account.vue");
 const WishlistPage = () => import("../views/WishlistPage.vue");
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -80,6 +81,7 @@ const router = createRouter({
         requiresAuth: false, // Set to true when auth is required
       },
     },
+
     {
       path: "/about-us",
       name: "about-us",

@@ -299,5 +299,94 @@
     "add_new_card": "Add New Card",
     "save_card": "Save for future use",
     "complete_order": "Complete Order"
+  },
+  "account": {
+    "welcome_back": "Welcome back,",
+    "member_since": "Member since",
+    "tabs": {
+      "profile": "Profile",
+      "orders": "Orders",
+      "wishlist": "Wishlist",
+      "addresses": "Addresses",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "profile": {
+      "title": "Profile Information",
+      "edit_profile": "Edit Profile",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "save_changes": "Save Changes",
+      "cancel": "Cancel",
+      "update_success": "Profile updated successfully!",
+      "changes_discarded": "Changes discarded",
+      "edit_mode": "Edit mode enabled"
+    },
+    "orders": {
+      "title": "Order History",
+      "items": "items",
+      "total": "Total",
+      "view_details": "View Details",
+      "no_orders": "No orders yet",
+      "start_shopping": "Start Shopping",
+      "status": {
+        "delivered": "Delivered",
+        "in_transit": "In Transit",
+        "processing": "Processing",
+        "cancelled": "Cancelled"
+      }
+    },
+    "wishlist": {
+      "title": "My Wishlist",
+      "add_to_cart": "Add to Cart",
+      "removed": "removed from wishlist",
+      "empty": "Your wishlist is empty",
+      "discover": "Discover Products"
+    },
+    "addresses": {
+      "title": "Saved Addresses",
+      "add_new_btn": "+ Add New",
+      "add_new_title": "Add New Address",
+      "type": "Address Type",
+      "full_name": "Full Name",
+      "address": "Address",
+      "phone": "Phone Number",
+      "save_address": "Save Address",
+      "save_changes": "Save Changes",
+      "cancel": "Cancel",
+      "set_default": "Set as default",
+      "default_badge": "Default",
+      "types": {
+        "home": "Home",
+        "office": "Office",
+        "other": "Other"
+      },
+      "updated": "Address updated successfully!",
+      "added": "New address added!",
+      "deleted": "Address deleted",
+      "cannot_delete": "Cannot delete default address",
+      "default_updated": "Default address updated!"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "change_password": "Change Password",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "confirm_password": "Confirm New Password",
+      "update_password": "Update Password",
+      "notifications": "Notification Preferences",
+      "email_notif": "Email notifications for orders",
+      "promo_email": "Promotional emails",
+      "sms_notif": "SMS notifications",
+      "danger_zone": "Danger Zone",
+      "delete_warning": "Once you delete your account, there is no going back. Please be certain.",
+      "delete_account": "Delete Account",
+      "fill_fields": "Please fill all password fields",
+      "password_mismatch": "New passwords do not match",
+      "password_length": "Password must be at least 8 characters",
+      "password_success": "Password updated successfully!"
+    }
   }
 }

@@ -59,7 +59,7 @@
             v-model="searchQuery"
             :suggestions="searchSuggestions"
             :popularSearches="popularSearches"
-            :popularSearches="popularSearches"
+
             :placeholder="$t('product.search_double_cleanse')"
             @search="handleSearch" />
         </div>
