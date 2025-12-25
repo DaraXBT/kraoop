@@ -6,10 +6,12 @@ import AdvancedLiquidButton from "../components/AdvancedLiquidButton.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import {useSEO} from "../composables/useSEO";
+import {usePageTransition} from "../composables/usePageTransition";
 import {computed} from "vue";
 
 const store = useProductStore();
 const {success} = useToast();
+const {getStaggerDelay} = usePageTransition();
 
 // SEO
 useSEO({
@@ -49,7 +51,7 @@ const handleAddToCart = (product) => {
           <div
             class="text-content order-2 lg:order-1 text-center lg:text-left min-w-0 px-2">
             <h1
-              class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#383838] leading-tight mb-4 sm:mb-5 break-words animate-fade-in">
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#383838] leading-tight mb-4 sm:mb-5 break-words animate-fade-in-up">
               Discover Your<br class="hidden sm:inline" />
               Inner Beauty<br class="hidden sm:inline" />
               with
@@ -59,11 +61,11 @@ const handleAddToCart = (product) => {
               >
             </h1>
             <p
-              class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 break-words max-w-lg mx-auto lg:mx-0 font-medium">
+              class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 break-words max-w-lg mx-auto lg:mx-0 font-medium animate-fade-in-up stagger-1">
               Great gift for yourself and loved ones ✨
             </p>
             <div
-              class="button flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+              class="button flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start animate-fade-in-up stagger-2">
               <LiquidButton
                 variant="primary"
                 size="lg"
@@ -90,7 +92,7 @@ const handleAddToCart = (product) => {
 
           <!-- Image -->
           <div
-            class="img order-1 lg:order-2 flex justify-center lg:justify-end min-w-0">
+            class="img order-1 lg:order-2 flex justify-center lg:justify-end min-w-0 animate-fade-in-right stagger-1">
             <div class="relative">
               <div
                 class="absolute -inset-4 bg-gradient-to-r from-[#F5A3B7]/20 to-[#E392A6]/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
@@ -107,7 +109,7 @@ const handleAddToCart = (product) => {
 
       <!--================>>New Arrivals-->
       <div class="py-12 sm:py-14 lg:py-16 px-4 overflow-hidden relative">
-        <div class="text-center min-w-0 max-w-4xl mx-auto mb-10">
+        <div class="text-center min-w-0 max-w-4xl mx-auto mb-10" data-animate="fade-up">
           <p
             class="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-900 mb-3 break-words px-2 bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-600">
             NEW ARRIVALS
@@ -144,8 +146,10 @@ const handleAddToCart = (product) => {
         <div
           class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 min-w-0">
           <CartComponent
-            v-for="product in slicedCart"
+            v-for="(product, index) in slicedCart"
             :key="product.id"
+            :style="{ animationDelay: getStaggerDelay(index, 80) }"
+            class="animate-fade-in-up"
             :id="product.id"
             :promotion="product.promotion"
             :image="product.image"
@@ -163,7 +167,7 @@ const handleAddToCart = (product) => {
         <div
           class="absolute inset-0 bg-gradient-to-br from-purple-50/30 via-pink-50/20 to-transparent"></div>
         <div class="relative z-10">
-          <div class="text-center max-w-4xl mx-auto mb-10">
+          <div class="text-center max-w-4xl mx-auto mb-10" data-animate="fade-up">
             <p
               class="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-900 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-600">
               BEST SELLERS
@@ -200,8 +204,10 @@ const handleAddToCart = (product) => {
         <div
           class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 min-w-0">
           <CartComponent
-            v-for="product in slicedCart2"
+            v-for="(product, index) in slicedCart2"
             :key="product.id"
+            :style="{ animationDelay: getStaggerDelay(index, 80) }"
+            class="animate-fade-in-up"
             :id="product.id"
             :promotion="product.promotion"
             :image="product.image"
@@ -217,7 +223,8 @@ const handleAddToCart = (product) => {
       <div
         class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12 sm:my-14 lg:my-16 overflow-hidden">
         <div
-          class="glass-card-strong grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-w-0 rounded-2xl p-5 sm:p-6 lg:p-10 border border-white/30 -xl transition-smooth">
+          class="glass-card-strong grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-w-0 rounded-2xl p-5 sm:p-6 lg:p-10 border border-white/30 -xl transition-smooth"
+          data-animate="scale">
           <!-- Content -->
           <div class="flex flex-col order-2 lg:order-1 min-w-0">
             <h2

@@ -131,22 +131,32 @@ onErrorCaptured((err, instance, info) => {
 </template>
 
 <style>
-/* Enhanced Page Transition Animations with Glass Effect */
-.page-enter-active,
+/* Enhanced Page Transition Animations - Framer Motion Inspired */
+.page-enter-active {
+  transition: all 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .page-leave-active {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .page-enter-from {
   opacity: 0;
-  transform: translateY(20px) scale(0.98);
-  filter: blur(4px);
+  transform: translateY(40px) scale(0.96);
+  filter: blur(8px);
 }
 
 .page-leave-to {
   opacity: 0;
-  transform: translateY(-20px) scale(0.98);
-  filter: blur(4px);
+  transform: translateY(-30px) scale(0.98);
+  filter: blur(6px);
+}
+
+.page-enter-to,
+.page-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 /* Toast List Animations - Slide from right on all devices */

@@ -5,7 +5,7 @@
         class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
         <!-- Search Bar Section -->
         <div class="mb-8">
-          <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6 animate-fade-in-up">
             Our Collection
           </h1>
           <SearchBar
@@ -17,322 +17,82 @@
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
-          <!-- Sidebar / Filters -->
-          <aside class="w-full lg:w-72 flex-shrink-0">
-            <!-- Mobile Filter Toggle Button -->
-            <LiquidButton
-              @click="showFilters = !showFilters"
-              variant="primary"
-              size="lg"
-              full-width
-              class="lg:hidden mb-4">
-              <span class="text-base">{{
-                showFilters ? "Hide Filters" : "Show Filters"
-              }}</span>
-              <template v-slot:icon-right>
-                <svg
-                  :class="{'rotate-180': showFilters}"
-                  class="w-5 h-5 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7" />
-                </svg>
-              </template>
-            </LiquidButton>
-
-            <div :class="{'hidden lg:block': !showFilters}" class="space-y-6">
-              <!-- Collection Section -->
-              <div
-                class="menu-product bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-100">
-                <h3 class="font-bold text-xl sm:text-2xl text-[#383838] mb-6">
-                  COLLECTION
-                </h3>
-                <div class="flex flex-col space-y-4">
-                  <router-link
-                    class="option-shop py-3.5 px-4 hover:bg-gray-50 rounded-lg transition-colors text-base min-h-[48px] flex items-center font-medium text-[#383838]"
-                    to="/category">
-                    Double Cleanse
-                  </router-link>
-                  <div class="relative">
-                    <select
-                      v-model="selectedCleansingBalms"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Cleansing Balms</option>
-                      <option value="gentle">Gentle Cleansing Balm</option>
-                      <option value="deep">Deep Clean Balm</option>
-                      <option value="hydrating">Hydrating Balm</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="selectedOilCleansers"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Oil Cleansers</option>
-                      <option value="light">Light Oil Cleanser</option>
-                      <option value="deep">Deep Cleansing Oil</option>
-                      <option value="nourishing">Nourishing Oil</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="selectedWaterCleansers"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Water Cleansers</option>
-                      <option value="foam">Foaming Cleanser</option>
-                      <option value="gel">Gel Cleanser</option>
-                      <option value="cream">Cream Cleanser</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Filters Section -->
-              <div
-                class="menu-product bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-100">
-                <div class="flex justify-between items-center mb-6">
-                  <h3 class="font-bold text-xl sm:text-2xl text-[#383838]">
-                    FILTERS
-                  </h3>
-                  <button
-                    @click="clearFilters"
-                    class="text-sm font-medium text-gray-400 hover:text-[#F5A3B7] transition-colors underline decoration-2 decoration-transparent hover:decoration-[#F5A3B7] underline-offset-4 cursor-pointer">
-                    Clear All
-                  </button>
-                </div>
-                <div class="flex flex-col space-y-4">
-                  <div class="relative">
-                    <select
-                      v-model="filterDoubleCleanse"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Double-Cleanse</option>
-                      <option value="all">All Double Cleanse</option>
-                      <option value="balms">Cleansing Balms</option>
-                      <option value="oils">Oil Cleansers</option>
-                      <option value="water">Water Cleansers</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="filterCleansingBalms"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Cleansing Balms</option>
-                      <option value="gentle">Gentle Formula</option>
-                      <option value="deep">Deep Cleansing</option>
-                      <option value="sensitive">For Sensitive Skin</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="filterOilCleansers"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Oil Cleansers</option>
-                      <option value="light">Light Oil</option>
-                      <option value="heavy">Heavy Oil</option>
-                      <option value="makeup">Makeup Remover</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="filterWaterCleansers"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Water Cleansers</option>
-                      <option value="foam">Foaming Cleanser</option>
-                      <option value="gel">Gel Cleanser</option>
-                      <option value="cream">Cream Cleanser</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="filterToners"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Toners</option>
-                      <option value="hydrating">Hydrating Toner</option>
-                      <option value="exfoliating">Exfoliating Toner</option>
-                      <option value="soothing">Soothing Toner</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="filterEyeCare"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Eye Care</option>
-                      <option value="cream">Eye Cream</option>
-                      <option value="serum">Eye Serum</option>
-                      <option value="patch">Eye Patch</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="relative">
-                    <select
-                      v-model="filterExfoliators"
-                      class="liquid-glass-select min-h-[48px]">
-                      <option value="">Exfoliators</option>
-                      <option value="physical">Physical Exfoliator</option>
-                      <option value="chemical">Chemical Exfoliator</option>
-                      <option value="enzyme">Enzyme Exfoliator</option>
-                    </select>
-                    <div
-                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </aside>
+          <!-- Modern Filter Sidebar -->
+          <ModernFilterSidebar
+            title="Categories"
+            :categories="categories"
+            :brands="brands"
+            :skinTypes="skinTypes"
+            :additionalFilters="additionalFilters"
+            :showFilters="showFilters"
+            :priceRange="priceRange"
+            :selectedRating="selectedRating"
+            @toggle-filters="showFilters = !showFilters"
+            @category-change="handleCategoryChange"
+            @brand-change="handleBrandChange"
+            @skin-type-change="handleSkinTypeChange"
+            @filter-change="handleFilterChange"
+            @price-change="handlePriceChange"
+            @rating-change="handleRatingChange"
+            @clear-filters="clearAllFilters"
+            @remove-filter="removeFilter" />
 
           <!-- Product List -->
           <main class="flex-1">
             <!-- Sort Bar -->
             <ProductSortBar
-              :product-count="46"
+              :product-count="filteredProducts.length"
               v-model="sortBy"
+              @update:modelValue="sortProducts"
               class="mb-8" />
+
+            <!-- No Results Message -->
+            <div
+              v-if="filteredProducts.length === 0"
+              class="text-center py-12 px-6">
+              <svg
+                class="mx-auto h-20 w-20 text-gray-300 mb-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                No products found
+              </h3>
+              <p class="text-gray-600 mb-5 text-sm">
+                Try adjusting your filters or search query
+              </p>
+              <button
+                @click="clearAllFilters"
+                class="liquid-glass-clear-btn w-full mt-2 lg:w-fit lg:px-10 mx-auto"
+                aria-label="Clear all filters">
+                <div class="flex items-center justify-center gap-2 relative z-20">
+                  <svg
+                    class="w-4 h-4 text-gray-700"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  <span class="text-sm font-bold text-gray-800">Clear All Filters</span>
+                </div>
+              </button>
+            </div>
 
             <!-- Products Grid -->
             <div
+              v-else
               class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 lg:gap-5 xl:gap-6 mb-8">
-              <div v-for="product in slicedCart" :key="product.id">
+              <div v-for="(product, index) in paginatedProducts" :key="product.id" :style="{ animationDelay: getStaggerDelay(index, 80) }" class="animate-fade-in-up">
                 <CartComponent
                   :id="product.id"
                   :promotion="product.promotion"
@@ -346,10 +106,10 @@
             </div>
 
             <!-- Pagination -->
-            <div class="flex justify-center">
+            <div v-if="totalPages > 1" class="flex justify-center">
               <PaginationControls
-                :current-page="1"
-                :total-pages="3"
+                :current-page="currentPage"
+                :total-pages="totalPages"
                 @page-change="handlePageChange" />
             </div>
           </main>
@@ -363,24 +123,37 @@
 import PageLayout from "../components/PageLayout.vue";
 import CartComponent from "../components/CartComponent.vue";
 import SearchBar from "../components/SearchBar.vue";
-import LiquidButton from "../components/LiquidButton.vue";
+import ModernFilterSidebar from "../components/ModernFilterSidebar.vue";
 import ProductSortBar from "../components/ProductSortBar.vue";
 import PaginationControls from "../components/PaginationControls.vue";
 import {useProductStore} from "../stores/ProductStore";
+import {useSEO} from "../composables/useSEO";
 import {useToast} from "../composables/useToast";
-import {computed, ref} from "vue";
+import {usePageTransition} from "../composables/usePageTransition";
+import {computed, ref, watch} from "vue";
 
 const store = useProductStore();
 const {success} = useToast();
+const {getStaggerDelay} = usePageTransition();
 const showFilters = ref(false);
+
+// SEO
+useSEO({
+  title: "Our Collection - Korean Skincare & Beauty",
+  description:
+    "Explore our curated collection of Korean skincare and beauty products. Discover new arrivals and featured items.",
+  url: "/collection",
+});
 
 // Search
 const searchQuery = ref("");
 const searchSuggestions = computed(() => {
-  const allProductNames = store.products.map((p) => p.name);
-  const allCategories = [...new Set(store.products.map((p) => p.category))];
-  return [...allProductNames, ...allCategories];
+  const categories = store.allCategories.map((c) => c.label);
+  const brands = store.allBrands.map((b) => b.label);
+  const tags = [...new Set(store.products.flatMap((p) => p.tags || []))];
+  return [...categories, ...brands, ...tags];
 });
+
 const popularSearches = ref([
   "New Arrivals",
   "Moisturizer",
@@ -388,88 +161,301 @@ const popularSearches = ref([
   "Face Mask",
 ]);
 
-const products = computed(() => store.products);
-const slicedCart = computed(() => {
-  let filtered = store.products;
+// Categories from store
+const categories = ref([]);
+watch(
+  () => store.allCategories,
+  (newCategories) => {
+    if (categories.value.length === 0) {
+      categories.value = newCategories.map((cat) => ({
+        ...cat,
+        selected: false,
+      }));
+    }
+  },
+  {immediate: true}
+);
 
-  // Filter collection products (you can customize this logic)
-  filtered = filtered.filter((p) => p.isNew || p.featured);
+// Brands from store
+const brands = ref([]);
+watch(
+  () => store.allBrands,
+  (newBrands) => {
+    if (brands.value.length === 0) {
+      brands.value = newBrands.map((brand) => ({
+        ...brand,
+        selected: false,
+      }));
+    }
+  },
+  {immediate: true}
+);
+
+// Skin Types from store
+const skinTypes = ref([]);
+watch(
+  () => store.allSkinTypes,
+  (newSkinTypes) => {
+    if (skinTypes.value.length === 0) {
+      skinTypes.value = newSkinTypes.map((type) => ({
+        ...type,
+        selected: false,
+      }));
+    }
+  },
+  {immediate: true}
+);
+
+// Additional filters
+const additionalFilters = ref([
+  {label: "In Stock", value: "inStock", selected: false},
+  {label: "On Sale", value: "onSale", selected: false},
+  {label: "New Arrivals", value: "isNew", selected: false},
+  {label: "Featured", value: "featured", selected: false},
+]);
+
+// Price range
+const priceRange = ref({
+  min: 0,
+  max: 200,
+  current: 200,
+});
+
+// Rating
+const selectedRating = ref(null);
+
+// Sorting
+const sortBy = ref("best-selling");
+
+// Pagination
+const currentPage = ref(1);
+const itemsPerPage = 9;
+
+// Filtered products
+const filteredProducts = computed(() => {
+  let products = [...store.products];
 
   // Search filter
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase();
-    filtered = filtered.filter(
-      (p) =>
-        p.name.toLowerCase().includes(query) ||
+    products = products.filter((p) => {
+      return (
+        p.title.toLowerCase().includes(query) ||
+        p.product.toLowerCase().includes(query) ||
         p.category.toLowerCase().includes(query) ||
-        p.description?.toLowerCase().includes(query)
+        p.brand.toLowerCase().includes(query) ||
+        (p.tags && p.tags.some((tag) => tag.toLowerCase().includes(query)))
+      );
+    });
+  }
+
+  // Category filter
+  const selectedCategories = categories.value
+    .filter((c) => c.selected)
+    .map((c) => c.value);
+  if (selectedCategories.length > 0) {
+    products = products.filter((p) => selectedCategories.includes(p.category));
+  }
+
+  // Brand filter
+  const selectedBrands = brands.value
+    .filter((b) => b.selected)
+    .map((b) => b.value);
+  if (selectedBrands.length > 0) {
+    products = products.filter((p) => selectedBrands.includes(p.brand));
+  }
+
+  // Skin type filter
+  const selectedSkinTypes = skinTypes.value
+    .filter((s) => s.selected)
+    .map((s) => s.value);
+  if (selectedSkinTypes.length > 0) {
+    products = products.filter((p) =>
+      p.skinType.some((type) => selectedSkinTypes.includes(type))
     );
   }
 
-  return filtered.slice(4, 12);
+  // Price filter
+  products = products.filter((p) => {
+    const price = parseFloat(p.price.replace("$", ""));
+    return price <= priceRange.value.current;
+  });
+
+  // Rating filter
+  if (selectedRating.value) {
+    products = products.filter((p) => p.rating >= selectedRating.value);
+  }
+
+  // Additional filters
+  const activeFilters = additionalFilters.value.filter((f) => f.selected);
+  activeFilters.forEach((filter) => {
+    if (filter.value === "inStock") {
+      products = products.filter((p) => p.inStock);
+    } else if (filter.value === "onSale") {
+      products = products.filter((p) => p.promotion);
+    } else if (filter.value === "isNew") {
+      products = products.filter((p) => p.isNew);
+    } else if (filter.value === "featured") {
+      products = products.filter((p) => p.featured);
+    }
+  });
+
+  return products;
 });
 
-// Collection dropdowns
-const selectedCleansingBalms = ref("");
-const selectedOilCleansers = ref("");
-const selectedWaterCleansers = ref("");
+// Sorted products
+const sortedProducts = computed(() => {
+  const products = [...filteredProducts.value];
 
-// Filter dropdowns
-const filterDoubleCleanse = ref("");
-const filterCleansingBalms = ref("");
-const filterOilCleansers = ref("");
-const filterWaterCleansers = ref("");
-const filterToners = ref("");
-const filterEyeCare = ref("");
-const filterExfoliators = ref("");
+  switch (sortBy.value) {
+    case "featured":
+      return products.sort(
+        (a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
+      );
+    case "best-selling":
+      return products.sort((a, b) => b.ratingCount - a.ratingCount);
+    case "price-low":
+      return products.sort(
+        (a, b) =>
+          parseFloat(a.price.replace("$", "")) -
+          parseFloat(b.price.replace("$", ""))
+      );
+    case "price-high":
+      return products.sort(
+        (a, b) =>
+          parseFloat(b.price.replace("$", "")) -
+          parseFloat(a.price.replace("$", ""))
+      );
+    case "rating-high":
+      return products.sort((a, b) => b.rating - a.rating);
+    case "a-z":
+      return products.sort((a, b) => a.title.localeCompare(b.title));
+    case "z-a":
+      return products.sort((a, b) => b.title.localeCompare(a.title));
+    case "newest":
+      return products.reverse();
+    default:
+      return products;
+  }
+});
 
-// Sort dropdown
-const sortBy = ref("best-selling");
+// Paginated products
+const totalPages = computed(() =>
+  Math.ceil(sortedProducts.value.length / itemsPerPage)
+);
+
+const paginatedProducts = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  return sortedProducts.value.slice(start, end);
+});
+
+// Event handlers
+const handleSearch = (query) => {
+  searchQuery.value = query;
+  currentPage.value = 1;
+};
+
+const handleCategoryChange = (category) => {
+  const index = categories.value.findIndex((c) => c.value === category.value);
+  if (index !== -1) {
+    categories.value[index].selected = !categories.value[index].selected;
+    currentPage.value = 1;
+  }
+};
+
+const handleBrandChange = (brand) => {
+  const index = brands.value.findIndex((b) => b.value === brand.value);
+  if (index !== -1) {
+    brands.value[index].selected = !brands.value[index].selected;
+    currentPage.value = 1;
+  }
+};
+
+const handleSkinTypeChange = (skinType) => {
+  const index = skinTypes.value.findIndex((s) => s.value === skinType.value);
+  if (index !== -1) {
+    skinTypes.value[index].selected = !skinTypes.value[index].selected;
+    currentPage.value = 1;
+  }
+};
+
+const handleFilterChange = (filter) => {
+  const index = additionalFilters.value.findIndex(
+    (f) => f.value === filter.value
+  );
+  if (index !== -1) {
+    additionalFilters.value[index].selected =
+      !additionalFilters.value[index].selected;
+    currentPage.value = 1;
+  }
+};
+
+const handlePriceChange = (range) => {
+  if (range.max !== undefined) {
+    priceRange.value.current = range.max;
+  }
+  currentPage.value = 1;
+};
+
+const handleRatingChange = (rating) => {
+  selectedRating.value = selectedRating.value === rating ? null : rating;
+  currentPage.value = 1;
+};
+
+const clearAllFilters = () => {
+  // Reset all filters
+  categories.value.forEach((c) => (c.selected = false));
+  brands.value.forEach((b) => (b.selected = false));
+  skinTypes.value.forEach((s) => (s.selected = false));
+  additionalFilters.value.forEach((f) => (f.selected = false));
+  priceRange.value.current = priceRange.value.max;
+  selectedRating.value = null;
+  searchQuery.value = "";
+  currentPage.value = 1;
+};
+
+const removeFilter = (filter) => {
+  if (filter.type === "category") {
+    const index = categories.value.findIndex(
+      (c) => c.value === filter.data.value
+    );
+    if (index !== -1) categories.value[index].selected = false;
+  } else if (filter.type === "brand") {
+    const index = brands.value.findIndex((b) => b.value === filter.data.value);
+    if (index !== -1) brands.value[index].selected = false;
+  } else if (filter.type === "skinType") {
+    const index = skinTypes.value.findIndex(
+      (s) => s.value === filter.data.value
+    );
+    if (index !== -1) skinTypes.value[index].selected = false;
+  } else if (filter.type === "filter") {
+    const index = additionalFilters.value.findIndex(
+      (f) => f.value === filter.data.value
+    );
+    if (index !== -1) additionalFilters.value[index].selected = false;
+  } else if (filter.type === "rating") {
+    selectedRating.value = null;
+  }
+  currentPage.value = 1;
+};
+
+const sortProducts = () => {
+  currentPage.value = 1;
+};
 
 const handleAddToCart = (product) => {
   store.addToCart(product);
-  success("Product added to cart successfully! 🛒", 3000);
+  success(`${product.title} added to cart! 🛒`, 3000);
   console.log("Added to cart:", product);
 };
 
-const handleSearch = (query) => {
-  searchQuery.value = query;
-};
-
-const clearFilters = () => {
-  // Collection dropdowns
-  selectedCleansingBalms.value = "";
-  selectedOilCleansers.value = "";
-  selectedWaterCleansers.value = "";
-
-  // Filter dropdowns
-  filterDoubleCleanse.value = "";
-  filterCleansingBalms.value = "";
-  filterOilCleansers.value = "";
-  filterWaterCleansers.value = "";
-  filterToners.value = "";
-  filterEyeCare.value = "";
-  filterExfoliators.value = "";
-};
-
 const handlePageChange = (page) => {
-  console.log("Page changed to:", page);
-  // Todo: Implement actual pagination logic
+  currentPage.value = page;
+  window.scrollTo({top: 0, behavior: "smooth"});
 };
 </script>
 
 <style scoped>
-.menu-product {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
 
-
-
-.option-shop {
-  background-color: #fff;
-  cursor: pointer;
-}
 </style>

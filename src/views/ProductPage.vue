@@ -69,7 +69,7 @@
         class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-6 sm:py-8 lg:py-10">
         <!-- Search Bar Section -->
         <div class="mb-6">
-          <h1 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-5">
+          <h1 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-5 animate-fade-in-up">
             Discover Products
           </h1>
           <SearchBar
@@ -198,7 +198,7 @@
             <div
               v-else
               class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 xl:gap-5 mb-8">
-              <div v-for="product in paginatedProducts" :key="product.id">
+              <div v-for="(product, index) in paginatedProducts" :key="product.id" :style="{ animationDelay: getStaggerDelay(index, 80) }" class="animate-fade-in-up">
                 <CartComponent
                   :id="product.id"
                   :promotion="product.promotion"
@@ -298,11 +298,13 @@ import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useSEO} from "../composables/useSEO";
 import {useToast} from "../composables/useToast";
+import {usePageTransition} from "../composables/usePageTransition";
 import LiquidButton from "../components/LiquidButton.vue";
 import {computed, ref, watch, onMounted} from "vue";
 
 const store = useProductStore();
 const {success} = useToast();
+const {getStaggerDelay} = usePageTransition();
 
 // Initialize loading state
 const isInitializing = ref(true);
