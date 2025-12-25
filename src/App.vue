@@ -3,14 +3,23 @@ import {RouterView} from "vue-router";
 import ToastNotification from "./components/ToastNotification.vue";
 import PageLoader from "./components/PageLoader.vue";
 import {useToast} from "./composables/useToast";
-import {ref, onErrorCaptured, watch} from "vue";
+import {useProductStore} from "./stores/ProductStore";
+import {ref, onErrorCaptured, watch, onMounted} from "vue";
 import {isNavigating} from "./router";
 
 const {toasts, removeToast, error} = useToast();
+const store = useProductStore();
 
 // Error handling
 const hasError = ref(false);
 const errorMessage = ref("");
+
+// Initialize app data
+onMounted(async () => {
+  if (!store.isInitialized) {
+    await store.fetchProducts();
+  }
+});
 
 // Watch navigation state and add body class
 watch(isNavigating, (isNav) => {

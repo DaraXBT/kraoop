@@ -412,122 +412,48 @@ const sortOptions = [
 const currentPage = ref(1);
 const itemsPerPage = 21; // 7 rows × 3 columns to align with sidebar height
 
-// Filtered products
+// Filtered and Sorted products
 const filteredProducts = computed(() => {
-  let products = [...store.products];
-
-  // Search filter
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase();
-    products = products.filter((p) => {
-      return (
-        p.title.toLowerCase().includes(query) ||
-        p.product.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query) ||
-        p.brand.toLowerCase().includes(query) ||
-        (p.tags && p.tags.some((tag) => tag.toLowerCase().includes(query)))
-      );
-    });
-  }
-
-  // Category filter
   const selectedCategories = categories.value
     .filter((c) => c.selected)
     .map((c) => c.value);
-  if (selectedCategories.length > 0) {
-    products = products.filter((p) => selectedCategories.includes(p.category));
-  }
-
-  // Brand filter
   const selectedBrands = brands.value
     .filter((b) => b.selected)
     .map((b) => b.value);
-  if (selectedBrands.length > 0) {
-    products = products.filter((p) => selectedBrands.includes(p.brand));
-  }
-
-  // Skin type filter
   const selectedSkinTypes = skinTypes.value
     .filter((s) => s.selected)
     .map((s) => s.value);
-  if (selectedSkinTypes.length > 0) {
-    products = products.filter((p) =>
-      p.skinType.some((type) => selectedSkinTypes.includes(type))
-    );
-  }
+  
+  const inStock = additionalFilters.value.find(f => f.value === 'inStock')?.selected;
+  const onSale = additionalFilters.value.find(f => f.value === 'onSale')?.selected;
+  const featured = additionalFilters.value.find(f => f.value === 'featured')?.selected;
 
-  // Price filter
-  products = products.filter((p) => {
-    const price = parseFloat(p.price.replace("$", ""));
-    return price <= priceRange.value.current;
+  return store.filterProducts({
+    searchQuery: searchQuery.value,
+    categories: selectedCategories,
+    brands: selectedBrands,
+    skinTypes: selectedSkinTypes,
+    priceRange: { max: priceRange.value.current },
+    rating: selectedRating.value,
+    inStock,
+    onSale,
+    featured,
+    sortBy: sortBy.value
   });
-
-  // Rating filter
-  if (selectedRating.value) {
-    products = products.filter((p) => p.rating >= selectedRating.value);
-  }
-
-  // Additional filters
-  const activeFilters = additionalFilters.value.filter((f) => f.selected);
-  activeFilters.forEach((filter) => {
-    if (filter.value === "inStock") {
-      products = products.filter((p) => p.inStock);
-    } else if (filter.value === "onSale") {
-      products = products.filter((p) => p.promotion);
-    } else if (filter.value === "featured") {
-      products = products.filter((p) => p.featured);
-    }
-  });
-
-  return products;
-});
-
-// Sorted products
-const sortedProducts = computed(() => {
-  const products = [...filteredProducts.value];
-
-  switch (sortBy.value) {
-    case "featured":
-      return products.sort(
-        (a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
-      );
-    case "best-selling":
-      return products.sort((a, b) => b.ratingCount - a.ratingCount);
-    case "price-low":
-      return products.sort(
-        (a, b) =>
-          parseFloat(a.price.replace("$", "")) -
-          parseFloat(b.price.replace("$", ""))
-      );
-    case "price-high":
-      return products.sort(
-        (a, b) =>
-          parseFloat(b.price.replace("$", "")) -
-          parseFloat(a.price.replace("$", ""))
-      );
-    case "rating-high":
-      return products.sort((a, b) => b.rating - a.rating);
-    case "a-z":
-      return products.sort((a, b) => a.title.localeCompare(b.title));
-    case "z-a":
-      return products.sort((a, b) => b.title.localeCompare(a.title));
-    case "newest":
-      return products.reverse();
-    default:
-      return products;
-  }
 });
 
 // Paginated products
 const totalPages = computed(() =>
-  Math.ceil(sortedProducts.value.length / itemsPerPage)
+  Math.ceil(filteredProducts.value.length / itemsPerPage)
 );
 
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return sortedProducts.value.slice(start, end);
+  return filteredProducts.value.slice(start, end);
 });
+
+
 
 const displayedPages = computed(() => {
   const pages = [];

@@ -148,54 +148,89 @@ const apiClient = new APIClient(config.api.baseURL, config.api.timeout);
 /**
  * Products API
  */
+import { mockProducts } from "./mockData";
+
 export const productsAPI = {
   /**
    * Get all products with optional filters
    */
   async getAll(filters = {}) {
-    return apiClient.get("/products", filters);
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    return mockProducts;
   },
 
   /**
    * Get product by ID
    */
   async getById(id) {
-    return apiClient.get(`/products/${id}`);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return mockProducts.find((p) => p.id === parseInt(id));
   },
 
   /**
    * Search products
    */
   async search(query, filters = {}) {
-    return apiClient.get("/products/search", {q: query, ...filters});
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    if (!query) return mockProducts;
+    const lowerQuery = query.toLowerCase();
+    return mockProducts.filter(
+      (p) =>
+        p.title?.toLowerCase().includes(lowerQuery) ||
+        p.product?.toLowerCase().includes(lowerQuery) ||
+        p.brand?.toLowerCase().includes(lowerQuery) ||
+        p.category?.toLowerCase().includes(lowerQuery) ||
+        p.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery))
+    );
   },
 
   /**
    * Get featured products
    */
   async getFeatured() {
-    return apiClient.get("/products/featured");
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return mockProducts.filter((p) => p.featured);
   },
 
   /**
    * Get best selling products
    */
   async getBestSelling() {
-    return apiClient.get("/products/best-selling");
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return mockProducts
+      .sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0))
+      .slice(0, 8);
   },
 
   /**
    * Get product reviews
    */
   async getReviews(productId) {
-    return apiClient.get(`/products/${productId}/reviews`);
+    // Return dummy reviews for now
+    return [
+      {
+        id: 1,
+        author: "Cathy K.",
+        rating: 5,
+        content: "Very moisturizing and gentle on skin.",
+        date: "2024-02-27",
+      },
+      {
+        id: 2,
+        author: "Jane D.",
+        rating: 4,
+        content: "Good product but a bit pricey.",
+        date: "2024-02-20",
+      }
+    ];
   },
 
   /**
    * Add product review
    */
   async addReview(productId, reviewData) {
-    return apiClient.post(`/products/${productId}/reviews`, reviewData);
+    return { success: true };
   },
 };
 
