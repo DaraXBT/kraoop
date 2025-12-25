@@ -101,42 +101,15 @@
         <div class="mb-4 sm:mb-6">
           <div
             class="liquid-glass-payment-card overflow-hidden relative transition-all duration-300 hover:shadow-lg hover:shadow-pink-100/20">
-            <!-- Header with Solid Light Pink -->
-            <div
-              class="relative px-4 py-4 border-b overflow-hidden group"
-              style="background: #f5a3b7; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(clamp(1px, 0.125em, 4px)); -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));">
-              <!-- Subtle shine overlay -->
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div class="flex items-center justify-between relative z-10">
-                <h2
-                  class="text-lg font-bold text-white flex items-center gap-2">
-                  <svg
-                    class="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    stroke-width="2">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                  </svg>
-                  Your Order
-                </h2>
-                <!-- Subtle Liquid Glass Badge -->
-                <span
-                  class="relative px-4 py-1.5 text-xs font-bold rounded-full overflow-hidden shadow-sm transition-all duration-300 hover:scale-105"
-                  style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 2px 8px rgba(255, 255, 255, 0.15);">
-                  <!-- Glass shine effect -->
-                  <span class="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none"></span>
-                  <span class="relative z-10 text-white font-bold">
-                    {{ cartItems.length }}
-                    {{ cartItems.length === 1 ? "Item" : "Items" }}
-                  </span>
-                </span>
-              </div>
-            </div>
+            <!-- Header with LiquidSectionHeader -->
+            <LiquidSectionHeader
+              title="Your Order"
+              icon="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z">
+              <template #badge>
+                {{ cartItems.length }}
+                {{ cartItems.length === 1 ? "Item" : "Items" }}
+              </template>
+            </LiquidSectionHeader>
 
             <!-- Empty Cart Message -->
             <div v-if="isEmpty" class="text-center py-12 px-4 relative z-10">
@@ -550,26 +523,10 @@
           <div class="w-full">
             <div
               class="liquid-glass-payment-card overflow-hidden relative">
-              <!-- Section Header with Solid Light Pink -->
-              <div
-                class="relative px-4 py-3 overflow-hidden group"
-                style="background: #f5a3b7; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(clamp(1px, 0.125em, 4px)); -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));">
-                <h3
-                  class="text-base font-bold text-white flex items-center gap-2 relative z-10">
-                  <svg
-                    class="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    stroke-width="2">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                  </svg>
-                  Contact & Shipping Details
-                </h3>
-              </div>
+              <!-- Section Header -->
+              <LiquidSectionHeader
+                title="Contact & Shipping Details"
+                icon="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 
               <div class="p-4 space-y-3 relative z-10">
                 <!-- Contact Email -->
@@ -806,26 +763,10 @@
           <div class="w-full">
             <div
               class="liquid-glass-payment-card overflow-hidden relative">
-              <!-- Section Header with Solid Light Pink -->
-              <div
-                class="relative px-4 py-3 overflow-hidden group"
-                style="background: #f5a3b7; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(clamp(1px, 0.125em, 4px)); -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));">
-                <h3
-                  class="text-base font-bold text-white flex items-center gap-2 relative z-10">
-                  <svg
-                    class="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    stroke-width="2">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                  </svg>
-                  Payment Method
-                </h3>
-              </div>
+              <!-- Section Header -->
+              <LiquidSectionHeader
+                title="Payment Method"
+                icon="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
 
               <div class="p-4 space-y-4 relative z-10">
                 <p class="text-xs text-gray-800 font-medium">
@@ -1553,6 +1494,7 @@ import {useToast} from "../composables/useToast";
 import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import LiquidButton from "../components/LiquidButton.vue";
 import AdvancedLiquidButton from "../components/AdvancedLiquidButton.vue";
+import LiquidSectionHeader from "../components/LiquidSectionHeader.vue";
 
 const productStore = useProductStore();
 const {success, error: errorToast, info} = useToast();

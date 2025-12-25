@@ -1,53 +1,6 @@
 <template>
-  <div class="min-h-screen w-full relative">
-    <!-- Dashed Grid -->
-    <div
-      class="absolute inset-0 z-0"
-      style="
-        background-image: linear-gradient(
-            to right,
-            #e7e5e4 1px,
-            transparent 1px
-          ),
-          linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
-        background-size: 20px 20px;
-        background-position: 0 0, 0 0;
-        mask-image: repeating-linear-gradient(
-            to right,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          ),
-          repeating-linear-gradient(
-            to bottom,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          );
-        -webkit-mask-image: repeating-linear-gradient(
-            to right,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          ),
-          repeating-linear-gradient(
-            to bottom,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          );
-        mask-composite: intersect;
-        -webkit-mask-composite: source-in;
-      "></div>
-
-    <div class="relative z-10">
-      <NavBarComponent />
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+  <PageLayout :show-banner="false">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <!-- Header -->
         <div class="mb-8">
           <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
@@ -238,15 +191,14 @@
           </LiquidButton>
         </div>
       </div>
-    </div>
-  </div>
+  </PageLayout>
 </template>
 
 <script setup>
 import {computed} from "vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
-import NavBarComponent from "../components/NavBarComponent.vue";
+import PageLayout from "../components/PageLayout.vue";
 import LiquidButton from "../components/LiquidButton.vue";
 
 const store = useProductStore();

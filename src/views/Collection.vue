@@ -1,52 +1,5 @@
 <template>
-  <div class="min-h-screen w-full relative">
-    <!-- Dashed Grid -->
-    <div
-      class="absolute inset-0 z-0"
-      style="
-        background-image: linear-gradient(
-            to right,
-            #e7e5e4 1px,
-            transparent 1px
-          ),
-          linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
-        background-size: 20px 20px;
-        background-position: 0 0, 0 0;
-        mask-image: repeating-linear-gradient(
-            to right,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          ),
-          repeating-linear-gradient(
-            to bottom,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          );
-        -webkit-mask-image: repeating-linear-gradient(
-            to right,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          ),
-          repeating-linear-gradient(
-            to bottom,
-            black 0px,
-            black 3px,
-            transparent 3px,
-            transparent 8px
-          );
-        mask-composite: intersect;
-        -webkit-mask-composite: source-in;
-      "></div>
-
-    <div class="relative z-10">
-      <NavBarComponentVue />
-      <AnnouncementBanner />
+  <PageLayout>
 
       <div
         class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
@@ -371,39 +324,10 @@
           <!-- Product List -->
           <main class="flex-1">
             <!-- Sort Bar -->
-            <div
-              class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-              <div class="text-[#B0A6BD] text-base sm:text-lg">46 Products</div>
-              <div class="flex items-center gap-3 text-base w-full sm:w-auto">
-                <span class="text-gray-700">Sort By</span>
-                <div class="relative flex-1 sm:flex-none">
-                  <select
-                    v-model="sortBy"
-                    class="liquid-glass-select min-h-[48px]">
-                    <option value="best-selling">Best Selling</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="a-z">A-Z</option>
-                    <option value="z-a">Z-A</option>
-                    <option value="newest">Newest First</option>
-                  </select>
-                  <div
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                    <svg
-                      class="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProductSortBar
+              :product-count="46"
+              v-model="sortBy"
+              class="mb-8" />
 
             <!-- Products Grid -->
             <div
@@ -423,84 +347,25 @@
 
             <!-- Pagination -->
             <div class="flex justify-center">
-              <nav class="flex items-center gap-x-1">
-                <LiquidButton variant="glass" size="sm" class="min-h-[38px]">
-                  <template v-slot:icon-left>
-                    <svg
-                      class="w-3.5 h-3.5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <path d="m15 18-6-6 6-6" />
-                    </svg>
-                  </template>
-                  <span class="hidden sm:inline">Previous</span>
-                </LiquidButton>
-                <div class="flex items-center gap-x-1">
-                  <LiquidButton
-                    variant="secondary"
-                    size="sm"
-                    icon-only
-                    class="min-h-[38px] min-w-[38px] bg-gray-100 font-medium">
-                    1
-                  </LiquidButton>
-                  <LiquidButton
-                    variant="glass"
-                    size="sm"
-                    icon-only
-                    class="min-h-[38px] min-w-[38px]">
-                    2
-                  </LiquidButton>
-                  <LiquidButton
-                    variant="glass"
-                    size="sm"
-                    icon-only
-                    class="min-h-[38px] min-w-[38px]">
-                    3
-                  </LiquidButton>
-                </div>
-                <LiquidButton variant="glass" size="sm" class="min-h-[38px]">
-                  <span class="hidden sm:inline">Next</span>
-                  <template v-slot:icon-right>
-                    <svg
-                      class="w-3.5 h-3.5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <path d="m9 18 6-6-6-6" />
-                    </svg>
-                  </template>
-                </LiquidButton>
-              </nav>
+              <PaginationControls
+                :current-page="1"
+                :total-pages="3"
+                @page-change="handlePageChange" />
             </div>
           </main>
         </div>
       </div>
 
-      <FooterComponentVue />
-    </div>
-  </div>
+  </PageLayout>
 </template>
 
 <script setup>
-import FooterComponentVue from "../components/FooterComponent.vue";
-import NavBarComponentVue from "../components/NavBarComponent.vue";
+import PageLayout from "../components/PageLayout.vue";
 import CartComponent from "../components/CartComponent.vue";
 import SearchBar from "../components/SearchBar.vue";
-import AnnouncementBanner from "../components/AnnouncementBanner.vue";
 import LiquidButton from "../components/LiquidButton.vue";
+import ProductSortBar from "../components/ProductSortBar.vue";
+import PaginationControls from "../components/PaginationControls.vue";
 import {useProductStore} from "../stores/ProductStore";
 import {useToast} from "../composables/useToast";
 import {computed, ref} from "vue";
@@ -585,6 +450,11 @@ const clearFilters = () => {
   filterToners.value = "";
   filterEyeCare.value = "";
   filterExfoliators.value = "";
+};
+
+const handlePageChange = (page) => {
+  console.log("Page changed to:", page);
+  // Todo: Implement actual pagination logic
 };
 </script>
 
