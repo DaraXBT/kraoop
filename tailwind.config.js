@@ -56,6 +56,7 @@ export default {
         ],
         heading: ["Plus Jakarta Sans", "sans-serif"],
         body: ["Lexend", "Plus Jakarta Sans", "sans-serif"],
+        kantumruy: ["Kantumruy Pro", "sans-serif"],
       },
       fontSize: {
         xs: ["0.6875rem", {lineHeight: "1rem"}], // 11px - Smaller

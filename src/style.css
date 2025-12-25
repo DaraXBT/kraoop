@@ -19,6 +19,12 @@
   font-size: 100%; /* Ensure consistent base size */
 }
 
+/* Global Khmer Font Override */
+body.font-kantumruy,
+body.font-kantumruy * {
+  font-family: "Kantumruy Pro", sans-serif !important;
+}
+
 /* Prevent horizontal scrolling globally */
 html,
 body {

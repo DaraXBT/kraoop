@@ -7,8 +7,11 @@ import {useProductStore} from "./stores/ProductStore";
 import {ref, onErrorCaptured, watch, onMounted} from "vue";
 import {isNavigating} from "./router";
 
+import {useI18n} from "vue-i18n";
+
 const {toasts, removeToast, error} = useToast();
 const store = useProductStore();
+const {locale} = useI18n(); // Access i18n locale
 
 // Error handling
 const hasError = ref(false);
@@ -29,6 +32,19 @@ watch(isNavigating, (isNav) => {
     document.body.style.overflow = "";
   }
 });
+
+// Watch locale to update global font
+watch(
+  locale,
+  (newLocale) => {
+    if (newLocale === "km") {
+      document.body.classList.add("font-kantumruy");
+    } else {
+      document.body.classList.remove("font-kantumruy");
+    }
+  },
+  {immediate: true}
+);
 
 onErrorCaptured((err, instance, info) => {
   console.error("Component error caught:", err, info);
