@@ -158,7 +158,9 @@
     "invalid_token_toast": "តំណកំណត់ឡើងវិញមិនត្រឹមត្រូវ",
     "reset_success_toast": "ការកំណត់ពាក្យសម្ងាត់ឡើងវិញបានជោគជ័យ!",
     "reset_failed": "បរាជ័យក្នុងការកំណត់ពាក្យសម្ងាត់ឡើងវិញ។ តំណអាចផុតកំណត់។",
-    "reset_failed_toast": "បរាជ័យក្នុងការកំណត់ពាក្យសម្ងាត់ឡើងវិញ។"
+    "reset_failed_toast": "បរាជ័យក្នុងការកំណត់ពាក្យសម្ងាត់ឡើងវិញ។",
+    "continue_with_google": "បន្តជាមួយ Google",
+    "or_continue_with": "ឬបន្តជាមួយ"
   },
   "product": {
     "discover_products": "ស្វែងរកផលិតផល",
@@ -297,6 +299,7 @@
       "orders": "ការបញ្ជាទិញ",
       "wishlist": "បញ្ជីចង់បាន",
       "addresses": "អាសយដ្ឋាន",
+      "settings": "ការកំណត់",
       "settings": "ការកំណត់",
       "logout": "ចាកចេញ"
     },

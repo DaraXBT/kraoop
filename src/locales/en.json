@@ -153,7 +153,10 @@
     "invalid_token_toast": "Invalid reset link",
     "reset_success_toast": "Password reset successful!",
     "reset_failed": "Failed to reset password. The link may have expired.",
-    "reset_failed_toast": "Failed to reset password."
+    "reset_failed": "Failed to reset password. The link may have expired.",
+    "reset_failed_toast": "Failed to reset password.",
+    "continue_with_google": "Continue with Google",
+    "or_continue_with": "Or continue with"
   },
   "product": {
     "discover_products": "Discover Products",
